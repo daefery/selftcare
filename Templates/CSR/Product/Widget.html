@@ -1,0 +1,27 @@
+﻿<header class="title">
+    <ul>
+        <li><button type="button" class="btn btn-default">Actions<i class="icon-chevron-down"></i></button></li>
+    </ul>
+    <h6>CUSTOMER PRODUCTS</h6>
+</header>
+<div class="line"></div>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="table-head">
+            <tr>
+                <th>Product Id</th>
+                <th>Subscription </th>
+                <th>Service Type </th>
+                <th>End Date </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="model in products.ProductInformation">
+                <td><a href="">{{model.ProductId}}</a></td>
+                <td>{{model.Subscription}}</td>
+                <td>{{model.ServiceType}}</td>
+                <td>{{model.EndDate}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

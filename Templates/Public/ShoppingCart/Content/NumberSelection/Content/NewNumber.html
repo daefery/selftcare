@@ -1,0 +1,25 @@
+﻿<div class="col-sm-12">
+    <p>Select Phone Number</p>
+    <div class="col-md-12" ng-model="NumberSelection.phonecategory" ng-init="NumberSelection.phonecategory[0]">
+        <div class="form-group">
+            <label class="control-label col-sm-4">Category :</label>
+            <div class="col-sm-8" style="margin-top:-15px">
+                <etbossform name="category" field="{{phonecategory}}"></etbossform>
+            </div>
+        </div>
+    </div>
+    <p>Choose the Prefered Phone Number</p>
+    <form name="formAvailableMsisdn" class="radio">
+        <div class="col-sm-12 pre-scrollable" style="border: 1px solid #E9E9E9; max-height: 200px; width: 100%">
+            <div class="form-group" ng-repeat="msisdn in jsonMsisdn.msisdns" data-toggle="radio">
+                <input type="radio" id="{{$index}}" name="radioAvailMsisdn" ng-value="msisdn.value" ng-change="selectMsisdn($parent.selectedMsisdn)" ng-model="$parent.selectedMsisdn" ng-check="msisdn=selectedMsisdn" />
+                <label for="{{$index}}"><span></span>{{msisdn.text}}</label>
+
+            </div>
+            <!--<etbossform name="preferedphonenumber" field="{{preferedphonenumber}}"></etbossform>-->
+        </div>
+        <p>Selected Phone Number : {{selectedMsisdn}}</p>
+    </form>
+    <p>Or input your desired number below :</p>
+    <input type="number" style="width:100%" ng-model="desirednumber" />
+</div>

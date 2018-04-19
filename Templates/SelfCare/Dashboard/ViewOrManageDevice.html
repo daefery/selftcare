@@ -1,0 +1,94 @@
+﻿<!--<h5 class="title">YOUR DEVICE</h5>
+<div class="content">
+    <div class="col-md-3 clear-space" ng-if="summary.customerdevices.brand !=null && summary.customerdevices.devicemodel !=null" ng-repeat="devices in summary.customerdevices">
+        <div class="col-md-6 clear-space" style="background-color:white; height: 90px; width: 50px"><img src="areas/customer/content/images/devicetest1.png" style="height: 100%; width: 100%" /></div>
+        <div class="col-md-9">
+            <p style="line-height:30px"><br /></p>
+            <p style="line-height:15px">
+                {{devices.DeviceModel}}
+            </p>
+            <p style="line-height:15px">
+                {{devices.ICCID}}
+            </p>
+
+        </div>
+    </div>
+    <div class="col-md-12 clear-space" ng-if="detail.customerdevices.brand ==null && detail.customerdevices.devicemodel ==null">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert"><i class="glyphicon glyphicon-warning-sign"></i>  Your device is not available or not found, please make sure you do the right thing !</div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!-- selfcare device -->
+<div class="box-content mtop20">
+  <div class="box-title">
+    <h3>your device</h3>
+    <h4>info detail</h4>
+  </div>
+  <!-- .box-control for the box where need an optional elements ex: dropdown, buttons, links etc -->
+  <div class="box-control">
+
+    <!-- dropdown -->
+    <div class="dropdown">
+      <button id="boxControl" class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="et button8"></i>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="boxControl">
+        <li>
+          <a href="">&nbsp;</a>
+        </li>
+        <li>
+          <a href="">&nbsp;</a>
+        </li>
+        <li>
+          <a href="">&nbsp;</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /. dropdown -->
+    <button type="button" class="btn btn-default"><i class="et delete8"></i></button>
+  </div>
+
+  <span class="clear"></span><!-- self clear method-->
+
+  <!-- begin box entry -->
+  <div class="box-entry">
+    <div class="row">
+      <div class="col-md-3" ng-if="summary.customerdevices.brand !=null && summary.customerdevices.devicemodel !=null" ng-repeat="devices in summary.customerdevices">
+        <div class="device-thumbnail">
+          <img src="areas/customer/content/images/devicetest1.png" class="img-responsive"/>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <ul class="device-info-home">
+          <li>
+            {{devices.DeviceModel}}
+          </li>
+          <li>
+            {{devices.ICCID}}
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="alert selfcare alert-warning alert-dismissible" ng-if="detail.customerdevices.brand ==null && detail.customerdevices.devicemodel ==null">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <i class="et questions1"></i>
+      <strong>Warning!</strong> Your device is not available or not found, please make sure you do the right thing !
+    </div><!-- /. alert -->
+
+  </div><!-- /. box entry -->
+
+
+</div>
+<!-- /. selfcare device -->
+
+
+
+

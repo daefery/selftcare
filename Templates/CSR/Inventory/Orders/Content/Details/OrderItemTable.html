@@ -1,0 +1,70 @@
+﻿<!--Mahdi Badari multiple user result template
+    12 Nov 2015-->
+
+<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>
+<section class="normal-wrap" ng-controller="vieworderitempaginationController">
+    <div class="table fullwidth">
+        <table class="table table-hover table-striped">
+            <thead class="table-head">
+                <tr>
+                    <th>#</th>
+                    <th ng-click="sort('ProductId')">
+                        {{'Product_Code'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='ProductId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('middlename')">
+                        {{'Product_Name'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='middlename'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('lastname')">
+                        {{'SKU'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='lastname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('email')">
+                        {{'Model_Number'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('UnitPrice')">
+                        {{'Price'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='UnitPrice'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('Quantity')">
+                        {{'Quantity'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='Quantity'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="item in orderDetail.OrderedItems|itemsPerPage:10| orderBy:sortKey:reverse" ng-class=" {'selected':item.email==selectedRow}" ng-click="getUserDetail(item.email)">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.ProductOfferingId}}</td>
+                    <td>{{item.Product_Name}}</td>
+                    <td>{{item.SKU}}</td>
+                    <td>{{item.Model_Number}}</td>
+                    <td>{{item.UnitPrice}}</td>
+                    <td>{{item.Quantity}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <dir-pagination-controls max-size="10"
+                             direction-links="true"
+                             boundary-links="true"
+                             ng-show="orderDetail.OrderItems.length">
+    </dir-pagination-controls>
+</section>
+
+<!--end-->

@@ -1,0 +1,371 @@
+﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div ng-include="'Templates/SelfCare/Themes/Info.html'"></div>
+    <div class="container">
+        <div class="inner-selfcare">
+            <div class="inner-box" ng-init="start()">
+                <div class="title has-icon clearfix">
+                    <span class="etcircle-icon">
+                        <i class="et task2"></i>
+                    </span>
+                    <h3>Current Plan (<b>{{planName}}</b>)</h3>
+                    <a id="buymore_service" href="/SelfCare/Customer/App/BuyService" class="btn btn-with-icon pull-right"><span>Buy More Service</span></a>
+                </div>
+                <div class="panel-data same-height clearfix" ng-if="!isChangePlan">
+                    <h5>Here your current feature,</h5>
+                    <p>
+                        you can add or remove your feature, or you can <a ng-click="goToChange(true)" href="">Change Rate Plan</a>
+                    </p>
+                    <div class="device-plan">
+                        <div class="plan-detail">
+                            <div class="small-title clearfix">
+                                <i class="icon rightarrows6"></i>
+                                <p>Mandatory Features</p>
+                            </div>
+                            <slick ng-if="ExistingFeatureMandatory != undefined" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                                <div class="plan-description" ng-repeat="opt in ExistingFeatureMandatory">
+                                    <div class="plan-entry">
+                                        <div class="second-plan" style="display: block;">
+                                            <div class="plan-box clearfix">
+                                                <div class="panel panel-default" style="margin: 5px;">
+                                                    <div class="panel-body">
+                                                        <div class="right-box ng-binding" ng-if="opt.items.length > 0">
+                                                            <h4 style="text-align:center">{{opt.features.Names[0].Text}}</h4>
+                                                            <div class="box-feature">
+                                                                <b ng-if="opt.isValid">current feature</b>
+                                                                <div class="accord-entry" ng-if="opt.isValid">
+                                                                    <div class="panel-group" id="" role="tablist" aria-multiselectable="true">
+                                                                        <div class="list-group">
+                                                                            <div class="list-group-item" ng-repeat="itm in opt.items" ng-if="itm.item.IsActive">
+                                                                                <b class="fa fa-check" style="color:green"></b>
+                                                                                {{itm.item.Names[0].Text}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <b>available feature (please select at least {{opt.features.MinOccurs}} item and not more than {{opt.features.MaxOccurs}} item)</b>
+                                                                <div class="accord-entry">
+                                                                    <div class="panel-group" id="" role="tablist" aria-multiselectable="true">
+                                                                        <div class="list-group">
+                                                                            <div class="list-group-item" ng-repeat="itm in opt.items" ng-if="!itm.item.IsActive">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-2">
+                                                                                        <button type="button" style="margin-right:10px" ng-show="!itm.item.IsActive && !itm.selected" class="btn btn-primary btn-sm" tabindex="0" ng-click="addItem(0, itm.item.Id, opt.features)">
+                                                                                            <b class="fa fa-plus"></b>
+                                                                                        </button>
+                                                                                        <button type="button" style="margin-right:10px" ng-show="!itm.item.IsActive && itm.selected" class="btn btn-danger btn-sm" ng-click="removeItemMandatory(itm.item.Id, opt.features)" tabindex="0">
+                                                                                            <b class="fa fa-remove"></b>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-10">
+                                                                                        {{itm.item.Names[0].Text}}
+                                                                                        <b ng-show="!itm.item.IsActive" style="color: #14b7ca"> <sup>$</sup>{{itm.item.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                        <b ng-show="itm.selected" class="fa fa-check" style="color:green"></b>
+                                                                                        <div ng-if="itm.item.Options.length > 0" class="" ng-show="itm.selected"><br />
+                                                                                            <b class="underliner">including</b>
+                                                                                            <p ng-repeat="gg in itm.item.Options">
+                                                                                                {{gg.SpecifiedProductOffering.Names[0].Text}} <b style="color: #14b7ca"> <sup>$</sup>{{gg.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                                <b ng-show="itm.selected" class="fa fa-check" style="color:green"></b>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slick>
+                            <div class="small-title clearfix">
+                                <i class="icon rightarrows6"></i>
+                                <p>Optional Features</p>
+                            </div>
+                            <slick ng-if="ExistingFeatureOption != undefined" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                                <div class="plan-description" ng-repeat="opt in ExistingFeatureOption" ng-if="!opt.active">
+                                    <div class="plan-entry">
+                                        <div class="second-plan" style="display: block;">
+                                            <div class="plan-box clearfix">
+                                                <div class="panel panel-default" style="margin: 5px;" ng-if="opt.items.length > 0">
+                                                    <div class="panel-body">
+                                                        <div class="right-box ng-binding">
+                                                            <h4 style="text-align:center">{{opt.features.Names[0].Text}}</h4>
+                                                            <div class="box-feature">
+                                                                <b ng-if="opt.isValid">current feature</b>
+                                                                <div class="accord-entry" ng-if="opt.isValid">
+                                                                    <div class="panel-group" id="" role="tablist" aria-multiselectable="true">
+                                                                        <div class="list-group">
+                                                                            <div class="list-group-item" ng-repeat="itm in opt.items" ng-if="itm.item.IsActive">
+                                                                                <b class="fa fa-check" style="color:green"></b>
+                                                                                {{itm.item.Names[0].Text}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <b>available feature (please select not more than {{opt.features.MaxOccurs}} item)</b>
+                                                                <div class="accord-entry">
+                                                                    <div class="panel-group" id="" role="tablist" aria-multiselectable="true">
+                                                                        <div class="list-group">
+                                                                            <div class="list-group-item" ng-repeat="itm in opt.items" ng-if="!itm.item.IsActive">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-2">
+                                                                                        <button type="button" style="margin-right:10px" ng-show="!itm.item.IsActive && !itm.selected" class="btn btn-primary btn-sm" tabindex="0" ng-click="addItem(1, itm.item.Id, opt.features)">
+                                                                                            <b class="fa fa-plus"></b>
+                                                                                        </button>
+                                                                                        <button type="button" style="margin-right:10px" ng-show="!itm.item.IsActive && itm.selected" class="btn btn-danger btn-sm" tabindex="0" ng-click="removeItemOptional(itm.item.Id, opt.features)">
+                                                                                            <b class="fa fa-remove"></b>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-10">
+                                                                                        {{itm.item.Names[0].Text}}
+                                                                                        <b ng-show="!itm.item.IsActive" style="color: #14b7ca"> <sup>$</sup>{{itm.item.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                        <b ng-show="itm.selected" class="fa fa-check" style="color:green"></b>
+                                                                                        <div ng-if="itm.item.Options.length > 0" class="" ng-show="itm.selected">
+                                                                                            <br />
+                                                                                            <b class="underliner">including</b>
+                                                                                            <p ng-repeat="gg in itm.item.Options">
+                                                                                                {{gg.SpecifiedProductOffering.Names[0].Text}} <b style="color: #14b7ca"> <sup>$</sup>{{gg.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                                <b ng-show="itm.selected" class="fa fa-check" style="color:green"></b>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="right-box" ng-if="opt.items.length == 0">
+                                                    <h4 style="text-align:center">{{opt.features.Names[0].Text}}</h4>
+                                                    <span class="circle-data-price" style="margin-top: 15px;">
+                                                        <sup>$</sup> {{opt.price}}
+                                                    </span>
+                                                    <center>
+                                                        <button type="button" ng-show="!opt.selected" class="btn btn-primary" tabindex="0" ng-click="addFeatureExisting(opt)">
+                                                            <b>add</b>
+                                                        </button>
+                                                        <button type="button" ng-show="opt.selected" class="btn btn-danger" tabindex="0" ng-click="removeFeatureExisting(opt)">
+                                                            remove
+                                                        </button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slick>
+                            <div ng-if="ExistingFeatureOption == undefined" style="margin:5px">
+                                <p class="alert alert-warning alert-dismissible">
+                                    this plan doesn't have other promotion or product !
+                                </p>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-bottom custom clearfix">
+                                    <div class="rounded-block">
+                                        <div class="total-pay-service clearfix">
+                                            <i class="et shopping145"></i>
+                                            <h3>Total Payment</h3>
+                                            <p><sup>$</sup>{{totalMandatory + totalOptional}}</p>
+                                        </div>
+                                    </div>
+                                    <center>
+                                        <div class="btn-group btn-group-lg" role="group" style="margin-top:10px">
+                                            <button type="button" ng-disabled="!isExistPay" ng-click="payWithBalanceExisting()" class="btn btn-info btn-lg">pay with balance <i class="fa fa-dollar"></i></button>
+                                            <button type="button" ng-disabled="!isExistPay" ng-click="addToCartExisting()" class="btn btn-info btn-lg">add to cart <i class="fa fa-shopping-cart"></i></button>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-data same-height clearfix" ng-if="isChangePlan">
+                    <div class="device-plan" id="publicPlanDesc">
+                        <div class="plan-detail">
+                            <div class="small-title clearfix">
+                                <i class="icon rightarrows6"></i>
+                                <p>Choose Plan <button class="btn btn-danger pull-right" ng-click="goToChange(false)">Cancel</button></p>
+                            </div>
+                            <slick ng-if="AvailablePlan != undefined" touch-move="false" infinite="false" speed="300" slides-to-show="1" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                                <div class="plan-description" ng-repeat="avl in AvailablePlan">
+                                    <div class="plan-entry">
+                                        <div class="second-plan" style="display: block;">
+                                            <h3 class="ng-binding">{{avl.main_plan.Names[0].Text}}</h3>
+                                            <div class="plan-box clearfix">
+                                                <div class="left-box">
+                                                    <span class="circle-data-price">
+                                                        <sup>$</sup> {{avl.main_plan.PurchaseOptions[0].Charges[0].Prices[0].Amount}}
+                                                    </span>
+                                                    <button ng-disabled="avl.main_plan.Id == currentPlan.Id" type="button" class="btn btn-primary btn-lg" tabindex="0" ng-click="selectPlan(avl.main_plan.Id, avl.products_mandatory)">
+                                                        <b ng-show="avl.main_plan.Id == currentPlan.Id">Selected</b>
+                                                        <b ng-show="avl.main_plan.Id != currentPlan.Id">Select Plan</b>
+                                                    </button>
+                                                </div>
+                                                <div class="right-box ng-binding" style="margin-top:-38px" ng-if="avl.main_plan.Id == currentPlan.Id">
+                                                    <div class="box-feature">
+                                                        <div class="panel panel-default" style="margin: 5px;">
+                                                            <div class="panel-body">
+                                                                <b ng-if="!featureGroupReady">include feature</b>
+                                                                <div class="accord-entry" ng-if="!featureGroupReady">
+                                                                    <div class="panel-group" id="" role="tablist" aria-multiselectable="true">
+                                                                        <div class="list-group">
+                                                                            <div class="list-group-item" ng-repeat="mand in mandatory_features" ng-if="mand.Items.length < 1">
+                                                                                <b class="fa fa-check" style="color:green"></b>
+                                                                                {{mand.Names}} <b ng-show="mand.Items.length == 0" style="color: #14b7ca"> <sup>$</sup>{{mand.Price}}</b>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <p ng-if="featureGroupReady">available feature</p><br />
+                                                                <div ng-if="featureGroupReady">
+                                                                    <div ng-repeat="mand in mandatory_features" ng-if="mand.Items.length > 0">
+                                                                        <h4>{{mand.Names}}</h4> <b>please select at least {{mand.MinOccurs}} item and not more than {{mand.MaxOccurs}} item</b>
+                                                                        <div class="accord-entry">
+                                                                            <div class="panel-group" id="" role="tablist" aria-multiselectable="true">
+                                                                                <div class="list-group">
+                                                                                    <div class="list-group-item col-lg-12" ng-repeat="opt_mand in mand.Items">
+                                                                                        <div class="row">
+                                                                                            <div class="col-lg-2">
+                                                                                                <button type="button" style="margin-right:10px" ng-show="!opt_mand.selected" class="btn btn-primary btn-sm" tabindex="0" ng-click="addItemPlan(0, mand, opt_mand)">
+                                                                                                    <b class="fa fa-plus"></b>
+                                                                                                </button>
+                                                                                                <button type="button" style="margin-right:10px" ng-show="opt_mand.selected" class="btn btn-success btn-sm disabled" tabindex="0">
+                                                                                                    <b class="fa fa-check"></b>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="col-lg-10">
+                                                                                                {{opt_mand.features.Names[0].Text}}
+                                                                                                <b style="color: #14b7ca"> <sup>$</sup>{{opt_mand.features.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                                <b ng-show="opt_mand.selected" class="fa fa-check" style="color:green"></b>
+                                                                                                <div ng-if="opt_mand.features.Options.length > 0" class="" ng-show="opt_mand.selected">
+                                                                                                    <br />
+                                                                                                    <b class="underliner">including</b>
+                                                                                                    <p ng-repeat="gg in opt_mand.features.Options">
+                                                                                                        {{gg.SpecifiedProductOffering.Names[0].Text}} <b style="color: #14b7ca"> <sup>$</sup>{{gg.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                                        <b ng-show="opt_mand.selected" class="fa fa-check" style="color:green"></b>
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                    <div class="device-plan" ng-show="validshowOption">
+                        <div class="plan-detail">
+                            <div class="small-title clearfix">
+                                <i class="icon rightarrows6"></i>
+                                <p>Optional Features</p>
+                            </div>
+                            <slick ng-if="OptionalFeatures != undefined && validshowOption" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                                <div class="plan-description" ng-repeat="item in OptionalFeatures">
+                                    <div class="plan-entry">
+                                        <div class="second-plan" style="display: block;">
+                                            <div class="plan-box clearfix">
+                                                <div class="panel panel-default" style="margin: 5px;" ng-if="item.items.length > 0">
+                                                    <div class="panel-body">
+                                                        <div class="right-box ng-binding">
+                                                            <h4 style="text-align:center">{{item.features.Names[0].Text}}</h4>
+                                                            <div class="box-feature">
+                                                                <b>please select not more than {{item.features.MaxOccurs}} item</b>
+                                                                <div class="accord-entry">
+                                                                    <div class="panel-group" id="" role="tablist" aria-multiselectable="true">
+                                                                        <div class="list-group">
+                                                                            <div class="list-group-item" ng-repeat="itm in item.items">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-2">
+                                                                                        <button type="button" style="margin-right:10px" ng-show="!itm.selected" class="btn btn-primary btn-sm" tabindex="0" ng-click="addItemPlan(1, item, itm)">
+                                                                                            <b class="fa fa-plus"></b>
+                                                                                        </button>
+                                                                                        <button type="button" style="margin-right:10px" ng-show="itm.selected" class="btn btn-danger btn-sm" tabindex="0" ng-click="removeFeatureOptional(item, itm)">
+                                                                                            <b class="fa fa-remove"></b>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-10">
+                                                                                        {{itm.item.Names[0].Text}}
+                                                                                        <b ng-show="!itm.item.IsActive" style="color: #14b7ca"> <sup>$</sup>{{itm.item.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                        <b ng-show="itm.selected" class="fa fa-check" style="color:green"></b>
+                                                                                        <div ng-if="itm.item.Options.length > 0" class="" ng-show="itm.selected">
+                                                                                            <br />
+                                                                                            <b class="underliner">including</b>
+                                                                                            <p ng-repeat="gg in itm.item.Options">
+                                                                                                {{gg.SpecifiedProductOffering.Names[0].Text}} <b style="color: #14b7ca"> <sup>$</sup>{{gg.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount}}</b>
+                                                                                                <b ng-show="itm.selected" class="fa fa-check" style="color:green"></b>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="right-box" ng-if="item.items.length == 0">
+                                                    <h4 style="text-align:center">{{item.features.Names[0].Text}}</h4>
+                                                    <span class="circle-data-price" style="margin-top: 15px;">
+                                                        <sup>$</sup> {{item.price}}
+                                                    </span>
+                                                    <center>
+                                                        <button type="button" ng-show="!item.selected" class="btn btn-primary" tabindex="0" ng-click="addFeature(item)">
+                                                            <b>add</b>
+                                                        </button>
+                                                        <button type="button" ng-show="item.selected" class="btn btn-danger" tabindex="0" ng-click="removeFeature(item)">
+                                                            remove
+                                                        </button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                    <div ng-hide="!validshowOption" class="col-lg-12">
+                        <div class="form-bottom custom clearfix">
+                            <div class="rounded-block">
+                                <div class="total-pay-service clearfix">
+                                    <i class="et shopping145"></i>
+                                    <h3>Total Payment</h3>
+                                    <p><sup>$</sup>{{totalMandatory + totalOptional}}</p>
+                                </div>
+                            </div>
+                            <center>
+                                <div class="btn-group btn-group-lg" role="group" style="margin-top:10px">
+                                    <button type="button" ng-click="payWithBalance()" class="btn btn-info btn-lg">pay with balance <i class="fa fa-dollar"></i></button>
+                                    <button type="button" ng-click="addToCart()" class="btn btn-info btn-lg">add to cart <i class="fa fa-shopping-cart"></i></button>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿<div class="step-title">
+    <h3>Customer Information</h3>
+</div>
+
+
+        <div class="text-content">
+            <dl class="dl-horizontal col-md-6">
+                <dt>Name:</dt>
+                <dd>{{Name | uppercase}}</dd>
+                <dt>Nationality:</dt>
+                <dd>{{Nationality | uppercase}}</dd>
+                <dt>Email:</dt>
+                <dd>{{Email}}</dd>
+            </dl>
+            <dl class="dl-horizontal col-md-6">
+                <dt>ID Type:</dt>
+                <dd>{{DocumentType | uppercase}}</dd>
+                <dt>ID Number:</dt>
+                <dd>{{DocumentNumber | uppercase}}</dd>
+            </dl>
+            <span class="clearfix"></span>
+
+            <dl class="dl-horizontal">
+                <dt>Fiscal Address:</dt>
+                <dd>{{FiscalAddress | uppercase}}</dd>
+                <dt>Delivery Address:</dt>
+                <dd>{{DeliveryAddress | uppercase}}</dd>
+                <dt>Customer Address:</dt>
+                <dd>{{CustomerAddress | uppercase}}</dd>
+            </dl>
+        </div>
+
+
+
+<div class="button-inner clearfix">
+    <button id="selfregister_btn_prev" ng-click="Steps('NumberVerification')" class="btn prev-btn"><i class="fa fa-angle-left"></i> prev</button>
+    <button id="selfregister_btn_next" ng-click="Steps('Finish')" class="btn next-btn">next <i class="fa fa-angle-right"></i></button>
+</div>
+
+
+<!--<div class="step-title">
+    <h3>Customer Information</h3>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-content row">
+            <dl class="dl-horizontal col-md-6">
+                <dt>Name:</dt>
+                <dd>{{Name | uppercase}}</dd>
+                <dt>Nationality:</dt>
+                <dd>{{Nationality | uppercase}}</dd>
+                <dt>Email:</dt>
+                <dd>{{Email}}</dd>
+            </dl>
+            <dl class="dl-horizontal col-md-6">
+                <dt>ID Type:</dt>
+                <dd>{{DocumentType | uppercase}}</dd>
+                <dt>ID Number:</dt>
+                <dd>{{DocumentNumber | uppercase}}</dd>
+            </dl>
+            <dl class="dl-horizontal col-md-12">
+                <dt>Fiscal Address:</dt>
+                <dd>{{FiscalAddress | uppercase}}</dd>
+                <dt>Delivery Address:</dt>
+                <dd>{{DeliveryAddress | uppercase}}</dd>
+                <dt>Customer Address:</dt>
+                <dd>{{CustomerAddress | uppercase}}</dd>
+            </dl>
+        </div>
+
+    </div>
+</div>
+<div class="button-inner clearfix">
+    <button id="selfregister_btn_prev" ng-click="Steps('NumberVerification')" class="btn prev-btn"><i class="fa fa-angle-left"></i> prev</button>
+    <button id="selfregister_btn_next" ng-click="Steps('Finish')" class="btn next-btn">next <i class="fa fa-angle-right"></i></button>
+</div>-->

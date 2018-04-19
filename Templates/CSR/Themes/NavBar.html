@@ -1,0 +1,56 @@
+﻿<nav class="navbar navbar-default admin-nav-wrap clearfix">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header clearfix">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/CSR/Customer/App"><img src="images/et-logo.png"></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!--Change CSR nav to load from local machine (Revani)-->
+        <div ng-app="CSRContents" class="top-navigation" ng-controller="NavMenuCtrl">
+            <div class="home-btn">
+                <ul class="nav navbar-nav" ng-repeat="nav in getVal | filter: isHomeItem">
+                    <li id="mnu{{nav.Id}}" ng-class="{'open':nav.active}">
+                        <a href="{{nav.SubMenus.length > 0 ? '#' : nav.Link}}" ng-class="{'dropdown-toggle':nav.SubMenus.length > 0}" data-toggle="dropdown">
+                            <i ng-class="'{{nav.Icon}} icon-nav'"></i>
+                            {{nav.Translate_Key | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="csrMenu collapse navbar-collapse etak-nav" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" ng-repeat="nav in getVal | filter: isMenuItem">
+                    <li id="mnu{{nav.Id}}" ng-class="{'open':nav.active}">
+                        <a href="{{nav.SubMenus.length > 0 ? '#' : nav.Link}}" ng-class="{'dropdown-toggle':nav.SubMenus.length > 0}" data-toggle="dropdown">
+                            <i ng-class="'{{nav.Icon}} icon-nav'"></i>
+                            {{nav.Translate_Key | translate}}
+                        </a>
+                    </li>
+                </ul>
+                <div class="prev"></div>
+                <div class="next"></div>
+            </div><!-- /.navbar-collapse -->
+            <div class="action-btn">
+                <ul class="nav navbar-nav" ng-repeat="nav in getVal | filter: isHotAction">
+                    <li id="mnu{{nav.Id}}" ng-class="{'open':nav.active}">
+                        <a href="{{nav.SubMenus.length > 0 ? '#' : nav.Link}}" ng-class="{'dropdown-toggle':nav.SubMenus.length > 0}" data-toggle="dropdown">
+                            <i ng-class="'et addition12 icon-nav'"></i>
+                            {{nav.Translate_Key | translate}}
+                        </a>
+                        <ul ng-if="nav.SubMenus.length > 0" ng-class="{'dropdown-menu':nav.SubMenus.length > 0}">
+                            <li id="mnu{{subnav.Id}}" ng-repeat="subnav in nav.SubMenus">
+                                <a href="{{subnav.Link}}">{{subnav.Translate_Key | translate}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--End Revani-->
+    </div><!-- /.container-fluid -->
+</nav>

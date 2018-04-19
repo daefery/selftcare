@@ -1,0 +1,50 @@
+﻿<div class="panel panel-default" ng-show="datausage.viewdetails.voice != undefined && datausage.viewdetails.voice !=''">
+    <div class="panel-body">
+        <section>
+            <div class="table-responsive">
+
+                <table class="table table-bordered">
+                    <thead class="table-head">
+                        <tr>
+                            <th>No</th>
+                            <th ng-click="sort('Date')">
+                                Date
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='Date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('Duration')">
+                                Duration (second)
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='Duration'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('Destination')">
+                                Destination
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='Destination'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('Amount')">
+                                Amount ($)
+                                <span class="glyphicon sort-icon" ng-show="sortKey=='Amount'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr dir-paginate="item in datausage.viewdetails.voice|itemsPerPage:10| orderBy:sortKey:reverse">
+                            <td>{{$index + 1}}</td>
+                            <td>{{item.Date}}</td>
+                            <td>{{item.Duration}}</td>
+                            <td>{{item.Destination}}</td>
+                            <td>{{item.Amount}}</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+                <dir-pagination-controls max-size="10"
+                                         direction-links="true"
+                                         boundary-links="true"
+                                         ng-show="datausage.viewdetails.voice.length">
+                </dir-pagination-controls>
+            </div>
+
+
+        </section>
+    </div>
+</div>

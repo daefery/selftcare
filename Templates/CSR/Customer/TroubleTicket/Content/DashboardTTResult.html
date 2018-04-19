@@ -1,0 +1,152 @@
+﻿<!--<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->
+<div ng-controller="BrowseTTPaginationController">
+    <div class="title has-ticket-result clearfix" ng-controller="TTDashboardSectionController">
+        <h3><i class="et spreadsheet5"></i>{{'Result' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li class="btn-active"><a class="btn btn-default" id="Details_and_Update_btn" ng-attr-href="{{Link_Details_and_Update}}">{{'Details_and_Update' | translate}}</a></li>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#ticketResult" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="ticketResult" class="collapse in">
+        <div class="table-entry">
+            <div class="table fullwidth more-data">
+                <table class="table table-hover table-responsive text-nowrap">
+                    <thead class="table-head">
+                        <tr>
+                            <th>#</th>
+                            <th ng-show="{{isETAKUser}}">
+                                {{'MVNO'| translate}}
+                                <span ng-show="sortKey=='MVNO'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('TicketNumber')">
+                                {{'Ticket_Number'| translate}}
+                                <span ng-show="sortKey!='TicketNumber'" class="fa fa-sort"></span>
+                                <span ng-show="sortKey=='TicketNumber'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('TicketCode')">
+                                {{'Ticket_Code'| translate}}
+                                <span ng-show="sortKey!='TicketCode'" class="fa fa-sort"></span>
+                                <span ng-show="sortKey=='TicketCode'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'TT_Type'| translate}}
+                                <span ng-show="sortKey=='TT_Type'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Creation'| translate}}
+                                <span ng-show="sortKey=='Creation'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Submitted'| translate}}
+                                <span ng-show="sortKey=='Submitted'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Department'| translate}}
+                                <span ng-show="sortKey=='Department'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('Priority')">
+                                {{'Priority'| translate}}
+                                <span ng-show="sortKey!='Priority'" class="fa fa-sort"></span>
+                                <span ng-show="sortKey=='Priority'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('Class')">
+                                {{'Class'| translate}}
+                                <span ng-show="sortKey!='Class'" class="fa fa-sort"></span>
+                                <span ng-show="sortKey=='Class'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('Status')">
+                                {{'Status'| translate}}
+                                <span ng-show="sortKey!='Status'" class="fa fa-sort"></span>
+                                <span ng-show="sortKey=='Status'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Time'| translate}}
+                                <span ng-show="sortKey=='Time'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'End'| translate}}
+                                <span ng-show="sortKey=='End'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'KPI'| translate}}
+                                <span ng-show="sortKey=='KPI'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'TimeLeft'| translate}}
+                                <span ng-show="sortKey=='TimeLeft'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'To'| translate}}
+                                <span ng-show="sortKey=='To'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Escalation'| translate}}
+                                <span ng-show="sortKey=='Escalation'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'External'| translate}}
+                                <span ng-show="sortKey=='External'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Update'| translate}}
+                                <span ng-show="sortKey=='Update'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-attr-id="{{ 'tt-dashboard-row-' + $index }}" pagination-id="tt-dashboard" dir-paginate="item in CstData|itemsPerPage:10| orderBy:sortKey:reverse" ng-class="{'selected':item.TicketNumber==selectedRow}" ng-click="setClickedRow(item)" current-page="currentPage" total-items="CstData_TotalCount">
+                            <td ng-attr-id="{{ 'tt-dashboard-Number-' + $index }}">{{keySearch.PageNumber <= 1 ? ($index+1) : ($index+1) + ((keySearch.PageNumber-1) * keySearch.PageSize)}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-MVNO-' + $index }}" ng-show="{{isETAKUser}}">{{item.DealerNode}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Ticket_Number-' + $index }}">{{item.TicketNumber}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Ticket_Code-' + $index }}">{{item.TicketCode}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Type-' + $index }}">{{item.Type.Name}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Creation-' + $index }}">{{item.ReportTime | date : 'dd MMMM yyyy HH:mm'}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Submitted-' + $index }}">{{item.OperatorInfo.FullName}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Department-' + $index }}">{{item.Department.Name}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Priority-' + $index }}">{{item.Priority.Name}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Class-' + $index }}">{{item.Class.Name}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Status-' + $index }}">{{item.Status.Name}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Time-' + $index }}">{{item.Time}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-End-' + $index }}">{{item.End}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-KPI-' + $index }}">{{item.KPIResponseHours}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-TimeLeft-' + $index }}">{{item.TimeLeft}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-To-' + $index }}">{{item.To}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Escalation-' + $index }}">{{item.EscalationName}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-External-' + $index }}">{{item.ExternalCode}}</td>
+                            <td ng-attr-id="{{ 'tt-dashboard-Update-' + $index }}">{{item.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="col-sm-12" style="text-align:center" ng-show="isdataexist()">No Data Found</div>
+            </div>
+            <dir-pagination-controls pagination-id="tt-dashboard"
+                                     max-size="11"
+                                     direction-links="true"
+                                     boundary-links="true"
+                                     ng-show="CstData.length"
+                                     template-url="Templates/Common/dirPagination-dashboard.tpl.html"
+                                     on-page-change="getSearchByPageNumber(newPageNumber)">
+            </dir-pagination-controls>
+
+        </div>
+    </div>
+</div>

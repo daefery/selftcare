@@ -1,0 +1,108 @@
+﻿<!--<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->
+<div ng-controller="SupportRequestTTPaginationController">
+    <div class="title has-result clearfix" ng-controller="TTSupportDashboardSectionController">
+        <h3><i class="et spreadsheet5"></i>{{'Result' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li class="btn-active"><a class="btn btn-default" id="Escalate_btn" ng-click="doing('Escalate')" ng-disabled="!isEscalateAllowed" ng-show="isSupportTTDashboardUpdateSupportEnable">{{'Escalate' | translate}}</a></li>
+                <li class="btn-active"><a class="btn btn-default" id="Update_btn" ng-click="doing('Update')" ng-show="isSupportTTDashboardEscalateSupportEnable">{{'Update' | translate}}</a></li>
+                <li class="btn-active"><a class="btn btn-default" id="Details_btn" ng-attr-href="{{Link_Detail_Support_Request}}">{{'Details' | translate}}</a></li>
+
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#searchttResult" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="searchttResult" class="collapse in">
+        <div class="table-entry">
+            <div class="table fullwidth more-data">
+                <table class="table table-hover table-responsive text-nowrap">
+                    <thead class="table-head">
+                        <tr>
+                            <th>#</th>
+                            <th ng-click="sort('TicketNumber')">
+                                {{'Ticket_Number'| translate}}
+                                <span ng-show="sortKey!='TicketNumber'" class="fa fa-sort"></span>
+                                <span ng-show="sortKey=='TicketNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-show="{{isETAKUser}}">
+                                {{'MVNO'| translate}}
+                                <span ng-show="sortKey=='MVNO'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Creation_Time'| translate}}
+                                <span ng-show="sortKey=='Creation_Time'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Category'| translate}}
+                                <span ng-show="sortKey=='Category'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th>
+                                {{'Description'| translate}}
+                                <span ng-show="sortKey=='Description'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                            <th ng-click="sort('Status')">
+                                {{'Status'| translate}}
+                                <span ng-show="sortKey!='Status'" class="fa fa-sort"></span>
+                                <span ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-attr-id="{{ 'tt-support-row-' + $index }}" pagination-id="tt-support" dir-paginate="item in CstData|itemsPerPage:10| orderBy:sortKey:reverse" ng-class="{'selected':item.TicketNumber==selectedRow}" ng-click="setClickedRow(item)" current-page="currentPage" total-items="CstData_TotalCount">
+                            <td ng-attr-id="{{ 'tt-support-Number-' + $index }}">{{keySearch.PageNumber <= 1 ? ($index+1) : ($index+1) + ((keySearch.PageNumber-1) * 10)}}</td>
+                            <td ng-attr-id="{{ 'tt-support-Ticket_Number-' + $index }}">{{item.TicketNumber}}</td>
+                            <td ng-attr-id="{{ 'tt-support-MVNO-' + $index }}" ng-show="{{isETAKUser}}">{{item.DealerNode}}</td>
+                            <td ng-attr-id="{{ 'tt-support-Creation_Time-' + $index }}">{{item.ReportTime | date : 'dd MMMM yyyy HH:mm'}}</td>
+                            <td ng-attr-id="{{ 'tt-support-Category-' + $index }}">{{item.Type.Name}}</td>
+                            <td ng-attr-id="{{ 'tt-support-Description-' + $index }}" ng-bind-html="item.Description"></td>
+                            <td ng-attr-id="{{ 'tt-support-Status-' + $index }}">{{item.Status.Name}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="col-sm-12" style="text-align:center" ng-show="isdataexist()">No Data Found</div>
+            </div>
+            <dir-pagination-controls pagination-id="tt-support"
+                                     max-size="11"
+                                     direction-links="true"
+                                     boundary-links="true"
+                                     ng-show="CstData.length"
+                                     template-url="Templates/Common/dirPagination-dashboard.tpl.html"
+                                     on-page-change="getSearchByPageNumber(newPageNumber)">
+            </dir-pagination-controls>
+        </div>
+    </div>
+    <div class="modal fade" id="UpdateSupportRequestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/UpdateSupportRequest.html'"></div>
+        </div>
+    </div>
+    <div class="modal fade" id="EscalateSupportRequestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/EscalateSupportRequest.html'"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

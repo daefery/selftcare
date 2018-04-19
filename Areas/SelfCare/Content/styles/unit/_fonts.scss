@@ -1,0 +1,44 @@
+//@font-face {
+//  font-family: 'MyriadSetPro-Thin';
+//  src: url('../fonts/MyriadSetPro-Thin.eot'); /* IE */
+//  src: local('Myriad-Pro'), url('../fonts/MyriadSetPro-Thin.ttf') format('truetype'); /* non-IE */
+//  /*src: local('Myriad-Pro'), url('../fonts/Myriad-Pro.woff') format('woff'); /* Modern Browsers */
+//}
+
+@font-face {
+  font-family: 'MyriadSetPro-Semibold';
+  src: url('../fonts/MyriadSetPro-Semibold.eot'); /* IE */
+  src: local('Myriad-Pro-Bold'), url('../fonts/MyriadSetPro-Semibold.ttf') format('truetype'); /* non-IE */
+  /*src: local('Myriad-Pro-Bold'), url('/fonts/Myriad-Pro-Bold.woff') format('woff'); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('../fonts/open-sans300.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('../fonts/open-sans400.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('../fonts/open-sans600.woff') format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('../fonts/open-sans700.woff') format('woff');
+}
+//@font-face {
+//  font-family: 'myriad set pro';
+//  font-style: normal;
+//  font-weight: 700;
+//  src: local('myriad set pro'), local('myriad-set-pro'), url('../fonts/myriad-set-pro.woff') format('woff');
+//}

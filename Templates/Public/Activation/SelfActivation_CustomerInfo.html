@@ -1,0 +1,272 @@
+﻿<!--
+<section class="et-feat">
+    <div class="introduce">
+        <div class="feat-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="main-content">
+                            <div class="normal-wrap">
+                                <div class="title clearfix">
+                                </div>
+                                <div class="collapse in" id="firstContent">
+                                    <div class="panel-data">
+                                        <form class="etak-form form-horizontal">
+
+                                            <div class="form-content row">
+                                                <div class="col-lg-12">
+                                                    <div class="col-sm-12">
+                                                        <h4>Order Detail</h4>
+
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'store id' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{StoreId | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'order date' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{OrderDate}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'Contact Name' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{ContactName | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'Contact Phone' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{ContactPhone | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'shipping address' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{shippingAddress | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="box-sides-entry filled pad-side20 third-grid">
+                                                            <h3 class="title-selfcare">Summary usage history</h3>
+                                                            <div class="form-content row" style="margin-top:10px">
+                                                                <tabset justified="true">
+                                                                    <tab ng-repeat="item in orderDetail.OrderedItems" heading="{{item.DeviceName}}">
+                                                                        <div class="panel-body">
+                                                                            <section>
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table table-hover">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>#</th>
+                                                                                                <th>Product Id</th>
+                                                                                                <th>Name</th>
+                                                                                                <th>Description</th>
+                                                                                                <th>Price</th>
+                                                                                                <th>Quantity</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr style="color: black;" ng-repeat="product in item.orderedItems">
+                                                                                                <td>{{$index + 1}}</td>
+                                                                                                <td>{{product.ProductId}}</td>
+                                                                                                <td>{{product.Names}}</td>
+                                                                                                <td>{{product.Descriptions}}</td>
+                                                                                                <td>{{product.UnitPrice}}</td>
+                                                                                                <td>{{product.Quantity}}</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                    </tab>
+                                                                </tabset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <center>
+                                                <div class="form-bottom clearfix">
+                                                    <button type="button" ng-click="goNext()" class="btn btn-default">it's me</button>
+                                                    <button type="button" ng-click="goPrev()" class="btn btn-default">it's not me</button>
+                                                </div>
+                                            </center>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+-->
+
+<div class="shopping-page">
+    <section class="top-content" style="min-height: 68px">
+        <!--shop-now-->
+        <div class="container">
+            <div class="shoppingpage-title">
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="etakwizard">
+            </div>
+            <div class="step-entry">
+                <div class="step-title">
+                    <h3>Order Confirmation</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="main-content">
+                            <div class="normal-wrap">
+                                <div class="title clearfix">
+                                </div>
+                                <div class="collapse in" id="firstContent">
+                                    <div class="panel-data">
+                                        <form class="etak-form form-horizontal">
+
+                                            <div class="form-content row">
+                                                <div class="col-lg-12">
+                                                    <div class="col-md-6">
+                                                        <div class="top-checkout">
+                                                            <h3>Order Detail</h3>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'order date' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{OrderDate}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'Contact Name' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{ContactName | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'Contact Phone' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{ContactPhone | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'shipping address' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{shippingAddress | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="top-checkout">
+                                                            <h3>Customer Info</h3>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'FullName' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{CustomerInfo.fullName | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'Customer Address' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{CustomerInfo.customerAddress}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">{{'Email' | uppercase}}</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{CustomerInfo.Email | uppercase}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="top-checkout">
+                                                            <h3>Ordered Items</h3>
+                                                        </div>
+                                                        <div class="selfcare-checkout">
+                                                            <div class="main-checkout">
+                                                                <div class="checkout-items">
+                                                                    <div class="checkout-list" ng-repeat="item in OrderedItemsGroupByDevice">
+                                                                        <div class="checkout-left">
+                                                                            <div class="item-no">
+                                                                                <h4 class="title-number" data-content="No"><span>No</span></h4>
+                                                                                <p>{{$index + 1}}</p>
+                                                                            </div>
+                                                                            <div class="device-thumbnail">
+                                                                                <h4 class="title-detail" data-content=""><span>&nbsp;</span></h4>
+                                                                                <p></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="checkout-right">
+                                                                            <div class="checkout-item clearfix">
+                                                                                <div class="item-content">
+                                                                                    <h4 class="title-detail" data-content="Names"><span>Item</span></h4>
+                                                                                    <p>{{item.names}}</p>
+                                                                                </div>
+                                                                                <div class="item-content small">
+                                                                                    <h4 class="title-qty" data-content=""><span>&nbsp;</span></h4>
+                                                                                    <p class="text-center"></p>
+                                                                                </div>
+                                                                                <div class="item-content small">
+                                                                                    <h4 class="title-opt" data-content="totalQuantity"><span>Total Quantity</span></h4>
+                                                                                    <p>{{item.totalQuantity}}</p>
+                                                                                </div>
+                                                                                <div class="item-content small">
+                                                                                    <h4 class="title-qty" data-content="totalPrice"><span>Total Price</span></h4>
+                                                                                    <p class="text-center">{{item.totalPrice}}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="checkout-summary">
+                                                                        <div class="left-summary">
+                                                                            Total order
+                                                                        </div>
+                                                                        <div class="right-summary">
+                                                                            <h2>$ {{totalPayment}}</h2>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <center>
+                                                <div class="form-bottom clearfix">
+                                                    <button type="button" ng-click="goNext()" class="btn btn-default">it's me</button>
+                                                    <button type="button" ng-click="goPrev()" class="btn btn-default">it's not me</button>
+                                                </div>
+                                            </center>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

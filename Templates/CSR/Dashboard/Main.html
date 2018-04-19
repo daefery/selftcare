@@ -1,0 +1,42 @@
+﻿
+
+
+<div class="container" ng-controller="CSRDashboardController">
+    <div class="col-md-12">
+        <button-page></button-page>
+        <!--<div class="col-md-12" ng-include="'Templates/CSR/Dashboard/InfoBoxes.html'"></div>-->
+        <!--<div class="line bottom-space">-->
+        <!--line, please don't delete-->
+        <!--</div>-->
+        <div class="row transparent-wrap">
+        </div>
+        <section>
+            <div class="row">
+                <!--TO DO: code on below is used for refresh token testing
+                this code can be removed after implementation is finished-->
+                <!--<div class="col-md-4">
+                    <h1 id="indicator"></h1><br/>
+                    <h1 id="back"></h1><br/>
+                    <p id="idlelabel">time out in</p>
+                    <h1 id="countdown"></h1><br/>
+                    <h1 id="idleinfo"></h1><br/>
+                    <p>alive timer</p>
+                    <h1 id="alive"></h1><br/>
+                </div-->
+                <div class="col-md-4" ng-include="'Templates/CSR/Dashboard/MaintenanceTasksPlanned.html'" ng-controller="CSRMaintenanceManagementController"></div>
+                <div class="col-md-4" ng-include="'Templates/CSR/Dashboard/Update.html'" ng-controller="CSRUpdateHistoryController"></div>
+                <div class="col-md-4" ng-include="'Templates/CSR/Dashboard/LastSession.html'"></div>
+            </div>
+        </section>
+    </div>
+    <!--<section>
+        <div class="row">
+            <div class="col-md-8 " ng-include="'Templates/CSR/Dashboard/NotificationTabs.html'">
+            </div>
+            <div class="col-md-4" ng-include="'Templates/CSR/Customer/CustomerInformationSnapShot.html'">
+            </div>
+        </div>
+    </section>-->
+    <!--<section class="normal-wrap" ng-include="'Templates/CSR/Product/Widget.html'"></section>-->
+</div>
+

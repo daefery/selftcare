@@ -1,0 +1,10 @@
+﻿<ul class="breadcrumb">
+    <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path"
+        ng-if="breadcrumb.label"
+        ng-class="{ active: $last }">
+        <a ng-if="!$last"
+           ng-href="{{ breadcrumb.path }}"
+           class="margin-right-xs"> {{ breadcrumb.label | translate }}</a>
+        <span ng-if="$last"> {{ breadcrumb.label | translate }} </span>
+    </li>
+</ul>

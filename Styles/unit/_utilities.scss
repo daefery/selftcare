@@ -1,0 +1,37 @@
+body{
+  background: $bg-gray;
+  font-size: $normal-font-size;
+  font-family: $font-family-normal;
+  color: $font-gray;
+}
+//.max-width{width:1200px; padding: 0;}
+%fullscreen{
+  width: $full-width;
+}
+%li-clear-default{
+  ul, ul li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+%float-left{
+  float: left;
+}
+%font-white{
+  color:$font-white;
+}
+%border-bottom{
+  border-bottom: 1px solid $border-gray;
+}
+%font-family-thin{
+  font-family: $font-family-thin;}
+%border-bottom{
+  border-bottom: 1px solid $border-gray;
+}
+%margin-bottom{
+  margin-bottom: 20px;
+}
+%space{
+  padding: 0 15px;
+}

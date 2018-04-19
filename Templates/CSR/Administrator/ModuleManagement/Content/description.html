@@ -1,0 +1,129 @@
+﻿<div class="normal-wrap custom">
+
+<header class="title">
+
+    <div class="panel-options" ng-controller="ModuleSecureSectionController">
+        <ul ng-show="isAddModuleEnable">
+            <li>
+                <button type="button" data-toggle="modal" ng-disabled="isModuleSelected()" data-target="#modmodModal" class="btn btn-default btn-sm">{{'Modify_Module' | translate}}</button>
+            </li>
+            <li>
+                <button type="button" data-toggle="modal" ng-disabled="isEnableAccandSS()" data-target="#addmodModal" class="btn btn-default btn-sm">{{'Add_Module' | translate}}</button>
+            </li>
+            <li>
+                <button type="button" data-toggle="modal" ng-disabled="isModuleSelected()" data-target="#movemodModal" class="btn btn-default btn-sm">{{'Move_Module' | translate}}</button>
+            </li>
+
+        </ul>
+    </div>
+            </header>
+            <div>
+                <etbossform name="moduledescform" ng-controller="ModuleDescriptionForm" field="{{datas}}"></etbossform>
+            </div>
+</div>
+
+
+
+
+
+<!--<section class="normal-wrap">
+    <header class="bg-gray title wrap-padding">
+        <ul>
+            <li class="btn-active" style="margin-top:-20px"><button type="button" data-toggle="modal" data-target="#modmodModal" class="btn btn-default">{{'Modify_Module' | translate}}</button></li>
+        </ul>
+        <ul>
+            <li class="btn-active" style="margin-top:-20px"><button type="button" data-toggle="modal" data-target="#addmodModal" class="btn btn-default">{{'Add_Module' | translate}}</button></li>
+        </ul>
+        <ul>
+            <li class="btn-active" style="margin-top:-20px"><button type="button" data-toggle="modal" data-target="#movemodModal" class="btn btn-default">{{'Move_Module' | translate}}</button></li>
+        </ul>
+    </header>
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <etbossform name="moduledescform" ng-controller="ModuleDescriptionForm" field="{{datas}}"></etbossform>
+            </div>
+        </div>
+    </div>
+</section>-->
+
+<div id="modmodModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'Modify_Module' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{'Modify_Module' | translate}}</h4>-->
+            </div>
+            <div class="modal-body has-etboss">
+              
+                    <div class="etform-modal" ng-show="editcsrchildmenu" ng-hide="!editcsrchildmenu">
+                        <etbossform value="ModifyModuleFormController" name="modifyCSRchildmoduleform" ng-controller="ModifyCSRChildModuleForm" field="{{datas}}"></etbossform>
+                    </div>
+                <div class="etform-modal" ng-show="!editcsrchildmenu" ng-hide="editcsrchildmenu">
+                    <etbossform value="ModifyModuleFormController" name="modifymoduleform" ng-controller="ModifyModuleForm" field="{{datas}}"></etbossform>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addmodModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Add_Module' | translate}}</h3>
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{'Add_Module' | translate}}</h4>-->
+            </div>
+            <div class="modal-body has-etboss">
+                <div class="etform-modal" ng-show="iscsrchildmenu" ng-hide="!iscsrchildmenu">
+                    <etbossform value="AddModuleFormController" name="addcsrchildmoduleform" ng-controller="AddCSRChildModuleForm" field="{{datas}}"></etbossform>
+                </div>
+                <div class="etform-modal" ng-show="!iscsrchildmenu" ng-hide="iscsrchildmenu">
+                    <etbossform value="AddModuleFormController" name="addmoduleform" ng-controller="AddModuleForm" field="{{datas}}"></etbossform>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="movemodModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Move_Module' | translate}}</h3>
+            </div>
+            <div class="modal-body has-etboss">
+                
+                  
+
+                        <div class="modal-info">
+                            <div class="sub-info pad-15">
+                                <p class="bold">Possible New Position:</p>
+                            </div>
+                            <div class="sub-info pad-15">
+                                <p>1 ~ {{maxposition}}</p>
+                            </div>
+                        </div>
+                        <!--<dl class="dl-horizontal">
+                            <dt>Possible New Position: </dt>
+                            <dd>1 ~ {{maxposition}}</dd>
+                        </dl>-->
+                       
+                        
+                   
+                    
+                <div class="custom-input">
+                    <etbossform value="MoveModuleFormController" name="movemoduleform" ng-controller="MoveModuleForm" field="{{datas}}"></etbossform>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿<div ng-controller="CustomerInfoController" ng-submit="submitForm2()">
+    <!--<div class="step-title">
+        <h3>Customer Info</h3>
+    </div>-->
+    <div class="cart-info">
+        <div class="container">
+
+            <!-- top cart -->
+            <div class="row no-gutters">
+                <div class="col-md-9 col-sm-9">
+                    <h3 class="page-title">Customer Info</h3>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="right-info">
+                        <span class="cart-counter">
+                            <i class="icon shoppingstore70"></i>
+                            <span class="cart-number">{{(Cart.CartList === undefined ? 0 : Cart.CartList.length)}}</span>
+                        </span>
+                        <p>You have <strong>{{(Cart.CartList === undefined ? 0 : Cart.CartList.length)}}</strong> items in your cart</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end top cart -->
+
+
+
+        </div>
+    </div><!-- /.cart info -->
+
+    <div class="customer-info-order shop">
+        <div class="shopping-area">
+
+            <etbossform id="custInfo" type="split" name="customerInfo" field="{{customerInfo}}"></etbossform>
+            <div class="row">
+                <div class="col-sm-12 normal-wrap" ng-hide="isValidCustAddress">
+                    <header class="title">
+                        <h3>
+                            <i class="et office"></i>Please Verify Your Customer Address
+                        </h3>
+                        <!-- for small wrap buttons-->
+                    </header>
+                    <div class="panel-text clearfix">
+                        <dl class="dl-horizontal">
+                            <dt>This Address : </dt>
+                            <dd>{{CustomerInfo.CustomerAddress.Addresses}}, {{CustomerInfo.CustomerAddress.City}}, {{CustomerInfo.CustomerAddress.State}}, {{CustomerInfo.CustomerAddress.ZipCode}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            {{CustomerAddressResponse}}
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  </div>
+   
+    <div class="checkout-bottom">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12">
+                <div class="btn-group">
+                    <button ng-click="ChangeCRPage('shoppingCart')" class="btn btn-default">prev </button>
+                    <button ng-click="validateForm('shipping')" class="btn btn-default next">next</button>
+                </div>
+             </div>
+        </div>
+    </div>
+
+        </div>

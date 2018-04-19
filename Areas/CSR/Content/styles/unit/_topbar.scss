@@ -1,0 +1,62 @@
+/* for topbar, they are user infomation */
+.topbar-wrap{
+  @extend %fullscreen;
+  background-color: $main-red;
+  min-height: 43px;
+  color:$font-white;
+  a{
+    color: rgba($font-white,.9);
+    text-decoration: none;
+    &:hover{
+      color: $font-white;
+    }
+  }
+  .user-info{
+      >a{
+        display: inline-block;
+        border: 1px solid rgba($bg-white, .2);
+        border-bottom-width: 0;
+        border-top-width: 0;
+        height: 42px;
+        padding-top: 13px;
+        margin-left:-1px ;
+        text-align: center;
+        width: 60px;
+      &:hover{
+        background-color: $darkred;
+      }
+    }
+  }
+  .user-name {
+    text-align: right;
+    @extend %li-clear-default;
+    line-height: 43px;
+    i{
+      padding: 0 15px;
+    }
+    >ul {
+      >li {
+        display: inline-block;
+
+      }
+      .clear-right-padding{
+        margin-right: -15px;
+        /* clear margin-right of "a" on bootstrap framework, let "a" keep the align right .*/
+      }
+    }
+    .dropdown-menu{
+        a{
+          padding: 10px 15px;
+          border-bottom: 1px solid rgba($border-silver,.4);
+          color: $font-gray;
+        }
+    }
+  }
+}
+@media (max-width:383px) {
+  .user-info, .user-name{width: 100%; clear: both;}
+  .user-name{
+    border-top: 1px solid rgba($bg-white, .2);
+  }
+}
+

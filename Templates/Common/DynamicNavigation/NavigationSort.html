@@ -1,0 +1,23 @@
+﻿<div class="modal-content etak-modal" ng-controller="NavSortCtrl">
+    <div class="modal-header top-sort-menus">
+        <h3 class="modal-title">Navigation Sort</h3>
+        <button type="button" ng-click="close()" class="close" data-dismiss="modal" aria-label="Close"><i class="et delete8"></i></button>
+    </div>
+    <div class="modal-body sort-menus">
+        <ul id="sortable" class="nav-sort">
+            <li class="{{item.Menu}}" ng-repeat="item in sortableArray.NavigationMenu">
+                <div class="nav-sort-item" ng-if="item.Translate_Key != 'HOT_ACTIONS'">
+                    {{item.Menu}}
+                </div>
+            </li>
+        </ul>
+        <!-- To show json real time-->
+        <!--<hr>
+        <pre ng-bind="sortableArray|json"></pre>-->
+    </div>
+    <div class="modal-footer has-sort-menus">
+        <button ng-click="default()" class="btn btn-default">Default</button>
+        <button ng-click="savepref()" class="btn btn-default">OK</button>
+        <button ng-click="close()" class="btn btn-default pull-right">Cancel</button>
+    </div>
+</div>

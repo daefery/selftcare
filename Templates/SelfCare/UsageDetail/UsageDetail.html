@@ -1,0 +1,56 @@
+﻿<div class="panel-data clean">
+  <div class="box-sides">
+    <div class="box-sides-entry pad-right20">
+        <h3 class="selfcare-title">Your Packages</h3>
+        <div ng-if="usageExist" class="block-list" ng-repeat="usg in usagesummary">
+            <div class="row">
+                <div class="col-lg-12 col-md-10 col-sm-10 col-xs-10">
+                    <span>Remaining : <b>{{usg.CurrentLimit}}</b></span>
+                    <span style="float:right">Total: <b>{{usg.Limit}}</b></span>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="{{usg.CurrentLimitPersenStyle}}">
+                        </div>
+                    </div>
+                    <div class="data-expired">
+                        <h6>{{usg.PromoName}}</h6><br />
+                        <span><i class="et calendar184"></i> Expired Date: <span style="color:red">{{usg.EndDate}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-warning alert-dismissible" ng-if="!usageExist">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="fa fa-warning"></i>
+            You have no current package !
+        </div>
+        <div class="summary-button clearfix">
+          <h3>Remaining Balance</h3>
+          <h2 class="accent-red"><sup>$</sup>{{custBalances}}</h2>
+            <a href="/SelfCare/Customer/App/TopUp" type="button" ng-show="isTopUpEnable" class="btn btn-default filled btn-lg">
+                Top Up &nbsp;<i class="et right127"></i>
+            </a>
+        </div>
+    </div>
+    <div class="box-sides-entry filled pad-side20 third-grid">
+        <h3 class="title-selfcare">Summary usage history</h3>
+        <etbossform name="usagefilter" type="split" ng-controller="UsageFilterFormController" field="{{usageform}}"></etbossform>
+        <div class="form-content row" style="margin-top:10px" ng-if="datausage.viewdetails != undefined && datausage.viewdetails != ''">
+          <tabset justified="true">
+            <tab heading="Voice Usage" ng-if="datausage.viewdetails.voice != undefined && datausage.viewdetails.voice !=''">
+              <!--&lt;!&ndash; voice usage detail &ndash;&gt;-->
+              <div ng-include="'Templates/SelfCare/UsageDetail/VoiceUsage.html'"></div>
+            </tab>
+            <tab heading="SMS Usage" ng-if="datausage.viewdetails.sms != undefined && datausage.viewdetails.sms !=''">
+              <!--&lt;!&ndash; sms usage detail &ndash;&gt;-->
+              <div ng-include="'Templates/SelfCare/UsageDetail/SMSUsage.html'"></div>
+            </tab>
+            <tab heading="Data Usage" ng-if="datausage.viewdetails.apn != undefined && datausage.viewdetails.apn !=''">
+              <!--&lt;!&ndash; data usage detail &ndash;&gt;-->
+              <div ng-include="'Templates/SelfCare/UsageDetail/DataUsage.html'"></div>
+            </tab>
+          </tabset>
+        </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+$main-red: #e2524e;
+$darkred: #da4a46;
+$black: #000;
+$darkblue: #126fbd;
+$blue: #3399ed;
+$brown: #fcefd7;
+$beige: #fcf7e3;
+$font-darkgray: #333;
+$font-gray: #666; //normal color of font;
+$font-lightgray: #999;
+$border-gainsboro: #e1e1e1; //border of all box
+$border-silver: #ebebeb;
+$bg-page: #f2f2f2; //background color of entire pages
+$bg-gray:#f6f6f6;
+$font-white: #fff;
+$bg-white: $font-white;
+$font-warning:#e2524e;
+
+//following color be used for icon of Intranet,Jira, Confluence, Stock.
+$darkbrown:#775569;
+$darkmagenta:#8d3163;
+$royalblue:#2e669f;
+$orange:#e69d47;
+
+$font-family-bold: MyriadSetPro-Semibold;
+
+//for h1-h6 of  font size
+$normal-font-size: 14px !default;
+$h1-font-size: floor(($normal-font-size * 2.43)) !default; // ~34px
+$h2-font-size: ceil(($normal-font-size * 2.14)) !default; // ~30px
+$h3-font-size: ceil(($normal-font-size * 2)) !default; // ~28px
+$h4-font-size: ceil(($normal-font-size * 1.71)) !default; // ~24px
+$h5-font-size: floor(($normal-font-size * 1.43)) !default; // ~20px
+$h6-font-size: ceil(($normal-font-size * 1.14)) !default; // ~16px
+$button-size: $h6-font-size; // ~16px
+$full-width: 100% !default; //for width=100%
+$sider-list: $normal-font-size;

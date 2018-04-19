@@ -1,0 +1,51 @@
+﻿<div class="dashboard-entry">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+                <div ng-include="'Templates/CSR/Search/SideBar.html'"></div>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <!-- begin trouble ticket content -->
+                <div class="trouble-ticket" ng-controller="CustomerTroubleTickets">
+                    <div class="trouble-entry" ng-controller="ModalCtrl">
+                        <div class="normal-wrap">
+                            <header class="title">
+                                <h3><i class="et marketingbuzz"></i>{{'TROUBLE_TICKETS'|translate}}</h3>
+                                <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <a id="tt-view-Details" ng-href="{{LinkToDetailTT}}" ng-click="CheckSelectedTicket()" class="btn btn-default" role="button">{{'Details'|translate}} {{'Trouble Ticket'|translate}}</a>
+                                        </li>
+                                        <li>
+                                            <button id="tt-view-Create" type="button" class="btn btn-default btn-theme" ng-click="OpenCreateTTModal()">
+                                                <i class="et computing86"></i> {{'Create'|translate}} {{'Trouble Ticket'|translate}}
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#ticketDetail" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </header>
+                            <div id="ticketDetail" class="collapse in">
+
+                                    <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/ViewTT.html'"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end trouble ticket content -->
+            </div>
+         </div>
+    </div>
+</div>
+
+
+<div class="modal etak-content fade in" id="CreateTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/CreateTT.html'"></div>
+    </div>
+</div>

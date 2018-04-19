@@ -1,0 +1,113 @@
+﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div ng-include="'Templates/SelfCare/Themes/Info.html'"></div>
+    <div class="inner-selfcare">
+        <div class="container">
+            <div class="info-title clearfix">
+                <h3 class="title-selfcare">Shopping Cart Summary</h3>
+            </div>
+            <div class="panel-data clean">
+                <div class="box-sides">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="label label-success">{{successOrder.length}} Success Order(s)</span>
+                        </div>
+                        <div class="panel-body">
+                            <div ng-repeat="item in successOrder">
+                                <div class="col-sm-12" style="padding-bottom:25px">
+                                    <div class="col-sm-1">{{$index + 1}}</div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray">Order Date</div>
+                                    <div class="col-sm-8" >: {{item.OrderDate}}</div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray">Order Number</div>
+                                    <div class="col-sm-8">: {{item.OrderNumber}}</div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray">Order Name</div>
+                                    <div class="col-sm-8">: {{item.OrderName}}</div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray">Device</div>
+                                    <div class="col-sm-8">: {{item.Device}}</div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray"></div>
+                                    <div class="col-sm-8">
+                                        <table class="table table-hover table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th style="padding:8px 0 8px 0">Product Id</th>
+                                                    <th style="padding:8px 0 8px 0">Description</th>
+                                                    <th style="padding:8px 0 8px 0">Qty</th>
+                                                    <th style="padding:8px 0 8px 0">Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td ng-attr-id="{{ 'spc1-' + $index }}">{{item.Item.Id}}</td>
+                                                    <td ng-attr-id="{{ 'spc2-' + $index }}">{{item.Item.Description}}</td>
+                                                    <td ng-attr-id="{{ 'spc3-' + $index }}">{{item.Item.Qty}}</td>
+                                                    <td ng-attr-id="{{ 'spc4-' + $index }}">{{item.Item.Price}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="label label-danger">{{failedOrder.length}} Failed Order(s)</span>
+                        </div>
+                        <div class="panel-body">
+                            <div ng-repeat="item in failedOrder">
+                                <div class="col-sm-12" style="padding-bottom:25px">
+                                    <div class="col-sm-1">{{$index + 1}}</div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray">Order Name</div>
+                                    <div class="col-sm-8">: {{item.OrderName}}</div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray">Device</div>
+                                    <div class="col-sm-8">: {{item.Device}}</div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray">Message</div>
+                                    <div class="col-sm-8">: {{item.Message}}</div>
+                                    <div class="col-sm-1"></div>
+                                    <div class="col-sm-3" style="border-left:1px solid lightgray"></div>
+                                    <div class="col-sm-8">
+                                        <table class="table table-hover table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th style="padding:8px 0 8px 0">Product Id</th>
+                                                    <th style="padding:8px 0 8px 0">Description</th>
+                                                    <th style="padding:8px 0 8px 0">Qty</th>
+                                                    <th style="padding:8px 0 8px 0">Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td ng-attr-id="{{ 'spc1-' + $index }}">{{item.Item.Id}}</td>
+                                                    <td ng-attr-id="{{ 'spc2-' + $index }}">{{item.Item.Description}}</td>
+                                                    <td ng-attr-id="{{ 'spc3-' + $index }}">{{item.Item.Qty}}</td>
+                                                    <td ng-attr-id="{{ 'spc4-' + $index }}">{{item.Item.Price}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <a class="btn btn-default big" href="/SelfCare/Customer/App">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

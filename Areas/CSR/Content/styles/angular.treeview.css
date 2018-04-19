@@ -1,0 +1,153 @@
+div[data-angular-treeview] {
+ 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: 'opensans', sans-serif;
+  font-size:13px;
+  color: inherit;
+  text-decoration: none;
+     
+}
+
+
+
+div[data-tree-model] ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; 
+  border: none;
+  overflow: hidden;
+ 
+  
+}
+
+
+div[data-tree-model] li {
+  position: relative;
+  /*padding: 0 0 0 20px;*/
+  padding: 5px 0 5px 15px;
+  /*line-height: 28px;*/
+  position: relative;
+  border-left: 1px solid #e5e5e5;
+  margin-left: 5px;
+}
+
+
+
+
+
+div[data-tree-model] li .expanded {
+  padding: 0 10px;
+  background-image: url("../images/folder.png");
+  background-repeat: no-repeat;
+ 
+  
+}
+
+
+
+div[data-tree-model] li .collapsed {
+  padding: 0 10px;
+  background-image: url("../images/folder-closed.png");
+  background-repeat: no-repeat;
+}
+
+div[data-tree-model] li .normal {
+  padding: 0 10px;
+  background-image: url("../images/file.png");
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+div[data-tree-model] li .normal:before {
+    content:'';
+    width: 12px;
+    height: 1px;
+    background: #e5e5e5;
+    display: block;
+    position: absolute;
+    left: -15px;
+    top: 7px;
+
+}
+
+div[data-tree-model] li i, div[data-tree-model] li span {
+  cursor: pointer;
+}
+
+div[data-tree-model] li .selected {
+  background-color: #f0f0f0;
+  font-family: 'opensans-bold', sans-serif;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: #333;
+}
+
+
+div[data-angular-treeview],
+div[data-tree-model] li,
+div[data-tree-model] li .collapsed,
+div[data-tree-model] li .expanded,
+div[data-tree-model] ul {
+  position: relative;
+}
+
+div[data-angular-treeview]:before {
+    content: '';
+    width: 12px;
+    height: 100%;
+    background: #fff;
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 0;
+    z-index: 9;
+}
+
+
+
+div[data-tree-model] li:last-child:after {
+    content:'';
+    position: absolute;
+    left: -1px;
+    bottom: 0;
+    width: 10px;
+    height: 14px;
+    background: #fff; 
+}
+
+div[data-tree-model] li .collapsed:after,
+div[data-tree-model] li:last-child .collapsed:after,
+div[data-tree-model] li .expanded:after  {
+    content:'';
+    position: absolute;
+    left: -16px;
+    top: 8px;
+    width: 10px;
+    height: 1px;
+    background: #f0f0f0;
+}
+
+
+.tree-scroll {
+    height: 360px;
+    overflow-y: auto;
+}
+
+.etak-tree,
+.etak-tree.mid,
+.etak-tree.long {
+     overflow-y: auto;
+     height: 100%;
+}
+
+.etak-tree {
+    max-height: 340px;
+}
+
+.etak-tree.mid {
+    max-height: 550px;
+}

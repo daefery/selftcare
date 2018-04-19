@@ -1,0 +1,78 @@
+﻿<!--Mahdi Badari multiple user result template
+    12 Nov 2015-->
+
+<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>
+<section ng-controller="viewuserpaginationController">
+    <div class="table fullwidth">
+        <table class="table table-hover table-striped">
+            <thead class="table-head">
+                <tr>
+                    <th>#</th>
+                    <th ng-click="sort('firstname')">
+                        {{'First_Name'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='firstname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('middlename')">
+                        {{'Middle_Name'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='middlename'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('lastname')">
+                        {{'Last_Name'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='lastname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('email')">
+                        {{'EMAIL'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('isclosed')">
+                        {{'isclosed'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='isclosed'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('islocked')">
+                        {{'islocked'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='islocked'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('isverified')">
+                        {{'isverified'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='isverified'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="item in CstData|itemsPerPage:10| orderBy:sortKey:reverse" ng-class=" {'selected':item.email==selectedRow}" ng-click="getUserDetail(item.email); showdetailbutton()">
+                    <!--<td>{{$index + 1}}</td>-->
+                    <td>{{searchpagenumber <= 1 ? ($index+1) : ($index+1) + ((searchpagenumber-1) * 10) }}</td>
+                    <td>{{item.firstname}}</td>
+                    <td>{{item.middlename}}</td>
+                    <td>{{item.lastname}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.isclosed}}</td>
+                    <td>{{item.islocked}}</td>
+                    <td>{{item.isverified}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12" style="text-align:center; margin-top:-10px" ng-show="isdataexist()">No Data Found</div>
+    <!--<dir-pagination-controls max-size="10"
+                             direction-links="true"
+                             boundary-links="true"
+                             ng-show="CstData.length">
+    </dir-pagination-controls>-->
+    <server-side-paging total-page="{{pagingServerSide}}" function-name="SearchByPageNumber" max-grid="11"></server-side-paging>
+</section>
+
+<!--end-->

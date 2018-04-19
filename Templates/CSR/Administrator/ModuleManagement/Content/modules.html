@@ -1,0 +1,18 @@
+﻿
+
+
+
+<div class="etak-tree mid">
+    <!--<div ng-click="getmoduleid(treemodule.currentNode.ModuleID); getmodulename(treemodule.currentNode.ModuleName)"
+         data-angular-treeview="true"
+         data-tree-id="treemodule"
+         data-tree-model="RoleList"
+         data-node-id="ModuleID"
+         data-node-label="ModuleName"
+         data-node-children="children">
+    </div>-->
+    <treecontrol class="tree-classic" tree-model="RoleList" selected-nodes="selectedNodes"  options="treeOptions">
+        <span ng-click="getmoduleid(node.ModuleID); getmodulename(node.ModuleName)">{{node.ModuleName}}</span>
+    </treecontrol>
+</div>
+    

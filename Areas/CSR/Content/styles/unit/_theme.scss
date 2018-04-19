@@ -1,0 +1,175 @@
+.btn-theme1{background-color: $theme1;}
+.btn-theme2{ background-color:$theme2;}
+.btn-theme3{ background-color: $theme3;}
+.btn-theme4{ background-color:$theme4;}
+/*Common.scss begin*/
+body{
+  background: $bg-page;
+  color: $font-gray;
+}
+.line{
+  /* The line between Box and box*/
+  border-top-color:$border-gainsboro;
+}
+.sub-line{
+  /*  The dividing line between the contents in the Box*/
+  background-color: $bg-gray;
+  border-top-color: $border-silver;
+}
+.table {
+  > thead {
+    > tr {
+      > th {
+        color: $font-darkgray;
+        border-bottom-color: $border-silver;
+      }
+    }
+  }
+}
+.normal-wrap{
+  .title{
+    a{color:$font-gray;}
+    a:hover{color:$font-lightgray;}
+  }
+  .bg-subsearch{
+    /*this gary backgroud is sub search in container*/
+    border-top-color:$border-gainsboro;
+    border-bottom-color:$border-gainsboro;
+  }
+}
+.badge-default{
+  background-color:lighten($font-gray, 10%);
+}
+
+/*for input theme*/
+.form-box{
+  //input for old version, now is temp style
+  border-color: $border-silver;
+  background-color: $bg-white;
+}
+.btn-selection {
+  //calender button  for old version, now is temp style
+  background-color: $border-silver;
+}
+.input-bg-gray{
+  //for login, register ect.
+  border-color: darken($bg-gray,10%);
+  background-color:darken($bg-gray,7%);
+  color:$black;
+}
+.input-bg-gray:active, .input-bg-gray:hover{
+  border-color: darken($bg-gray,16%);
+}
+.input-group-addon {
+  //for calendar, choice date}
+  color: $font-darkgray;
+  background-color:$border-silver;
+}
+
+/*for layout*/
+.box-wrap{
+  @include box-shadow(0 2px 2px darken($bg-gray, 8%));
+  border-color: $border-gainsboro;
+  a{color: $font-gray;}
+  //following backgroud color of logo link the Jira, website, confluence, etc.
+  .bgc1{background-color:$darkbrown; }
+  .bgc2{background-color:$darkmagenta;}
+  .bgc3{background-color:$royalblue;}
+  .bgc4{background-color:$orange;}
+  .icon-logo{color:$font-white; }
+}
+.nav-tabs {
+  //this is nav tabs for main contents.
+  border-bottom-color: $border-gainsboro;
+  >li {
+    > a {
+      background-color: $bg-gray;
+      color: $font-gray;
+      border-color: $border-gainsboro;
+    }
+  }
+}
+.list-badge {
+  //for list group badge}
+  color: $font-darkgray;
+  background-color: transparent;
+}
+.path-wrap{
+  /*The path of the page*/
+  border-bottom-color: $border-gainsboro;
+  .breadcrumb{
+    a{color: $font-gray;}
+  }
+  h1{color: $font-darkgray;}
+}
+.bg-gray{ background-color: $bg-gray;}//for title bg
+.footer-wrap{
+  border-top-color: $border-gainsboro;
+  background-color: $bg-white;
+  .copyright{color: $font-lightgray;}
+}
+
+/*error page*/
+.url-error-wrap {
+  .error-img {
+    background-image: url("../images/404.png");
+  }
+}
+.number-error-wrap{
+  .icon{color:$orange;}
+  .error-description{box-shadow:0 5px 5px $border-gainsboro;}
+}
+
+/*multi level sidebar*/
+%submenu-level{
+  border-left-color: $border-gainsboro;
+  border-right-color: $border-gainsboro;
+  border-top-color: rgba($border-silver, 0.4);
+  border-bottom-color: rgba($border-silver, 0.4);
+  background-color: $bg-white;
+  color: $font-gray;
+}
+.page-sidebar {
+  /* Default sidebar menu */
+  /* light sidebar menu */
+  .page-sidebar-menu {
+    /* 1st level links */
+    /* all links */
+    > li {
+      > a {
+        border-color: $border-gainsboro;
+        background-color: $bg-drakgary;
+        color: $font-gray;
+      }
+    }
+    .sub-menu {
+      li {
+        background-color: $bg-lightgary;
+        /* 2nd level sub menu */
+        > a {
+          border-left-color: $border-gainsboro;
+          border-right-color: $border-gainsboro;
+          border-top-color: $border-silver;
+          border-bottom-color: $border-silver;
+          color: $font-gray;
+        }
+        > .sub-menu {
+          > li {
+            /* 3rd level sub menu */
+            > a {
+              @extend %submenu-level;
+            }
+            > .sub-menu {
+              > li {
+                /* 4rd level sub menu */
+                > a {
+                  @extend %submenu-level;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

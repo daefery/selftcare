@@ -1,0 +1,31 @@
+.color-block{}
+.blue-block,.red-block,.orange-block,.gray-block{
+  /*for the four colorized box of the main content */
+  @extend %rounded-corners;
+  @extend %bottom-space;
+  @extend %font-white;
+  text-align: center;
+  min-height: 180px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  a{
+    @extend %font-white;
+    text-decoration: underline;
+  }
+  & a:hover{
+    color: rgba($font-white,.6);
+  }
+  b{font-size: $h1-font-size;}
+}
+.blue-block{
+  background-color: $blue;
+}
+.red-block{
+  background-color: $main-pink;
+}
+.orange-block{
+  background-color: $orange;
+}
+.gray-block{
+  background-color: $bg-darkgray;
+}

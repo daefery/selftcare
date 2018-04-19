@@ -1,0 +1,18 @@
+﻿<div class="container">
+    <div class="row">
+        <section class="col=md-3 col-sm-3">
+            <!--Load the sidebar, TODO make common side bar-->
+            <div ng-include="'Templates/CSR/Customer/TroubleTicket/Sidebar/Sidebar.html'"></div>
+        </section>
+        <div class="col-md-9 col-sm-9">
+            <section class="normal-wrap">
+                <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/DashboardTTSearch.html'"></div>
+            </section>
+            <span class="mb-30"></span>
+            <section class="normal-wrap">
+                <!--<div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/DashboardTTResult.html'"></div>-->
+                <div class="recompileserversidepaging" compile="includeBrowseTTResultHtml"></div>
+            </section>
+        </div>
+    </div>
+</div>

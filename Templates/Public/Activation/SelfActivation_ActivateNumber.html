@@ -1,0 +1,101 @@
+﻿<!--
+<section class="et-feat">
+    <div class="introduce">
+        <div class="feat-content">
+            <div class="no-padding container" style="margin-top: 140px">
+                <slick ng-if="isCompiled == true" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                    <div ng-repeat="item in orderDetail.OrderedItems">
+                        <span class="item-list">
+                            <figure class="overlay-it" ng-click="switchdevice(device)">
+                                <h3>{{item.DeviceName}}</h3>
+                                <img src="../../../Images/sample-device.png" class="img-responsive" alt="etak thumbnail" />
+                                <figcaption>
+                                    <p style="margin-top:20px; margin-left: 20px;">
+                                        <li style="width: 100%;" ng-repeat="product in item.orderedItems">{{product.Names}}</li>
+                                        <button ng-if="SubOrderIdentificator != item.SubOrderIdentificator" style="margin-top: 50%; width: 60%" class="btn ng-scope" ng-click="selectDevice(item.SubOrderIdentificator)">Select</button>
+                                        <button ng-if="SubOrderIdentificator === item.SubOrderIdentificator" style="margin-top: 50%; width: 60%" class="btn ng-scope disabled">{{'SELECTED'|translate}}</button>
+                                    </p>
+                                </figcaption>
+                            </figure>
+                        </span>
+                    </div>
+                    <div ng-if="notAvailableDevice != undefined" ng-repeat="itm in notAvailableDevice" style="pointer-events: none">
+                        <span class="item-list">
+                            <figure class="overlay-it">
+                                <img src="../../../Images/transparent.png" class="img-responsive" alt="etak thumbnail" style="pointer-events: none" />
+                            </figure>
+                        </span>
+                    </div>
+                </slick>
+            </div>
+            <div id="esn" style="display: none">
+                <etbossform name="ActivateNumberForm" ng-controller="SelfActivationFormController" class="login-warp" field="{{activated}}"></etbossform>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+<div class="shopping-page">
+    <section class="top-content" style="min-height: 68px">
+        <!--shop-now-->
+        <div class="container">
+            <div class="shoppingpage-title">
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="etakwizard">
+            </div>
+            <div class="step-entry">
+                <div class="step-title">
+                    <h3>Device Activation</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="no-padding">
+                            <div class="service-item" style="padding-top:0;">
+                                <div class="no-padding" ng-if="OrderDetailByDevice.OrderedItems.length == 0">
+                                    <h5>You don't have Any Device to be Activated</h5>
+                                </div>
+                                <div class="no-padding" ng-if="OrderDetailByDevice.OrderedItems.length > 0">
+                                    <slick ng-if="isCompiled == true" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                                        <div ng-repeat="item in OrderDetailByDevice.OrderedItems">
+                                            <span class="item-list">
+                                                <figure class="overlay-it" ng-click="switchdevice(device)">
+                                                    <h3>{{item.DeviceName}}&nbsp;</h3>
+                                                    <img src="../../../Images/sample-device.png" class="img-responsive" alt="etak thumbnail" />
+                                                    <figcaption>
+                                                        <p style="margin-top:30px; margin-left: 20px;">
+                                                            <span style="width: 100%;display:block;text-align:center;" ng-repeat="product in item.orderedItems">{{product.Description}}</span>
+                                                            <button ng-if="SubOrderIdentificator != item.SubOrderIdentificator" style="margin-top: 50%; width: 60%" class="btn ng-scope" ng-click="selectDevice(item.SubOrderIdentificator)">Select</button>
+                                                            <button ng-if="SubOrderIdentificator === item.SubOrderIdentificator" style="margin-top: 50%; width: 60%" class="btn ng-scope disabled">{{'SELECTED'|translate}}</button>
+                                                        </p>
+                                                    </figcaption>
+                                                </figure>
+                                            </span>
+                                        </div>
+                                        <div ng-if="notAvailableDevice != undefined" ng-repeat="itm in notAvailableDevice" style="pointer-events: none">
+                                            <span class="item-list">
+                                                <figure class="overlay-it">
+                                                    <img src="../../../Images/transparent.png" class="img-responsive" alt="etak thumbnail" style="pointer-events: none" />
+                                                </figure>
+                                            </span>
+                                        </div>
+                                    </slick>
+                                </div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div id="esn" style="display: none">
+                            <etbossform name="ActivateNumberForm" ng-controller="SelfActivationFormController" class="login-warp" field="{{activated}}"></etbossform>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

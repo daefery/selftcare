@@ -1,0 +1,112 @@
+﻿<div class="row">
+    <div class="col-md-12 toppad">
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">General Information</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form-horizontal" name="genform" ng-controller="UpdateDetailCustomerController" novalidate>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="firstname">First Name</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" name="f_name" class="form-control" placeholder="Enter First Name" ng-model="f_name" required>
+                                        <span class="label label-danger" ng-show="genform.f_name.$dirty && genform.f_name.$invalid">
+                                            <span ng-show="genform.f_name.$error.required">First Name is required.</span>
+                                        </span>
+                                    </div>
+                                <label class="control-label col-sm-2" for="lastname">Last Name</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="l_name" placeholder="Enter Last Name" ng-model="l_name" required>
+                                    <span class="label label-danger" ng-show="genform.l_name.$dirty && genform.l_name.$invalid">
+                                        <span ng-show="genform.l_name.$error.required">Last Name is required.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="email">Email</label>
+                                <div class="col-sm-8">
+                                    <input type="email" class="form-control" name="email" placeholder="Enter Email" ng-model="email" required>
+                                    <span class="label label-danger" ng-show="genform.email.$dirty && genform.email.$invalid">
+                                        <span ng-show="genform.email.$error.required">Email is required.</span>
+                                        <span ng-show="genform.email.$error.email">Email format not valid.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="pwd">Customer Address:</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" name="address" placeholder="Enter Address" ng-model="CustomerAddress" required></textarea>
+                                    <span class="label label-danger" ng-show="genform.address.$dirty && genform.address.$invalid">
+                                        <span ng-show="genform.address.$error.required">Address is required.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="pwd">Fiscal Address:</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" name="fisaddress" placeholder="Enter Address" ng-model="FiscalAddress" required></textarea>
+                                    <span class="label label-danger" ng-show="genform.fisaddress.$dirty && genform.fisaddress.$invalid">
+                                        <span ng-show="genform.fisaddress.$error.required">Address is required.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="pwd">Delivery Address:</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" name="deladdress" placeholder="Enter Address" ng-model="DeliveryAddress" required></textarea>
+                                    <span class="label label-danger" ng-show="genform.deladdress.$dirty && genform.deladdress.$invalid">
+                                        <span ng-show="genform.deladdress.$error.required">Address is required.</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="form-group pull-right">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-success" ng-disabled="genform.$invalid" ng-click="saveChangesGeneral()">Save</button>
+                                    <a href="Customer/CustomerArea/CustomerProfile" class="btn btn-danger">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<button type="button" id="modal_btn_general_success" class="hidden" data-toggle="modal" data-target=".general_modal_success">Large modal</button>
+<button type="button" id="modal_btn_general_error" class="hidden" data-toggle="modal" data-target=".general_modal_error">Large modal</button>
+
+<div class="modal fade general_modal_success" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Success!</strong> Your profile is updated.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade general_modal_error" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Failed!</strong> Your profile is not updated.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+﻿<!--<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->
+<div class="container" ng-controller="TTQuestionConfigurationSectionController">
+    <div class="row">
+        <section class="col-sm-3 col-xs-12">
+            <!--Load the sidebar, TODO make common side bar-->
+            <div ng-include="'Templates/CSR/Administrator/Sidebar/Sidebar.html'"></div>
+        </section>
+        <div class="col-sm-9 col-xs-12">
+            <section class="normal-wrap">
+                <div class="title">
+                    <h3>
+                        <i class="et cogwheel28"></i> {{'TTQuestion_Configuration' | translate}}
+                    </h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#manageTTQuestion" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="manageTTQuestion" class="panel-data">
+                    <form class="form-horizontal" name="form.ManageTTQuestionUIForm">
+                        <!-- for half side input -->
+                        <div class="form-group row half-width" ng-show="{{isETAKUser}}">
+                            <label class="col-sm-4 control-label">{{'MVNO' | translate}} : </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="keySearch.keyMVNO" ng-change="updateOnChangeMVNO(keySearch)" ng-disabled="{{!isETAKUser}}">
+                                    <option value="{{item.value}}" ng-repeat="item in TTMVNO" ng-selected="keySearch.keyMVNO == item.value">{{item.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end of input -->
+                    </form>
+
+                    <div class="inline-box">
+                        <ul class="btn-inline">
+                            <li ng-show="isTTQuestionLibRemoveEnable">
+                                <a class="btn btn-default" type="button" href="#" data-target="{{Modal_RemoveTTQuestionModal}}" data-toggle="modal" ng-disabled="{{deleteDisabled}}" ng-show="isTTQuestionLibRemoveEnable">{{'Remove_TTQuestion' | translate}}</a>
+                            </li>
+                            <li ng-show="isTTQuestionLibAddEnable">
+                                <a class="btn btn-default" type="button" href="#" ng-click="doing('Add')" ng-show="isTTQuestionLibAddEnable">{{'Add_TTQuestion' | translate}}</a>
+                            </li>
+                            <li ng-show="isTTQuestionLibModifyEnable">
+                                <a class="btn btn-default" type="button" href="#" ng-click="doing('Modify')" ng-show="isTTQuestionLibModifyEnable">{{'Modify_TTQuestion' | translate}}</a>
+                            </li>
+                        </ul>
+                        <div class="table fullwidth more-data">
+                            <table class="table table-hover table-responsive">
+                                <thead class="table-head">
+                                    <tr>
+                                        <th>#</th>
+                                        <th ng-click="sortKey='Type.NameId.DefaultMessage';reverse=!reverse">
+                                            {{'Type'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='Type.NameId.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='SubType.NameId.DefaultMessage';reverse=!reverse">
+                                            {{'SubType'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='SubType.NameId.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='QuestionCode.NameId.DefaultMessage';reverse=!reverse">
+                                            {{'QuestionCode'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='QuestionCode.NameId.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-init="sortKey='Type.NameId.DefaultMessage';reverse=false;">
+                                    <tr dir-paginate="item in CstData| orderBy:sortKey:reverse | itemsPerPage:10" ng-class=" {'selected':item.QuestionId==selectedRow}" ng-click="setClickedRow(item)" current-page="currentPage">
+                                        <td>{{currentPage <= 1 ? ($index+1) : ($index+1) + ((currentPage-1) * 10) }}</td>
+                                        <td>{{item.Type.NameId.DefaultMessage}}</td>
+                                        <td>{{item.SubType.NameId.DefaultMessage}}</td>
+                                        <td>{{item.QuestionCode.NameId.DefaultMessage}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <dir-pagination-controls max-size="10"
+                                                 direction-links="true"
+                                                 boundary-links="true"
+                                                 ng-show="CstData.length">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveTTQuestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'Remove_TTQuestion' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>{{'Confirmation_AreYouSureToDeleteThis_TTQuestion' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-md" ng-click="removeTTQuestion()" ng-disabled="deleteDisabled">{{'Delete'|translate}}</button>
+                <button data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddTTQuestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/Question/AddTTQuestion.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModifyTTQuestionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/Question/ModifyTTQuestion.html'"></div>
+    </div>
+</div>

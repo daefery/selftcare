@@ -1,0 +1,8 @@
+﻿<section class="selfcare-site" ng-controller="BreadcrumbsController">
+    <div ng-controller="NavMenuCtrl">
+        <div ng-include="'Templates/SelfCare/Themes/Header.html'"></div>
+        <!-- <div ng-include="'Templates/SelfCare/Themes/Nav.html'"></div> -->
+        <loadcontent class="main-selfcare" source="{{content}}"></loadcontent>
+        <div ng-include="'Templates/SelfCare/Themes/Footer.html'"></div>
+    </div>
+</section>

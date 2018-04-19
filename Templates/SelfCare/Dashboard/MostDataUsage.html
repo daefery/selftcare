@@ -1,0 +1,53 @@
+﻿<!--remove view usage because at this moment the button doesn't have any function-->
+<!--TO DO uncomment view usage button after view usage function is exist-->
+<div class="user-stats custom-box">
+  <div class="quarter-box first">
+    <h4>data</h4>
+    <span class="etcircle-icon big">
+      <i class="et speed12"></i>
+    </span>
+      <span id="datausage" class="stat-count">{{Bucket.data.value}} </span><span>{{Bucket.data.unit}}</span>
+      <p></p>
+      <!--Link to view usage-->
+      <!--<a href="/SelfCare/Customer/App/UsageDetail" class="bottom-data">view data usage <i class="et right127"></i></a>-->
+      <a href="javascript:;" class="bottom-data" style="height:34px"></a>
+  </div>
+
+  <div class="quarter-box second">
+    <h4>voice</h4>
+    <span class="etcircle-icon big">
+      <i class="et stickman184"></i>
+    </span>
+      <span id="voiceusage" class="stat-count">{{Bucket.voice.value}} </span><span>{{Bucket.voice.unit}}</span>
+      <p></p>
+      <!--Link to view usage-->
+      <!--<a href="/SelfCare/Customer/App/UsageDetail" class="bottom-data">view usage <i class="et right127"></i></a>-->
+      <a href="javascript:;" class="bottom-data" style="height:34px"></a>
+  </div>
+
+  <div class="quarter-box third">
+    <h4>sms</h4>
+    <span class="etcircle-icon big">
+      <i class="et message97"></i>
+    </span>
+
+      <span id="textusage" class="stat-count">{{Bucket.sms.value}} </span><span>{{Bucket.sms.unit}}</span>
+      <p></p>
+      <!--Link to view usage-->
+      <!--<a href="/SelfCare/Customer/App/UsageDetail" class="bottom-data">view data usage <i class="et right127"></i></a>-->
+      <a href="javascript:;" class="bottom-data" style="height:34px"></a>
+  </div>
+
+    <div class="quarter-box fourth">
+        <h4>mms</h4>
+        <span class="etcircle-icon big">
+            <i class="et hand103"></i>
+        </span>
+
+        <span id="textusage" class="stat-count">{{Bucket.mms.value}}</span><span>{{Bucket.mms.unit}}</span>
+        <p></p>
+        <!--Link to view usage-->
+        <!--<a href="/SelfCare/Customer/App/UsageDetail" class="bottom-data">view data usage <i class="et right127"></i></a>-->
+        <a href="javascript:;" class="bottom-data" style="height:34px"></a>
+    </div>
+</div>

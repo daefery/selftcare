@@ -1,0 +1,81 @@
+.banner-wrap{
+  /*blue banner, name *-wrap are background of full screen  */
+  @extend %fullscreen;
+  background-image: url("../images/bg.png");
+  height: 390px;
+  .crumb{
+    /*here is the content wrap of the banner*/
+    @extend %font-white;
+    margin: 60px auto;
+    padding: 0 20px 0 20px;
+    button{margin-top: 20px;}
+  }
+  h1{
+    /*title*/
+    @extend %font-white;
+    @extend %bottom-space;
+  }
+  .total{
+    /*total*/
+    font-size: $total-size;
+  }
+  .link-active{
+    /*bottom three link*/
+    margin-top: 25px;
+    @extend %li-clear-default;
+    li{
+      @extend %float-left;
+      a{
+        @extend %font-white;
+        @extend %font-family-thin;
+        font-size: $navbar-size;
+      }
+      i{
+        margin:0 25px 0 5px;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px){
+  /*blue banner has three nested div, one is blue background image, one is mobile image,one is mobile shabow image*/
+  .banner-wrap {
+    .background {
+      background-image: url("../images/mobile-shadow.png");
+      background-repeat: no-repeat;
+      height:auto;
+      background-position: left bottom;
+    }
+    .crumb{
+      width:721px;
+      background-image: url("../images/mobile.png");
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      height: 390px;
+      margin: 0 auto;
+      padding: 100px 130px 30px 130px;
+    }
+  }
+}
+@media (max-width: 1199px)and (min-width: 992px){
+  /*Reduce the size of the mobile shadow to adapt this media */
+  .banner-wrap {
+    .background {
+      background-size: 125px 350px;
+    }
+  }
+}
+@media (max-width: 453px) {
+  /*Reduce the font of banner to adapt this media */
+  .banner-wrap {
+    height: 390px;
+    h1{font-size: $h2-font-size}
+    .total{font-size:60px}
+    .crumb {
+      margin: 30px auto;
+      button{
+        font-size:$h6-font-size;
+      }
+    }
+  }
+}

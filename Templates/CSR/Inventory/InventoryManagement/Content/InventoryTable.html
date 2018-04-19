@@ -1,0 +1,358 @@
+﻿<div class="normal-wrap inventory">
+    <header class="title">
+
+        <div class="panel-options" ng-controller="InventorySecureSectionController">
+            <ul>
+                <li ng-show="isModifyProductEnable">
+                    <button type="button" ng-click="clickModifyButton()" class="btn btn-default btn-sm" ng-disabled="selectedRow==null">{{'Modify_Product' | translate}}</button>
+                </li>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#modifyContent" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div id="modifyContent" ng-controller="productspaginationController" class="panel-data collapse in">
+        <div class="table fullwidth">
+            <table class="table table-hover table-striped">
+                <thead class="table-head">
+                    <tr>
+                        <th>#</th>
+                        <th ng-click="sort('PhysicalProduct.ProductId')">
+                            {{'Product_Id'| translate}}
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='PhysicalProduct.ProductId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('PhysicalProduct.PhysicalResourceSpecification.Name')">
+                            {{'Product_Name'| translate}}
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='PhysicalProduct.PhysicalResourceSpecification.Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('PhysicalProduct.PhysicalResourceSpecification.SKU')">
+                            {{'SKU'| translate}}
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='PhysicalProduct.PhysicalResourceSpecification.SKU'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('PhysicalProduct.PhysicalResourceSpecification.ModelNumber')">
+                            {{'Model_Number'| translate}}
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='PhysicalProduct.PhysicalResourceSpecification.ModelNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('BeginningQuantity')">
+                            {{'Begin_QTY'| translate}}
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='BeginningQuantity'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('AvailabeQuantity')">
+                            {{'Available_QTY'| translate}}
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='AvailabeQuantity'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="item in ProductsData.ProductInventory|itemsPerPage:10| orderBy:sortKey:reverse" ng-class=" {'selected':item.PhysicalProduct.ProductId==selectedRow}" ng-click="getInventoryById(item.PhysicalProduct.ProductId)">
+                        <td>{{searchpagenumber <= 1 ? ($index+1) : ($index+1) + ((searchpagenumber-1) * 10) }}</td>
+                        <td>{{item.PhysicalProduct.ProductId}}</td>
+                        <td>{{item.PhysicalProduct.PhysicalResourceSpecification.ProductNames[0].Text}}</td>
+                        <td>{{item.PhysicalProduct.PhysicalResourceSpecification.SKU}}</td>
+                        <td>{{item.PhysicalProduct.PhysicalResourceSpecification.ModelNumber}}</td>
+                        <td>{{item.BeginningQuantity}}</td>
+                        <td>{{item.AvailabeQuantity}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!--<dir-pagination-controls max-size="10"
+                                 direction-links="true"
+                                 boundary-links="true"
+                                 ng-show="ProductsData.ProductInventory.length">
+        </dir-pagination-controls>-->
+        <span class="col-md-12" ng-show="ProductsData.ProductInventory.length==0" style="text-align:center">No Data Found</span>
+    </div>
+      <server-side-paging total-page="{{pagingServerSide}}" function-name="SearchByPageNumber" max-grid="11"></server-side-paging>
+</div>
+
+
+<!--Modal-->
+<script type="text/ng-template" id="modifyproduct.html">
+    <div class="etak-modal" id="updateModal">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()"><i class="et delete8"></i></button>
+            <h3 class="modal-title">{{'Modify_Product' | translate}}</h3>
+        </div>
+        <div class="modal-body no-pad product-detail">
+
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <div class="device-thumbnail">
+                        <img id="phoneimage" src={{'data:image/jpeg;base64,'}}{{phoneimagebase64}} class="img-responsive" alt="Device Image">
+                    </div>
+                    <div class="browse-btn">
+                        <input id="phoneimagebutton" type="file" accept="image/*" class="upload" onchange="angular.element(this).scope().chooseImage(this)"/>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="user-confirm">
+                        <i class="et info44"></i>
+                        <label>{{confirmmessage}}</label>
+                    </div>
+                    <form name="updateForm" class="etak-form form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">{{'Product_Id' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.ProductId" type="text" class="form-control" id="productid" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="Name">{{'Name' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.ProductNames[0].Text" type="text" class="form-control" id="Name" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="sku">{{'SKU' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.SKU" type="text" class="form-control" id="sku" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="modelnumber">{{'Model_Number' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.ModelNumber" ng-change="checkFormChanged()" type="text" class="form-control" id="modelnumber" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="brand">{{'Brand' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Brand" ng-change="checkFormChanged()" type="text" class="form-control" id="brand" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="color">{{'Color' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Color" ng-change="checkFormChanged()" type="text" class="form-control" id="color" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="fcamera">{{'Front_Camera' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.FrontCamera" ng-change="checkFormChanged()" type="text" class="form-control" id="fcamera" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="bcamera">{{'Back_Camera' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.BackCamera" ng-change="checkFormChanged()" type="text" class="form-control" id="bcamera" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="os">{{'Operating_System' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.OperationSystem" ng-change="checkFormChanged()" type="text" class="form-control" id="os" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="storage">{{'Storage' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Storage" ng-change="checkFormChanged()" type="text" class="form-control" id="storage" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="description">{{'Description' | translate}}: </label>
+                            <div class="col-sm-8">
+                                <textarea ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Description" ng-change="checkFormChanged()" class="form-control" rows="5" id="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="description">{{'SimCardRequired' | translate}}: </label>
+                            <div class="checkbox col-sm-8">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="issimrequired_checkbox" ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.SimcardRequired" ng-change="checkFormChanged()" name="issimrequired_checkbox" />
+                                    <label for="issimrequired_checkbox"><span></span>{{'' | translate}}</label>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+
+        <!--<form class="etak-form form-horizontal" role="form">
+            <div class="form-content split">
+                <div class="form-group">
+                    <label class="control-label col-sm-4">{{'Product_Id' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.ProductId" type="text" class="form-control" id="productid" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="Name">{{'Name' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Name" type="text" class="form-control" id="Name" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="sku">{{'SKU' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.SKU" type="text" class="form-control" id="sku" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="modelnumber">{{'Model_Number' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.ModelNumber" type="text" class="form-control" id="modelnumber" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="brand">{{'Brand' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Brand" type="text" class="form-control" id="brand" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="color">{{'Color' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Color" type="text" class="form-control" id="color" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="fcamera">{{'Front_Camera' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.FrontCamera" type="text" class="form-control" id="fcamera" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="bcamera">{{'Back_Camera' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.BackCamera" ng-change="" type="text" class="form-control" id="bcamera" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="os">{{'Operating_System' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.OperationSystem" ng-change="" type="text" class="form-control" id="os" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="storage">{{'Storage' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Storage" ng-change="" type="text" class="form-control" id="storage" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="description">{{'Description' | translate}}: </label>
+                    <div class="col-sm-8">
+                        <textarea ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Description" class="form-control" rows="5" id="description"></textarea>
+                    </div>
+                </div>
+             </div>
+        </form>-->
+        <!--<div class="col-md-6" style="padding-right:30px;padding-left:30px">
+            <form class="form-horizontal">
+                <div class="row thumbnail">
+                    <img id="phoneimage" src={{'data:image/jpeg;base64,'}}{{phoneimagebase64}} class="img-responsive" alt="Device Image" style="margin:0 auto">
+                </div>
+            </form>
+            <input id="phoneimagebutton" type="file" accept="image/*" class="upload" onchange="angular.element(this).scope().chooseImage(this)" />
+        </div>-->
+
+        <!--<div class="row">
+            <label class="col-sm-12">{{confirmmessage}}</label>
+        </div>-->
+    </div>
+    <!--<div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">{{'Product_Id' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.ProductId" type="text" class="form-control" id="productid" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="Name">{{'Name' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Name" type="text" class="form-control" id="Name" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="sku">{{'SKU' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.SKU" type="text" class="form-control" id="sku" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="description">{{'Description' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <textarea ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Description" class="form-control" rows="5" id="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="modelnumber">{{'Model_Number' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.ModelNumber" type="text" class="form-control" id="modelnumber" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="brand">{{'Brand' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Brand" type="text" class="form-control" id="brand" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="color">{{'Color' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Color" type="text" class="form-control" id="color" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="fcamera">{{'Front_Camera' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.FrontCamera" type="text" class="form-control" id="fcamera" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="bcamera">{{'Back_Camera' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.BackCamera" ng-change="" type="text" class="form-control" id="bcamera" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="os">{{'Operating_System' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.OperationSystem" ng-change="" type="text" class="form-control" id="os" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="storage">{{'Storage' | translate}}: </label>
+                        <div class="col-sm-9">
+                            <input ng-model="productselected.PhysicalProduct.PhysicalResourceSpecification.Storage" ng-change="" type="text" class="form-control" id="storage" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6" style="padding-right:30px;padding-left:30px">
+                <form class="form-horizontal">
+                    <div class="row thumbnail">
+                        <img id="phoneimage" src={{'data:image/jpeg;base64,'}}{{phoneimagebase64}} class="img-responsive" alt="Device Image" style="margin:0 auto">
+                    </div>
+                </form>
+                <input id="phoneimagebutton" type="file" accept="image/*" class="upload" onchange="angular.element(this).scope().chooseImage(this)" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-12">{{confirmmessage}}</label>
+        </div>
+    </div>-->
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="save()" ng-disabled=updateForm.$pristine>Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Cancel</button>
+    </div>
+    </div>
+</script>
+

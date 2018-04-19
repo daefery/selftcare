@@ -1,0 +1,41 @@
+﻿<div>
+    <header class="title">
+        <h3>
+            <i class="et cogwheel28"></i> {{'Statistics' | translate}}
+        </h3>
+        <div class="panel-options">
+            <ul>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#statisticContent" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div id="statisticContent" class="panel-data">
+        <form class="form-horizontal" name="form.StatisticsUIForm">
+            <!-- for half side input -->
+            <div class="form-group row half-width" ng-show="{{isETAKUser}}">
+                <label class="col-sm-4 control-label">{{'MVNO' | translate}} : </label>
+                <div class="col-sm-8">
+                    <select class="form-control" ng-model="keySearch.MvnoId" ng-change="updateOnChangeMVNO(keySearch)" ng-disabled="{{!isETAKUser}}">
+                        <option value="{{item.value}}" ng-repeat="item in TTMVNO" ng-selected="keySearch.MvnoId == item.value">{{item.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <!-- end of input -->
+        </form>
+
+        <div class="inline-box">
+            <div class="form-content split" id="chart_area">
+                <div class="form-group row">
+                    <canvas id="chart" width="300" height="300" style="margin-left:20px"></canvas>
+                </div>
+                <div class="form-group row">
+                    <div id="legend"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

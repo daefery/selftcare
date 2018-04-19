@@ -1,0 +1,13 @@
+.footer-wrap{
+  /*footer bottom size is full screen (100%);*/
+  width: $full-width;
+  background-color: $bg-white;
+  border-top: 1px solid $border-gainsboro;
+  padding: 20px 0;
+
+  .copyright{
+    text-align: center;
+    color: $font-lightgray;
+
+  }
+}

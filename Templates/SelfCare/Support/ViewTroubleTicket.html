@@ -1,0 +1,71 @@
+﻿<div class="inner-box">
+    <div class="title has-icon clearfix">
+        <span class="etcircle-icon">
+            <i class="et task2"></i>
+        </span>
+        <h3>View Support Request</h3>
+        <a id="tt_backtostart" ng-show="showBackToStartingPage" href="SelfCare/Customer/App/Start" style="margin-left:1%" class="btn btn-outline btn-sm">
+            <i class="et back28"></i>  Back To Starting Page
+        </a>
+        <a id="tt_detailsticket" ng-click="gotoDetailTroubleTicket()" style="margin-left:1%" class="btn btn-outline btn-sm">
+            <i class="et file148"></i>  SUPPORT REQUEST DETAILS
+        </a>
+        <a id="tt_createticket" ng-show="isCreateTicketEnable" href="SelfCare/Customer/App/CreateTroubleTicket" class="btn btn-outline btn-sm">
+            <i class="et pencil41"></i>  CREATE SUPPORT REQUEST
+        </a>
+    </div>
+
+    <div class="innerbox-entry">
+        <div class="big-table">
+            <table class="table table-responsive table-hover">
+                <thead class="table-head">
+                    <tr>
+                        <th>No</th>
+                        <th ng-click="sort('Status')">
+                            Status
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('MSISDN')">
+                            Mobile Number
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='MSISDN'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('TicketNumber')">
+                            Support ID
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='TicketNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+
+                        <th ng-click="sort('ReportTime')">
+                            Create Time
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='ReportTime'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('Type')">
+                            Category
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='Type'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('UpdateTime')">
+                            Updates
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='UpdateTime'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="item in ExcludeTTClosed|itemsPerPage:10" ng-click="ngClickSelectedTicket(item.TicketNumber)" ng-class="{'active':item.TicketNumber==SelectedTicket}" ">
+                        <td>{{item.IndexTable}}</td>
+                        <td>{{item.Status.Name}}</td>
+                        <td>{{item.MSISDN}}</td>
+                        <td>{{item.TicketNumber}}</td>
+                        <td>{{item.ReportTime}}</td>
+                        <td>{{item.Type.Name}}</td>
+                        <td>{{item.UpdateTime}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <dir-pagination-controls max-size="10"
+                                     direction-links="true"
+                                     boundary-links="true"
+                                     ng-show="troubleTicket.length">
+            </dir-pagination-controls>
+        </div>
+    </div>
+</div>

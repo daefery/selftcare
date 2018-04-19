@@ -1,0 +1,280 @@
+﻿<!--Maintenance Plan Page-->
+
+<div class="container">
+    <div class="row" ng-controller="MaintenancePlanSectionController">
+        <div class="col-md-3 col-sm-3">
+            <div ng-include="'templates/csr/administrator/SideBar/SideBar.html'"></div>
+        </div>
+        <div class="col-md-9 col-sm-9">
+
+            <div class="normal-wrap clearfix">
+                <header class="title">
+                    <h3><i class="et cloud187"></i>Maintenance Management</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#moduleDetail" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <div id="moduleDetail" class="panel-data">
+
+                    <ul class="btn-inline">
+                        <li ng-show="isAddMaintenancePlanEnable"><a class="btn btn-default" type="button" href="#" ng-click="AddMaintenanceModal()">{{'Add' | translate}}</a></li>
+                        <li ng-show="isModifyMaintenanceManagementEnable"><a class="btn btn-default" type="button" href="#" ng-click="disableButton||EditMaintenanceModal()" ng-disabled="disableButton">{{'Modify' | translate}}</a></li>
+                        <li ng-show="isDeleteMaintenanceManagementEnable"><button class="btn btn-default" type="button" href="#" data-target="#deleteMaintenanceModal" data-toggle="modal" ng-disabled="disableButton">{{'Remove' | translate}}</button></li>
+                    </ul>
+
+                    <div class="table fullwidth more-data">
+                        <table class="table table-hover table-responsive">
+                            <thead class="table-head">
+                                <tr>
+                                    <th>#</th>
+                                    <th ng-click="sort('Date')">
+                                        {{'Date'| translate}}
+                                        <span class="fa fa-sort" ng-show="sortKey=='Date'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('Time')">
+                                        {{'Time'| translate}}
+                                        <span class="fa fa-sort" ng-show="sortKey=='Time'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('Description')">
+                                        {{'Description'| translate}}
+                                        <span class="fa fa-sort" ng-show="sortKey=='Description'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('Detail')">
+                                        {{'Detail'| translate}}
+                                        <span class="fa fa-sort" ng-show="sortKey=='Detail'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('URL')">
+                                        {{'URL'| translate}}
+                                        <span class="fa fa-sort" ng-show="sortKey=='Url'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('Affected_MVNOs')">
+                                        {{'Affected_MVNOs'| translate}}
+                                        <span class="fa fa-sort" ng-show="sortKey=='Affected_MVNOs'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="item in MaintenancePlan|itemsPerPage:10| orderBy:name:reverse" ng-class=" {'selected':item.MaintenanceInfoID==selectedRow}" ng-click="setClickedRow(item)" current-page="currentPage">
+                                    <td class="text-nowrap">{{currentPage <= 1 ? ($index+1) : ($index+1) + ((currentPage-1) * 10) }}</td>
+                                    <td>{{item.MaintenanceDate2}}{{item.MaintenanceDate2end}}</td>
+                                    <td class="text-nowrap">{{item.MaintenanceStartTime}} - {{item.MaintenanceEndTime}}</td>
+                                    <td class="text-nowrap">{{item.Description}}</td>
+                                    <td>{{item.Detail}}</td>
+                                    <td class="text-nowrap"><a href="{{item.URLReference}}">{{item.URLReference}}</a></td>
+                                    <td class="text-nowrap">{{item.Affected_MVNOs}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ng-show="MaintenancePlan.length==0" style="text-align: center">{{'No_Maintenance_Scheduled' | translate}}</div>
+                    </div>
+                    <dir-pagination-controls max-size="10"
+                                             direction-links="true"
+                                             boundary-links="true"
+                                             ng-show="MaintenancePlan.length">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteMaintenanceModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Remove Maintenance Plan</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to delete selected maintenance plan?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-md" ng-click="removeMaintenancePlan(data.MaintenanceInfoID)">{{'Delete'|translate}}</button>
+                <button data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="addMaintenanceModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Maintenance Plan</h4>
+            </div>
+            <!--etbossform-->
+            <!--<div class="modal-body">
+                <etbossform value="AddMaintenanceForm" name="addmaintenanceform" ng-controller="AddMaintenanceForm" field="{{datas}}"></etbossform>
+            </div>--> 
+            <!-- -------- -->
+
+            <div class="modal-body">
+                <form accessible_form="accessibleForm" name="addmaintenanceform" class="etak-form form-horizontal  ng-pristine ng-valid ng-scope ng-valid-pattern" ng-controller="AddMaintenanceForm" novalidate="">
+                    <div class="form-content ">
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="maintenancedate" ng-bind-html="lang.Maintenance_Date">Maintenance Date</label>
+                            <div class="col-md-6">
+                                <div class="input-group date col-md-12">
+                                    <input name="maintenancedate" id="addmaintenanceform_maintenancedate" class="form-control" ng-class="{ error: addmaintenanceform.$submitted &amp;&amp; addmaintenanceform.maintenancedate.$invalid }" placeholder={{configDateFormatMoment}} ng-model="addform.MaintenanceDate" readonly="" required="" type="text">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                                <span id="addmaintenanceform_maintenancedate_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.maintenancedate.$error.required)">field is mandatory</span>
+                                <div class="col-md-12">
+                                    <timepicker class="col-md-6" ng-model=" addform.timestart" show-meridian="true"></timepicker>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="duration" ng-bind-html="lang.Duration_in_minutes">Duration</label>
+                            <div class="col-md-6">
+                                <input name="duration" id="addmaintenanceform_duration" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-pattern" ng-class="{ error: addmaintenanceform.$submitted &amp;&amp; addmaintenanceform.duration.$invalid }" placeholder="Duration" ng-model="addform.MaintenanceDuration" ng-pattern="/^(?=.*\d)[0-9]+$/" required="" type="number">
+                                <span id="addmaintenanceform_duration_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.duration.$error.required)">This field is mandatory</span>
+                                <span id="addmaintenanceform_duration_errormessage" ng-bind-html="lang.validationmessage.number" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.duration.$error.number || addmaintenanceform.duration.$error.pattern)">field must be number!<br> string or special character are not allowed</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="description" ng-bind-html="lang.Description">Description</label>
+                            <div class="col-md-6">
+                                <input name="description" id="addmaintenanceform_description" class="form-control" ng-class="{ error: addmaintenanceform.$submitted &amp;&amp; addmaintenanceform.description.$invalid }" placeholder="Description" ng-model="addform.Description" required="" type="text" ng-maxlength="50">
+                                <span id="addmaintenanceform_description_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.description.$error.required)">This field is mandatory</span>
+                                <span id="addmaintenanceform_description_maxlengthmessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.description.$error.maxlength)">field is too long</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="detail" ng-bind-html="lang.Detail">Detail</label>
+                            <div class="col-md-6">
+                                <textarea rows="3" name="detail" id="addmaintenanceform_detail" class="form-control" ng-class="{ error: addmaintenanceform.$submitted &amp;&amp; addmaintenanceform.detail.$invalid }" placeholder="Detail" ng-model="addform.Detail" required="" ng-maxlength="500"></textarea>
+                                <span id="addmaintenanceform_detail_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.detail.$error.required)">This field is mandatory</span>
+                                <span id="addmaintenanceform_detail_maxlengthmessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.detail.$error.maxlength)">field is too long</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="url" ng-bind-html="lang.URL">URL</label>
+                            <div class="col-md-6">
+                                <input name="url" id="addmaintenanceform_url" class="form-control" ng-class="{ error: addmaintenanceform.$submitted &amp;&amp; addmaintenanceform.url.$invalid }" placeholder="URL" ng-model="addform.URLReference" type="url" ng-maxlength="150" pattern="https?://.+">
+                                <span id="addmaintenanceform_url_maxlengthmessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="addmaintenanceform.$submitted &amp;&amp; (addmaintenanceform.url.$error.maxlength)">field is too long</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="affectedmvnos" ng-bind-html="lang.Affected_MVNOs">Affected MVNOs</label>
+                            <div class="col-md-6">
+                                <label class="checkbox col-md-4" ng-repeat="item in mvnocheckbox">
+                                    <input class="" id="addmaintenanceform_affectedmvnos_{{$index + 1}}" value="item.orgid" name="affectedmvnos_{{$index + 1}}" type="checkbox" ng-click="togglemvnoselection2(item)" ng-checked="mvnoselection2.indexOf(item)>-1">
+                                    <label for="addmaintenanceform_affectedmvnos_{{$index + 1}}">
+                                        <span></span> {{item.mvnoname}}
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-bottom group clearfix">
+                        <div class="btn-set">
+                            <button type="submit" id="addmaintenanceform_btn_submit_1" class="btn btn-default ng-binding" ng-click="addmaintenanceform.$valid &amp;&amp; addmaintenance(addform); validateURL()" ng-bind="lang.Submit">Submit</button>
+                            <button type="button" id="addmaintenanceform_btn_cancel_2" class="btn btn-danger ng-binding" ng-click="setPristineAddForm()" data-dismiss="modal" ng-bind="lang.Cancel">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--custom form-->
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="editMaintenanceModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Maintenance Plan</h4>
+            </div>
+            <!--etbossform-->
+            <!--<div class="modal-body">
+                <etbossform value="EditMaintenanceForm" name="Editmaintenanceform" ng-controller="EditMaintenanceForm" field="{{datas}}"></etbossform>
+            </div>--> 
+            <!-- -------- -->
+            <div class="modal-body">
+                <form accessible_form="accessibleForm" name="Editmaintenanceform" class="etak-form form-horizontal  ng-pristine ng-valid ng-scope ng-valid-pattern" ng-controller="EditMaintenanceForm" novalidate="">
+                    <div class="form-content ">
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="maintenancedate" ng-bind-html="lang.Maintenance_Date">Maintenance Date</label>
+                            <div class="col-md-6">
+                                <div class="input-group date col-md-12">
+                                    <input name="maintenancedate" id="Editmaintenanceform_maintenancedate" class="form-control" ng-class="{ error: Editmaintenanceform.$submitted &amp;&amp; Editmaintenanceform.maintenancedate.$invalid }" placeholder={{configDateFormatMoment}} ng-model="editform.MaintenanceDate" readonly="" required="" type="text">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                                <span id="Editmaintenanceform_maintenancedate_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.maintenancedate.$error.required)">field is mandatory</span>
+                                <div class="col-md-12">
+                                    <timepicker class="col-md-6" ng-model=" editform.timestart" show-meridian="true"></timepicker>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="duration" ng-bind-html="lang.Duration_in_minutes">Duration</label>
+                            <div class="col-md-6">
+                                <input name="duration" id="Editmaintenanceform_duration" class="form-control" ng-class="{ error: Editmaintenanceform.$submitted &amp;&amp; Editmaintenanceform.duration.$invalid }" placeholder="Duration" ng-model="editform.MaintenanceDuration" ng-pattern="/^(?=.*\d)[0-9]+$/" type="number" required="">
+                                <span id="Editmaintenanceform_duration_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.duration.$error.required)">field is mandatory</span>
+                                <span id="Editmaintenanceform_duration_errormessage" ng-bind-html="lang.validationmessage.number" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.duration.$error.number || Editmaintenanceform.duration.$error.pattern)">This field must be a number</span>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="description" ng-bind-html="lang.Description">Description</label>
+                            <div class="col-md-6">
+                                <input name="description" id="Editmaintenanceform_description" class="form-control" ng-class="{ error: Editmaintenanceform.$submitted &amp;&amp; Editmaintenanceform.description.$invalid }" placeholder="Description" ng-model="editform.Description" required="" type="text" ng-maxlength="50">
+                                <span id="Editmaintenanceform_description_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.description.$error.required)">field is mandatory</span>
+                                <span id="Editmaintenanceform_description_maxlengthmessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.description.$error.maxlength)">field is too long</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="detail" ng-bind-html="lang.Detail">Detail</label>
+                            <div class="col-md-6">
+                                <textarea rows="5" name="detail" id="Editmaintenanceform_detail" class="form-control" ng-class="{ error: Editmaintenanceform.$submitted &amp;&amp; Editmaintenanceform.detail.$invalid }" placeholder="Detail" ng-model="editform.Detail" required="" ng-maxlength="500"> </textarea>
+                                <span id="Editmaintenanceform_detail_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.detail.$error.required)">field is mandatory</span>
+                                <span id="Editmaintenanceform_detail_maxlengthmessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.detail.$error.maxlength)">field is too long</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="url" ng-bind-html="lang.URL">URL</label>
+                            <div class="col-md-6">
+                                <input name="url" id="Editmaintenanceform_url" class="form-control" ng-class="{ error: Editmaintenanceform.$submitted &amp;&amp; Editmaintenanceform.url.$invalid }" placeholder="URL" ng-model="editform.URLReference" type="url" ng-maxlength="150" pattern="https?://.+">
+                                <span id="Editmaintenanceform_url_maxlengthmessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="Editmaintenanceform.$submitted &amp;&amp; (Editmaintenanceform.url.$error.maxlength)">field is too long</span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-6 ng-binding" for="affectedmvnos" ng-bind-html="lang.Affected_MVNOs">Affected MVNOs</label>
+                            <div class="col-md-6">
+                                <label class="checkbox col-md-4" ng-repeat="item in mvnocheckbox">
+                                    <input class="ng-pristine ng-untouched ng-valid" id="Editmaintenanceform_affectedmvnos_{{$index+1}}" value="item.orgid" name="affectedmvnos_{{$index+1}}" type="checkbox" ng-click="togglemvnoselection(item)" ng-checked="mvnoselection.indexOf(item)>-1">
+                                    <label for="Editmaintenanceform_affectedmvnos_{{$index+1}}">
+                                        <span></span> {{item.mvnoname}}
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-bottom group clearfix">
+                        <div class="btn-set">
+                            <button type="submit" id="Editmaintenanceform_btn_submit_1" class="btn btn-default ng-binding" ng-click="Editmaintenanceform.$valid &amp;&amp; editmaintenance(editform); validateURL()" ng-bind="lang.Submit" ng-disabled="!isDirty_Editmaintenanceform()">Submit</button>
+                            <button type="button" id="Editmaintenanceform_btn_cancel_2" class="btn btn-danger ng-binding" ng-click="refresheditform(data);setPristineEditForm()" data-dismiss="modal" ng-bind="lang.Cancel">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--custom form-->
+        </div>
+
+    </div>
+</div>

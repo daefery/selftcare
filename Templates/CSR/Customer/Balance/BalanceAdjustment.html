@@ -1,0 +1,53 @@
+﻿<div class="modal-content etak-modal">
+    <div>
+        <div class="modal-header">
+            <h3 class="modal-title"><i class="et checked28"></i> {{'Adjust_Balance'|translate}}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+        </div>
+        <div class="modal-body">
+            <etbossform name="balanceform" ng-controller="BalanceForm" field="{{datas}}"></etbossform>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <select ng-change="showform(adjtype)" ng-model="adjtype" class="form-control" <!--style="width:200px; margin-left:30%; margin-bottom:20px;"-->>
+                            <option value="" disabled selected hidden>Adjustment Type</option>
+                            <option ng-click="showform(1)" value="1">Adjustment</option>
+                            <option ng-click="showform(2)" value="2">Voucher Top Up</option>
+                            <option ng-click="showform(3)" value="3">Payment Card</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-show="showadjustmentform" ng-hide="!(showadjustmentform)">
+               <etbossform name="balanceadjustmentform" ng-controller="BalanceAdjustmentForm" field="{{datas}}"></etbossform>
+            </div>
+            <div class="form-group" ng-show="showcouponform" ng-hide="!(showcouponform)">
+                <etbossform name="adjustbalancewithcouponform" ng-controller="AdjustBalancewithCouponForm" field="{{datas}}"></etbossform>
+            </div>
+            <div class="form-group" ng-show="showccform" ng-hide="!(showccform)">
+                <etbossform name="adjustbalancewithccform" ng-controller="AdjustBalancewithCCForm" field="{{datas}}"></etbossform>
+            </div>
+
+            <!--<div class="row">
+                <div class="col-md-12">
+                    <etbossform  name="balanceform" ng-controller="BalanceForm" field="{{datas}}"></etbossform>
+                </div>
+                <select ng-change="showform(adjtype)" ng-model="adjtype" class="form-control" style="width:200px; margin-left:30%; margin-bottom:20px;">
+                    <option value="" disabled selected hidden>Adjustment Type</option>
+                    <option ng-click="showform(1)" value="1">Adjustment</option>
+                    <option ng-click="showform(2)" value="2">Voucher Top Up</option>
+                    <option ng-click="showform(3)" value="3">Payment Card</option>
+                </select>
+                <div class="col-md-12" ng-show="showadjustmentform" ng-hide="!(showadjustmentform)">
+                    <etbossform name="balanceadjustmentform" ng-controller="BalanceAdjustmentForm" field="{{datas}}"></etbossform>
+                </div>
+                <div class="col-md-12" ng-show="showcouponform" ng-hide="!(showcouponform)">
+                    <etbossform name="adjustbalancewithcouponform" ng-controller="AdjustBalancewithCouponForm" field="{{datas}}"></etbossform>
+                </div>
+                <div class="col-md-12" ng-show="showccform" ng-hide="!(showccform)">
+                    <etbossform name="adjustbalancewithccform" ng-controller="AdjustBalancewithCCForm" field="{{datas}}"></etbossform>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>>

@@ -1,0 +1,225 @@
+﻿<!--<footer class="footer-wrap">
+    <div class="container copyright">
+        <p>Copyrights © 2015 All Rights Reserved by Elephanttalk Inc.</p>
+    </div>
+</footer>-->
+
+
+<footer class="etak-footer">
+    <!--<div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="contact-footer">
+                            <h3>ElephantTalk Communications Corp.</h3>
+                            <div class="vcard">
+                                <p class="fn">ElephantTalk USA<p>
+                                <p class="adr">
+                                    <span class="street-address">100 Park Avenue, Suite 1600</span><br>
+                                    <span class="region">New York, NY </span><br>
+                                    <span class="postal-code">10017</span><br>
+                                    <span class="country-name">United States of America</span>
+                                </p>
+                                <p class="tel"><i class="fa fa-phone"></i> +1 212 984 1096</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-footer">
+                            <h3>Worldwide Office</h3>
+                            <div class="global-office">
+                                <p>ElephantTalk Communications Corp.<p>
+                                    <ul>
+                                        <li>
+                                            <a href="">Brazil</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Bahrain</a>
+                                        </li>
+                                        <li>
+                                            <a href="">China</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Hongkong</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Indonesia</a>
+                                        </li>
+
+
+
+                                    </ul>
+                                    <ul>
+
+                                        <li>
+                                            <a href="">Switzerland</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Spain</a>
+                                        </li>
+                                        <li>
+                                            <a href="">The Netherlands</a>
+                                        </li>
+                                        <li>
+                                            <a href="">United States</a>
+                                        </li>
+                                        <li>
+                                            <a href="">United Kingdom</a>
+                                        </li>
+                                    </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="company-footer">
+                    <h3>About Company</h3>
+                    <ul>
+                        <li>
+                            <a href="">Lorem</a>
+                        </li>
+                        <li>
+                            <a href="">ipsum</a>
+                        </li>
+                        <li>
+                            <a href="">Lorem</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-2">
+                <div class="company-footer">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li>
+                            <a href="">Lorem</a>
+                        </li>
+                        <li>
+                            <a href="">ipsum</a>
+                        </li>
+                        <li>
+                            <a href="">Lorem</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>-->
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="copyright-entry clearfix">
+                <ul class="left-copyright">
+                    <li>
+                        <a href="mailto:contact@elephanttalk.com" target="_blank"><i class="fa fa-envelope-o"></i> Contact us</a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank"><i class="fa fa-map-marker"></i> Office Direction</a>
+                    </li>
+                </ul>
+                <p class="text-center">Copyrights © 2015 by ElephantTalk Communications Corp. All Rights Reserved</p>
+                <ul class="terms-privacy">
+                    <li><a href="">Terms</a></li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+        <a href="#0" class="et-top"></a>
+    </div>
+</footer>
+
+<!-- mobile menu-->
+<nav class="pushmenu pushmenu-left">
+    <h3>Menu</h3>
+    <a href="#">Home</a>
+    <a href="#">public</a>
+    <a href="#">public</a>
+    <a href="#">public</a>
+    <a href="#">public</a>
+    <a href="#">public</a>
+    <a href="#">public</a>
+    <a href="#0" id="mobClose">close</a>
+</nav>
+<!-- /. mobile menu-->
+
+
+<script>
+    $(function () {
+        //mobile
+        $('#mobileMenu').click(function () {
+            $(this).toggleClass('active');
+            $('.main-site').toggleClass('actived');
+            $('.pushmenu-push').toggleClass('pushmenu-push-toright');
+            $('.pushmenu-left').toggleClass('pushmenu-open');
+
+        });
+
+        $('#mobClose').click(function () {
+            $('.pushmenu-left').toggleClass('pushmenu-open');
+            $('.main-site').toggleClass('actived');
+
+        });
+
+        //header
+        var header = $(".etak-header");
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 55) {
+                header.css({ "position": "fixed", "top": 0 });
+                $('.etak-header').addClass('fix');
+                $('.etak-header.fix').slideDown();
+            }
+            else {
+                /* header.css("position","fixed");
+        */         $('.etak-header').removeClass('fix');
+            }
+        });
+        //smooth scroll to top
+
+        var offset = 80,
+        offset_opacity = 1200,
+        scroll_top_duration = 700,
+        $back_to_top = $('.et-top');
+
+        $(window).scroll(function () {
+            ($(this).scrollTop() > offset) ? $back_to_top.addClass('et-visible') : $back_to_top.removeClass('et-visible et-fade-out');
+            if ($(this).scrollTop() > offset_opacity) {
+                $back_to_top.addClass('et-fade-out');
+            }
+        });
+
+        $back_to_top.on('click', function (event) {
+            event.preventDefault();
+            $('body,html').animate({
+                scrollTop: 0,
+            }, scroll_top_duration
+            );
+        });
+
+
+        //scroll to section
+        $('a[rel="relativeanchor"]').click(function () {
+            $('html, body').animate({
+                scrollTop: $($.attr(this, 'href')).offset().top
+            }, 500);
+            return false;
+        });
+
+
+
+    });
+</script>
+
+
+
+
+

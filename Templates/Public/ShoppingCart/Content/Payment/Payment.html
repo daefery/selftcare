@@ -1,0 +1,252 @@
+﻿<div ng-controller="ShippingAndPaymentController">
+    <!--<div class="step-title">
+        <h3>Payment</h3>
+    </div>-->
+    <div class="cart-info clearfix">
+        <div class="container">
+            <h3 class="page-title">Payment</h3>
+            
+        </div>
+    </div>
+    <div class="payment-area">
+        <div class="row no-gutters">
+            <div class="col-md-6 col-sm-6">
+                <div class="payment-detail">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body" ng-hide="IsPaymentSuccess">
+                            <div class="checkbox col-sm-12">
+                                <div class="col-sm-12 form-group">
+                                    <input type="checkbox" id="CPNI_checkbox" value="" name="CPNI_checkbox" ng-model="ShippingAndPayment.CPNI" />
+                                    <label for="CPNI_checkbox"><span></span>I agree with the <a href="">CPNI</a> term</label>
+                                </div>
+                                <div class="col-sm-12 form-group">
+                                    <input type="checkbox" id="term_checkbox" value="" name="term_checkbox" ng-model="ShippingAndPayment.Term" />
+                                    <label for="term_checkbox"><span></span>I agree with the <a href="">Terms And Conditions</a> applied</label>
+                                </div>
+                            </div>
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default" ng-hide="!paypalPayment">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <button class="btn btn-blues" ng-click="setMethod('paypal')" ng-disabled="isPayPal" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#paypal" aria-expanded="true" aria-controls="collapseOne">
+                                                Pay with my Paypal account
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="paypal" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/ppc-acceptance-large.png" class="img-responsive" alt="PayPal Credit"/>
+                                            <button type="submit" id="paypalPayment" ng-click="chargePaypal()" class="btn btn-default btn-lg">Pay with PayPal Account</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default" ng-hide="!ccPayment">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                            <button class="collapsed btn btn-default" ng-click="setMethod('creditcard')" ng-disabled="!isPayPal" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#creditcard" aria-expanded="false" aria-controls="collapseTwo">
+                                                Pay with a Debit or Credit Card
+                                            </button>
+                                        </h4>
+                                    </div>
+                                    <div id="creditcard" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Card Type</label>
+                                                <div class="col-md-8">
+                                                    <select ng-model="ShippingAndPayment.cardtype" class="form-control">
+                                                        <option value="0">VISA</option>
+                                                        <option value="1">MASTER CARD</option>
+                                                        <option value="2">AMERICAN EXPRESS</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Card Number</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" id="" ng-model="ShippingAndPayment.cardnumber" placeholder="Card Number" type="text">
+                                                    <div class="card-list clearfix">
+                                                        <span class="dash-card" ng-class="{'active':ShippingAndPayment.cardtype=='visa'}">
+                                                            <i class="fa fa-cc-visa"></i>
+                                                        </span>
+                                                        <span class="dash-card" ng-class="{'active':ShippingAndPayment.cardtype=='mastercard'}">
+                                                            <i class="fa fa-cc-mastercard"></i>
+                                                        </span>
+                                                        <span class="dash-card" ng-class="{'active':ShippingAndPayment.cardtype=='amex'}">
+                                                            <i class="fa fa-cc-amex"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Name on card</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" ng-model="ShippingAndPayment.cardholdername" id="" placeholder="Card Holder Name" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Expired Date</label>
+                                                <div class="col-md-3">
+                                                    <input class="form-control" id="" ng-model="ShippingAndPayment.cardmonth" placeholder="Month" maxlength="2" type="text">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input class="form-control" id="" ng-model="ShippingAndPayment.cardyear" maxlength="4" placeholder="Year" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">CVV</label>
+                                                <div class="col-md-4">
+                                                    <input class="form-control" ng-model="ShippingAndPayment.csc" id="" placeholder="CVV" type="text">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <a href="">What is this?</a>
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="col-sm-12 form-group">
+                                                <input type="checkbox" id="storeCC_checkbox" value="" name="storeCC_checkbox" ng-model="ShippingAndPayment.storeCC"/>
+                                                <label for="storeCC_checkbox"><span></span>I agree with to store my Credit Card Info <a href="">(More Detail)</a></label>
+                                            </div>
+                                            -->
+                                            <button style="width: 100%;" type="submit" id="ccPayment" ng-click="chargePayment()" class="btn btn-default">Pay Now</button>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-body" ng-hide="!IsPaymentSuccess">
+                            <h3>
+                                <strong>Payment Successful!!!</strong>
+                            </h3>
+                            <p>Thank you for your payment. Your transaction has been completed</p><br/>
+                            <p>Please proceed to the next process</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="invoice-detail">
+                    <h3>Ordered Device</h3>
+                    <section class="table" style="width: 100%">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th>Qty</th>
+                                        <th>Price ($)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Order in Cart.OrderedDeviceSummary">
+                                        <td>{{Order.id}}</td>
+                                        <td>{{Order.description}}</td>
+                                        <th>{{Order.quantity}}</th>
+                                        <td>{{Order.price}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <h3>Ordered Plans</h3>
+                    <section class="table" style="width: 100%">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th>Qty</th>
+                                        <th>Price ($)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Order in Cart.OrderedPlanSummary">
+                                        <td>{{Order.id}}</td>
+                                        <td>{{Order.description}}</td>
+                                        <th>{{Order.quantity}}</th>
+                                        <td>{{Order.price}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <h3 ng-hide="hideTableSummary">Ordered Other Product</h3>
+                    <section class="table" style="width: 100%" ng-hide="hideTableSummary">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th>Qty</th>
+                                        <th>Price ($)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Order in Cart.OrderedOtherProductSummary">
+                                        <td>{{Order.id}}</td>
+                                        <td>{{Order.description}}</td>
+                                        <th>{{Order.quantity}}</th>
+                                        <td>{{Order.price}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <span class="clearfix"></span>
+                    <div class="grand-total">
+                        <div class="row">
+
+                            <div class="col-sm-7 col-sm-push-5">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <p>Total Price</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" ng-model="Cart.TotalPrice" ng-disabled="true" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <p>Shipping Cost</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" ng-model="Cart.ShippingCost" ng-disabled="true" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <p>Tax</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" ng-model="ShippingAndPayment.TotalTax" ng-disabled="true" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <p>Total</p>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" ng-model="Cart.TotalPayment" ng-disabled="true" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+               
+                </div>
+            </div>
+    </div>
+
+    <div class="checkout-bottom">
+        <div class="btn-group">
+            <button ng-hide="IsPaymentSuccess" ng-click="ChangeCRPage('shipping')" class="btn btn-default"> prev </button>
+            <button ng-hide="!IsPaymentSuccess" ng-click="ChangeCRPage('summary')" class="btn btn-default next">next</button>
+        </div>
+    </div>
+</div>

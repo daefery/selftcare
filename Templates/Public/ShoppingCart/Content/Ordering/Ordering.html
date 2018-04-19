@@ -1,0 +1,684 @@
+﻿<div ng-controller="OrderingController">
+    <div class="main-product">
+        <div class="row no-gutters">
+            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-6 pub-custom">
+                <div class="shopping-info">
+                    <span class="icon-shop">
+                        <i class="icon mobile32"></i>
+                    </span>
+                    <p>
+                        Completely synergize resource customer service with robust ideas Dynamically innovate resource-leveling customer service for state of the art customer service.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 pub-custom">
+                <div class="shopping-info clearfix">
+                    <div class="your-cart-title">
+                        <h5>Your</h5><span class="block"></span>
+                        <h3>shopping cart</h3>
+                    </div>
+                    <div class="cart-badge">
+                        <i class="icon shoppingstore70"></i>
+                        <span class="cart-count">
+                            {{(Cart.CartList === undefined ? 0 : Cart.CartList.length)}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="main-product" ng-show="DisplayNullProductMessage">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-12">
+                    <div class="cart-notify">
+                        <span class="top-notify-icon">
+                            <i class="icon mobile55"></i>
+                        </span>
+                        <h3>Sorry, Products is currently unavailable</h3>
+                        <p style="text-align: center">
+                            It could be server is unavailable as it is under maintenance.
+                            We apologize for any inconvenience caused.<br />
+                            Please try again later or you can <a href="/public/customer/app/shoppingcart" target="_self">reload</a> the page.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /. product top -->
+
+
+
+    <div class="product-offer" ng-show="DisplayProductsCatalog">
+
+        <!-- product choose -->
+        <div class="product-control">
+            <div class="byod-title">
+                <h3>Bring Your Own Device?</h3>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
+                    <div class="tringular-sets">
+                        <a href="" class="circle-device">
+                            <i class="icon byod-icon mobile40"></i>
+                        </a>
+                        <div class="radio-sets">
+                            <div class="radio-yes">
+                                <input type="radio" id="radioYes" name="radio_byod" ng-click="checkByod(1)">
+                                <label for="radioYes"><span></span> Yes</label>
+                            </div>
+                            <div class="radio-no">
+                                <input type="radio" id="radioNo" name="radio_byod" ng-click="checkByod(0)">
+                                <label for="radioNo"><span></span> No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /. product choose -->
+
+        <div class="ordering-page">
+
+            <div class="device-plan">
+                <!-- /. byod -->
+                <div class="related-device" ng-show="isByod">
+                    <div class="small-title clearfix">
+                        <i class="icon rightarrows6"></i>
+                        <p>Check Your Device</p>
+                    </div>
+                    <div class="byod-head">
+                        <h3><i class="icon smartphone55"></i> Check to see whether your device will work on the selected network</h3>
+                    </div>
+                    <div class="box-device">
+                        <div class="row no-gutters">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="userbox-info clearfix">
+
+
+                                            <h3>What's an IMEI number?</h3>
+                                            <p>
+                                                <strong>IMEI or 'International Mobile Equipment Identity'</strong> is a unique 15-digit number assigned to
+                                                all cellular devices.
+                                                IMEI carry information on mobile phones are concerned such as mobile phone manufacturer, phone model, and so
+                                                on.
+                                                You can check the IMEI of your phone by pressing a combination * # 06 # on the call button.
+                                            </p>
+                                            <h3>Need more help about our products?</h3><a href="">Contact Customer Support</a>
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="userbox-form">
+                                    <etbossform name="byodForm" field="{{BYOD}}"></etbossform>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="related-device" style="display: none;" id="byodNotice">
+                    <div class="byod-head" ng-hide="!validityResponse">
+                        <h3>Congratulations, Your device is able to be used in our network!!</h3>
+                    </div>
+                    <div class="byod-head" ng-hide="validityResponse">
+                        <h3>Sorry, your device is not able to be used in our network!!</h3>
+                    </div>
+                </div>
+                <!-- /. end of byod -->
+                <!-- /. plan -->
+                <div class="related-device" style="display: none;" id="publicPlan">
+                    <div class="small-title clearfix">
+                        <i class="icon rightarrows6"></i>
+                        <p>choose your plan</p>
+                    </div>
+
+                    <div class="more-devices" id="more-devices" name="more-devices" infinite="false" dots="false" data="related-item" init-onload="true" slidetoshow="3">
+                        <div class="related-item box-inline" ng-repeat="itemPlan in Order.Plan track by $index" style="width: 327px;">
+                            <span class="circle-data-price">
+                                <sup>$</sup>{{itemPlan.Price}}
+                            </span>
+                            <span class="device-slide-description">
+                                <h4>{{itemPlan.Names}}</h4>
+                                <p><strong>Description</strong> {{itemPlan.Descriptions}}</p>
+                                <a href="#">{{itemPlan.Descriptions}}</a>
+                                <button ng-click="displayPlanDesc(itemPlan)" id="publicPlanBtn_{{itemPlan.Id}}" name="publicPlanBtn" type="button" class="btn btn-default">Select</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /. end of plan  -->
+            </div>
+
+
+            <!-- /. device -->
+        <div class="device-plan" id="publicPlanDesc" style="display: none;">
+        <div class="plan-detail">
+
+            <div class="small-title clearfix">
+                <i class="icon rightarrows6"></i>
+                <p>Plan Detail</p>
+            </div>
+
+            <div class="plan-description">
+                <div class="plan-entry">
+                    <div class="second-plan" style="display: block;">
+                        <h3>{{plans.names}}</h3>
+                        <h5>The Prepaid Plan is a flexible and affordable wireless plan. Get the device you want on the best network with no annual contract. </h5>
+                        <div class="plan-box clearfix">
+                            <div class="left-box">
+                                <div class="big-price">
+                                    <sup>$</sup>{{plans.price}}
+                                </div>
+                                <div class="box-offer">
+                                    <p>
+
+                                    </p>
+                                    <a href="javascript:;" class="plan-tip" data-toggle="popover" title="" data-content="Prepaid 4g plan" data-placement="top" data-original-title="Popover title"><i class="icon info34"></i></a>
+                                </div>
+                            </div>
+                            <div class="right-box">
+                                <h4>Description</h4>
+                                {{plans.desc}}
+                                <!-- Panel MandatorySpecifiedFeature -->
+                                <div class="box-feature" ng-show="ContainsMandatorySpecifiedFeatures">
+                                    <h4 ng-show="mandatorySpecifiedFeatures.length>0">This Plan Includes</h4>
+                                    <div ng-repeat="item in mandatorySpecifiedFeatures">
+                                        {{item.names}} - {{item.price}}
+                                    </div>
+                                </div>
+
+                                <!-- Panel MandatoryGroups -->
+                                <div class="box-feature" ng-show="ContainsMandatoryGroupFeatures">
+                                    <h4 ng-show="mandatoryGroupFeatures.length>0">Mandatory Group Feature</h4>
+                                    <div ng-repeat="item in mandatoryGroupFeatures" >
+                                        {{item.groupName}}
+                                        <div ng-repeat="singleItem in item.Products" ng-show="item.choosable" class="radio-sets">
+                                            <input id="{{singleItem.Id}}_{{$index}}" type="radio" name="publicMandatoryGroupFeatureCb"
+                                                   ng-click="selectMandatoryGroup(singleItem.Id,item.groupId)" ng-model="selectedGroupFeature.id"
+                                                   value="{{singleItem.Id}}" />
+                                            <label for="{{singleItem.Id}}_{{$index}}"><span></span>&nbsp;</label>
+                                            <i class="icon rightarrows6"></i> {{singleItem.Names}} -
+                                            <p class="optionalfeature-price clearfix">
+                                                <sup>$</sup>{{singleItem.PurchaseOption.Amount + singleItem.PurchaseOption.SetupFee}}
+                                            </p>
+                                            <div ng-show="singleItem.MandatoryProducts.length!==0">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;including&nbsp;
+                                                <span ng-repeat="specificProd in singleItem.MandatoryProducts">
+                                                    <i class="icon rightarrows6"></i> {{specificProd.Product.Names}} -
+                                                    <p class="optionalfeature-price">
+                                                        <sup>$</sup>{{specificProd.Product.PurchaseOption.Amount + specificProd.Product.PurchaseOption.SetupFee}}
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Additional Group Feature-->
+                                <div class="box-feature" ng-show="HasGroupFeatures">
+                                    <h4>Additional Group Feature</h4>
+                                    <!--<div class="ext-content">
+                                        <a data-toggle="collapse" data-target="#publicGroupFeature" class="btn btn-primary">Additional Group Feature</a>
+                                    </div>-->
+                                    <div id="publicGroupFeature" class="accord-entry">
+                                        <div class="panel-group" id="publicGroupFeatureAccord" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default" ng-repeat="itemGroupFeature in Order.OptionalGroupFeatures track by $index">
+                                                <div class="panel-heading clearfix" role="tab" id="publicGroupFeatureHead_{{$index}}"
+                                                     data-toggle="collapse" data-parent="#publicGroupFeatureAccord" data-target="#publicGroupFeatureBody_{{$index}}"
+                                                     aria-expanded="false" aria-controls="publicGroupFeatureBody_{{$index}}">
+                                                    <a role="button" data-toggle="collapse" data-parent="#publicGroupFeatureAccord"
+                                                       data-target="#publicGroupFeatureBody_{{$index}}" aria-expanded="false" aria-controls="publicGroupFeatureBody_{{$index}}">
+                                                        {{itemGroupFeature.Names}}
+                                                        <i class="icon plan-tip info34" data-toggle="popover" title="Popover title"
+                                                           data-content="Prepaid 4g plan" data-placement="top"></i>
+                                                        <i class="icon addition12"></i>
+                                                    </a>
+                                                </div>
+                                                <div id="publicGroupFeatureBody_{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="publicGroupFeatureHead_{{$index}}">
+                                                    <div class="panel-body">
+                                                        <ul class="list-unstyled">
+                                                            <li ng-repeat="itemChild in itemGroupFeature.Products track by $index">
+                                                                <div class="form-group">
+                                                                    <input id="{{itemChild.Id}}_{{$index}}" type="checkbox" name="publicGroupFeatureCb"
+                                                                           ng-checked="groupFeatureInit(itemChild.Id)"
+                                                                           value="{{itemChild.Id}}|{{itemChild.Names}}|{{itemChild.PurchaseOption.Id}}|{{itemChild.PurchaseOption.Amount}}"/>
+                                                                    <label for="{{itemChild.Id}}_{{$index}}"><span></span>&nbsp;</label>
+                                                                    <i class="icon rightarrows6"></i> {{itemChild.Names}} -
+                                                                    <p class="optionalfeature-price clearfix">
+                                                                        <sup>$</sup>{{itemChild.PurchaseOption.Amount + itemChild.PurchaseOption.SetupFee}}
+                                                                    </p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--End of Additional Group Feature-->
+                                <!--Additional Specified Feature-->
+                                <div class="box-feature bordered" ng-show="HasSpecifiedFeatures">
+                                    <h4>Additional Specified Feature</h4>
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="itemSpecifiedFeature in Order.OptionalSpecifiedFeatures">
+                                            <div class="form-group">
+                                                <input id="{{itemSpecifiedFeature.Product.Id}}_{{$index}}" type="checkbox" name="publicSpecFeatureCb"
+                                                       ng-checked="specifiedFeatureInit(itemSpecifiedFeature.Product.Id)"
+                                                       value="{{itemSpecifiedFeature.Product.Id}}|{{itemSpecifiedFeature.Product.Names}}|{{itemSpecifiedFeature.Product.PurchaseOption.Id}}|{{itemSpecifiedFeature.Product.PurchaseOption.Amount}}"/>
+                                                <label for="{{itemSpecifiedFeature.Product.Id}}_{{$index}}"><span></span>&nbsp;</label>
+                                                <i class="icon rightarrows6"></i> {{itemSpecifiedFeature.Product.Names}} -
+                                                <p class="optionalfeature-price clearfix">
+                                                    <sup>$</sup>{{itemSpecifiedFeature.Product.PurchaseOption.Amount + itemSpecifiedFeature.Product.PurchaseOption.SetupFee}}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!--End of Additional Group Feature-->
+                                <!-- Start of Bucket Panel -->
+                                <div class="box-feature bordered" ng-show="HasBuckets">
+                                    <h4 ng-show="Order.Buckets.length>0">Buckets (Optional)</h4>
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="bucket in Order.Buckets">
+                                            <div class="form-group">
+                                                <input id="{{bucket.Product.Id}}_{{$index}}" type="checkbox" name="bucketsCb"
+                                                       ng-checked="bucketInit(bucket.Product.Id)"
+                                                       value="{{bucket.Product.Id}}|{{bucket.Product.Names}}|{{bucket.Product.PurchaseOption.Id}}|{{bucket.Product.PurchaseOption.Amount}}" />
+                                                <label for="{{bucket.Product.Id}}_{{$index}}"><span></span>&nbsp;</label>
+                                                <i class="icon rightarrows6"></i> {{bucket.Product.Names}} -
+                                                <p class="optionalfeature-price clearfix">
+                                                    <sup>$</sup>{{bucket.Product.PurchaseOption.Amount + bucket.Product.PurchaseOption.SetupFee}}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- End of Bucket Panel -->
+                                <div><a data-toggle="collapse" data-target="#publicChooseDevice" id="publicChooseDeviceBtn" class="btn btn-default btn-lg collapsed" aria-expanded="false">choose device</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /. second plan -->
+                </div>
+
+            </div><!-- /. plan description -->
+            <!-- choose device -->
+            <div id="publicChooseDevice" class="plan-device collapse" aria-expanded=" false" style="height: 0px;">
+                <div class="small-title clearfix">
+                    <i class="icon rightarrows6"></i>
+                    <p>choose your device</p>
+                </div>
+
+
+                <div class="device-list" id="device-list">
+                    <div class="device-item" ng-repeat="itemDevice in Order.Devices.Products">
+                        <div class="device-pack">
+                            <div class="stock-badge" ng-hide="(itemDevice.Quantity>0||itemDevice.Quantity==null)">
+                                <h5>item out of stock</h5>
+                            </div>
+                            <div>
+                                <img src={{itemDevice.Image}} alt="device" class="img-responsive">
+                                <!--<img src="https://etshopcart.herokuapp.com/images/sample-device.png" alt="device" class="img-responsive">-->
+                            </div>
+                            <h3>{{itemDevice.Names}} - {{itemDevice.ProductSpecification.Brand}} {{itemDevice.ProductSpecification.ModelNumber}}</h3>
+                            <p class="device-sku">SKU: {{itemDevice.ProductSpecification.SKU}}</p>
+                            <strong>Color</strong>
+                            <ul class="color-list list-unstyled">
+                                <li>
+                                    <p>{{itemDevice.ProductSpecification.Color}}</p>
+                                </li>
+                            </ul>
+                            <div class="radio-sets">
+                                <input type="radio" id="deviceRadio_{{$index}}" name="deviceRadio"
+                                       ng-model="device.id" ng-value="itemDevice.Id" ng-click="displayDeviceDesc(itemDevice)">
+                                <label for="deviceRadio_{{$index}}"><span></span> Select Device</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- /. device -->
+        <!-- device desc -->
+        <div id="publicDeviceDesc" class="plan-device collapse" aria-expanded="false">
+            <div class="small-title clearfix">
+                <i class="icon rightarrows6"></i>
+                <p>device description</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="device-pack">
+                        <div class="stock-badge" ng-hide="isNotOutOfStock">
+                            <h5>item out of stock</h5>
+                        </div>
+                        <div class="device-item">
+                            <img id="deviceImage" src={{phoneimagebase64}} class="img-responsive" alt="Device Image">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="device-spec">
+                        <h3>{{deviceSeries}}</h3>
+                        <h4><i class="icon smartphone85"></i> SKU number: <span>{{deviceSKU}}</span></h4>
+
+                        <h5>Device information</h5>
+                        <p>
+                            {{deviceDescription}}
+                        </p>
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="list-with-icon">
+                                                <i class="icon smartphone177"></i>
+                                                <p>Operating System: {{deviceOS}}</p>
+                                            </span>
+                            </li>
+                            <li>
+                                <span class="list-with-icon">
+                                                <i class="icon choosing"></i>
+                                                <p>Available color : {{deviceColor}}</p>
+                                                <!--<span class="circle-color black" data-toggle="tooltip" data-placement="top" title="" data-original-title="Black">
+                                                    &nbsp;
+                                                </span>-->
+                                                <!--<span class="circle-color red" data-toggle="tooltip" data-placement="top" title="" data-original-title="Red">
+                                                    &nbsp;
+                                                </span>
+                                                <span class="circle-color white" data-toggle="tooltip" data-placement="top" title="" data-original-title="White">
+                                                    &nbsp;
+                                                </span>
+                                                <span class="circle-color silver" data-toggle="tooltip" data-placement="top" title="" data-original-title="Silver">
+                                                    &nbsp;
+                                                </span>-->
+                                            </span>
+                            </li>
+                            <li>
+                                <span class="list-with-icon">
+                                                <i class="icon gear47"></i>
+                                                <p>Memory:</p> <span class="badge">{{deviceStorage}}</span>
+                                            </span>
+                            </li>
+                            <li>
+                                <span class="list-with-icon">
+                                    <i class="fa fa-camera"></i>
+                                    <p>Front Camera: {{deviceFrontCamera}} Mega Pixels</p><br/>
+                                    <p>Back Camera: {{deviceBackCamera}} Mega Pixels</p>
+                                        </span>
+                            </li>
+                            <!--<li>
+                                <span class="list-with-icon">
+                                    <i class="icon gear44"></i>
+                                    <p>Operating System: {{deviceOS}}</p>
+                                </span>
+                            </li>-->
+
+                        </ul>
+                        <!-- accordion entry -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. end of device desc -->
+        <!--Other Products-->
+        <div class="" id="publicDispOtherProd" style="display: none;">
+
+            <div class="small-title clearfix">
+                <i class="icon rightarrows6"></i>
+                <p>Other products</p>
+            </div>
+            <h3>Get more some additional products for your device and service! </h3><br/>
+
+            <div class="moreProducts" id="publicMoreProducts">
+                <div class="related-item" ng-repeat="otherProduct in Order.OtherProduct track by $index">
+                    <span class="circle-data-price">
+                                    <sup>$</sup>{{otherProduct.Product.PurchaseOption.Amount + otherProduct.Product.PurchaseOption.SetupFee}}
+                                </span>
+                    <span class="device-slide-description">
+                                    <h4>{{otherProduct.Product.Names}}</h4>
+                                    <p><strong>Description</strong> {{otherProduct.Product.Descriptions}}</p>
+                                    <a href="#">Service</a>
+                                    <div class="form-group">
+                                        <input id="publicOtherProdCb_{{$index}}" type="checkbox" name="publicOtherProdCb"
+                                               ng-checked="otherProductsInit(otherProduct.Product.Id)" value="{{otherProduct.Product.Id}}|{{otherProduct.Product.Names}}|{{otherProduct.Product.PurchaseOption.Id}}|{{otherProduct.Product.PurchaseOption.Amount}}" />
+                                        <label for="publicOtherProdCb_{{$index}}"><span></span>Add to cart</label>
+                                    </div>
+                                </span>
+                </div>
+
+            </div>
+            <!-- begin Monetary CashCards content -->
+            <div class="outer-box for-inner" ng-show="HasCashCards">
+                <!-- begin list items style -->
+                <div class="et-list" ng-repeat="cashCard in Order.CashCards track by $index">
+                    <div class="list-block">
+                        <div class="list-left clearfix">
+                            <span class="list-left-entry">
+                                <i class="et update3"></i><!-- change as needed other than icon -->
+                            </span>
+                        </div><!-- end list left -->
+                        <div class="list-content">
+                            <h3>{{cashCard.Names}}</h3>
+                            <h5 class="sub-title">{{cashCard.Descriptions}}</h5>
+                        </div><!-- end list short content or title  -->
+                        <div class="list-action">
+                            <button type="button" class="btn btn-list" data-toggle="collapse" data-target="#cashcardList">
+                                <i class="et uparrow5"></i>
+                            </button> <!-- icon based btn -->
+                        </div><!-- end list action  -->
+                    </div>
+                    <!-- expanded content list -->
+                    <div id="cashcardList" class="extended-wrap collapse in">
+                        <div class="extended-content">
+                            <table class="table etak-table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Description</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="singleCashCard in cashCard.Products">
+                                        <td data-th="Name">
+                                            {{singleCashCard.Names}}
+                                        </td>
+                                        <td data-th="Price">
+
+                                            <span class="table-price">
+                                                <sup>$</sup>
+                                                {{singleCashCard.PurchaseOption.Amount + singleCashCard.PurchaseOption.SetupFee}}
+                                            </span>
+
+                                        </td>
+                                        <td data-th="Description">
+                                            <div class="list-item clearfix">
+                                                <!-- with icons or using avatar/thumbnail -->
+                                                <div class="table-icon filled-green">
+                                                    <i class="et turn20"></i>
+                                                </div><!-- end with icons or using avatar/thumbnail -->
+                                                {{singleCashCard.Descriptions}}
+                                            </div>
+                                        </td>
+                                        <td data-th="">
+                                            <div class="etak-spinner">
+                                                <button id="btncash_min_{{cashCard.GroupId}}_{{singleCashCard.Id}}" name="cashCardMinQtyBtn" class="btn btn-spin" type="button" ng-click="reduceQty($event)"><i class="fa fa-minus" id="iconcash_min_{{cashCard.GroupId}}_{{singleCashCard.Id}}"></i></button>
+                                                <input type="text" id="qty_{{cashCard.GroupId}}_{{singleCashCard.Id}}" ng-class="{{singleCashCard.Id}}" class="form-control" value="0">
+                                                <button id="btncash_add_{{cashCard.GroupId}}_{{singleCashCard.Id}}" name="cashCardAddQtyBtn" class="btn btn-spin" type="button" ng-click="addQty($event)"><i class="fa fa-plus" id="iconcash_add_{{cashCard.GroupId}}_{{singleCashCard.Id}}"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end expanded content list -->
+                </div>
+                <!-- end list items style -->
+            </div><!-- end Monetary CashCards content -->
+            <!-- begin Allowance CashCards Contents -->
+            <div class="outer-box for-inner" ng-show="HasAllowanceCashCards">
+                <!-- begin list items style -->
+                <div class="et-list" ng-repeat="allowanceCashCard in Order.AllowanceCashCard">
+                    <div class="list-block">
+                        <div class="list-left clearfix">
+                            <span class="list-left-entry">
+                                <i class="et update3"></i><!-- change as needed other than icon -->
+                            </span>
+                        </div><!-- end list left -->
+                        <div class="list-content">
+                            <h3>{{allowanceCashCard.Names}}</h3>
+                            <h5 class="sub-title">{{allowanceCashCard.Descriptions}}</h5>
+                        </div><!-- end list short content or title  -->
+                        <div class="list-action">
+                            <button type="button" class="btn btn-list" data-toggle="collapse" data-target="#allowanceCashcardList">
+                                <i class="et uparrow5"></i>
+                            </button> <!-- icon based btn -->
+                        </div><!-- end list action  -->
+                    </div>
+                    <!-- expanded content list -->
+                    <div id="allowanceCashcardList" class="extended-wrap collapse in">
+                        <div class="extended-content">
+                            <table class="table etak-table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Description</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="singleCashCard in allowanceCashCard.Products">
+                                        <td data-th="Name">
+                                            {{singleCashCard.Names}}
+                                        </td>
+                                        <td data-th="Price">
+
+                                            <span class="table-price">
+                                                <sup>$</sup>
+                                                {{singleCashCard.PurchaseOption.Amount + singleCashCard.PurchaseOption.SetupFee}}
+                                            </span>
+
+                                        </td>
+                                        <td data-th="Description">
+                                            <div class="list-item clearfix">
+                                                <!-- with icons or using avatar/thumbnail -->
+                                                <div class="table-icon filled-green">
+                                                    <i class="et turn20"></i>
+                                                </div><!-- end with icons or using avatar/thumbnail -->
+                                                {{singleCashCard.Descriptions}}
+                                            </div>
+                                        </td>
+                                        <td data-th="">
+                                            <div class="etak-spinner">
+                                                <button id="btnallowancecash_min_{{singleCashCard.Id}}" name="allowanceCashCardMinQtyBtn" class="btn btn-spin" type="button" ng-click="reduceQtyAllowanceCashCard($event)"><i class="fa fa-minus" id="iconallowancecash_min_{{singleCashCard.Id}}"></i></button>
+                                                <input type="text" id="qtyallowancecash_{{singleCashCard.Id}}" ng-class="{{singleCashCard.Id}}" class="form-control" value="0">
+                                                <button id="btnallowancecash_add_{{singleCashCard.Id}}" name="allowanceCashCardAddQtyBtn" class="btn btn-spin" type="button" ng-click="addQtyAllowanceCashCard($event)"><i class="fa fa-plus" id="iconallowancecash_add_{{singleCashCard.Id}}"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end expanded content list -->
+                </div>
+                <!-- end list items style -->
+            </div><!-- end Allowance CashCards Contents -->
+
+        </div>
+        <!--End of other products-->
+        </div>
+
+        <!-- START: Number Option -->
+            <div id="numberOption" style="display: none;" class="product-control for-number">
+                <span class="circle-device">
+                    <i class="icon phone241"></i>
+                </span>
+                <div class="byod-title">
+                    <h3>Do you already have a number to be used in this device?</h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12">
+                        <div class="tringular-sets">
+                            <div class="radio-sets">
+                                <div class="radio-yes">
+                                    <input type="radio" id="radioTransferNumberYes" name="radio_transferNumber" ng-click="checkPortIn(0)" ng-model="transferNumber" ng-value="true">
+                                    <label for="radioTransferNumberYes"><span></span> Yes</label>
+                                </div>
+                                <div class="radio-no">
+                                    <input type="radio" id="radioTransferNumberNo" name="radio_transferNumber" ng-click="checkPortIn(1)" ng-model="transferNumber" ng-value="false">
+                                    <label for="radioTransferNumberNo"><span></span> No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="portInRequestForm" style="display: none;" class="related-device bottom">
+                    <div class="box-device">
+                            <div class="row no-gutters">
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="userbox-form">
+                                        <etbossform name="portInForm" field="{{portInForm}}"></etbossform>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="userbox-info clearfix">
+                                        <span class="userinfo-text">
+                                            <h3>Which PIN & Zip Code?</h3>
+                                            <p>
+                                                PIN should be your SIM Card PIN, by default it is 1234 if you haven't changed it.<br />
+                                                Zip Code should be filled with the zipcode where you activated your number before.
+                                            </p>
+                                            <h4>Need more help about transfer number?</h4>
+                                            <button type="button" class="btn btn-default">
+                                                Customer Support
+                                            </button>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        <!-- END: Number Option -->
+        </div>
+        <!-- /. ordering page -->
+    </div>
+
+    <div class="shopping-action clearfix" ng-show="((Cart.CartList === undefined ? false : (Cart.CartList.length > 0 ? true : false)) || canContinue)">
+        <button ng-click="createShoppingCartSession()" class="btn btn-blues next-btn btn-lg">continue <i class="icon right127"></i></button>
+    </div>
+
+</div>
+
+
+

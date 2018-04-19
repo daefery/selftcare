@@ -1,0 +1,288 @@
+﻿<div class="container">
+    <div class="row" ng-controller="UpdateHistorySectionController">
+        <div class="col-md-3 col-sm-3">
+            <div ng-include="'templates/csr/administrator/SideBar/SideBar.html'"></div>
+        </div>
+        <div class="col-md-9 col-sm-9">
+            <div class="normal-wrap clearfix">
+                <div class="title">
+                    <h3><i class="et task2"></i>Update History</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#moduleDetail" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="moduleDetail" class="panel-data">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6">
+                            <div class="normal-wrap custom">
+                                <div class="title">
+                                    <h3 class="small-title">Update History</h3>
+                                    <div class="panel-options">
+                                        <ul>
+                                            <li ng-show="isAddUpdateHistoryEnable">
+                                                <button type="button" data-toggle="modal" data-target="#addupdateModal" class="btn btn-default">{{'Add' | translate}}</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="table fullwidth more-data">
+                                    <table class="table table-hover table-responsive">
+                                        <thead class="table-head">
+                                            <tr>
+                                                <th>#</th>
+                                                <th ng-click="sort('MaintenanceDate')">
+                                                    {{'Date'| translate}}
+                                                    <span class="fa fa-sort" ng-show="sortKey=='MaintenanceDate'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                                </th>
+                                                <th ng-click="sort('Description')">
+                                                    {{'Version'| translate}}
+                                                    <span class="fa fa-sort" ng-show="sortKey=='Description'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                                </th>
+                                                <th ng-click="sort('Detail')">
+                                                    {{'Description'| translate}}
+                                                    <span class="fa fa-sort" ng-show="sortKey=='Detail'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr dir-paginate="item in allUpdateHistory|itemsPerPage:10| orderBy:sortKey:reverse" ng-class="{'selected':item.MaintenanceInfoID==selectedRow}" current-page="currentPage" ng-click="getMaintenanceInfo(item)">
+                                                <td>{{currentPage <= 1 ? ($index+1) : ($index+1) + ((currentPage-1) * 10) }}</td>
+                                                <td>{{item.MaintenanceDate}}</td>
+                                                <td>{{item.Description}}</td>
+                                                <td>{{item.Detail}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div ng-show="allUpdateHistory.length==0" style="text-align: center">{{'No_Update_History' | translate}}</div>
+                                </div>
+                                <dir-pagination-controls max-size="10"
+                                                         direction-links="true"
+                                                         boundary-links="true"
+                                                         ng-show="allUpdateHistory.length">
+                                </dir-pagination-controls>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="normal-wrap custom with-info">
+                                <div class="title">
+                                    <h3 class="small-title">Update Details</h3>
+                                </div>
+                                <div class="panel-data">
+
+                                    <div class="panel-show-info">
+                                        <div class="info-title clearfix">
+                                            <div class="info-date">
+                                                <i class="et calendar184"></i>
+                                            </div>
+                                            <div class="info-subtitle">
+                                                <p>{{MaintenanceInfo.MaintenanceDate}}</p>
+                                                <h3><span class="badge badge-gray">{{MaintenanceInfo.Description}}</span></h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="info-detail">
+
+                                            {{MaintenanceInfo.Detail}}
+                                        </div>
+                                        <div class="info-more">
+                                            <h5>Affected MVNOs:</h5>
+                                            <ol class="list-unstyled">
+                                                <li ng-repeat="item in MaintenanceInfo.MaintenanceInfoMVNOes">
+                                                    <i class="fa fa-caret-right"></i>
+                                                    <!--{{item.OrgID}}-->
+                                                    {{mvnoconvert(item.OrgID)}}
+                                                </li>
+
+                                            </ol>
+                                            <p>Full Details:</p>
+                                            <a href={{MaintenanceInfo.URLReference}} ng-show="MaintenanceInfo.URLReference">{{MaintenanceInfo.URLReference}}</a>
+                                        </div>
+
+                                    </div>
+                                    <div class="button-more">
+                                        <div class="btn-group">
+                                            <button type="button" ng-show="isModifyUpdateHistoryEnable" data-toggle="modal" data-target="#modifyupdateModal" class="btn btn-default" ng-disabled="isUpdateSelected">{{'Modify' | translate}}</button>
+                                            <button type="button" ng-show="isDeleteUpdateHistoryEnable" data-toggle="modal" data-target="#removemodModal" class="btn btn-default" ng-disabled="isUpdateSelected">{{'Remove' | translate}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div id="addupdateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{'Add_Update_History' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form accessible_form="accessibleForm" name="addupdatehistoryform" class="etak-form form-horizontal  ng-pristine ng-scope ng-invalid ng-invalid-required ng-valid-pattern ng-valid-maxlength" ng-controller="AddUpdateHistoryFormController" novalidate="">
+                            <div class="form-content ">
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="affectedmvnos" ng-bind-html="lang.Affected_MVNOs">Affected MVNOs</label>
+                                    <div class="col-md-6">
+                                        <div class="checkbox col-md-4" ng-repeat="item in listOrgid">
+                                            <input class="" id="addupdatehistoryform_affectedmvnos_{{$index + 1}}" value="item.value" name="affectedmvnos_{{$index + 1}}" type="checkbox" ng-click="toggleSelection(item)" ng-checked="selection.indexOf(item)>-1">
+                                            <label for="addupdatehistoryform_affectedmvnos_{{$index + 1}}">
+                                                <span></span> {{item.text}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="updatesversion" ng-bind-html="lang.Update_Version">Update Version</label>
+                                    <div class="col-md-6">
+                                        <input ng-maxlength="50" name="updatesversion" id="addupdatehistoryform_updatesversion" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-pattern ng-valid-maxlength" ng-class="{ error: addupdatehistoryform.$submitted &amp;&amp; addupdatehistoryform.updatesversion.$invalid }" placeholder="Update Version" ng-model="newupdatehistory.Description" required="" type="text">
+                                        <span id="addupdatehistoryform_updatesversion_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.updatesversion.$error.required)">field is mandatory</span>
+                                        <span id="addupdatehistoryform_updatesversion_errormessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.updatesversion.$error.maxlength)">field is too long</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="releasedate" ng-bind-html="lang.Release_Date">Release Date</label>
+                                    <div class="col-md-6">
+                                        <div class="input-group date">
+                                            <input name="releasedate" id="addupdatehistoryform_releasedate" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-class="{ error: addupdatehistoryform.$submitted &amp;&amp; addupdatehistoryform.releasedate.$invalid }" placeholder="{{configDateFormatMoment}}" ng-model="newupdatehistory.MaintenanceDate" readonly="" required="" type="text">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-th"></i>
+                                            </span>
+                                            <span id="addupdatehistoryform_releasedate_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.releasedate.$error.required)">field is mandatory</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="shortupdatedescription" ng-bind-html="lang.Description">Description</label>
+                                    <div class="col-md-6">
+                                        <textarea rows="3" ng-maxlength="500" name="shortupdatedescription" id="addupdatehistoryform_shortupdatedescription" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-pattern ng-valid-maxlength" ng-class="{ error: addupdatehistoryform.$submitted &amp;&amp; addupdatehistoryform.shortupdatedescription.$invalid }" placeholder="Description" ng-model="newupdatehistory.Detail" required=""></textarea>
+                                        <span id="addupdatehistoryform_shortupdatedescription_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.shortupdatedescription.$error.required)">field is mandatory</span>
+                                        <span id="addupdatehistoryform_shortupdatedescription_errormessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.shortupdatedescription.$error.maxlength)">field is too long</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="fulldetailupdate" ng-bind-html="lang.Reference_URL">Reference URL</label>
+                                    <div class="col-md-6">
+                                        <input ng-maxlength="150" name="fulldetailupdate" id="addupdatehistoryform_fulldetailupdate" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-maxlength" ng-class="{ error: addupdatehistoryform.$submitted &amp;&amp; addupdatehistoryform.fulldetailupdate.$invalid }" placeholder="Reference URL" ng-model="newupdatehistory.URLReference" type="url" pattern="https?://.+">
+                                        <span id="addupdatehistoryform_fulldetailupdate_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.fulldetailupdate.$error.required)">field is mandatory</span>
+                                        <span id="addupdatehistoryform_fulldetailupdate_errormessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.fulldetailupdate.$error.maxlength)">field is too long</span>
+                                        <!--<span id="addupdatehistoryform_fulldetailupdate_errormessage" ng-bind-html="lang.err_url_message" class="help-block with-errors ng-binding ng-hide" ng-show="addupdatehistoryform.$submitted &amp;&amp; (addupdatehistoryform.fulldetailupdate.$error.url)"></span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-bottom group clearfix">
+                                <div class="btn-set">
+                                    <button type="submit" id="addupdatehistoryform_btn_submit_1" class="btn btn-default ng-binding" ng-click="addupdatehistoryform.$valid &amp;&amp; addupdatehistory(newupdatehistory); validateURL()" ng-bind="lang.Submit">Submit</button>
+                                    <button type="button" id="addupdatehistoryform_btn_cancel_2" class="btn btn-danger ng-binding" ng-click="setPristineAddForm()" data-dismiss="modal" ng-bind="lang.Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modifyupdateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                <h3 class="modal-title">{{'Modify_Update_History' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+
+            </div>
+            <div class="modal-body without-footer">
+              
+                   
+                        <form accessible_form="accessibleForm" name="modifyupdatehistoryform" class="etak-form form-horizontal  ng-pristine ng-scope ng-valid-pattern ng-valid-maxlength ng-valid ng-valid-required" ng-controller="ModifyUpdateHistoryFormController" novalidate="">
+                            <div class="form-content ">
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="affectedmvnos" ng-bind-html="lang.Affected_MVNOs">Affected MVNOs</label>
+                                    <div class="col-md-6">
+                                        <div class="checkbox col-md-4" ng-repeat="item in listOrgid">
+                                            <input class="ng-pristine ng-untouched ng-valid" id="modifyupdatehistoryform_affectedmvnos_{{$index + 1}}" value="item.value" name="affectedmvnos_{{$index + 1}}" type="checkbox" ng-click="toggleSelectionforedit(item.value)" ng-checked="selectionforedit.indexOf(item.value) > -1" checked="checked">
+                                            <label for="modifyupdatehistoryform_affectedmvnos_{{$index + 1}}">
+                                                <span></span> {{item.text}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="updatesversion" ng-bind-html="lang.Update_Version">Update Version</label>
+                                    <div class="col-md-6">
+                                        <p id="modifyupdatehistoryform_updatesversion" class="form-control-static ng-binding" for="updatesversion" ng-bind="modupdatehistory.Description"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="releasedate" ng-bind-html="lang.Release_Date">Release Date</label>
+                                    <div class="col-md-6">
+                                        <p id="modifyupdatehistoryform_releasedate" class="form-control-static ng-binding" for="releasedate" ng-bind="modupdatehistory.MaintenanceDate"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="shortupdatedescription" ng-bind-html="lang.Description">Description</label>
+                                    <div class="col-md-6">
+                                        <textarea rows="3" ng-maxlength="500" name="shortupdatedescription" id="modifyupdatehistoryform_shortupdatedescription" class="form-control ng-pristine ng-untouched ng-valid-pattern ng-valid-maxlength ng-valid ng-valid-required" ng-class="{ error: modifyupdatehistoryform.$submitted &amp;&amp; modifyupdatehistoryform.shortupdatedescription.$invalid }" placeholder="Description" ng-model="modupdatehistory.Detail" required=""></textarea>
+                                        <span id="modifyupdatehistoryform_shortupdatedescription_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="modifyupdatehistoryform.$submitted &amp;&amp; (modifyupdatehistoryform.shortupdatedescription.$error.required)">field is mandatory</span>
+                                        <span id="modifyupdatehistoryform_shortupdatedescription_errormessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="modifyupdatehistoryform.$submitted &amp;&amp; (modifyupdatehistoryform.shortupdatedescription.$error.maxlength)">field is too long</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-6 ng-binding" for="fulldetailupdate" ng-bind-html="lang.Reference_URL">Reference URL</label>
+                                    <div class="col-md-6">
+                                        <input ng-maxlength="150" name="fulldetailupdate" id="modifyupdatehistoryform_fulldetailupdate" class="form-control ng-pristine ng-untouched ng-valid ng-valid-pattern ng-valid-maxlength" ng-class="{ error: modifyupdatehistoryform.$submitted &amp;&amp; modifyupdatehistoryform.fulldetailupdate.$invalid }" placeholder="Reference URL" ng-model="modupdatehistory.URLReference" type="url" pattern="https?://.+">
+                                        <span id="modifyupdatehistoryform_fulldetailupdate_errormessage" ng-bind-html="lang.validationmessage.mandatory" class="help-block with-errors ng-binding ng-hide" ng-show="modifyupdatehistoryform.$submitted &amp;&amp; (modifyupdatehistoryform.fulldetailupdate.$error.required)">field is mandatory</span>
+                                        <span id="modifyupdatehistoryform_fulldetailupdate_errormessage" ng-bind-html="lang.validationmessage.maxlength" class="help-block with-errors ng-binding ng-hide" ng-show="modifyupdatehistoryform.$submitted &amp;&amp; (modifyupdatehistoryform.fulldetailupdate.$error.maxlength)">field is too long</span>
+                                        <!--<span id="modifyupdatehistoryform_fulldetailupdate_errormessage" ng-bind-html="lang.err_url_message" class="help-block with-errors ng-binding ng-hide" ng-show="modifyupdatehistoryform.$submitted &amp;&amp; (modifyupdatehistoryform.fulldetailupdate.$error.url)"</span>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-bottom group clearfix">
+                                <div class="btn-set">
+                                    <button type="submit" id="modifyupdatehistoryform_btn_submit_1" class="btn btn-default ng-binding" ng-click="modifyupdatehistoryform.$valid &amp;&amp; modifyupdatehistory(modupdatehistory); validateURL()" ng-bind="lang.Submit" ng-disabled="!isDirty_modifyupdatehistoryform()">Submit</button>
+                                    <button type="button" id="modifyupdatehistoryform_btn_cancel_2" class="btn btn-danger ng-binding" ng-click="refresheditform(MaintenanceInfo);setPristineEditForm()" data-dismiss="modal" ng-bind="lang.Cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="removemodModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                <h3 class="modal-title">{{'Remove_Update_History' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body">
+                
+                        <p>Are you sure want to remove this update history?</p>
+                   
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="removeupdatehistory()">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

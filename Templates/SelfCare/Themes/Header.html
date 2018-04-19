@@ -1,0 +1,51 @@
+﻿<header class="main-header selfcare">
+    <!--<div class="top-wrap clearfix" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    &lt;!&ndash;<div class="user-info">
+                        <ul>
+                            <li>
+                                <p>Welcome, {{wellcomeUser}}</p>
+                            </li>
+                            <li>
+                                <p>Primary Mobile Number: {{primaryMobile}}</p>
+                            </li>
+                        </ul>
+                    </div>&ndash;&gt;
+                </div>
+                <div class="col-md-6 col-sm-6 user-menu">
+                    <div class="right-user">
+                        <ul class="top-user">
+                           &lt;!&ndash; <li>
+                                <a href="">&lt;!&ndash;lines on your account:&ndash;&gt; {{lineofAccount}}</a>
+                            </li>&ndash;&gt;
+                            <li>
+                                <button class="user-btn user-optional" id="userDetail" type="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="et maleuser"></i>
+                                    <span class="fa fa-angle-down"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="userDetail">
+                                    <li><a id="yourprofile" href="/SelfCare/Customer/App/YourProfile">your profile</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#0" class="sign-out"><i class="et shopping168"></i></a>
+                            </li>
+                            <li ng-controller="LogoutController as logout">
+                                <a id="logout" class="sign-out" ng-click="logout.destroySession()" href="/Authorization/Login" target="_self"><i class="et turnon"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    &lt;!&ndash;  <ul>
+                       <li>lines on your account: {{lineofAccount}} </li>
+                       <li><a id="yourprofile" href="/SelfCare/Customer/App/YourProfile">your profile</a></li>
+                       <li class="clear-right-padding"><a id="logout" ng-click="logout.destroySession()" href="/Authorization/Login" target="_self">log out</a> </li>
+                   </ul> &ndash;&gt;
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div ng-include="'Templates/SelfCare/Themes/Nav.html'"></div>
+</header>

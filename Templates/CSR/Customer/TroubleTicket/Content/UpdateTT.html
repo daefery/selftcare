@@ -1,0 +1,87 @@
+﻿<div class="modal-content etak-modal">
+    <div ng-controller="UpdateTroubleTicketbyCustomerIdController">
+        <div class="modal-header">
+            <h3 class="modal-title">{{'Update'|translate}} {{'Trouble Ticket'|translate}}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+        </div>
+        <div class="modal-body modal-scroll">
+          
+                <div class="top-modal-section clean">
+                    <div class="row">
+                        <div class="col-sm-4" ng-show="{{isETAKUser}}">
+                            <div class="box-info">
+                                MVNO: {{CustomerDetailforTT.MVNOName}}
+                            </div>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            <div class="box-info">
+                                {{'Phone_Number'|translate}}: {{CustomerDetailforTT.PhoneNumber}}
+                            </div>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            <div class="box-info">
+                                {{'Customer_Id'|translate}}: {{CustomerDetailforTT.CustomerId}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mid-modal-section custom">
+                    <div class="filled-lite">
+                        <etbossform name="UpdateTT" type="split" field="{{UpdateTT}}"></etbossform>
+                    </div>
+                    <div class="sub-modal">
+                        <h3>QA</h3>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Questions</th>
+                                    <th>Answers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="QandA in questionAndAnswer">
+                                    <td ng-attr-id="{{ 'update-tt-question-' + $index }}">{{QandA.question}}</td>
+                                    <td>
+                                        <textarea ng-attr-id="{{ 'update-tt-answer-' + $index }}" ng-model="QandA.answer" cols="60" rows="2"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form class="modal-form" name="updateTextEditorForm">
+
+                        <h3>{{'Description'|translate}}</h3>
+
+                        <text-angular ng-model="UpdateTTSection.Description" name="updateTextDescriptionEditor"
+                                      ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                        <button class="btn btn-default btn-toggler" type="button" data-toggle="collapse" data-target="#openInformative" aria-expanded="false" aria-controls="openInformative">
+                            Informative Updates <i class="et addition12"></i>
+                        </button>
+                        <div class="collapse" id="openInformative">
+                            <h3>{{'INFORMATIVE_UPDATES'|translate}}</h3>
+                           
+                                <text-angular ng-model="UpdateTTSection.InformativeUpdates" name="updateTextInformativeUpdatesEditor"
+                                              ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                        
+                        </div>
+
+
+                        <!--<div>
+                        <span>{{'INFORMATIVE_UPDATES'|translate}}</span>
+                        <div style="border:1px solid black">
+                            <text-angular ng-model="UpdateTTSection.InformativeUpdates" name="updateTextInformativeUpdatesEditor"
+                                          ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                        </div>
+                    </div>-->
+                    </form>
+                </div>
+                <div class="modal-buttons clearfix">
+                    <div class="btn-group pull-right">
+                        <button id="Submit_btn" ng-click="SubmitUpdateTT()" class="btn btn-default">{{'Submit'|translate}}</button>
+                        <button id="Cancel_btn" ng-click="CancelUpdateTT()" class="btn btn-default ">{{'Cancel'|translate}}</button>
+                    </div>
+                </div>
+         
+        </div>
+    </div>
+</div>

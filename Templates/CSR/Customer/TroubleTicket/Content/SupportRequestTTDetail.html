@@ -1,0 +1,205 @@
+﻿<!--<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-xs-12">
+            <!--Load the sidebar, TODO make common side bar-->
+            <div ng-include="'Templates/CSR/Customer/TroubleTicket/Sidebar/Sidebar.html'"></div>
+        </div>
+        <div class="col-sm-9 col-xs-12" ng-controller="TTSupportDetailSectionController">
+            <section class="normal-wrap dash-detail">
+                <div class="title">
+
+                    <h3><i class="et server15"></i> {{'Support_Request_TT' | translate}} {{'Details' | translate}}</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li><a class="btn btn-default" id="Escalate_btn" href="#" ng-click="openEscalateModal(data)" ng-disabled="IsClosed" ng-show="isSupportTTDetailEscalateSupportEnable">{{'Escalate' | translate}}</a></li>
+                            <li><a class="btn btn-default" id="Update_btn" href="#" ng-click="openUpdateModal(data)" ng-show="isSupportTTDetailUpdateSupportEnable">{{'Update' | translate}}</a></li>
+                            <li><a class="btn btn-default" id="Close_btn" href="#" ng-click="openCloseSupportRequestModal()" ng-show="!IsClosed && isSupportTTDetailCloseSupportEnable">{{'Close' | translate}}</a></li>
+                            <li>
+                                <a class="btn btn-toggle text-uppercase" id="Back_btn" ng-href="{{Link_Back_To_List}}"><i class="fa fa-angle-left"></i> {{'Back' | translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="side-form form-horizontal" name="form.SupportRequestTTDetailUIForm">
+                    <div class="form-content split">
+                        <div class="form-group row">
+                            <label class="control-label col-md-4 col-sm-4">
+                                {{'Phone_Number' | translate}} :
+                            </label>
+                            <div class="col-md-8 col-sm-8">
+                                <label class="form-control" id="detail_Phone_Number">
+                                    {{data.MSISDN}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-4 col-sm-4">
+                                {{'Customer_ID' | translate}} :
+                            </label>
+                            <div class="col-md-8 col-sm-8">
+                                <label class="form-control" id="detail_Customer_ID">
+                                    {{data.CustomerInfo.CustomerId}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-4 col-sm-4">
+                                {{'Support_ID' | translate}} :
+                            </label>
+                            <div class="col-md-8 col-sm-8">
+                                <label class="form-control" id="detail_Support_ID">
+                                    {{data.TicketNumber}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-4 col-sm-4">
+                                {{'Status'| translate}} :
+                            </label>
+                            <div class="col-md-8 col-sm-8">
+                                <label class="form-control" id="detail_Status">
+                                    {{data.Status.Name}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-4 col-sm-4">
+                                {{'Category'| translate}} :
+                            </label>
+                            <div class="col-md-8 col-sm-8">
+                                <label class="form-control" id="detail_Category">
+                                    {{data.Type.Name}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-md-4 col-sm-4">
+                                {{'Creation_Time' | translate}} :
+                            </label>
+                            <div class="col-md-8 col-sm-8">
+                                <label class="form-control" id="detail_Creation_Time">
+                                    {{Creation_Time}}
+                                </label>
+                            </div>
+                        </div>
+                    </div><!-- end split form -->
+                    <span class="mb-30"></span>
+                    <div class="form-content">
+                        <label class="section-title">
+                            <h3>{{'Description' | translate}}</h3>
+                            <div class="upload-box">
+                                <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AttachmentTTDisplay.html'"></div>
+                            </div>
+                        </label>
+                        <div id="detail_Description" class="description-box text-breakall" ng-bind-html="data.Description"></div>
+
+                        <label class="section-title has-btn">
+                            <h3>{{'Updates' | translate}}</h3>
+                            <a class="btn btn-default btn-sm pull-right" id="Add_Comment_btn" href="#" ng-click="openAddCommentModal(data)" ng-show="isSupportTTDetailAddCommentEnable">
+                                <i class="et speech95"></i> {{'Add_Comment' | translate}}
+                            </a>
+                        </label>
+                        <div class="comment-csr">
+                            <div class="row" ng-repeat="item in Updates | orderBy:'date.parse(UpdateTime)' ">
+                                <div class="col-md-2 col-sm-4">
+                                    <figure class="thumbnail">
+                                        <img class="img-responsive" ng-src="{{item.UserInfo.Photo}}" />
+                                        <figcaption class="text-center">{{item.UserInfo.FullName}}</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-10 col-sm-8">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-heading clearfix">
+                                            <strong ng-attr-id="{{ 'detail-CommentName-' + $index }}">{{item.UserInfo.FullName}}</strong>
+                                            <span class="text-muted">
+                                                <time class="comment-date" datetime="{{item.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}" ng-attr-id="{{ 'detail-CommentTime-' + $index }}">
+                                                    <i class="et calendar184"></i>
+                                                    {{item.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}
+                                                </time>
+                                            </span>
+
+                                            <a class="btn btn-default btn-sm del-btn pull-right" ng-attr-id="{{ 'detail-CommentDelete-' + $index }}" ng-click="openDeleteCommentModal(item.Id)" ng-show="isSupportTTDetailDeleteCommentEnable">{{'Delete' | translate}}</a>
+
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="comment-post text-breakall" ng-bind-html="item.Comment" ng-attr-id="{{ 'detail-CommentText-' + $index }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AddComment.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'Remove_Comment' | translate}}</h3>
+                <!--<h4 class="modal-title">{{'Remove_Comment' | translate}}</h4>-->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+            </div>
+            <div class="modal-body">
+                <p>{{'Confirmation_AreYouSureToDeleteThis_Comment' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button id="Comment_Delete_btn" type="button" class="btn btn-default" ng-click="deleteComment()">{{'Delete'|translate}}</button>
+                <button data-dismiss="modal" class="btn btn-default">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CloseSupportRequestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{'Close_Support' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{'Confirmation_AreYouSureToCloseThis_Ticket' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button id="Comment_Delete_btn" type="button" class="btn btn-success btn-md" ng-click="CloseSupportRequest(data)">{{'Close'|translate}}</button>
+                <button data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="UpdateSupportRequestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/UpdateSupportRequest.html'"></div>
+    </div>
+</div>
+<div class="modal fade" id="EscalateSupportRequestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/EscalateSupportRequest.html'"></div>
+    </div>
+</div>
+

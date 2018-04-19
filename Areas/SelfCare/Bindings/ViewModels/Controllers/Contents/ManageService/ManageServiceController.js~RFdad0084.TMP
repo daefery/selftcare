@@ -1,0 +1,592 @@
+﻿SelfCareContent.controller("ManageServiceController", function ($scope, $filter, $timeout, $compile, BuyMoreCacheService, ShoppingFunction) {
+    $scope.ExistingFeature = undefined;
+    $scope.AvailablePlan = undefined;
+    $scope.OptionalFeatures = undefined;
+    $scope.notAvailableFeature = undefined;
+    $scope.totalPayment = 0;
+    $scope.currentFeatureId = 0;
+    $scope.currentMandatoryFeatureId = 0;
+    $scope.currentPlan = {
+        Id: 0
+    }
+    $scope.dataAddToChart = {};
+    var body = $("html, body");
+
+    BuyMoreCacheService.getProduct({ msisdn: wrapper.activeDevice.Msisdn }).then(function (result) {
+        /*** existing plan ***/
+        var ext_arr_optional = [];
+        var ext_optional;
+        var ext_isGroup = false;
+        var isProductActive = false;
+        var ext_optional_json;
+        var ext_mandatory_json;
+        var existing = result.ExistingProductPlanOffering.length > 0 ? angular.copy(result.ExistingProductPlanOffering[0]) : null;
+
+        if (existing != null) {
+            angular.forEach(existing.Options, function (value, key) {
+                if (value.MinOccurs == 0) {
+                    angular.forEach(value, function (v, k) {
+                        if (k == 'GroupId') {
+                            ext_isGroup = true;
+                        }
+                    });
+
+                    if (ext_isGroup) {
+                        var pr = 0;
+                        angular.forEach(value.ProductOfferingsInGroup, function (g_val, g_key) {
+                            pr = pr + g_val.PurchaseOptions[0].Charges[0].Prices[0].Amount;
+                            if (result.CustomerActiveProduct.length > 0) {
+                                angular.forEach(result.CustomerActiveProduct, function (active_val, active_key) {
+                                    if (active_val.PurchasedProductOfferingId == g_val.Id) {
+                                        isProductActive = true;
+                                    }
+                                });
+                            } else {
+                                isProductActive = false;
+                            }
+
+                        });
+                        ext_optional_json = {
+                            features: value,
+                            active: isProductActive,
+                            type: 'group',
+                            mandatory: false,
+                            price: pr
+                        }
+                        ext_arr_optional.push(ext_optional_json);
+                    } else {
+                        if (result.CustomerActiveProduct.length > 0) {
+                            angular.forEach(result.CustomerActiveProduct, function (active_val, active_key) {
+                                if (active_val.PurchasedProductOfferingId == value.SpecifiedProductOffering.Id) {
+                                    isProductActive = true;
+                                }
+                            });
+                        } else {
+                            isProductActive = false;
+                        }
+                        if (value.SpecifiedProductOffering.Product.ProductType != 1020001007) {
+                            ext_optional_json = {
+                                features: value.SpecifiedProductOffering,
+                                active: isProductActive,
+                                type: 'single',
+                                mandatory: false,
+                                price: value.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount
+                            }
+                            ext_arr_optional.push(ext_optional_json);
+                        }
+                    }
+                    ext_isGroup = false;
+                    isProductActive = false;
+                } else {
+                    angular.forEach(value, function (v, k) {
+                        if (k == 'GroupId') {
+                            ext_isGroup = true;
+                        }
+                    });
+
+                    if (ext_isGroup) {
+                        var pr = 0;
+                        angular.forEach(value.ProductOfferingsInGroup, function (g_val, g_key) {
+                            pr = pr + g_val.PurchaseOptions[0].Charges[0].Prices[0].Amount;
+                        });
+                        ext_mandatory_json = {
+                            features: value,
+                            active: true,
+                            type: 'group',
+                            mandatory: true,
+                            price: pr
+                        }
+                        ext_arr_optional.push(ext_mandatory_json);
+                        //});
+                    } else {
+                        ext_mandatory_json = {
+                            features: value.SpecifiedProductOffering,
+                            active: false,
+                            type: 'single',
+                            mandatory: true,
+                            price: value.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount
+                        }
+                        ext_arr_optional.push(ext_mandatory_json);
+                    }
+                    ext_isGroup = false;
+                }
+            });
+            ext_optional = {
+                optional: ext_arr_optional
+            }
+
+            $timeout(function () {
+                $scope.planName = result.ExistingProductPlanOffering[0].Names;
+                $scope.ExistingFeature = ext_optional.optional;
+            }, 0);
+        }
+        
+        /*** end existing plan ***/
+
+
+
+        /*** available plan ***/
+        var available = result.AvailableProductPlanOffering.length > 0 ? angular.copy(result.AvailableProductPlanOffering):null;
+        var avl_plan;
+        var avl_arr_plan = [];
+        var avl_temp_json;
+        var avl_isGroup = false;
+        var avl_optional = [];
+        var avl_optional_json;
+        var avl_mandatory = [];
+        var avl_mandatory_json;
+        var avl_optional_child = [];
+        var avl_optional_child_json;
+        if (available != null) {
+            angular.forEach(available, function (value, key) {
+                angular.forEach(value.Options, function (opt_val, opt_key) {
+                    if (opt_val.MinOccurs == 0) {
+                        angular.forEach(opt_val, function (v, k) {
+                            if (k == 'GroupId') {
+                                avl_isGroup = true;
+                            }
+                        });
+                        if (avl_isGroup) {
+                            var tot = 0;
+                            angular.forEach(opt_val.ProductOfferingsInGroup, function (g_val, g_key) {
+                                avl_optional_child_json = {
+                                    feature: g_val,
+                                    price:g_val.PurchaseOptions[0].Charges[0].Prices[0].Amount,
+                                    selected:false
+                                }
+                                avl_optional_child.push(avl_optional_child_json);
+                                //tot = tot + g_val.PurchaseOptions[0].Charges[0].Prices[0].Amount;
+                            });
+                            avl_optional_json = {
+                                //features: {
+                                //    main:opt_val,
+                                //    child:avl_optional_child
+                                //},
+                                features: opt_val,
+                                active: false,
+                                type: 'group',
+                                price: tot,
+                                selected:false
+                            }
+                            avl_optional.push(avl_optional_json);
+                            avl_optional_child = [];
+                        } else {
+                            if (opt_val.SpecifiedProductOffering.Options.length > 0) {
+                                angular.forEach(opt_val.SpecifiedProductOffering.Options, function(vl, ky){
+                                    avl_optional_child_json = {
+                                        items: vl,
+                                        price: 0,
+                                        selected: false
+                                    }
+                                    avl_optional_child.push(avl_optional_child_json);
+                                });
+                            }
+                            avl_optional_json = {
+                                //features: {
+                                //    main: opt_val.SpecifiedProductOffering,
+                                //    child: avl_optional_child
+                                //},
+                                features: opt_val.SpecifiedProductOffering,
+                                active: false,
+                                type: 'single',
+                                price: opt_val.SpecifiedProductOffering.PurchaseOptions.length > 0 ? opt_val.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount : 0,
+                                selected: false
+                            }
+                            avl_optional.push(avl_optional_json);
+                            avl_optional_child = [];
+                        }
+                    } else {
+                        angular.forEach(opt_val, function (v, k) {
+                            if (k == 'GroupId') {
+                                avl_isGroup = true;
+                            }
+                        });
+                        if (avl_isGroup) {
+                            var tot = 0;
+                            angular.forEach(opt_val.ProductOfferingsInGroup, function (g_val, g_key) {
+                                tot = tot + g_val.PurchaseOptions[0].Charges[0].Prices[0].Amount;
+                            });
+                            avl_mandatory_json = {
+                                features: opt_val,
+                                active: false,
+                                price: tot,
+                                selected: false
+                            }
+                            avl_mandatory.push(avl_mandatory_json);
+                        } else {
+                            avl_mandatory_json = {
+                                features: opt_val.SpecifiedProductOffering,
+                                active: false,
+                                price: opt_val.SpecifiedProductOffering.PurchaseOptions[0].Charges[0].Prices[0].Amount,
+                                selected: false
+                            }
+                            avl_mandatory.push(avl_mandatory_json);
+                        }
+                    }
+                    avl_isGroup = false;
+                });
+                var planTot = 0;
+                angular.forEach(avl_mandatory, function (v, k) {
+                    planTot = planTot + v.price;
+                });
+
+                avl_temp_json = {
+                    main_plan: value,
+                    products_mandatory: avl_mandatory,
+                    products_optional: avl_optional,
+                    prices: planTot
+                }
+                avl_arr_plan.push(avl_temp_json);
+
+                avl_mandatory = [];
+                avl_optional = [];
+            });
+            avl_plan = {
+                plans: avl_arr_plan
+            }
+            console.log(avl_plan);
+            $timeout(function () {
+                $scope.AvailablePlan = avl_plan.plans;
+            }, 0);
+        }
+        /*** end available plan ***/
+    });
+    $scope.selectPlan = function (id, param) {
+        $scope.isOptionalShow = false;
+        $scope.FirstChildFeature = undefined;
+        var mand_feat = [];
+        var mand_feat_json;
+        var child = [];
+        angular.forEach(param, function (val, key) {
+            angular.forEach(val.features, function (g_val, g_key) {
+                switch (g_key) {
+                    case 'ProductOfferingsInGroup':
+                        angular.forEach(g_val, function (g_value, g_k) {
+                            var j_g = {
+                                selected: false,
+                                features: g_value
+                            }
+                            child.push(j_g);
+                        });
+                        break;
+                }
+            });
+            mand_feat_json = {
+                GroupId: val.features.GroupId,
+                Names: val.features.Names,
+                Descriptions: val.features.Descriptions,
+                Items: child,
+                Id: val.features.Id,
+                MaxOccurs: val.features.MaxOccurs,
+                MinOccurs: val.features.MinOccurs
+            }
+            mand_feat.push(mand_feat_json);
+            child = [];
+        });
+        $scope.mandatory_features = mand_feat;
+        //temp = "<div ng-repeat=\"mand in mandatory_features\" class=\"list-group-item\" id=\"content_first\">" +
+        //        "<h6><b class=\"fa fa-arrow-circle-o-right\"></b>  {{mand.Names}}</h6>"+
+        //        "<div class=\"list-group\">" +
+        //        "<div ng-repeat=\"opt_mand in mand.Items\" class=\"list-group-item\" id=\"content_second_{{opt_mand.features.Id}}\">" +
+        //        "<button ng-hide=\"opt_mand.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-primary\" tabindex=\"0\" ng-click=\"addOptionFirst(1, opt_mand, mand)\">" +
+        //        "<b class=\"fa fa-plus\"></b></button>" +
+        //        "<button ng-hide=\"!opt_mand.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-danger\" tabindex=\"0\" ng-click=\"removeOptionFirst(1, opt_mand, mand)\">" +
+        //        "<b class=\"fa fa-remove\"></b></button>" +
+        //        "{{opt_mand.features.Names}}" +
+        //        "</div>"+
+        //        "</div>"+
+        //        "</div>";
+        //var string = "<div class=\"list-group\">" + temp +"</div>";
+        //$('#publicGroupFeature_'+id).append($compile(string)($scope));
+        //$scope.isOptionalShow = false;
+        var temp;
+        angular.forEach($scope.AvailablePlan, function (v, k) {
+            if (v.main_plan.Id == id) {
+                temp = angular.copy(v.products_optional);
+                $scope.totalPayment = v.prices;
+                $scope.dataAddToChart = v;
+            }
+        });
+        $timeout(function () {
+            $scope.currentPlan = {
+                Id: id,
+            }
+            if (temp.length > 0) {
+                $scope.OptionalFeatures = temp;
+                $scope.isOptionalShow = true;
+            } else {
+                $scope.OptionalFeatures = undefined;
+            }
+            //body.stop().animate({ scrollTop: 2000 }, '500', 'swing', function () {
+            //});
+        }, 0);
+    }
+
+    $scope.addFeatureMandatory = function (parent, param) {
+        $scope.currentMandatoryFeatureId = param.features.Id;
+        $scope.FirstChildFeature = undefined;
+        var i = 0;
+        var j = 0;
+        angular.forEach($scope.mandatory_features, function (m_val, m_key) {
+            if (m_val.Id == parent.Id) {
+                angular.forEach(parent.Items, function (val, key) {
+                    if (param.features.Id == val.features.Id) {
+                        $scope.mandatory_features[i].Items[j].selected = true;
+                        if (val.features.Options.length > 0) {
+                            var temp = val.features.Options;
+                            angular.forEach(temp, function (t_v, t_k) {
+                                angular.forEach(t_v, function (c_v, c_k) {
+                                    if (c_k == 'SpecifiedProductOffering') {
+                                        $scope.FirstChildFeature = t_v.SpecifiedProductOffering;
+                                    } else if (c_k == 'ProductOfferingsInGroup') {
+
+                                    }
+                                });
+                            });
+                        } else {
+                            $scope.FirstChildFeature = undefined;
+                        }
+                    } else {
+                        $scope.mandatory_features[i].Items[j].selected = false;
+                    }
+                    j++;
+                });
+            }
+            i++;
+        });
+    }
+    $scope.removeFeatureMandatory = function (parent, param) {
+        var i = 0;
+        var j = 0;
+        angular.forEach($scope.mandatory_features, function (m_val, m_key) {
+            if (m_val.Id == parent.Id) {
+                angular.forEach(parent.Items, function (val, key) {
+                    if (param.features.Id == val.features.Id) {
+                        $scope.mandatory_features[i].Items[j].selected = false;
+                        $scope.FirstChildFeature = undefined;
+                    }
+                    j++;
+                });
+            }
+            i++;
+        });
+    }
+
+    $scope.addOptionFirst = function (type, param, parent) {
+        var min = parent.MinOccurs;
+        var max = parent.MaxOccurs;
+        var numb = min + '-' + max;
+        switch (numb) {
+            case '1-1':
+                var i = 0;
+                angular.forEach(parent.Items, function (v, k) {
+
+                });
+                break;
+            case '1-1':
+
+                break;
+            case '1-1':
+
+                break;
+        }
+
+        $scope.FirstOption = param;
+        console.log(param);
+        if (param.features.Options.length > 0) {
+            angular.forEach(param.features.Options, function (val, key) {
+                angular.forEach(val, function (v, k) {
+                    switch (k) {
+                        case 'SpecifiedProductOffering':
+                            var temp = '';
+                            if (val.SpecifiedProductOffering.Options.length > 0) {
+
+                            } else {
+                                temp = "<div class=\"list-group-item\" id=\"content_first\"><b class=\"fa fa-check-circle\"></b> {{FirstOption.features.Options[0].SpecifiedProductOffering.Names}}</div>";
+                            }
+                            var string = "<div class=\"list-group\">" + temp + "</div>";
+                            $('#content_second_' + param.features.Id).append($compile(string)($scope));
+                            break;
+                        case 'ProductOfferingsInGroup':
+                            break;
+                    }
+                });
+               
+            });
+        } else {
+            alert('not found');
+        }
+
+        //var i = 0;
+        //angular.forEach($scope.mandatory_features, function (val, key) {
+        //    if (param.Id == val.features.Id) {
+        //        $scope.mandatory_features[i].selected = true;
+        //    }
+        //    i++;
+        //});
+        //switch (type) {
+        //    case 0:
+        //        //optional
+        //    break;
+        //    case 1:
+        //        angular.forEach(param, function (val, key) {
+        //            switch (key) {
+        //                case "ProductOfferingsInGroup":
+        //                    var t_json;
+        //                    var t_arr = [];
+        //                    angular.forEach(param.ProductOfferingsInGroup, function (g_val, g_key) {
+        //                        t_json = {
+        //                            features: g_val,
+        //                            selected: false
+        //                        }
+        //                        t_arr.push(t_json);
+        //                    });
+        //                    $scope.features_item_first = angular.copy(t_arr);
+        //                    var temp = "<div ng-repeat=\"opt in features_item_first\" class=\"list-group-item\" id=\"content_second\">" +
+        //                    "<button ng-hide=\"opt.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-primary\" tabindex=\"0\" ng-click=\"addOptionSecond(1, opt.features)\">" +
+        //                    "<b class=\"fa fa-plus\"></b></button>" +
+        //                    "<button ng-hide=\"!opt.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-danger\" tabindex=\"0\" ng-click=\"removeOptionSecond(1, opt.features)\">" +
+        //                    "<b class=\"fa fa-remove\"></b></button>" +
+        //                    "{{opt.features.Names}}</div>";
+        //                    var string = "<div class=\"list-group\">" + temp + "</div>";
+        //                    $('#content_first').append($compile(string)($scope));
+        //                    break;
+        //                case "SpecifiedProductOffering":
+        //                    console.log('specific');
+        //                    break;
+        //                //case "Options":
+        //                //    console.log('options');
+        //                //    if ($scope.Features.Options.length > 0) {
+        //                //        angular.forEach($scope.Features.Options, function (val, key) {
+        //                //            if (key == 'ProductOfferingsInGroup') {
+        //                //                $scope.opt_groups = val;
+        //                //                var temp = "<div ng-repeat=\"opt in opt_groups.SpecifiedProductOffering\" class=\"list-group-item\" id=\"content_{{opt.Id}}\">" +
+        //                //                "<button ng-hide=\"item.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-primary\" tabindex=\"0\" ng-click=\"addOption(opt.Id, opt)\">" +
+        //                //                "<b class=\"fa fa-plus\"></b></button>" +
+        //                //                "<button ng-hide=\"item.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-danger\" tabindex=\"0\" ng-click=\"removeOption(opt.Id, opt)\">" +
+        //                //                "<b class=\"fa fa-remove\"></b></button>" +
+        //                //                "{{opt.Names}}</div>";
+        //                //                var string = "<div class=\"list-group\">" + temp + "</div>";
+        //                //                $('#content_first').append($compile(string)($scope));
+        //                //            }
+        //                //        });
+        //                //    }
+        //                //    break;
+        //            }
+        //        });
+        //        break;
+
+        //}
+        
+    }
+
+    $scope.addOptionSecond = function (type, param) {
+        switch (type) {
+            case 0:
+                //optional
+                break;
+            case 1:
+                angular.forEach(param, function (val, key) {
+                    switch (key) {
+                        case "ProductOfferingsInGroup":
+                            var t_json;
+                            var t_arr = [];
+                            angular.forEach(param.ProductOfferingsInGroup, function (g_val, g_key) {
+                                t_json = {
+                                    features: g_val,
+                                    selected: false
+                                }
+                                t_arr.push(t_json);
+                            });
+                            $scope.features_item_first = angular.copy(t_arr);
+                            var temp = "<div ng-repeat=\"opt in features_item_first\" class=\"list-group-item\" id=\"content_third\">" +
+                            "<button ng-hide=\"opt.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-primary\" tabindex=\"0\" ng-click=\"addOptionThird(1, opt.features)\">" +
+                            "<b class=\"fa fa-plus\"></b></button>" +
+                            "<button ng-hide=\"!opt.selected\" type=\"button\" style=\"margin-right: 10px;\" class=\"btn btn-danger\" tabindex=\"0\" ng-click=\"removeOptionThird(1, opt.features)\">" +
+                            "<b class=\"fa fa-remove\"></b></button>" +
+                            "{{opt.features.Names}}</div>";
+                            var string = "<div class=\"list-group\">" + temp + "</div>";
+                            $('#content_first').append($compile(string)($scope));
+                            break;
+                        case "SpecifiedProductOffering":
+                            console.log('specific');
+                            break;
+                    }
+                });
+                break;
+
+        }
+    }
+    
+    $scope.addFeature = function (param) {
+        $scope.OptionalSpecific = false;
+        $scope.currentFeatureId = param;
+        $scope.FirstChildOptionalFeature = undefined;
+        var count = 0;
+        angular.forEach($scope.OptionalFeatures, function (v, k) {
+            
+            if (v.features.Id == param) {
+                angular.forEach(v.features, function (f_val, f_key) {
+                    if (f_key == 'Options') {
+                        $scope.OptionalSpecific = false;
+                    } else if (f_key == 'ProductOfferingsInGroup') {
+                        $scope.OptionalSpecific = true;
+                    }
+                });
+                if ($scope.OptionalSpecific) {
+                    angular.forEach(v.features.ProductOfferingsInGroup, function (fg_val, fg_key) {
+
+                    });
+                }
+                $scope.totalPayment = $scope.totalPayment + v.price;
+                $scope.OptionalFeatures[count].selected = true;
+            }
+            count++;
+        });
+        body.stop().animate({ scrollTop: 2000 }, '500', 'swing', function () {
+        });
+    }
+    $scope.removeFeature = function (param) {
+        $scope.currentFeatureId = param;
+        var count = 0;
+        angular.forEach($scope.OptionalFeatures, function (v, k) {
+            if (v.features.Id == param) {
+                $scope.totalPayment = $scope.totalPayment - v.price;
+                $scope.OptionalFeatures[count].selected = false;
+            }
+            count++;
+        });
+        body.stop().animate({ scrollTop: 2000 }, '500', 'swing', function () {
+        });
+    }
+
+    $scope.addFeatureChild = function () {
+
+    }
+
+    $scope.test = function () {
+        body.stop().animate({ scrollTop: 500 }, '500', 'swing', function () {
+        });
+    }
+
+    $scope.addToCart = function () {
+        var items = {
+            item: {
+                "productid": $scope.dataAddToChart.main_plan.Id,
+                "type": "PLANS",
+                "name": "PLANS - " + $scope.dataAddToChart.main_plan.Names,
+                "qty": 1,
+                "amount": $scope.totalPayment,
+                "unitprice": $scope.totalPayment
+            },
+            msisdn: wrapper.activeDevice.Msisdn
+        };
+        var promise = ShoppingFunction.addToCart(items);
+        promise.then(function (result) {
+            if (result) {
+                ///some function
+            }
+        });
+    }
+
+});

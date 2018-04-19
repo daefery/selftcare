@@ -1,0 +1,177 @@
+.box-blue{
+  border-top: 4px solid rgba($blue, 0.5);
+}
+.box-brown{
+  border-top: 4px solid rgba($main-red, 0.5);
+}
+.box-brown, .box-blue{
+  min-height: 120px;
+  padding:20px 0;
+  h6{
+    margin-bottom: 5px;
+  }
+  span{
+    color: $font-lightgray;
+  }
+  p{
+    font-weight: 300;
+    font-size: $h3-font-size;
+    margin: 0;
+  }
+}
+.box-wrap{
+  @include box-shadow(0 2px 2px darken($bg-gray, 8%));
+  padding:15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border:1px solid $border-gainsboro;
+  h2{margin: 0;}
+  p{margin: 0;}
+  a{color: $font-gray; text-decoration: none;}
+  .ruond-bg{
+    //the Icon  Round background be used for Intranet,Jira, Confluence, Stock.
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    display: table;
+    margin:0 auto;
+  }
+  .bgc1{background-color:$darkbrown; }
+  .bgc2{background-color:$darkmagenta;}
+  .bgc3{background-color:$royalblue;}
+  .bgc4{background-color:$orange;}
+  .icon-logo{
+    font-size: 30px;
+    display: table-cell;
+    color:$font-white;
+    text-align: center;
+    vertical-align:middle;
+  }
+}
+
+//.box-button{
+//  background-color:$blue;
+//  border-radius:3px;
+//  min-height: 100px;
+//}
+
+.form-box{
+    border: 1px solid $border-silver;
+    background-color: $bg-white;
+    padding:5px 15px ;
+}
+.btn-selection{
+  background-color:$border-silver;
+  height: 100%;
+  border-radius: 0;
+  padding-top:18px;
+  padding-bottom:18px;
+  text-align: center;
+  font-size:16px;
+}
+.nav-tabs{
+  border-bottom:1px solid $border-gainsboro;
+  >li{
+    >a{
+      background-color: $bg-gray;
+      font-family: $font-family-bold;
+      font-size: $h6-font-size;
+      line-height:2.4 ;
+      border-radius: 0;
+      color: $font-gray;
+      margin-right: -1px;
+      border: 1px solid $border-gainsboro;
+    }
+  }
+}
+.clear-border{
+  .list-group-item{
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding: 10px 0;
+    .list-badge{
+      float: right;
+    }
+  }
+}
+.badge{
+  color: $font-white;
+  font-weight: 400;
+  background-color:$blue;
+  font-size: 12px;
+  @include border-radius;
+  padding: 1px 5px 1px;
+  font-family: $font-family-bold;
+  margin: -5px 0 0 3px;
+}
+.badge-default{
+  background-color:lighten($font-gray, 10%);
+}
+%list-badge{
+  border-radius:0;
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.list-badge {
+  //for list group badge
+  @extend %list-badge;
+  font-size:18px;
+  font-weight: 300;
+  color: $font-darkgray;
+  background-color: transparent;
+}
+
+  .tab-content{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    h5.media-heading{
+      font-size: $h6-font-size;
+    }
+  }
+
+.list-group-item:first-child{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+.nav-pills.nav-stacked{
+   >li{
+     margin: 0;
+     padding: 0;
+     border-bottom: 1px solid $border-silver;
+      >a{
+        padding: 8px 10px;
+        border-radius:0;
+        color:$font-gray;
+        i{float: right}
+      }
+   }
+   >li.active{
+     a{
+       color: $font-white;
+       background-color: darken($blue,10%);
+     }
+   }
+}
+
+.wrap-center{
+  //for pagination;
+text-align: center;
+}
+.pagination{
+  margin-top: 0;
+  //for pagination
+  >li{
+    >a{
+      @extend %normal-wrap;
+      color: $font-gray;
+    }
+  }
+}

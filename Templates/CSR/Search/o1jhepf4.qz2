@@ -1,0 +1,408 @@
+﻿<!-- Rico Hartono Jahja
+Modified 21.10.2015
+    applying the latest design -->
+<!-- START: HOVERING PANEL -->
+<div style="position: fixed; right: 0; z-index: 999; ">
+    <section class="normal-wrap" style="min-height: 50px;">
+        <div class="text-content row">
+            <dl class="dl-horizontal">
+                <dt>{{'Customer ID' | translate}}</dt>
+                <dd>{{products.Customer.CustomerID}}</dd>
+                <dt>{{'Customer Name' | translate}}</dt>
+                <dd>{{products.Customer.CustomerData.FirstName}} {{products.Customer.CustomerData.LastName}}</dd>
+                <dt>{{'Phone Number'|translate}}</dt>
+                <dd>{{products.Subscription.MSISDN}}</dd>
+            </dl>
+        </div>
+    </section>
+</div>
+<!--END: HOVERING PANEL-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 clear-space">
+        <!-- START : CUSTOMER INFORMATION PANEL -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <section class="normal-wrap">
+                        <header class="title">
+                            <ul>
+                                <li class="btn btn-active"><a href="/CSR/Customer/App/SearchPage/CustomerDetailDashboard"><i class="icon-triangle-right"></i></a></li>
+                                <!--<li class="icon-face"><i class="icon-happy"></i></li>--><!--Uncomment if going to implement the smiley-->
+
+                            </ul>
+                            <h6>{{'Customer Information'|translate}}</h6>
+                        </header>
+                        <div class="sub-line"><!--line--></div>
+                        <div class="text-content row">
+                            <dl class="dl-horizontal col-sm-6 col-xs-12">
+                                <dt>{{'Name'|translate}}</dt>
+                                <dd>{{products.Customer.CustomerData.FirstName}} {{products.Customer.CustomerData.LastName}}</dd>
+                                <dt>{{'Nationality'|translate}}</dt>
+                                <dd>{{country}}</dd>
+                                <dt>{{'Date_of_Birth'|translate}}:</dt>
+                                <dd>{{birthday}}</dd>
+                                <dt>{{'Customer_Id'|translate}}</dt>
+                                <dd>{{products.Customer.CustomerID}}</dd>
+                            </dl>
+                            <dl class="dl-horizontal col-sm-6 col-xs-12">
+                                <dt>{{'Id_Type'|translate}}</dt>
+                                <dd>{{idType}}</dd>
+                                <dt>{{'Id_Number'|translate}}</dt>
+                                <dd>{{products.Customer.CustomerData.DocumentNumber}}</dd>
+                                <dt>{{'Customer Status'|translate}}</dt>
+                                <dd>{{customerStatus}}</dd>
+                                <dt>{{'Bank_Account_No'|translate}}</dt>
+                                <dd>{{products.Customer.CustomerData.BankInformation.BankNumber}}</dd>
+                            </dl>
+                            <dl class="dl-horizontal col-sm-12 col-xs-12">
+                                <dt>{{'Fiscal_Address'|translate}}</dt>
+                                <dd>{{products.Customer.CustomerData.FiscalAddress.HouseNo}} {{products.Customer.CustomerData.FiscalAddress.Addresses}}, {{products.Customer.CustomerData.FiscalAddress.City}}, {{products.Customer.CustomerData.FiscalAddress.State}} {{products.Customer.CustomerData.FiscalAddress.ZipCode}}</dd>
+                                <dt>{{'Delivery_Address'|translate}}</dt>
+                                <dd>{{products.Customer.CustomerData.DeliveryAddress.HouseNo}} {{products.Customer.CustomerData.DeliveryAddress.Addresses}}, {{products.Customer.CustomerData.DeliveryAddress.City}}, {{products.Customer.CustomerData.DeliveryAddress.State}} {{products.Customer.CustomerData.DeliveryAddress.ZipCode}}</dd>
+                                <dt>{{'Customer_Address'|translate}}</dt>
+                                <dd>{{products.Customer.CustomerData.CustomerAddress.HouseNo}} {{products.Customer.CustomerData.CustomerAddress.Addresses}}, {{products.Customer.CustomerData.CustomerAddress.City}}, {{products.Customer.CustomerData.CustomerAddress.State}} {{products.Customer.CustomerData.CustomerAddress.ZipCode}}</dd>
+                            </dl>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- END : CUSTOMER INFORMATION PANEL -->
+            <!-- START : OPEN TROUBLE TICKET -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <section class="normal-wrap" ng-controller="paginationController">
+                        <header class="title">
+                            <ul>
+                                <li class="btn btn-active"><a href="#"><i class="icon-triangle-right"></i></a></li>
+                                <li class="btn btn-active"><button type="button" class="btn btn-default">{{'New TT'|translate}}</button></li>
+                            </ul>
+                            <h6>{{'Open TT'|translate}}</h6>
+                        </header>
+                        <div class="sub-line"><!--line--></div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="table-head">
+                                    <tr>
+                                        <th>#</th>
+                                        <th ng-click="sort('Department')">
+                                            {{'Department'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Department'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('Agent')">
+                                            {{'Agent'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Agent'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('TicketCode')">
+                                            {{'Ticket Code'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='TicketCode'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('TicketNo')">
+                                            {{'Ticket No'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='TicketNo'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('SubmittedBy')">
+                                            {{'Submitted By'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='SubmittedBy'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('ReportTime')">
+                                            {{'Report Time'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='ReportTime'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('IncidentClass')">
+                                            {{'Incident Class'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='IncidentClass'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('SeverityLevel')">
+                                            {{'Severity Level'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='SeverityLevel'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('Status')">
+                                            {{'Status'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="item in products.CustomerBalance.PostPaidBalance|itemsPerPage:10| orderBy:sortKey:reverse" ng-class=" {'selected':item.CustomerId==selectedRow}" ng-click="setClickedRow(item.CustomerId)">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{item.CreditLimit}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.BillingInfo.UnbilledBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.OtherBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.OtherBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{null}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <dir-pagination-controls max-size="10"
+                                                 direction-links="true"
+                                                 boundary-links="true"
+                                                 ng-show="CstData.CustomerData.length">
+                        </dir-pagination-controls>
+                    </section>
+                </div>
+            </div>
+            <!-- END : OPEN TROUBLE TICKET -->
+            <!-- START : SUBSCRIPTION INFORMATION PANEL -->
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <section class="normal-wrap">
+                        <header class="title">
+                            <ul>
+                                <li class="btn btn-active"><a href="#"><i class="icon-triangle-right"></i></a></li>
+                                <li class="btn btn-active"><button type="button" class="btn btn-default">{{'Actions'|translate}}</button></li>
+                            </ul>
+                            <h6>{{'Subscription Information'|translate}}</h6>
+                        </header>
+                        <div class="sub-line"><!--line--></div>
+                        <div class="text-content">
+                            <dl class="dl-horizontal">
+                                <dt>{{'Phone Number'|translate}}</dt>
+                                <dd>{{products.Subscription.MSISDN}}</dd>
+                                <dt>ICC ID:</dt>
+                                <dd>{{products.SimCard.ICCID}}</dd>
+                                <dt>IMSI:</dt>
+                                <dd>{{products.Subscription.IMSI}}</dd>
+                                <dt>{{'Subscriber Type'|translate}}</dt>
+                                <dd>{{products.CustomerSubscription.SubscriberType}}</dd>
+                                <dt>{{'SIM Status'|translate}}</dt>
+                                <dd>{{products.SimCard.SimStatus}}</dd>
+                                <dt>{{'Create_Date'|translate}}</dt>
+                                <dd>{{null}}</dd>
+                                <dt>First Used:</dt>
+                                <dd>{{products.CustomerSubscription.FirstUsed}}</dd>
+                            </dl>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <section class="normal-wrap">
+                        <header class="title">
+                            <ul>
+                                <li class="btn btn-active"><a href="#"><i class="icon-triangle-right"></i></a></li>
+                                <li class="btn btn-active"><button type="button" class="btn btn-default">{{'Modify'|translate}}</button></li>
+                            </ul>
+                            <h6>{{'Subscription Actions'|translate}}</h6>
+                        </header>
+                        <div class="sub-line"><!--line--></div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label ">Option</label>
+                            <div class="col-sm-11">
+                                <div class="demo-list clear">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input tabindex="1" type="checkbox" id="input-1" checked> Checkbox1
+                                        </label>
+                                        <label>
+                                            <input tabindex="2" type="checkbox" id="input-2"> Checkbox2
+                                        </label>
+                                        <label>
+                                            <input tabindex="2" type="checkbox" id="input-2"> Checkbox3
+                                        </label>
+                                        <label>
+                                            <input tabindex="2" type="checkbox" id="input-2"> Checkbox3
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-content">
+                            <div class="demo-list clear">
+                                <!--for checkbox, don't delete it-->
+                                <div class="checkbox">
+                                    <div class="col-sm-6 form-group">
+                                        <label class="col-sm-8">{{'Voice Mail'|translate}}</label>
+                                        <label class="col-sm-4"><input tabindex="1" type="checkbox" id="input-1"></label>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label class="col-sm-9">{{'Welcome SMS'|translate}}</label>
+                                        <label class="col-sm-3"><input tabindex="1" type="checkbox" id="input-1" checked></label>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label class="col-sm-8">{{'Roaming'|translate}}</label>
+                                        <label class="col-sm-4"><input tabindex="1" type="checkbox" id="input-1"></label>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label class="col-sm-9">{{'DRL'|translate}}</label>
+                                        <label class="col-sm-3"><input tabindex="1" type="checkbox" id="input-1" checked></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- END : SUBSCRIPTION INFORMATION PANEL -->
+            <!-- START : ORDER & PRODUCT -->
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <section class="normal-wrap">
+                        <header class="title">
+                            <ul>
+                                <li class="btn btn-active"><a href="#"><i class="icon-triangle-right"></i></a></li>
+                                <li class="btn btn-active"><button type="button" class="btn btn-default">{{'New Order'|translate}}</button></li>
+                            </ul>
+                            <h6>{{'ORDER_PRODUCTS'|translate}}</h6>
+                        </header>
+                        <div class="table-responsive" ng-controller="paginationController">
+                            <table class="table table-bordered">
+                                <thead class="table-head">
+                                <tr>
+                                    <th>#</th>
+                                    <th ng-click="sort('OrderId')">
+                                        {{'Order ID'| translate}}
+                                        <span class="glyphicon sort-icon" ng-show="sortKey=='OrderId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('ProductName')">
+                                        {{'Product Name'| translate}}
+                                        <span class="glyphicon sort-icon" ng-show="sortKey=='ProductName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('OrderDate')">
+                                        {{'Order Date'| translate}}
+                                        <span class="glyphicon sort-icon" ng-show="sortKey=='OrderDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                    </th>
+                                    <th ng-click="sort('Status')">
+                                        {{'Status'| translate}}
+                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr dir-paginate="item in products.CustomerBalance|itemsPerPage:10| orderBy:sortKey:reverse" ng-class=" {'selected':item.CustomerId==selectedRow}" ng-click="setClickedRow(item.CustomerId)">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{item.BillingInfo.BillingCycle}}</td>
+                                    <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                    <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                    <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <dir-pagination-controls max-size="10"
+                                                     direction-links="true"
+                                                     boundary-links="true"
+                                                     ng-show="CstData.CustomerData.length">
+                            </dir-pagination-controls>
+                        </div>
+                        <div class="table-responsive" ng-controller="paginationController">
+                            <table class="table table-bordered">
+                                <thead class="table-head">
+                                    <tr>
+                                        <th>#</th>
+                                        <th ng-click="sort('ProductName')">
+                                            {{'Product Name'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='ProductName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('StartDate')">
+                                            {{'Start Date'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='StartDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('EndDate')">
+                                            {{'End Date'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='EndDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('Balance')">
+                                            {{'Balance'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Balance'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="item in products.CustomerPromotions|itemsPerPage:10| orderBy:sortKey:reverse" ng-class=" {'selected':item.CustomerId==selectedRow}" ng-click="setClickedRow(item.ProductName)">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{item.Name}}</td>
+                                        <td><!--{{item.StartDate}}--></td>
+                                        <td><!--{{item.EndDate}}--></td>
+                                        <td>{{item.CurrentLimit}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <dir-pagination-controls max-size="10"
+                                                     direction-links="true"
+                                                     boundary-links="true"
+                                                     ng-show="CstData.CustomerData.length">
+                            </dir-pagination-controls>
+
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="col-sm-12 col-xs-12">
+                        <section class="normal-wrap">
+                            <header class="title">
+                                <ul>
+                                    <li class="btn btn-active"><a href="#"><i class="icon-triangle-right"></i></a></li>
+                                    <li class="btn btn-active"><button type="button" class="btn btn-default">{{'Adjust Invoice'|translate}}</button></li>
+                                </ul>
+                                <h6>{{'BILLING_INFO_INVOICES'|translate}}</h6>
+                            </header>
+                            <div class="sub-line"><!--line--></div>
+                            <div class="text-content">
+                                <dl class="dl-horizontal">
+                                    <dt>{{'Billing Cycle'|translate}}</dt>
+                                    <dd>{{products.BillingAndInvoices.BillingInfo.BillingCycle}}</dd>
+                                    <dt>{{'Last Invoice Number'|translate}}</dt>
+                                    <dd>{{products.BillingAndInvoices.LastInvoice.InvoiceNumber}}</dd>
+                                    <dt>{{'Last Invoice Amount'|translate}}</dt>
+                                    <dd>{{products.BillingAndInvoices.LastInvoice.Amount}}</dd>
+                                    <dt>{{'Last Billing Issue Date'|translate}}</dt>
+                                    <dd>{{null}}</dd>
+                                    <dt>{{'Last Invoice Due Date'|translate}}</dt>
+                                    <dd>{{null}}</dd>
+                                    <dt>{{'Invoice Status'|translate}}</dt>
+                                    <dd>{{null}}</dd>
+                                    <dt>{{'Return Causes'|translate}}</dt>
+                                    <dd>{{products.BillingAndInvoices.ReturnCause}}</dd>
+                                    <dt>{{'Next Invoice Due Date'|translate}}</dt>
+                                    <dd>{{null}}</dd>
+                                    <dt>{{'Payment Method'|translate}}</dt>
+                                    <dd>{{products.BillingAndInvoices.PaymentMethod}}</dd>
+                                    <dt>{{'Parent Control'|translate}}</dt>
+                                    <dd>{{null}}</dd>
+                                    <dt>{{'Parent ID'|translate}}</dt>
+                                    <dd>{{null}}</dd>
+                                </dl>
+                            </div>
+                        </section>
+
+                    </div>
+                    <div class="col-sm-12 col-xs-12">
+                        <section class="normal-wrap">
+                            <!--Revani Start-->
+                            <header class="title">
+                                <ul>
+                                    <li class="btn btn-active"><a href="#"><i class="icon-triangle-right"></i></a></li>
+                                    <li class="btn btn-active"><button type="button" class="btn btn-default">{{'Adjust Balance'|translate}}</button></li>
+                                </ul>
+                                <h6>{{'BALANCE_ADJUSTMENT'|translate}}</h6>
+                            </header>
+                            <div class="sub-line"><!--line--></div>
+                            <div class="text-content">
+                                <dl class="dl-horizontal">
+                                    <dt>{{'Balance'|translate}} ({{'w_VAT'|translate}})</dt>
+                                    <dd>&euro;{{products.CustomerBalance.PrePaidBalance.Balance.BalanceVAT}}</dd>
+                                    <dt>{{'Balance'|translate}} ({{'wo_VAT'|translate}})</dt>
+                                    <dd>&euro;{{products.CustomerBalance.PrePaidBalance.item.Balance.Balance}}</dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt>{{'Other Balance'|translate}} ({{'w_VAT'|translate}})</dt>
+                                    <dd>&euro;{{products.CustomerBalance.PrePaidBalance.BillingInfo.BillingIssueDate}}</dd>
+                                    <dt>{{'Other Balance'|translate}} ({{'wo_VAT'|translate}})</dt>
+                                    <dd>&euro;{{products.CustomerBalance.PrePaidBalance.BillingInfo.BillingIssueDate}}</dd>
+                                </dl>
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+
+            </div>
+        <!-- END : ORDER & PRODUCT -->
+        </div>
+    </div>
+</div>

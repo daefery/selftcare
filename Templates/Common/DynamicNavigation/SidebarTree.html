@@ -1,0 +1,23 @@
+﻿<li id="mnu{{item.Id}}" ng-repeat="item in SidebarMenus">
+    <a href="#" ng-class="{'active':isItemSelected(item)}" ng-click="showChilds(item, $event)">
+        {{item.Translate_Key | translate}}
+    </a>
+    <i ng-show="item.SubMenus.length > 0" ng-class="{'fa fa-angle-right': !item.active, 'fa fa-angle-down': item.active}" ng-click="showChilds(item, $event)"></i>
+
+    <ul ng-if="item.SubMenus.length > 0">
+        <li id="mnu{{subitem.Id}}" ng-repeat="subitem in item.SubMenus" ng-show="item.active">
+            <a href="#" ng-class="{'active':isItemSelected(subitem)}" ng-click="showChilds(subitem, $event)">
+                {{subitem.Translate_Key | translate}}
+            </a>
+            <i ng-show="subitem.SubMenus.length > 0" ng-class="{'fa fa-angle-right': !subitem.active, 'fa fa-angle-down': subitem.active}" ng-click="showChilds(subitem, $event)"></i>
+
+            <ul ng-if="subitem.SubMenus.length > 0">
+                <li id="mnu{{subsubitem.Id}}" ng-repeat="subsubitem in subitem.SubMenus" ng-show="subitem.active">
+                    <a href="#" ng-class="{'active':isItemSelected(subsubitem)}" ng-click="showChilds(subsubitem, $event)">
+                        {{subsubitem.Translate_Key | translate}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>

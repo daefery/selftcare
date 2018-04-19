@@ -1,0 +1,142 @@
+﻿<div ng-controller="OrderingController">
+    <div class="step-title">
+        <h3>Ordering</h3>
+    </div>
+    <div class="reg-detail">
+
+            <div class="reg-field">
+                <div class="form-content split">
+                    <etbossform name="customertype" field="{{CustomerType}}"></etbossform>
+                    <etbossform name="servicetype" field="{{ServiceType}}"></etbossform>
+                </div>
+            </div>
+
+            <div class="reg-field">
+                <div class="half product-csr prod-select">
+                    <div class="row">
+                        <label class="col-md-4 col-sm-4 control-label">Product:</label>
+                        <div class="col-md-8">
+                            <etbossform name="product" field="{{Product}}"></etbossform>
+                            <i ng-controller="ModalCtrl" class="et info1 fa-lg" style="cursor:pointer; font-size:25px" ng-click="open('','Templates/CSR/Customer/CustomerRegistration/Content/Ordering/Content/ProductInfo.html')"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reg-field">
+                <div class="half product-csr row">
+                    <label class="control-label col-sm-4">Promotion :</label>
+                    <div class="col-sm-8 checkbox">
+                            <div class="pre-scrollable">
+                                <div ng-repeat="PromotionItem in jsonPromotion.promotion">
+                                    <div class="col-md-12">
+                                        <div class="col-md-10 form-group" style="">
+                                            <input type="checkbox" id="{{$index}}" value="" name="promotion_checkbox" ng-model="Voice_Mail" />
+                                            <label for="{{$index}}"><span></span>{{PromotionItem.testName}}</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <i ng-controller="ModalCtrl" class="et info1" style="cursor: pointer; padding-top: 5px" ng-click="open('sm','Templates/CSR/Customer/CustomerRegistration/Content/Ordering/Content/PromotionInfo.html')"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="reg-field">
+                <div class="half product-csr">
+                    <etbossform ng-init="Order.BuyDevice='newDevice'" name="buydevice" field="{{BuyDevice}}"></etbossform>
+                </div>
+            </div>
+
+            <div class="reg-field ">
+                <div ng-hide="isOwnDevice">
+                    <section class="table pre-scrollable">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>&nbsp;</th>
+                                    <th>Product Code</th>
+                                    <th>Device</th>
+                                    <th>Color</th>
+                                    <th>Memory</th>
+                                    <th>Price</th>
+                                    <th>Available Quantity</th>
+                                    <th>Info</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="Device in Order.Devices.PhysicalResourceInventories">
+                                        <td>
+                                            <div class="radio">
+                                                <div class="form-group">
+                                                    <input id="device_radio_{{$index}}" type="radio" name="device_checkbox" ng-checked="Device.isChecked" ng-model="Device.isChecked" ng-value="{{Device.ProductId}}" ng-click="setClickedRow(Device.ProductId,Device.AvailableQuantity)" /><label for="device_radio_{{$index}}"><span></span>&nbsp;</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{Device.ProductId}}</td>
+                                        <td>{{Device.ProductName}}</td>
+                                        <td>{{Device.ProductColor}}</td>
+                                        <td>{{Device.ProductMemory}}</td>
+                                        <td>{{Device.ProductPrice}}</td>
+                                        <td>{{Device.AvailableQuantity}}</td>
+                                        <td>
+                                            <i ng-controller="ModalCtrl" class="glyphicon glyphicon-info-sign" style="cursor:pointer; padding-top:5px"
+                                               ng-click="open('','Templates/CSR/Customer/CustomerRegistration/Content/Ordering/Content/DeviceInfo.html')"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="reg-field">
+                <div class="half product-csr">
+                    <div class="device-payment" ng-hide="isOwnDevice">
+                        <div class="form-group">
+                                <label class="control-label col-sm-4">Device Payment Type :</label>
+                                <div class="col-sm-8">
+                                    <etbossform name="devicepayment" field="{{devicepayment}}"></etbossform>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reg-field">
+                <div class="half product-csr">
+                    <div ng-hide="isNewDevice">
+                        <etbossform name="byodForm" field="{{BYOD}}"></etbossform>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reg-field clean">
+                <div class="half product-csr">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" style="padding:0">Total Ammount :</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="TotalAmount" ng-disabled="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+    </div>
+    <div class="button-inner clearfix">
+        <button ng-click="ChangeCRPage('customerinfo')" ng-hide="cantContinue" class="next-btn">next <i class="fa fa-angle-right"></i></button>
+    </div>
+
+</div>

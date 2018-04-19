@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+
+    @*<script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/angular-animate.js"></script>*@
+</head>
+<body ng-app="appMain">
+
+    <!--user information of topbar-->
+    <div class="topbar-wrap clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6"><strong>Welcome, Jim </strong>your phone number: 30661081</div>
+                <div class="col-xs-6 user-menu">
+                    <ul>
+                        <li>lines on your account:1</li>
+                        <li><a href="#">your profile</a></li>
+                        <li class="clear-right-padding"><a href="#">log out</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--nav-->
+
+    <nav class="navbar navbar-default custom-nav-wrap" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!-- icon -->
+                <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- Make action link -->
+                <a class="navbar-brand" href="login.html"><img src="~/Images/et-logo.png" /></a>
+                <!-- logo -->
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                <!--Revani Start-->
+                <!-- search -->
+                @*<ul class="navbar-form navbar-right">
+                    <a href="@Url.Action("SearchPage", "Home")" ng-click="processForm()" onclick="searchprocessing"><i class="icon-search"></i></a>
+                    <form role="search" class="status" runat="server">
+                        <input type="text" id="searchform" class="form-control" runat="server" placeholder="Search">
+                        string Nickname = Request.Form["searchform"];
+                    </form>
+
+                </ul>*@
+
+                <ul class="navbar-form navbar-right">
+                    <form role="search" class="status" action="/Home/SearchPage" method="post" id="searchID">
+                        <a href="#" id="submit_link"><i class="icon-search"></i></a>
+                        <input type="text" class="form-control" placeholder="Search" name="searchParameter">
+                    </form>
+
+                </ul>
+                <script>
+                    $(function () {
+                        $('a#submit_link').click(function () {
+                            $('form#searchID').submit();
+                        });
+                    });
+                </script>
+                @*<script>
+                    $(function () {
+                        $('.icon-search').click(function () {
+                            $('.status').toggleClass('status-block');
+                        });
+                    });
+                </script>*@
+                <br />
+                <div>
+                    <div class="col-sm-10 col-md-10">
+                        <ul class="nav navbar-nav">
+                            <!-- Add id with format Menu + (Number) for controlling the active parent navigation) -->
+                            <li id="Menu1" onclick="myFunction(this.id)" class="menu-active">
+                                <a href="#1" style="text-align:left">Home <span class="caret"></span></a>
+                                <!-- Add id with format sub1 + (Menu parent) for controlling the visibility (subnav when media < 768px) -->
+                                <ul id="sub1Menu1" class="revaniNavDropDown collapse revaniSubmenu1 dropdown-content">
+                                    Submenu
+                                    <li class="submenu-active"><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                            <!-- Example for the 2nd dropdown-content style navigation -->
+                            @*<li id="Menu2" onclick="myFunction(this.id)">
+                                    <a href="#2" style="text-align:left">nav2 <span class="caret"></span></a>
+                                    <ul id="sub1Menu2" class=" revaniNavDropDown collapse revanisubmenu1 dropdown-content">
+                                        Submenu
+                                        <li class="submenu-active"><a href="#21">Action 2</a></li>
+                                        <li><a href="#22">Another action 2</a></li>
+                                        <li><a href="#23">Something else here 2</a></li>
+                                        <li><a href="#24">Separated link 2</a></li>
+                                        <li><a href="#25">One more separated link 2</a></li>
+                                    </ul>
+                                </li>*@
+                            <li id="Menu3" onclick="myFunction(this.id)"><a href="#2">NPM</a></li>
+                            <li id="Menu4" onclick="myFunction(this.id)"><a href="#3">MNP</a></li>
+                            <li id="Menu5" onclick="myFunction(this.id)"><a href="#4">SIM Cards</a></li>
+                            <li id="Menu6" onclick="myFunction(this.id)"><a href="#5">LOG Query</a></li>
+                            <li id="Menu7" onclick="myFunction(this.id)"><a href="#6">DMC</a></li>
+                            <li id="Menu8" onclick="myFunction(this.id)"><a href="#7">Vouchers</a></li>
+                            @*@Html.Partial("_LoginPartial")*@
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#" class="btn dropdown-toggle" data-toggle="dropdown" type="button" role="button" aria-expanded="false" style="text-align:left">Hot Action <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-content">
+                                    &nbsp;Submenu
+                                    <li class="submenu-active"><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-12">
+                        <ul class="nav navbar-nav revaniSub">
+                            <li>
+                                <!-- Add id with format sub2 + (Menu parent) for controlling the visibility (subnav when media > 767px) -->
+                                <ul id="sub2Menu1" class="revaniNavDropDown collapse revaniSubmenu2 dropdown-item">
+                                    <li><h5>SubMenu</h5></li>
+                                    <li class="submenu-active"><a href="#11">Action</a></li>
+                                    <li><a href="#12">Another action</a></li>
+                                    <li><a href="#13">Something else here</a></li>
+                                    <li><a href="#14">Separated link</a></li>
+                                    <li><a href="#15">One more separated link</a></li>
+                                </ul>
+                                <!-- Example for the 2nd dropdown-item style navigation -->
+                                @*<ul id="sub2Menu2" class="revaniNavDropDown collapse revaniSubmenu2 dropdown-item">
+                                        <li><h5>SubMenu</h5></li>
+                                        <li class="submenu-active"><a href="#21">Action</a></li>
+                                        <li><a href="#22">Another action 2</a></li>
+                                        <li><a href="#23">Something else here 2</a></li>
+                                        <li><a href="#24">Separated link 2</a></li>
+                                        <li><a href="#25">One more separated link 2</a></li>
+                                    </ul>*@
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--Revani End-->
+    @RenderBody()
+    <!--start footer-->
+    <footer class="footer-wrap clearfix">
+        <div class="container">
+            <div class="row footer-menu">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <h6>ABOUT US</h6>
+                            <div class="menu">
+                                <ul>
+                                    <li><a href="#">contact us</a> </li>
+                                    <li><a href="#">map</a> </li>
+                                    <li><a href="#">company introduce</a> </li>
+                                    <li><a href="#">about us</a> </li>
+                                    <li><a href="#">News Center</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <h6>SERVICE & SUPPORT </h6>
+                            <div class="menu">
+                                <ul>
+                                    <li><a href="#">4G LTE Network</a></li>
+                                    <li><a href="#">View Mobile Site</a></li>
+                                    <li><a href="#">Wireless Workshops</a></li>
+                                    <li><a href="#">Verizon Video Gallery</a></li>
+                                    <li><a href="#">Register</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <h6>PLANS, DEALS & MORE </h6>
+                            <div class="menu">
+                                <ul>
+                                    <li><a href="#">Cell Phone Plans</a></li>
+                                    <li><a href="#">Deals & Special Offers</a></li>
+                                    <li><a href="#">Free Phones</a></li>
+                                    <li><a href="#">Certified Pre-Owned</a></li>
+                                    <li><a href="#">Prepaid</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-logo">
+                        <img src="images/et-logo.png">
+                        <p>
+                            245 Folsom Ave, Suite 600
+                            San Francisco, CA 94107
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyrights © @DateTime.Now.Year All Rights Reserved by Elephanttalk Inc.</p>
+                <p>reserved by  kinsd boish</p>
+                <div class="contact">
+                    <span><i class="icon-envelop"></i> info@elephanttalk.com</span>
+                    <span><i class="icon-phone-hang-up"></i>68+ 456789 9875</span>
+                    <span><i class="icon-skype"></i>elephanttalk</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @*<script src="@Url.Content("~/Bindings/Core/App.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Bindings/ViewModels/CustomerDashboard/CustomerDashboardViewModel.js")" type="text/javascript"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <!--Revani Start-->
+    <script>
+        //Control active navigation and visibility of subnavigation
+        function myFunction(id) {
+            $(".nav li").removeClass("menu-active");
+            $("#" + id).addClass("menu-active");
+            for (var i = 1; i < 10; i++) {
+                if ("Menu" + i != id) {
+                    $("#sub1Menu" + i).hide();
+                    $("#sub2Menu" + i).hide();
+                }
+                else {
+                    var mq = window.matchMedia("(min-width: 768px)");
+                    if (mq.matches) {
+                        // window width is at least 768px
+                        $("#sub2Menu" + i).toggle(100);
+
+                    }
+                    else {
+                        // window width is less than 768px
+                        $("#sub1Menu" + i).toggle(100);
+                    }
+                }
+            }
+        }
+    </script>
+    <!--Revani End-->
+</body>
+</html>

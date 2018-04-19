@@ -1,0 +1,41 @@
+$main-red: #e2524e;
+$darkred: #da4a46;
+$black: #000;
+$darkblue: #126fbd;
+$blue: #3399ed;
+$lightblue: #a8d5f9;
+$brown: #fcefd7;
+$beige: #fcf7e3;
+$font-darkgray: #333;
+$font-gray: #666; //normal color of font;
+$font-lightgray: #999;
+$border-gainsboro: #e1e1e1; //border of all box
+$border-silver: #ebebeb;
+$bg-page: #f2f2f2; //background color of entire pages
+$bg-gray:#f6f6f6;
+$font-white: #fff;
+$bg-white: $font-white;
+$font-warning:#e2524e;
+
+
+/*for font family, normal text choose $font-family-normal*/
+$font-family-bold: MyriadSetPro-Semibold;
+$font-family-thin: MyriadSetPro-Thin;
+$font-family-normal: $font-family-bold;
+
+/* blue button color */
+$btn-blue-light:#268de1;
+$btn-blue-dark:#1881d5;
+$btn-blue-border:#0a65af;
+$btn-blue-fontcolor:#eaf3f9;
+
+//for h1-h6 of  font size
+$normal-font-size: 14px !default;
+$h1-font-size: ceil(($normal-font-size * 2.57)) !default; // ~36px
+$h2-font-size: ceil(($normal-font-size * 2.14)) !default; // ~30px
+$h3-font-size: ceil(($normal-font-size * 2)) !default; // ~28px
+$h4-font-size: ceil(($normal-font-size * 1.71)) !default; // ~24px
+$h5-font-size: floor(($normal-font-size * 1.43)) !default; // ~20px
+$h6-font-size: ceil(($normal-font-size * 1.14)) !default; // ~16px
+$button-size: ceil(($normal-font-size * 1.28)) !default; // ~18px
+$full-width: 100% !default; //for width=100%

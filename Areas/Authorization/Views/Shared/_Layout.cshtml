@@ -1,0 +1,89 @@
+﻿
+<!DOCTYPE html>
+<html ng-app="authorizationRoot">
+<head lang="en">
+    <base href="/">
+    <title ng-bind="'Authorization &mdash; ' +  title"></title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @Styles.Render("~/Content/css")    
+    @Scripts.Render("~/bundles/jquery")
+
+
+</head>
+<body ng-controller="LocalizationController" ng-init="startingPage()">
+    <div class="load" us-spinner="{radius:30, direction: -1,  speed: 2, width:10, length: 0, opacity: 0.6, corners:1, color: '#0A65AF', scale: 0.75, lines: 17}"></div>
+    <div id="blur">
+        <div class="topbar-wrap clearfix">
+            <div class="container">
+            </div>
+        </div>
+        @RenderBody()
+        <script type="text/javascript">
+            window.Console = {};
+            (function (cr) {
+                var rootPath;
+                cr.rootPath = rootPath;
+            }(window.Console));
+            Console.rootPath = '@Url.Content("~")';
+        </script>
+        <script type="text/javascript">
+          /*  $(window).bind("load", function () {
+                var footerHeight = 0,
+                        footerTop = 0,
+                        $footer = $("#footer");
+                positionFooter();
+                function positionFooter() {
+                    footerHeight = $footer.height();
+                    footerTop = ($(window).scrollTop() + $(window).height() - footerHeight) + "px";
+                    if (($(document.body).height() + footerHeight) < $(window).height()) {
+                        $footer.css({
+                            position: "absolute"
+                        }).stop().animate({
+                            top: footerTop
+                        });
+                    } else {
+                        $footer.css({
+                            position: "static"
+                        });
+                    }
+                }
+                $(window).scroll(positionFooter).resize(positionFooter);
+            });*/
+        </script>
+        <!--start footer-->
+        <footer class="footer-wrap clearfix" id="footer">
+            <div class="container">
+                <div class="copyright">
+                    <p>Copyrights © 2015 by ElephantTalk Communications Corp</p>
+                    <div class="contact">
+                        <a href="mailto:info@elephanttalk.com?Subject=Hello%20elephanttalk" target="_blank"><i class="fa fa-envelope-o"></i> info@elephanttalk.com</a>
+                        <a href="callto:68+4567899875"><i class="fa fa-phone-square"></i>68+ 456789 9875</a>
+                        <a href="skype:elephanttalk?call"><i class="fa fa-skype"></i>elephanttalk</a>
+                        <!--<span><i class="icon-envelop"></i> info@elephanttalk.com</span>
+                        <span><i class="icon-phone-hang-up"></i>68+ 456789 9875</span>
+                        <span><i class="icon-skype"></i>elephanttalk</span>-->
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/common_lib")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="@Url.Content("~/Scripts/App.js")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/angular_common")
+
+    <script src="~/Areas/Authorization/Bindings/ViewModels/Modules/AuthorizationApps.js"></script>
+    <script src="~/Scripts/angular-translate.js"></script>
+    <script src="~/Scripts/common/controller/LocalizationController.js"></script>
+    <script src="~/Scripts/common/services/LocalizationService.js"></script>
+    <script src="//www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded&hl=en" async defer></script>
+    @RenderSection("routings", required: false)
+    @RenderSection("controllers", required: false)
+    @RenderSection("services", required: false)
+    @RenderSection("directives",required:false)
+
+</body>
+</html>

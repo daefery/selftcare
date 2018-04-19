@@ -1,0 +1,42 @@
+﻿<div class="role-box">
+    <ul class="role-content">
+        <li class="list-group" ng-repeat="Role in mvnorole">
+            <div class="row" ng-class="{ 'selectedtemp': $index == selectedIndex }" ng-click="getroleid(Role.RoleID); itemClicked($index)">
+                <a ng-class="{ 'tempbackcolor': $index == selectedIndex }" class="list-group-item col-sm-6">{{Role.RoleName}}</a>
+                <label class="checkbox-inline col-sm-6">
+                    <input type="checkbox" id="isroleactive_checkbox" ng-model=Role.IsActive name="isroleactive_checkbox" disabled />
+                    <label for="isroleactive_checkbox"><span></span>{{'isactive' | translate}}</label>
+                </label>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--<div class="role-box">
+    <ul class="role-content">
+        <li class="list-group" ng-repeat="Role in mvnorole">
+            <div class="row" ng-class="{ 'selectedtemp': $index == selectedIndex }" ng-click="getroleid(Role.RoleID); itemClicked($index)">
+                <a style="border:0px;" ng-class="{ 'tempbackcolor': $index == selectedIndex }" class="list-group-item col-sm-6">{{Role.RoleName}}</a>
+                <label class="checkbox-inline col-sm-6">
+                    <input type="checkbox" id="isroleactive_checkbox" ng-model=Role.IsActive name="isroleactive_checkbox" disabled />
+                    <label for="isroleactive_checkbox"><span></span>{{'isactive' | translate}}</label>
+                </label>
+            </div>
+        </li>
+    </ul>
+</div>-->
+
+
+<!--<style>
+    .selectedtemp {
+        font-size: larger;
+    }
+
+    .tempbackcolor{
+        background-color:blanchedalmond;
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->

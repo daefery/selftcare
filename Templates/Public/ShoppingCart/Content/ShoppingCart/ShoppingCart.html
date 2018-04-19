@@ -1,0 +1,235 @@
+﻿<div ng-controller="ShoppingBasketController">
+    <!-- top info block -->
+
+    <div class="cart-info">
+        <div class="container">
+
+            <!-- top cart -->
+            <div class="row no-gutters">
+                <div class="col-md-9 col-sm-9">
+                    <h3 class="page-title">Your Cart</h3>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="right-info">
+                        <span class="cart-counter">
+                            <i class="icon shoppingstore70"></i>
+                            <span class="cart-number">{{(Cart.CartList === undefined ? 0 : Cart.CartList.length)}}</span>
+                        </span>
+                        <p>You have <strong>{{(Cart.CartList === undefined ? 0 : Cart.CartList.length)}}</strong> items in your cart</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end top cart -->
+
+
+
+        </div>
+    </div><!-- /.cart info -->
+    <!-- end top info block -->
+    <div id="top" class="site-content">
+        <div class="shopping-page">
+            <!-- main -->
+            <div class="main-product" ng-hide="Cart.CartList.length===0">
+                <div class="container">
+                    <!-- cart content -->
+                    <!--<div class="summary-title clearfix">
+                        <h3>Your cart</h3>
+                        <button type="button" class="btn btn-default btn-lg" ng-click="ChangeCRPage('customerinfo')">
+                            <i class="icon lock24"></i> Checkout
+                        </button>
+                    </div>-->
+                    <div class="etak-column">
+
+                        <div class="etak-list-group top">
+                            <div class="etak-list number">
+                                <p>No</p>
+                            </div>
+                            <div class="etak-list long">
+                                <p>Item Description</p>
+                            </div>
+                            <div class="etak-list">
+                                <p>
+                                    Price
+                                </p>
+                            </div>
+                            <div class="etak-list">
+                                <p>
+                                    BYOD
+                                </p>
+                            </div>
+                            <div class="etak-list">
+                                <p>
+                                    Port In
+                                </p>
+                            </div>
+
+                            <div class="etak-list action">
+                                &nbsp;
+                            </div>
+                        </div>
+                        
+                    <div class="etak-list-group block" ng-repeat="list in Cart.CartList">
+
+                        <div class="etak-list number">
+                            <p>{{$index+1}}</p>
+                        </div>
+                        <div class="etak-list long">
+                            <div class="item-list-description">
+                                <!-- nested items -->
+                                <div class="item-list-inner" ng-hide="list.isByod">
+                                    <p>{{list.device.names}}</p>
+                                </div>
+                                <div class="item-list-inner">
+                                    <p>{{list.plans.names}}</p>
+                                </div>
+                                <div ng-repeat="mandatory in list.plans.mandatoryFeatures">
+                                    <div class="item-list-inner">
+                                        <p>{{mandatory.parentFeature.names}}</p>
+                                    </div>
+                                    <div class="item-list-inner" ng-repeat="childFeature in mandatory.childFeatures">
+                                        <p>{{childFeature.names}}</p>
+                                    </div>
+
+                                </div>
+                                <div class="item-list-inner" ng-repeat="optFeatures in list.plans.optFeatures">
+                                    <p>{{optFeatures.names}}</p>
+                                </div>
+                                <div class="item-list-inner" ng-repeat="otherProd in list.otherProd">
+                                    <p>{{otherProd.names}}</p>
+                                </div>
+                                <div class="item-list-inner" ng-repeat="cashcard in list.cashCards">
+                                    <p>{{cashcard.qty}} - {{cashcard.names}}</p>
+                                </div>
+                                <div class="item-list-inner" ng-repeat="allowanceCashcard in list.AllowanceCashCard">
+                                    <p>{{allowanceCashcard.qty}} - {{allowanceCashcard.names}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="etak-list">
+                            <!-- nested items -->
+
+                            <div class="item-list-inner" ng-hide="list.isByod">
+                                <p>
+                                    <sup>$</sup>{{list.device.price}}
+                                </p>
+                            </div>
+                            <div class="item-list-inner">
+                                <p>
+                                    <sup>$</sup>{{list.plans.price}}
+                                </p>
+                            </div>
+                            <div ng-repeat="mandatory in list.plans.mandatoryFeatures">
+                                <div class="item-list-inner">
+                                    <p><sup>$</sup>{{mandatory.parentFeature.price}}</p>
+                                </div>
+                                <div class="item-list-inner" ng-repeat="childFeature in mandatory.childFeatures">
+                                    <p><sup>$</sup>{{childFeature.price}}</p>
+                                </div>
+
+                            </div>
+
+                            <div class="item-list-inner" ng-repeat="optFeatures in list.plans.optFeatures">
+                                <p>
+                                    <sup>$</sup>{{optFeatures.price}}
+                                </p>
+                            </div>
+                            <div class="item-list-inner" ng-repeat="otherProd in list.otherProd">
+                                <p>
+                                    <sup>$</sup>{{otherProd.price}}
+                                </p>
+                            </div>
+                            <div class="item-list-inner" ng-repeat="cashCard in list.cashCards">
+                                <p>
+                                    <sup>$</sup>{{cashCard.price}}
+                                </p>
+                            </div>
+                            <div class="item-list-inner" ng-repeat="allowanceCashcard in list.AllowanceCashCard">
+                                <p>
+                                    <sup>$</sup>{{allowanceCashcard.price}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="etak-list">
+                            <div class="item-list-inner">
+                                <div class="checkbox">
+                                    <div class="form-group">
+                                        <input id="isByod_radio_{{$index}}" type="checkbox" name="isByod_checkbox" ng-checked="list.isByod" disabled />
+                                        <label for="isByod_radio_{{$index}}"><span></span>&nbsp;</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="etak-list">
+                            <div class="item-list-inner">
+                                <div class="checkbox">
+                                    <div class="form-group">
+                                        <input id="isPortIn_radio_{{$index}}" type="checkbox" name="isPortIn_checkbox" ng-checked="list.isPortIn" disabled />
+                                        <label for="isPortIn_radio_{{$index}}"><span></span>&nbsp;</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="etak-list action">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="editCartItem(list)"><i class="icon pencil8"></i> edit</button>
+                                <button type="button" class="btn btn-default" ng-click="removeCartItem(list)"><i class="fa fa-trash-o"></i> remove</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="etak-list-group total-price">
+                        <div class="etak-list">
+                            Total Price
+                        </div>
+                        <div class="etak-list">
+                            <p class="ng-binding price-style">
+
+                                <sup>$</sup>{{Cart.calculateOrderedTotalPrice()}}
+
+                            </p>
+                        </div>
+                    </div>
+                        <div class="etak-list-group cart-action">
+                            <div class="etak-list">
+                                <button id="prev_btn" type="button" ng-click="ChangeCRPage('ordering')" class="btn btn-default">Buy more device</button>
+
+
+                            </div>
+                            <div class="etak-list">
+                                <button id="next_btn" type="button" ng-click="NextButtonClick()" class="btn btn-default next" ng-hide="Cart.CartList.length &lt;= 0">Checkout</button>
+
+                            </div>
+                        </div>
+                        </div>
+                    <!-- end cart content -->
+                </div>
+                <!-- /. main -->
+            </div>
+            <div class="main-product" ng-hide="Cart.CartList.length!==0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 col-sm-12">
+                            <div class="cart-notify">
+                                <span class="top-notify-icon">
+                                    <i class="icon shoppingstore70"></i>
+                                </span>
+                                <h3>Your shopping cart is empty</h3>
+                                <p>
+                                    Your Shopping Cart lives to serve. Give it purpose — fill it with elephant talk data
+                                    plan and more.
+                                </p>
+                                <span class="user-choose">
+                                    If you already have an account, <a href="/Authorization/Login">Sign In</a> to see your Cart, Continue shopping,
+                                    learn about today's deals, or visit <a href="/Authorization/Login">elephanttalk selfcare</a>.<br><a href="/public/customer/app/home" class="btn btn-default">Homepage</a>&nbsp; &nbsp;<a ng-click="ChangeCRPage('ordering')" class="btn btn-default">Back to shop</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /. main -->
+        </div>
+    </div>
+</div>

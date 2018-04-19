@@ -1,0 +1,77 @@
+﻿<div class="modal-content etak-modal" ng-controller="AddCommentController">
+    <div class="modal-header">
+        <h3 class="modal-title" id="addcomment_Title">{{addcomment.Title | translate}}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="addcomment.AddCommentUIForm">
+            <div class="top-modal-section clean">
+                <div class="row">
+                    <div class="col-sm-4" ng-show="{{isETAKUser}}">
+                        <div class="box-info">
+                            <label class="control-label" id="addcomment_MVNO">{{'MVNO'| translate}} : {{addcomment.DealerId}}</label>
+                        </div>
+                    </div>
+                    <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                        <div class="box-info">
+                            <label class="control-label" id="addcomment_Phone_Number">{{'Phone_Number'| translate}} : {{addcomment.Mobile}}</label>
+                        </div>
+                    </div>
+                    <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                        <div class="box-info">
+                            <label class="control-label" id="addcomment_Customer_ID">{{'Customer_ID'| translate}} : {{addcomment.CustomerId}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"> {{'Ticket_Code'|translate}}:</label>
+                        <div class="col-sm-8">
+                            <label class="form-control" id="addcomment_Ticket_Code">{{addcomment.TicketCode}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label"> {{'Ticket_Number'|translate}}:</label>
+                        <div class="col-sm-8">
+                            <label class="form-control" id="addcomment_Ticket_Number">{{addcomment.TicketNumber}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="title-lined">
+                <label class="control-label">{{addcomment.TitleLabel |translate}}:</label>
+            </div>
+            <!--<div class="form-group row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-sm-6 control-label">{{addcomment.TitleLabel |translate}}:</label>
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <div class="mid-modal-section">
+                <text-angular ng-model="addcomment.Comment" name="AddCommentEditor" id="{{'texteditor-' + addcomment.Title}}"
+                              ta-text-editor-class=" border-around container" ta-html-editor-class="border-around"
+                              ng-maxlength="{{addcomment.CommentMaxLength}}" maxlength="{{addcomment.CommentMaxLength}}"></text-angular>
+                <span id="AddCommentEditor_Validate_maxlength" ng-show="addcomment.AddCommentUIForm.AddCommentEditor.$error.maxlength" class="help-block with-errors">{{lang.validationmessage.maxlength}}</span>
+                <span class="clear"></span>
+                <div class="btn btn-group btn-option">
+                    <input id="SendMail_checkbox" value="" name="SendMail_checkbox" checked="" type="checkbox" ng-model="SendEmailCommentCheckbox">
+                    <label class="ng-binding" for="SendMail_checkbox"><span></span>{{'Send_Email' | translate}}</label>
+                </div>
+            </div>
+
+            <div class="modal-buttons clearfix">
+                <div class="btn-group pull-right">
+                    <button name="Submit_btn" ng-click="addcomment.AddCommentUIForm.$valid && postComment()" class="btn btn-default pull-right">{{'Submit'|translate}}</button>
+                    <button name="Cancel_btn" data-dismiss="modal" class="btn btn-default">{{'Cancel'|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

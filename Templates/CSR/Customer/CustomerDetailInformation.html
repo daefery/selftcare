@@ -1,0 +1,301 @@
+﻿<div class="row" ng-controller="CustomerDetailSectionController">
+    <div class="col-md-6 col-sm-6">
+        <div class="normal-wrap">
+            <header class="title">
+                <h3><i class="et phone2"></i>{{'Contact_Details' | translate}}</h3>
+                <div class="panel-options">
+                    <ul>
+                        <li>
+                            <button type="button" class="btn-toggle" data-target="#contactDetail" data-toggle="collapse">
+                                <i class="et rounded61"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- for small wrap buttons-->
+            </header>
+            <div id="contactDetail" class="collapse in">
+                <div ng-controller="CustomerActionController">
+                    <div class="split-buttons">
+                        <ul>
+                            <li ng-show="isEditCustomerEnable">
+                                <button type="button" id="custDetail_openCustDetailForm" class="btn btn-default" ng-click="resetEditDetailForm()" data-toggle="modal" data-target="#editCustDetailModal">
+                                    <i class="fa fa-edit"></i> {{'Edit' | translate}}
+                                </button>
+                            </li>
+                            <li ng-show="isDeleteCustomerEnable">
+                                <button type="button" id="custDetail_openDeleteCustomerForm" class="btn btn-default" ng-click="ShowModalDeleteCustomer()">
+                                    <i class="fa fa-trash"></i> {{'Delete_Customer' | translate}}
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal etak-content fade in" id="CustomerActionFreezeUnfreezeDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div ng-include="'Templates/CSR/customer/action/FreezeUnfreezeDelete.html'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-text clearfix">
+                    <dl class="dl-horizontal">
+                        <dt>{{'First_Name' | translate}} : </dt>
+                        <dd id="custDetail_firstName">{{firstName}}</dd>
+                        <dt>{{'Middle_Name' | translate}} : </dt>
+                        <dd id="custDetail_middleName">{{middleName}}</dd>
+                        <dt>{{'Last_Name' | translate}} : </dt>
+                        <dd id="custDetail_lastName">{{lastName}}</dd>
+                        <dt>{{'Gender' | translate}} : </dt>
+                        <dd id="custDetail_gender">{{genders}}</dd>
+                        <dt>{{'Date_of_Birth' | translate}} : </dt>
+                        <dd id="custDetail_birthday">{{birthday}}</dd>
+                        <dt>{{'Id_Type' | translate}} : </dt>
+                        <dd id="custDetail_docType">{{idType}}</dd>
+                        <dt>{{'Id_Number' | translate}} : </dt>
+                        <dd id="custDetail_docNumber">{{idNumber}}</dd>
+                        <dt>{{'Landline_Number' | translate}} : </dt>
+                        <dd id="custDetail_landlineNumber">{{landlineNumber}}</dd>
+                        <!--
+                        <dt>{{'Mobile_Number' | translate}} : </dt>
+                        <dd id="custDetail_mobileNumber">{{mobileNumber}}</dd>
+                        -->
+                        <dt>{{'Alt_Phone_Number' | translate}} : </dt>
+                        <dd id="custDetail_altPhoneNumber">{{altPhoneNumber}}</dd>
+                        <dt>{{'Email' | translate}} : </dt>
+                        <dd id="custDetail_email">{{email}}</dd>
+                        <dt>{{'Delivery_Address' | translate}} : </dt>
+                        <dd id="custDetail_deliveryAddress">{{deliveryAddress}}</dd>
+                        <dt>{{'Customer_Address' | translate}} : </dt>
+                        <dd id="custDetail_customerAddress">{{customerAddress}}</dd>
+                        <dt>{{'Nationality' | translate}} : </dt>
+                        <dd id="custDetail_nationality">{{nationality}}</dd>
+                        <dt>{{'Job_Title' | translate}} : </dt>
+                        <dd id="custDetail_jobTitle">{{jobTitle}}</dd>
+                        <dt>{{'Company' | translate}} : </dt>
+                        <dd id="custDetail_company">{{company}}</dd>
+                        <!--
+                        <dt>{{'COC_No' | translate}} : </dt>
+                        <dd id="custDetail_cocNo">{{cocNo}}</dd>
+                        <dt>{{'VAT_No' | translate}} : </dt>
+                        <dd id="custDetail_vatNo">{{vatNo}}</dd>
+                        -->
+                    </dl>
+                </div>
+                <div ng-controller="SuspendCustomerController">
+                    <div class="split-buttons">
+                        <ul>
+                            <li ng-show="isSuspendCustomerEnable">
+                                <button type="button" id="custDetail_openSuspendCustomerModal" class="btn btn-default" ng-click="ShowModalSuspendCustomer()">
+                                    <i class="fa fa-edit"></i> {{SuspendButtonName | translate}}
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal etak-content fade in" id="SuspendCustomerActionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content etak-modal">
+                                <div>
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">{{SuspendButtonName | translate}}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-sm-12">
+                                            {{SuspendReasonText | translate}}
+                                        </div>
+                                        <etbossform name="SuspendCustomerForm" field="{{SuspendCustomerDatas}}"></etbossform>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="row">
+            <div class="normal-wrap">
+                <header class="title">
+                    <h3><i class="et office"></i>{{'Properties' | translate}}</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#propertiesDetail" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- for small wrap buttons-->
+                </header>
+                <div id="propertiesDetail" class="collapse in">
+                    <div ng-controller="CustDetailModalController">
+                        <div class="split-buttons clearfix">
+                            <ul>
+                                <li ng-show="isModifyCustomerStatusEnable">
+                                    <button type="button" id="custDetail_openModifyCustomerStatusForm" class="btn btn-default" ng-click="openEditStatus()">
+                                        <i class="fa fa-cog"></i> {{'Modify_Customer_Status' | translate}}
+                                    </button>
+                                </li>
+                                <li ng-show="isModifyLanguageSettingEnable">
+                                    <button type="button" id="custDetail_openModifyLanguageSettingForm" class="btn btn-default" ng-click="openEditLanguage()">
+                                        <i class="fa fa-cog"></i> {{'Modify_Language_Setting' | translate}}
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal fade" id="ModifyCustomerStatusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div ng-include="'Templates/CSR/Customer/EditCustomer/EditCustomerStatusPopUp.html'"></div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="ModifyCustomerLanguageSettingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div ng-include="'Templates/CSR/Customer/EditCustomer/EditCustomerLanguageSettingPopUp.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-text clearfix">
+                        <dl class="dl-horizontal">
+                            <!--
+                            <dt>{{'Account_Id' | translate}} : </dt>
+                            <dd id="custDetail_accId">{{products.CustomerData.stringAccountId}}</dd>
+                            -->
+                            <dt>{{'Customer_Id' | translate}} : </dt>
+                            <dd id="custDetail_custId">{{products.CustomerID}}</dd>
+                            <dt>{{'Customer_Status' | translate}} : </dt>
+                            <dd id="custDetail_custStatus">{{customerStatus}}</dd>
+                            <dt>{{'Create_Date' | translate}} : </dt>
+                            <dd id="custDetail_createDate">{{createDate}}</dd>
+                            <dt ng-hide="!isETAKUser">{{'MVNO' | translate}} : </dt>
+                            <dd id="custDetail_mvno" ng-hide="!isETAKUser">{{products.DealerNode}}</dd>
+                            <dt>{{'Language_Setting' | translate}} : </dt>
+                            <dd id="custDetail_langId">{{products.CustomerData.LanguageName}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="normal-wrap">
+                <header class="title">
+                    <h3><i class="fa fa-bank"></i>{{'Bank_Information' | translate}}</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#bankDetail" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- for small wrap buttons-->
+                </header>
+                <div id="bankDetail" class="collapse in">
+                    <div class="panel-text clearfix">
+                        <dl class="dl-horizontal">
+                            <dt>{{'Bank_Account_No' | translate}} : </dt>
+                            <dd id="custDetail_bankNumber">{{products.CustomerData.BankInformation.BankNumber}}</dd>
+                            <dt>{{'Owner' | translate}} : </dt>
+                            <dd id="custDetail_bankOwner">{{products.CustomerData.BankInformation.Owner}}</dd>
+                            <dt>{{'City' | translate}} : </dt>
+                            <dd id="custDetail_bankCity">{{products.CustomerData.BankInformastion.City}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="normal-wrap ml-15">
+        <header class="title has-block-btn">
+            <h3><i class="et curriculum3"></i>{{'Remarks' | translate}}</h3>
+            <div class="panel-options">
+                <ul>
+                    <li>
+                        <button type="button" id="custDetail_modifyRemarkbtn" class="btn btn-default" data-toggle="modal" data-target="#editCustRemarksModal">
+                            <i class="fa fa-edit"></i> {{'Edit' | translate}}
+                        </button>
+                    </li>
+                    <li>
+                        <button id="custDetail_removeRemarkBtn" class="btn btn-default" data-toggle="modal" data-target="#deleteCustRemarkConfModal">
+                            <i class="fa fa-trash"></i> {{'Remove' | translate}}
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn-toggle" data-target="#remarksDetail" data-toggle="collapse">
+                            <i class="et rounded61"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="remarksDetail" class="collapse in">
+            <div class="panel-text clearfix">
+                <dl id="custDetail_remark" class="dl-horizontal col-sm-12 col-xs-12">
+                    {{remark}}
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal etak-content fade" id="editCustDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        <i class="et delete8"></i>
+                    </span>
+                </button>
+                <h3 class="modal-title"><i class="et customerservice8"></i> {{'edit_cust_detail'|translate}}</h3>
+                <!--<h3 class="modal-title">{{'edit_cust_detail'|translate}}</h3>-->
+            </div>
+            <div class="modal-body nopad">
+                <etbossform type="split" name="editcustomerdetail" ng-controller="UpdateCustomerDetailFormController" field="{{datas}}"></etbossform>
+            </div>
+            <!--<div class="modal-footer">
+
+            <button type="button" id="btnSubmitChangeCustDetail" class="btn btn-default" ng-controller="UpdateCustomerDetailFormController" ng-click="saveChangesGeneral(update)" ng-disabled="editcustomerdetail.$invalid">{{'Submit'|translate}}</button>
+            <button type="button" id="btnCancelEditCustDetail" class="btn btn-default" data-dismiss="modal">{{'Close'|translate}}</button>
+
+            </div>-->
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editCustRemarksModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'Edit_remarks'|translate}}</h3>
+            </div>
+            <div class="modal-body without-footer">
+                <etbossform name="editremarks" ng-controller="EditCustomerRemarksController" field="{{datas}}"></etbossform>
+            </div>
+            <!--<div class="modal-footer">
+
+                <button type="button" id="btnSubmitCustRemarks" class="btn btn-default" ng-controller="EditCustomerRemarksController" ng-click="modifyRemark(update)" ng-disabled="editremarks.$invalid">{{'Submit'|translate}}</button>
+                <button type="button" id="btnCancelEditCustRemarks" class="btn btn-default" data-dismiss="modal">{{'Close'|translate}}</button>
+
+            </div> -->
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteCustRemarkConfModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'Edit_remarks'|translate}}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{{'delete_remarks_confirmation' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSubmitDeleteCustRemarks" class="btn btn-default" ng-controller="EditCustomerRemarksController" ng-click="removeRemark(update)">OK</button>
+                <button type="button" id="btnCancelDeleteCustRemarks" class="btn btn-default" data-dismiss="modal">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

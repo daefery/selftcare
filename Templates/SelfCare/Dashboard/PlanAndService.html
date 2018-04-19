@@ -1,0 +1,41 @@
+﻿<div class="enroled-entry">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-4">
+            <span class="etcircle-icon big">
+                <i class="et customerservice8"></i>
+            </span>
+        </div>
+        <div class="col-md-10 col-sm-8">
+            <h3>Current Subscription</h3>
+            <!--<p>
+                <strong>Family 2000 Talk & Text 6GB</strong> 2000 Whenever minutes Unlimited & Weekends Unlimited Mobile to
+                Mobile
+            </p>-->
+            <div class="col-sm-12 no-pad">
+                <div class="col-sm-12 no-pad">
+                    <div class="col-sm-2 no-pad">Plan</div>
+                    <div class="col-sm-1 no-pad" style="width: 10px;">:</div>
+                    <div class="col-sm-9 no-pad">{{Products.CurrentPlan}}</div>
+                </div>
+                <div class="col-sm-12 no-pad">
+                    <div class="col-sm-2 no-pad">Features</div>
+                    <div class="col-sm-1 no-pad" style="width: 10px;">:</div>
+                    <div class="col-sm-9 no-pad">
+                        <ul>
+                            <li ng-repeat="item in Products.CurrentServiceAndPromotion">
+                                - {{item.Name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a href="/SelfCare/Customer/App/PlanServices" ng-show="isChangePlanButtonEnable" class="btn btn-default rounded">Manage Service</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

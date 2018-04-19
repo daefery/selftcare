@@ -1,0 +1,51 @@
+﻿<section class="selfcare-site" ng-show="isStartCompiled" style="margin-top: 68px;">
+    ﻿<div class="inner-page">
+        <div class="inner-selfcare">
+            <div class="container">
+                <div class="panel-data">
+                    <div class="title-selfcare" style="height: 100px;">
+                        <div class="user-info">
+                            <div class="user-icon">
+                                <i class="et maleuser"></i>
+                            </div>
+                            <h3>Welcome</h3>
+                            <h5 ng-bind="Username" class="ng-binding"></h5>
+                        </div>
+                    </div>
+                    <div class="service-item" style="padding-top:0;">
+                        <div class="no-padding" ng-show="ZeroActiveDevice">
+                            <div style="background-color:#f1f1f1;padding:0 0 10px 2%">
+                                <i class="fa fa-times" style="font-size: 48px; color:red"></i><span style="font-size: 27px;margin-left:10px">Sorry,</span>
+                                <p style="font-weight:bold">The service is unavailable because you don't have any actived device</p>
+                                <p>Here are the following option available to you</p>
+                                <div class="col-sm-12">
+                                    <p>To continue using selfcare application</p>
+                                    <p>
+                                        <span>Activate Your Device</span>
+                                        <span class="pull-right">Link</span>
+                                    </p>
+                                    <p>
+                                        <span>Buy Subscription</span>
+                                        <span class="pull-right"><a href="/SelfCare/Customer/App/BuyMore/Device">Link</a></span>
+                                    </p>
+                                    <p>
+                                        <span>View Your Profile</span>
+                                        <span class="pull-right">Link</span>
+                                    </p>
+                                </div>
+                                <p>If you have any other question, please <a>contact us</a></p>
+                            </div>
+                        </div>
+                        <div class="no-padding" ng-hide="ZeroActiveDevice">
+                            <h5>Your selfcare account has multi-subscriptions,</h5>
+                            <p>to continue using this application please select one of subscriptions below</p>
+                            <div ng-include="'Templates/SelfCare/Devices/DeviceSlickCollection.html'"></div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

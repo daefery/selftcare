@@ -1,0 +1,157 @@
+﻿<!--<style>
+    .selectedtemp {
+        font-size: larger;
+    }
+
+    .tempbackcolor {
+        background-color: blanchedalmond;
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->
+
+<style>
+    .hidecheckbox{
+        display:none;
+    }
+</style>
+
+<div class="normal-wrap custom" ng-controller="ModuleSecureSectionController">
+    <header class="title">
+        <h3><i class="et shield20"></i>Secured Section</h3>
+        <div class="panel-options" ng-show="isAddSSEnable">
+            <ul>
+                <li>
+                    <button type="button" data-toggle="modal" ng-click="listforadd()" ng-disabled="isEnableAccandSS()" data-target="#secsecModal" class="btn btn-default btn-sm"><i class="et addition12"></i> {{'Add' | translate}}</button>
+                </li>
+                <li>
+                    <button type="button" data-toggle="modal" ng-click="listforedit()" ng-disabled="isSSSelected()" data-target="#modSSModal" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> {{'Edit' | translate}}</button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="panel-data">
+        <!--<ul>
+            <li class="" ng-repeat="ModuleSecureSection in sections">
+                    {{ModuleSecureSection.SectionName}}
+            </li>
+        </ul>-->
+        <ul style="margin-left:10px">
+            <li class="row" ng-repeat="ModuleSecureSection in sections">
+                <!--<div class="col-sm-12" ng-class="{ 'selectedtemp': $index == selectedIndex }" ng-click="SSdetails(ModuleSecureSection.SectionID); itemClicked($index)">-->
+                <a style="border:0px;" ng-class="{ 'tempbackcolor': $index == selectedIndex }" ng-click="SSdetails(ModuleSecureSection.SectionID); itemClicked($index)" class="list-group-item col-sm-6">{{ModuleSecureSection.SectionName}}</a>
+                <!--</div>-->
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<!--<div class="normal-wrap">
+    <header class="title">
+    <h3>Secured Section</h3>
+    <div class="panel-options">
+      <ul>
+        <li>
+            <button type="button" data-toggle="modal" data-target="#secsecModal" class="btn btn-default">{{'EDIT' | translate}}</button>
+        </li>
+      </ul>
+    </div>
+</header>
+<div class="panel-data">
+    <ul>
+            <li class="" ng-repeat="ModuleSecureSection in sections">
+                {{ModuleSecureSection.SectionName}}
+            </li>
+        </ul>
+</div>
+</div>-->
+
+
+
+
+
+<!--<section class="normal-wrap">
+    <header class="bg-gray title wrap-padding">
+        <ul>
+            <li class="btn-active" style="margin-top:-20px"><button type="button" data-toggle="modal" data-target="#secsecModal" class="btn btn-default">{{'EDIT' | translate}}</button></li>
+        </ul>
+        <h6>Secured Section</h6>
+    </header>
+    <div>
+        <ul>
+            <li class="" ng-repeat="ModuleSecureSection in sections">
+                {{ModuleSecureSection.SectionName}}
+            </li>
+        </ul>
+    </div>
+</section>-->
+
+<div id="secsecModal" class="modal fade" role="dialog" ng-controller="Testing1Controller">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Add_Secure_Section' | translate}}</h3>
+            </div>
+            <div class="modal-body" style="height:240px">
+               
+                   <div class="has-etboss" style="width:70%; float:left">
+                       <etbossform value="AddSecureSecFormController" name="addsecuresecform" ng-controller="AddSecureSecForm" field="{{datas}}"></etbossform>
+                   </div>
+                <div class="container panel-data" style="width:28%; float:left; margin-top:-18px">
+                    <ul>
+                        <li>Grant access to MVNO:</li>
+                        <li class="" ng-repeat="MvnoDetail in mvnolist">
+                            <label class="checkbox-inline" ng-class="{ 'hidecheckbox': MvnoDetail.showcheckbox == false }">
+                                <input id="{{MvnoDetail.orgid}}" ng-click="mvnossSelection(MvnoDetail.orgid)" ng-checked="mvnosslist.indexOf(MvnoDetail.orgid) > -1" type="checkbox" value="{{MvnoDetail.orgid}}" name="{{MvnoDetail.orgid}}" ng-hide="false" />
+                                <label for="{{MvnoDetail.orgid}}"><span></span>{{MvnoDetail.mvnoname}}</label>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modSSModal" class="modal fade" role="dialog" ng-controller="Testing2Controller">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Modify_Secure_Section' | translate}}</h3>
+            </div>
+            <div class="modal-body" style="height:300px">
+             
+                    <!--<div class="col-sm-12" style="margin-bottom:10px">
+                    <label for="parentmoduleid" class="col-sm-6">{{'Select_Secure_Section' | translate}}</label>
+                    <select id="parentmoduleid" ng-change="SSdetails(adjtype)" ng-model="adjtype" class="form-control col-sm-6" style="width:200px;"> style=" width:200px; margin-left:30%; margin-bottom:20px;"
+                        <option ng-repeat="ModuleSecureSection in sections" value="{{ModuleSecureSection.SectionID}}">{{ModuleSecureSection.SectionName}}</option>
+                    </select>
+                </div><br />-->
+                    <!--<div class="col-md-12">
+                        <etbossform name="modsecuresecform" ng-controller="ModSecureSecForm" field="{{datas}}"></etbossform>
+                    </div>-->
+                <div class="has-etboss" style="width:70%; float:left">
+                    <etbossform name="modsecuresecform" ng-controller="ModSecureSecForm" field="{{datas}}"></etbossform>
+                </div>
+                <div class="container panel-data" style="width:28%; float:left; margin-top:-18px">
+                    <ul>
+                        <li>Grant access to MVNO:</li>
+                        <li class="" ng-repeat="MvnoDetail in mvnolist">
+                            <label class="checkbox-inline" ng-class="{ 'hidecheckbox': MvnoDetail.showcheckbox == false }">
+                                <input id="{{MvnoDetail.orgid}}" ng-click="mvnossSelection(MvnoDetail.orgid)" ng-checked="mvnosslist.indexOf(MvnoDetail.orgid) > -1" type="checkbox" value="{{MvnoDetail.orgid}}" name="{{MvnoDetail.orgid}}" ng-hide="false" />
+                                <label for="{{MvnoDetail.orgid}}"><span></span>{{MvnoDetail.mvnoname}}</label>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

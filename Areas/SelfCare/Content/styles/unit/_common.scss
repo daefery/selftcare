@@ -1,0 +1,127 @@
+body{
+  background: $bg-page;
+  font-size: $normal-font-size;
+  font-family: "Open Sans", sans-serif;
+  color: $font-gray;
+}
+a {
+  color: $darkblue;
+}
+a:hover, a:focus{color:$blue ;}
+.bottom-space{
+  margin-bottom: 20px;
+}
+%li-clear-default{
+  ul, ul li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+%line{
+  height: 2px;
+  font-size: 0;
+  overflow: hidden;
+  border-width: 0;
+}
+.line{
+  /* The dividing line between Box */
+   @extend %line;
+   border-top: 1px solid $border-gainsboro;
+ }
+ .sub-line{
+   /*  The dividing line between the contents in the Box*/
+  @extend %line;
+  background-color: $font-white;
+  border-top: 1px solid $border-silver;
+}
+.table{
+  >thead{
+    >tr{
+      >th{
+        font-weight: 600;
+        padding: 20px 8px;
+        color: $font-darkgray;
+        border-bottom: 1px solid $border-silver;
+      }
+    }
+  }
+  >tbody{
+    >tr{
+      >td{
+        padding: 8px 8px;
+        border-top:0;
+      }
+    }
+  }
+}
+
+.normal-wrap{
+  @extend %normal-wrap;
+  margin-bottom: 20px;
+  min-height: 200px;
+  padding: 0 15px;
+  .text-content{
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .clear-wrap-padding{
+    margin: 0 -15px;
+  }
+
+  .title{
+    /*default title*/
+    @extend %li-clear-default;
+    padding: 26px 0 17px 0;
+    text-transform: uppercase;
+    ul{
+      li{
+        float: right;
+        padding-left: 15px;
+      }
+    }
+    a{
+      color:$font-gray;
+      text-decoration: none;
+    }
+    a:hover{color:$font-lightgray;}
+  }
+  .bg-subsearch{
+    /*this search is gray background in the box*/
+    padding:3px 15px;
+    border-top:1px solid $border-gainsboro;
+    border-bottom:1px solid $border-gainsboro;
+    margin-bottom: 2px;
+  }
+}
+.disc-blue,.disc-red,.disc-lightgray{
+  /*for list style.*/
+  display:inline-block;
+  height: 10px;
+  width:10px;
+  border-radius: 5px;
+  margin-right: 10px
+}
+.disc-blue{background-color: $blue;}
+.disc-red{ background-color: $main-red;}
+.disc-lightgray{ background-color: rgba($font-lightgray, .8);}
+.notice,.font-lightgray{color: rgba($font-lightgray, .8);}
+.loadmore{ text-align: center; display: block;   padding-top:10px; font-size:12px; }
+.font-blue{ color: $blue;}
+.font-red{ color: $main-red;}
+.bg-gray{ background-color: $bg-gray;}
+
+@media (min-width:1200px){
+  .container {
+    /* clearing the padding override the old template,let the page become wider */
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+@media (max-width:1200px) {
+  .box-wrap{
+    h2, p, {text-align: center;}
+
+  }
+}

@@ -1,0 +1,27 @@
+﻿<!--
+<div class="page-sidebar navbar-collapse">
+    <ul id="sidebar" class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+        <li>
+            <a id="mdlmgt" href="/CSR/Customer/App/TroubleTickets/Dashboard" active-link="active" class="list-group-item">
+                <span class="title">{{'Browse_TT' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a id="rolemgt" href="/CSR/Customer/App/TroubleTickets/SupportRequest" active-link="active" class="list-group-item">
+                <span class="title">{{'Support_Request_TT' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a id="usermgt" href="/CSR/Customer/App/TroubleTickets/Statistics" active-link="active" class="list-group-item">
+                <span class="title">{{'Statistics_TT' | translate}}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+-->
+
+<aside class="page-sidebar" ng-controller="TTDashboardSidebarController">
+    <ul id="sidebar" class="page-sidebar-menu">
+        <div ng-include="'Templates/Common/DynamicNavigation/SidebarTree.html'"></div>
+    </ul>
+</aside>

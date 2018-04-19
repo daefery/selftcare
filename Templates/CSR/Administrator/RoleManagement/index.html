@@ -1,0 +1,58 @@
+﻿<!--
+    Created and added by:
+    Mahdi Badari
+    Module Management HTML content
+    created 06 nov 2015
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div ng-include="'templates/csr/administrator/SideBar/SideBar.html'"></div>
+        </div>
+        <div class="col-md-9 col-sm-9">
+
+                <div class="normal-wrap clearfix">
+                    <header class="title">
+                        <h3><i class="et world33"></i>Role Management</h3>
+                        <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#roleDetail" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                        </div>
+                    </header>
+                    <div id="roleDetail" class="collapse in">
+                        <div class="panel-data">
+                            <div ng-include="'templates/csr/administrator/rolemanagement/Content/RoleManagementContent.html'"></div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container">
+    <div class="row">
+        <section class="col-sm-3 col-xs-12">
+            <!--Load the sidebar, TODO make common side bar-->
+            <!-- <div ng-include="'templates/csr/administrator/SideBar/SideBar.html'"></div>
+        </section>
+        <section class="col-sm-9 col-xs-12" style=""> -->
+            <!--Load the role management page, TODO change to directive route-->
+            <!-- <div class="row">
+                <div class="col-sm-14 col-xs-14"> -->
+                    <!--col-sm-12 col-xs-12-->
+                    <!-- <section class="normal-wrap">
+                        <div ng-include="'templates/csr/administrator/rolemanagement/Content/RoleManagementContent.html'"></div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>  -->

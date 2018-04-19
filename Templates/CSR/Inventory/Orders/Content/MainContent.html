@@ -1,0 +1,29 @@
+﻿<div class="normal-wrap has-reset">
+    <div class="title">
+        <h3><i class="et calculation3"></i>{{'Order_Management' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#orderMgt" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="orderMgt" class="panel-data has-etboss collapse in" style="margin-left:20px; margin-right:20px">
+        <div class="single-row" ng-hide="{{!isETAKUser}}">
+            <div class="form-group col-sm-12">
+                <div class="col-sm-6">
+                    <label style="margin-left:-30px" for="parentmoduleid">{{'MVNO' | translate}}</label>
+                </div>
+                <div class="col-sm-6">
+                    <select ng-disabled="{{!isETAKUser}}" ng-model="search.mvno" class="form-control" required>
+                        <option ng-selected="usearch.mvno == MvnoDetail.orgid" ng-repeat="MvnoDetail in mvnolist" value="{{MvnoDetail.orgid}}">{{MvnoDetail.mvnoname}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <etbossform name="ordersearchform" ng-controller="OrderSearchForm" field="{{datas}}"></etbossform>
+    </div>
+</div>

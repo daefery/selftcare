@@ -1,0 +1,23 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+    <h3 class="modal-title">{{'Modify_Role' | translate}}</h3>
+</div>
+<div class="modal-body">
+    <form role="form" novalidate class="simple-form">
+        <etbossform name="rolestatusform" ng-controller="RoleStatusForm" field="{{datasrole}}"></etbossform>
+        <div class="row bordered">
+            <div class="col-sm-12">
+                <div class="etak-tree mid">
+                    <treecontrol class="tree-classic" tree-model="addroletree" selected-nodes="selectedNodes" options="treeoptions">
+                        <input ng-checked="rolelist.indexOf(node.ModuleID) > -1" ng-click="toggleSelection(node)" id="{{node.ModuleID}}" type="checkbox" ng-hide="false" />
+                        <label for="{{node.ModuleID}}"><span></span>{{node.ModuleName}}</label>
+                    </treecontrol>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" style="margin-top:0px" class="btn btn-default" ng-disabled="isRoleChanged()" ng-click="modifyrole(products)">Save</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+</div>

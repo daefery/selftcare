@@ -1,0 +1,688 @@
+﻿<!-- Rico Hartono Jahja
+Modified 21.10.2015
+    applying the latest design -->
+<div ng-controller="CustomerDashboardSectionController">
+    <!-- START : CUSTOMER INFORMATION PANEL -->
+    <div class="normal-wrap dash-search">
+        <div class="title clearfix">
+            <h3><i class="et office"></i>{{'Customer_Information'|translate}}</h3>
+            <div class="panel-options">
+                <ul>
+                    <li>
+                        <button type="button" class="btn-toggle" data-target="#customerinfoContent" data-toggle="collapse">
+                            <i class="et rounded61"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <a id="dashboard_gotoCustDetailBtn" href="/CSR/Customer/App/SearchPage/CustomerDetailDashboard">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="collapse in" id="customerinfoContent">
+            <div class="panel-data">
+                <div class="row">
+                    <dl class="dl-horizontal col-sm-6 col-xs-12">
+                        <dt>{{'Name'|translate}} : </dt>
+                        <dd id="dashboard_fullName">{{products.Customer.CustomerData.FirstName}} {{products.Customer.CustomerData.LastName}}</dd>
+                        <dt>{{'Nationality'|translate}} : </dt>
+                        <dd id="dashboard_nationality">{{nationality}}</dd>
+                        <dt>{{'Date_of_Birth'|translate}} : </dt>
+                        <dd id="dashboard_birthday">{{birthday}}</dd>
+                        <dt>{{'Customer_Id'|translate}} : </dt>
+                        <dd id="dashboard_custId">{{products.Customer.CustomerID}}</dd>
+                    </dl>
+                    <dl class="dl-horizontal col-sm-6 col-xs-12">
+                        <dt>{{'Id_Type'|translate}} : </dt>
+                        <dd id="dashboard_docType">{{idType}}</dd>
+                        <dt>{{'Id_Number'|translate}} : </dt>
+                        <dd id="dashboard_docNumber">{{products.Customer.CustomerData.DocumentNumber}}</dd>
+                        <dt>{{'Customer_Status'|translate}} : </dt>
+                        <dd id="dashboard_custStatus">{{customerStatus}}</dd>
+                        <dt>{{'Bank_Account_No'|translate}} : </dt>
+                        <dd id="dashboard_bankNumber">{{products.Customer.CustomerData.BankInformation.BankNumber}}</dd>
+                    </dl>
+                    <dl class="dl-horizontal col-sm-12 col-xs-12">
+                        <dt ng-hide="!isETAKUser">{{'MVNO'|translate}} : </dt>
+                        <dd id="dashboard_mvno" ng-hide="!isETAKUser">{{products.Customer.DealerNode}}</dd>
+                        <dt>{{'Delivery_Address'|translate}} : </dt>
+                        <dd id="dashboard_deliveryAddress">{{deliveryAddress}}</dd>
+                        <dt>{{'Customer_Address'|translate}} : </dt>
+                        <dd id="dashboard_customerAddress">{{customerAddress}}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END : CUSTOMER INFORMATION PANEL -->
+    <!-- START : OPEN TROUBLE TICKET -->
+    <div class="normal-wrap dash-search" ng-controller="paginationController">
+        <div class="title clearfix">
+            <h3><i class="et editing5"></i>{{'Open_TT'|translate}}</h3>
+            <div class="panel-options">
+                <ul>
+                    <li ng-show="isCustomerSummary_DetailTTEnable">
+                        <a id="dashboard_btn_viewticket" ng-href="{{LinkToDetailTT}}" class="btn btn-default btn-sm btn-theme" role="button" ng-show="isCustomerSummary_DetailTTEnable">
+                            {{'Details'|translate}} {{'Trouble Ticket'|translate}}
+                        </a>
+                    </li>
+                    <li ng-show="isCustomerSummary_NewTTEnable">
+                        <a id="dashboard_btn_createticket" type="button" class="btn btn-default btn-sm btn-theme" ng-click="OpenCreateTTModal()" ng-show="isCustomerSummary_NewTTEnable">
+                            <i class="et pencil41"></i>&nbsp;{{'New_TT'|translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <button type="button" class="btn-toggle" data-target="#createticketContent" data-toggle="collapse">
+                            <i class="et rounded61"></i>
+                        </button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="collapse in" id="createticketContent">
+            <div class="panel-data">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dashboard_TTtable">
+                                <thead class="table-head">
+                                    <tr>
+                                        <th ng-click="sort('Department.Name')">
+                                            {{'Department'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Department.Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('MSISDN')">
+                                            {{'MSISDN'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='MSISDN'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('TicketCode')">
+                                            {{'Ticket_Code'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='TicketCode'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('TicketNumber')">
+                                            {{'Ticket_No'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='TicketNumber'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('OperatorInfo.FullName')">
+                                            {{'Submitted_By'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='OperatorInfo.FullName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('ReportTime')">
+                                            {{'Report_Time'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='ReportTime'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('UpdateTime')">
+                                            {{'Update_Time'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='UpdateTime'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('Class.Name')">
+                                            {{'Incident_Class'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Class.Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('Priority.Name')">
+                                            {{'Priority'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Priority.Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sort('Status.Name')">
+                                            {{'Status'| translate}}
+                                            <span class="glyphicon sort-icon" ng-show="sortKey=='Status.Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="item in TroubleTicket| orderBy:sortKey:reverse| itemsPerPage:5" pagination-id="Pagination_ViewOpenTT"
+                                        ng-class=" {'selected':item.TicketNumber==selectedTT.TicketNumber}" ng-click="setClickedTTRow(item)">
+                                        <td>{{item.Department.Name}}</td>
+                                        <td>{{item.MSISDN}}</td>
+                                        <td>{{item.TicketCode}}</td>
+                                        <td>{{item.TicketNumber}}</td>
+                                        <td>{{item.OperatorInfo.FullName}}</td>
+                                        <td class="text-nowrap">{{item.ReportTime}}</td>
+                                        <td class="text-nowrap">{{item.UpdateTime}}</td>
+                                        <td>{{item.Class.Name}}</td>
+                                        <td>{{item.Priority.Name}}</td>
+                                        <td>{{item.Status.Name}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <dir-pagination-controls max-size="10"
+                                                     direction-links="true"
+                                                     boundary-links="true"
+                                                     pagination-id="Pagination_ViewOpenTT"
+                                                     ng-show="TroubleTicket.length">
+                            </dir-pagination-controls>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CreateTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/CreateTT.html'"></div>
+        </div>
+    </div>
+
+    <!-- END : OPEN TROUBLE TICKET -->
+    <!-- START: MULTI DEVICES INFO-->
+    <div class="normal-wrap dash-search" ng-show="isParentChild">
+        <div class="title clearfix">
+            <h3><i class="et editing5"></i>{{'Multi_Devices_Info'|translate}}</h3>
+            <div class="panel-options">
+                <ul>
+                    <li>
+                        <button id="dashboard_btn_switchdevice" type="button" class="btn btn-default btn-sm btn-theme" ng-disabled="isMDevSelected()" ng-click="OpenSwitchDevice()">
+                            <i class="et pencil41"></i>&nbsp;{{'Switch_Devices'|translate}}
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn-toggle" data-target="#createmultiDevice" data-toggle="collapse">
+                            <i class="et rounded61"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="collapse in" id="createmultiDevice">
+            <div class="panel-data">
+                <div class="table-responsive">
+                    <table class="table" id="dashboard_Devices">
+                        <thead class="table-head">
+                            <tr>
+                                <th>#</th>
+                                <th ng-click="sort('CustomerId')">
+                                    {{'Customer_ID'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='CustomerId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('MSISDN')">
+                                    {{'Phone_Number'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='MSISDN'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('SubscriptionStatus')">
+                                    {{'Customer_Status'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='SubscriptionStatus'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('SimCardStatus')">
+                                    {{'SIM_Status'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='SimCardStatus'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('SubmittedBy')">
+                                    {{'Create_Date'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='SubmittedBy'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('Name')">
+                                    {{'Customer_Name'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in viewmultidevices" ng-class=" {'devselected':item.MSISDN==selecteddev}" ng-click="setSelectedDev(item.MSISDN)">
+                                <td>{{$index + 1}}</td>
+                                <td>{{item.CustomerId}}</td>
+                                <td>{{item.MSISDN}}</td>
+                                <td>{{item.SubscriptionStatus}}</td>
+                                <td>{{item.SimCardStatus}}</td>
+                                <td>{{item.CreateDate}}</td>
+                                <td>{{item.Name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<style>
+        .devselected {
+            background-color: #ffa;
+            color: black;
+            font-weight: bold;
+            opacity: 0.8;
+            filter: alpha(opacity=40);
+        }
+
+        .fullwidth {
+            width: 100%;
+        }
+    </style>-->
+
+    <div class="modal fade" id="SwitchDevice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div ng-include="'Templates/CSR/Customer/Action/SwitchDevice.html'"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AdjustBalance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div ng-include="'Templates/CSR/Customer/Balance/BalanceAdjustment.html'"></div>
+        </div>
+    </div>
+    <!-- END: MULTI DEVICES INFO -->
+
+    <div class="modal fade" id="ManageAutoPay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div ng-include="'Templates/CSR/Customer/Subscription/AutoPay.html'"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- START : MULTISUBSCRIPTION INFORMATION PANEL -->
+        <div ng-include="'Templates/CSR/Search/MultiSubscription.html'" ng-show="ShowMultiSubscription"></div>
+        <!-- END : MULTISUBSCRIPTION INFORMATION PANEL -->
+    </div>
+
+    <div class="row">
+        <!-- START : SUBSCRIPTION INFORMATION PANEL -->
+        <div ng-controller="CustomerActionController">
+            <div class="col-lg-12 col-md-12">
+                <div class="normal-wrap dash-search">
+                    <div ng-controller="DeactivateSubscriptionController">
+                        <div class="title clearfix">
+                            <h3>{{'Subscription_Info'|translate}}</h3>
+                            <div class="panel-options">
+                                <ul>
+                                    <li ng-show="isCustomerSummary_UpdateSubscriptionOptionsEnable">
+                                        <button type="button" class="btn btn-default btn-sm btn-theme" ng-show="isCustomerSummary_UpdateSubscriptionOptionsEnable">
+                                            {{'Update_Subscription_Options'|translate}}
+                                        </button>
+                                    </li>
+                                    <li ng-show="isCustomerSummary_AdjustBalanceEnable">
+                                        <button type="button" class="btn btn-default btn-sm btn-theme" ng-show="isCustomerSummary_AdjustBalanceEnable">
+                                            {{'Adjust_Balance'|translate}}
+                                        </button>
+                                    </li>
+                                    <li ng-show="isCustomerSummary_ButtonActionEnable">
+                                        <button type="button" class="btn btn-default btn-sm btn-theme" ng-click="ShowModalCustomerAction()" ng-show="isCustomerSummary_ButtonActionEnable">
+                                            {{ButtonActionName|translate}}
+                                        </button>
+                                    </li>
+                                    <li ng-show="isCustomerSummary_DeactivateSubscriptionEnable">
+                                        <button type="button" class="btn btn-default btn-sm btn-theme" ng-click="ShowModalDeactivateSubscription()" ng-show="isCustomerSummary_DeactivateSubscriptionEnable">
+                                            {{'Deactivate' |translate}}
+                                        </button>
+
+                                    </li>
+                                    <li ng-show="isCustomerSummary_ManageAutoPayEnable">
+                                        <button type="button" class="btn btn-default btn-sm btn-theme" ng-click="OpenAutoPay()" ng-show="isCustomerSummary_ManageAutoPayEnable">
+                                            {{'Manage_AutoPay'|translate}}
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn-toggle" data-target="#subscribeContent" data-toggle="collapse">
+                                            <i class="et rounded61"></i>
+                                        </button>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="modal etak-content fade in" id="DeactivateSubscriptionActionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <!--<div ng-include="'Templates/CSR/Customer/Subscription/DeactivateSubscription.html'"></div>-->
+                                <div class="modal-content etak-modal">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="DeactivateTitle">{{'Deactivate' | translate}}</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <etbossform name="DeactivateForm" field="{{DeactivateSubscriptionDatas}}"></etbossform>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse in" id="subscribeContent">
+                        <div class="panel-data">
+                            <div class="row">
+                                <dl class="dl-horizontal col-sm-6 col-xs-12">
+                                    <div>
+                                        <h6>{{'Subscription_Information'|translate}}</h6>
+                                        <dt></dt>
+                                        <dd></dd>
+                                        <dt>{{'Subscription_ID'|translate}} : </dt>
+                                        <dd id="dashboard_Subscription_ID">{{SelectedSubscription.Subscription.SubscriptionId}}</dd>
+                                        <dt>MDN/MSISDN : </dt>
+                                        <dd id="dashboard_MSISDN">{{SelectedSubscription.Subscription.MSISDN}}</dd>
+                                        <dt>ICC ID : </dt>
+                                        <dd id="dashboard_ICCID">{{SelectedSubscription.SimCard.ICCID}}</dd>
+                                        <dt>IMSI : </dt>
+                                        <dd id="dashboard_IMSI">{{SelectedSubscription.SimCard.IMSI1}}</dd>
+                                        <dt>{{'Subscription_Type'|translate}} : </dt>
+                                        <dd id="dashboard_subscriberType">{{SelectedSubscription.Subscription.subscriptionType}}</dd>
+                                        <dt>{{'Subscription_Category'|translate}} : </dt>
+                                        <dd id="dashboard_subscriptionCategory">{{SelectedSubscription.Subscription.subscriptionCategory}}</dd>
+                                        <dt>{{'subscription_status'|translate}}</dt>
+                                        <dd id="dashboard_subscriptionStatus">{{SelectedSubscription.Subscription.subscriptionStatus}}</dd>
+                                        <dt>{{'SIM_Status'|translate}} : </dt>
+                                        <dd id="dashboard_simStatus">{{SelectedSubscription.SimCard.simStatus}}</dd>
+                                        <dt>{{'Created_Date'|translate}} : </dt>
+                                        <dd id="dashboard_createDate">{{SelectedSubscription.Subscription.createdDate}}</dd>
+                                        <dt>{{'First_Used'|translate}} : </dt>
+                                        <dd id="dashboard_firstUsed">{{SelectedSubscription.Subscription.firstUsed}}</dd>
+                                        <dt>{{'Balance'|translate}} : </dt>
+                                        <dd id="dashboard_balance">{{SelectedSubscription.Subscription.Balance}}</dd>
+                                        <dt></dt>
+                                        <dd></dd>
+                                    </div>
+                                    <div ng-show="isSubscriptionOptionsEnable">
+                                        <h6>{{'Subscription_Options'|translate}}</h6>
+                                        <dt></dt>
+                                        <dd></dd>
+                                        <div class="checkbox">
+                                            <div class="col-sm-6 form-group">
+                                                <input type="checkbox" id="Voice_Mail_checkbox" value="" name="Voice_Mail_checkbox" ng-model="Voice_Mail" disabled />
+                                                <label for="Voice_Mail_checkbox"><span></span>{{'Voice_Mail'|translate}}</label>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <input type="checkbox" id="Welcome_SMS_checkbox" value="" name="Welcome_SMS_checkbox" ng-model="Welcome_SMS" disabled />
+                                                <label for="Welcome_SMS_checkbox"><span></span>{{'Welcome_SMS'|translate}}</label>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <input type="checkbox" id="Roaming_checkbox" value="" name="Roaming_checkbox" disabled checked />
+                                                <label for="Roaming_checkbox"><span></span>{{'Roaming'|translate}}</label>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <input type="checkbox" id="DRL_checkbox" value="" name="DRL_checkbox" disabled checked />
+                                                <label for="DRL_checkbox"><span></span>{{'DRL'|translate}}</label>
+                                            </div>
+                                        </div>
+                                        <dt></dt>
+                                        <dd></dd>
+                                    </div>
+                                    <div>
+                                        <h6>{{'DEVICE_INFORMATION' | translate}}</h6>
+                                        <dt></dt>
+                                        <dd></dd>
+                                        <dt>{{'Model' | translate}} : </dt>
+                                        <dd id="deviceInformation_Model">{{selectedDeviceInfo.ProductName}}</dd>
+                                        <dt>{{'Exists_Since' | translate}} : </dt>
+                                        <dd id="deviceInformation_ExistsSince">{{selectedDeviceInfo.startDate}}</dd>
+                                    </div>
+                                </dl>
+                                <dl class="dl-horizontal col-sm-6 col-xs-12">
+                                    <!-- START : PRODUCT -->
+                                    <h6>{{'PRODUCTS'|translate}}</h6>
+                                    <dt></dt>
+                                    <dd></dd>
+                                    <h6>{{'Basic_Plan' | translate}} : </h6>
+                                    <dt>{{'Plan_Name' | translate}} : </dt>
+                                    <dd id="products_Plan_Name">{{selectedProduct.ProductName}}</dd>
+                                    <dt>{{'Start_Date' | translate}} : </dt>
+                                    <dd id="products_Start_Date">{{selectedProduct.startDate}}</dd>
+                                    <dt>{{'End_Date' | translate}} : </dt>
+                                    <dd id="products_End_Date">{{selectedProduct.endDate}}</dd>
+                                    <dt></dt>
+                                    <dd></dd>
+                                    <h6 ng-if="selectedBucketsList.length > 0">{{'Remaining_Credits'|translate}} : </h6>
+                                    <div ng-attr-id="{{ 'BucketsList-row-' + $index }}" ng-repeat="bucket in selectedBucketsList">
+                                        <dt ng-attr-id="{{ 'BucketsList-name-' + $index }}">{{bucket.SourceValue}} : </dt>
+                                        <dd ng-attr-id="{{ 'BucketsList-value-' + $index }}">{{bucket.BalanceValue}} {{bucket.Unit}}</dd>
+                                    </div>
+                                    <dt></dt>
+                                    <dd></dd>
+                                    <h6>{{'Additional_Features_Promotions'|translate}} : </h6>
+                                    <dt></dt>
+                                    <dd></dd>
+                                    <!-- END : PRODUCT -->
+                                    <!-- START : PROMOTIONLIST -->
+                                    <div class="table-responsive" ng-controller="paginationController">
+                                        <table class="table table-bordered" id="dashboard_productTable">
+                                            <thead class="table-head">
+                                                <tr>
+                                                    <th ng-click="sort('ProductName')">
+                                                        {{'Product_Name'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='ProductName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('Price')">
+                                                        {{'Price'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Price'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('StartDate')">
+                                                        {{'Start_Date'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='StartDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('EndDate')">
+                                                        {{'End_Date'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='EndDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr dir-paginate="item in selectedPromotionList| orderBy:sortKey:reverse| itemsPerPage:10" ng-class=" {'selected':item.ProductName==selectedRow}" ng-click="setClickedRow(item.ProductName)"
+                                                    pagination-id="Pagination_CustomerPromotions">
+                                                    <td>{{item.ProductName}}</td>
+                                                    <td>{{item.Price}}</td>
+                                                    <td>{{item.startDate}}</td>
+                                                    <td>{{item.endDate}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <dir-pagination-controls max-size="10"
+                                                                 direction-links="true"
+                                                                 boundary-links="true"
+                                                                 pagination-id="Pagination_CustomerPromotions"
+                                                                 ng-show="selectedPromotionList.length">
+                                        </dir-pagination-controls>
+                                    </div>
+                                    <!-- END : PROMOTIONLIST -->
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal etak-content fade in" id="CustomerActionActivate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content etak-modal">
+                        <div>
+                            <div class="modal-header">
+                                <h3 class="modal-title">{{'Activate'|translate}}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <etbossform name="ActivateForm" field="{{ActivateDatas}}"></etbossform>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal etak-content fade in" id="CustomerActionFreezeUnfreezeDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div ng-include="'Templates/CSR/customer/action/FreezeUnfreezeDelete.html'"></div>
+                </div>
+            </div>
+
+        </div>
+        <!-- END : SUBSCRIPTION INFORMATION PANEL -->
+    </div>
+
+    <div class="row">
+    </div>
+
+    <div class="row">
+        <!-- START : ORDER -->
+        <div class="col-lg-6 col-md-6" ng-show="ShowOrdersArea">
+            <div class="normal-wrap dash-search">
+                <div class="title clearfix">
+                    <h3>{{'ORDERS'|translate}}</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li ng-show="isCustomerSummary_ViewOrderEnable">
+                                <button type="button" class="btn btn-default btn-sm btn-theme" ng-show="isCustomerSummary_ViewOrderEnable">
+                                    {{'View_Order'|translate}}
+                                </button>
+                            </li>
+                            <li ng-show="isCustomerSummary_NewOrderEnable">
+                                <button type="button" class="btn btn-default btn-sm btn-theme" ng-show="isCustomerSummary_NewOrderEnable">
+                                    {{'New_Order'|translate}}
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#orderContent" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapse in" id="orderContent">
+                    <div class="panel-data clearfix">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="table-responsive" ng-controller="paginationController">
+                                    <table class="table table-bordered">
+                                        <thead class="table-head">
+                                            <tr>
+                                                <th ng-click="sort('OrderId')">
+                                                    {{'Order_ID'| translate}}
+                                                    <span class="glyphicon sort-icon" ng-show="sortKey=='OrderId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                </th>
+                                                <th ng-click="sort('OrderDate')">
+                                                    {{'Order_Date'| translate}}
+                                                    <span class="glyphicon sort-icon" ng-show="sortKey=='OrderDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                </th>
+                                                <th ng-click="sort('ProductName')">
+                                                    {{'Product_Name'| translate}}
+                                                    <span class="glyphicon sort-icon" ng-show="sortKey=='ProductName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                </th>
+                                                <th ng-click="sort('Status')">
+                                                    {{'Status'| translate}}
+                                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr dir-paginate="item in dashboardorderlist.CustomerOrders|orderBy:sortKey:reverse |itemsPerPage:10" ng-class=" {'selected':item.OrderId==selectedOrder}" ng-click="setClickedRow(item.OrderId)"
+                                                pagination-id="Pagination_CustomerOrders">
+                                                <td>{{item.OrderId}}</td>
+                                                <td>{{item.OrderDate}}</td>
+                                                <td>
+                                                    <div ng-repeat="detail in item.Products">
+                                                        {{detail.Description}}<hr />
+                                                    </div>
+                                                </td>
+                                                <td>{{item.Status}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <dir-pagination-controls max-size="10"
+                                                             direction-links="true"
+                                                             boundary-links="true"
+                                                             pagination-id="Pagination_CustomerOrders"
+                                                             ng-show="dashboardorderlist.CustomerOrders.length">
+                                    </dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END : ORDER -->
+        <!-- START : BILLING INFO AND INVOICES -->
+        <div class="{{ShowOrdersArea ? 'col-lg-6 col-md-6' : 'col-lg-12 col-md-12'}}">
+            <div class="normal-wrap dash-search" ng-show="isBillingInvoicesEnable && (isPostPaid || isHybrid)">
+                <div class="title clearfix">
+                    <h3>{{'BILLING_INFO_INVOICES'|translate}}</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li ng-show="isCustomerSummary_AdjustInvoiceEnable">
+                                <button type="button" class="btn btn-default btn-sm btn-theme" ng-show="isCustomerSummary_AdjustInvoiceEnable">
+                                    {{'Adjust_Invoice'|translate}}
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#billinfoContent" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapse in" id="billinfoContent">
+                    <div class="panel-data same-height clearfix">
+                        <dl class="dl-horizontal">
+                            <dt>{{'Billing_Cycle'|translate}} : </dt>
+                            <dd id="dashboard_billingCycle">{{products.BillingAndInvoices.BillingInfo.BillingCycle}}</dd>
+                            <dt>{{'Last_Invoice_Number'|translate}} : </dt>
+                            <dd id="dashboard_invoiceNumber">{{products.BillingAndInvoices.LastInvoice.InvoiceNumber}}</dd>
+                            <dt>{{'Last_Invoice_Amount'|translate}} : </dt>
+                            <dd id="dashboard_billingAmount">{{products.BillingAndInvoices.LastInvoice.Amount}}</dd>
+                            <dt>{{'Last_Billing_Issue_Date'|translate}} : </dt>
+                            <dd id="dashboard_billingIssueDate">{{null}}</dd>
+                            <dt>{{'Last_Invoice_Due_Date'|translate}} : </dt>
+                            <dd id="dashboard_billingDueDate">{{null}}</dd>
+                            <dt>{{'Invoice_Status'|translate}} : </dt>
+                            <dd id="dashboard_invoiceStatus">{{null}}</dd>
+                            <dt>{{'Return_Causes'|translate}} : </dt>
+                            <dd id="dashboard_returnCause">{{products.BillingAndInvoices.ReturnCause}}</dd>
+                            <dt>{{'Next_Invoice_Due_Date'|translate}} : </dt>
+                            <dd id="dashboard_nextDueDate">{{null}}</dd>
+                            <dt>{{'Payment_Method'|translate}} : </dt>
+                            <dd id="dashboard_paymentMethod">{{products.BillingAndInvoices.PaymentMethod}}</dd>
+                            <dt>{{'Parent_Control'|translate}} : </dt>
+                            <dd id="dashboard_parentControl">{{null}}</dd>
+                            <dt>{{'Parent_ID'|translate}} : </dt>
+                            <dd id="dashboard_parentId">{{null}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="normal-wrap" ng-show="isBalanceAdjustmentEnable && (isPrePaid || isHybrid) && !isPostPaid">
+                <div class="title clearfix">
+                    <h3>{{'BALANCE_ADJUSTMENT'|translate}}</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li ng-show="isCustomerSummary_Balance_AdjustBalanceEnable">
+                                <button type="button" class="btn btn-default btn-sm btn-theme" ng-click="OpenAdjustBalance()" ng-show="isCustomerSummary_Balance_AdjustBalanceEnable">
+                                    <i class="et pencil41"></i>&nbsp;{{'Edit'|translate}}
+                                </button>
+                            </li>
+                            <!--<li>
+                                <button type="button" class="btn btn-default btn-sm">
+                                    {{'Adjust_Balance'|translate}}
+                                </button>
+                            </li>-->
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#balanceContent" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="collapse in" id="balanceContent">
+                    <div class="panel-data same-height clearfix">
+                        <dl class="dl-horizontal">
+                            <dt>{{'Balance'|translate}} ({{'w_VAT'|translate}}) : </dt>
+                            <dd id="dashboard_balanceVat">&euro;{{products.CustomerBalance.PrePaidBalance.Balance.BalanceVAT}}</dd>
+                            <dt>{{'Balance'|translate}} ({{'wo_VAT'|translate}}) : </dt>
+                            <dd id="dashboard_balanceWoVat">&euro;{{products.CustomerBalance.PrePaidBalance.item.Balance.Balance}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>{{'Other_Balance'|translate}} ({{'w_VAT'|translate}}) : </dt>
+                            <dd id="dashboard_otherBalanceVat">&euro;{{products.CustomerBalance.PrePaidBalance.BillingInfo.BillingIssueDate}}</dd>
+                            <dt>{{'Other_Balance'|translate}} ({{'wo_VAT'|translate}}) : </dt>
+                            <dd id="dashboard_otherBalanceWoVat">&euro;{{products.CustomerBalance.PrePaidBalance.BillingInfo.BillingIssueDate}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- END : BILLING INFO AND INVOICES -->
+    </div>
+
+</div>

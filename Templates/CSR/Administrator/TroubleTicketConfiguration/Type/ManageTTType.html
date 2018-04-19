@@ -1,0 +1,113 @@
+﻿<!--<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->
+<div class="container" ng-controller="TTTypeConfigurationSectionController">
+    <div class="row">
+        <section class="col-sm-3 col-xs-12">
+            <!--Load the sidebar, TODO make common side bar-->
+            <div ng-include="'Templates/CSR/Administrator/Sidebar/Sidebar.html'"></div>
+        </section>
+        <div class="col-sm-9 col-xs-12">
+            <section class="normal-wrap">
+                <header class="title">
+                    <h3>
+                        <i class="et cogwheel28"></i> {{'TTType_Configuration' | translate}}
+                    </h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#manageTTType" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <div id="manageTTType" class="panel-data">
+                    <div>
+                        <ul class="btn-inline">
+                            <li ng-show="isTTTypeRemoveEnable">
+                                <a class="btn btn-default" type="button" href="#" data-target="{{Modal_RemoveTTTypeModal}}" data-toggle="modal" ng-disabled="{{deleteDisabled}}" ng-show="isTTTypeRemoveEnable">{{'Remove_TTType' | translate}}</a>
+                            </li>
+                            <li ng-show="isTTTypeAddEnable">
+                                <a class="btn btn-default" type="button" href="#" ng-click="doing('Add')" ng-show="isTTTypeAddEnable">{{'Add_TTType' | translate}}</a>
+                            </li>
+                            <li ng-show="isTTTypeModifyEnable">
+                                <a class="btn btn-default" type="button" href="#" ng-click="doing('Modify')" ng-show="isTTTypeModifyEnable">{{'Modify_TTType' | translate}}</a>
+                            </li>
+                        </ul>
+                        <div class="table fullwidth more-data">
+                            <table class="table table-hover table-responsive">
+                                <thead class="table-head">
+                                    <tr>
+                                        <th>#</th>
+                                        <th ng-click="sortKey='name';reverse=!reverse">
+                                            {{'Name'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='name'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='description';reverse=!reverse">
+                                            {{'Description'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='description'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-init="sortKey='name';reverse=false;">
+                                    <tr dir-paginate="item in CstData| orderBy:sortKey:reverse | itemsPerPage:10" ng-class=" {'selected':item.TypeId==selectedRow}" ng-click="setClickedRow(item)" current-page="currentPage">
+                                        <td>{{currentPage <= 1 ? ($index+1) : ($index+1) + ((currentPage-1) * 10) }}</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.description}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <dir-pagination-controls max-size="10"
+                                                 direction-links="true"
+                                                 boundary-links="true"
+                                                 ng-show="CstData.length">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveTTTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'Remove_TTType' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>{{'Confirmation_AreYouSureToDeleteThis_TTType' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-md" ng-click="removeTTType()" ng-disabled="deleteDisabled">{{'Delete'|translate}}</button>
+                <button data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddTTTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/Type/AddTTType.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModifyTTTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/Type/ModifyTTType.html'"></div>
+    </div>
+</div>

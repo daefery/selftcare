@@ -1,0 +1,120 @@
+﻿<div div ng-app="appMain" ng-controller="SearchCustomer" data-id="@ViewData[" temp"]">
+    <div class="container path-wrap">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#"><b> Invoice & Payments</b></a></li>
+        </ol>
+    </div>
+
+
+    <!--start main content-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 clear-space">
+                <div class="sidebar normal-wrap">
+
+                    <ul>
+                        <li><a href="#" class="side-hover"><i class="icon-credit-card"></i>Products</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>Resource Info</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>Subscriber Prov.</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>Trouble Tickets</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>DMC</a></li>
+                        @*
+                        <ul class="sub-item">
+                            <li><a href="#">manage EasyPay Settings</a></li>
+                            <li><a href="#">Lorem ipsum</a></li>
+                            <li><a href="#">Payment History</a></li>
+                        </ul>*@
+                        <li><a href="#"><i class="icon-pie-chart"></i>Billing</a></li>
+                        <li><a href="#"><i class="icon-pie-chart"></i>Invoicing & Payments</a></li>
+                    </ul>
+                </div>
+                <div class="side-link normal-wrap">
+                    <h5 class="title">Quick Tasks</h5>
+                    <ul class="content">
+                        <li><a href="#">Get help reading your bill</a></li>
+                        <li><a href="#">Update your billing address</a></li>
+                        <li><a href="#">See payment options</a></li>
+                        <li><a href="#">Monitor account use</a></li>
+                        <li><a href="#">Learn how to control monthly costs</a></li>
+                        <li><a href="#">More billing help</a></li>
+                        <li><a href="#">Manage Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="normal-wrap">
+                            <h5 class="title">Invoices</h5>
+                            <div class="content">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>Invoice Id</td>
+                                            <td>Amount</td>
+                                            <td>Due Date</td>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="model in products.InvoiceAndPayments.LastestInvoices">
+                                            <td>{{model.InvoiceId}}</td>
+                                            <td>{{model.Amount}}</td>
+                                            <td>{{model.IssuedDate}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="normal-wrap">
+                            <h5 class="title">Payments</h5>
+                            <div class="content">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>Billing Id</td>
+                                            <td>Amount</td>
+                                            <td>Issue Date</td>
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="model in products.InvoiceAndPayments.LastPayments">
+                                            <td>{{model.BillingId}}</td>
+                                            <td>{{model.Amount}}</td>
+                                            <td>{{model.IssueDate}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

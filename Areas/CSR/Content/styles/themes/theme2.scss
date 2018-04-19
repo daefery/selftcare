@@ -1,0 +1,242 @@
+@import "../unit/variables";
+@import "../unit/vendor-prefixes";
+/*for button color*/
+.form-control{
+  color:$font-darkgray;
+  border-color: $border-gainsboro;
+  box-shadow:0 0 0 rgba(0, 0, 0, 0.075) inset;
+}
+.btn-light-gray{
+  //gray button
+  @include box-shadow(0 2px 2px darken($bg-gray, 8%));
+  color: $font-gray;
+  border-color:darken($bg-gray, 10%);
+  background-image:-webkit-linear-gradient(to top, darken($bg-gray, 3%), darken($bg-gray, 1%));
+  background-image:linear-gradient(to top,darken($bg-gray, 3%), darken($bg-gray, 1%));
+}
+.btn-light-gray:hover,.btn-light-gray:focus{
+  border-color:darken($bg-gray, 10%);
+  color: $font-lightgray;
+  background-image:-webkit-linear-gradient(to top, darken($bg-gray, 3%), darken($bg-gray, 1%));
+  background-image:linear-gradient(to top,darken($bg-gray, 5%), darken($bg-gray, 3%));
+}
+.btn-red{
+  //red button
+  @extend %font-white;
+  @include box-shadow(0 2px 2px darken($bg-gray, 20%));
+  border-color: darken($main-red, 15%);
+  background-image:-webkit-linear-gradient(to top, darken($main-red, 3%), $main-red);
+  background-image:linear-gradient(to top,darken($main-red, 3%), $main-red);
+}
+.btn-red:hover, .btn-red:focus{
+  color:rgba($font-white,0.9);
+  border-color: darken($main-red, 10%);
+  background-image:-webkit-linear-gradient(to top, darken($main-red, 8%), darken($main-red, 3%));
+  background-image:linear-gradient(to top,darken($main-red, 8%), darken($main-red, 3%));
+}
+
+/*for input theme*/
+.form-box{
+  //input for old version, now is temp style
+  border-color: $border-silver;
+  background-color: $bg-white;
+}
+.btn-selection {
+  //calender button  for old version, now is temp style
+  background-color: $border-silver;
+}
+
+//
+.input-bg-gray{
+  border-color: darken($bg-gray,10%);
+  background-color:darken($bg-gray,7%);
+  color:$black;
+}
+.input-bg-gray:active, .input-bg-gray:hover{
+  border-color: darken($bg-gray,16%);
+}
+.input-group-addon {
+  //for calendar, choose date}
+  color: $font-darkgray;
+  background-color:$border-silver;
+}
+//following is for checkbox and radio
+.icheckbox_square-red,
+.iradio_square-red {
+  background: url(../../images/red.png) no-repeat;
+}
+
+/* for topbar theme*/
+.topbar-wrap{
+  background-color: $blue;
+  a{
+    color: rgba($font-white,.9);
+    &:hover{color: $font-white;}
+  }
+  //  .user-info{
+  //    >a{
+  //      border-color: rgba($bg-white, .2);
+  //      &:hover{
+  //        background-color: $darkred;
+  //      }
+  //    }
+  //  }
+}
+//@media (max-width:383px) {
+//  .user-name{
+//    border-top-color: rgba($bg-white, .2);
+//  }
+//}
+.toplist-menu{
+  .dropdown-menu-line {
+    //for dropdown menu
+    a {
+      border-color: rgba($border-silver,.4);
+      color: $font-gray;
+    }
+  }
+  >ul{
+    &>li:hover{ background-color: darken($main-red, 10%);}
+  }
+}
+
+/*for Nav and mega menu of dropdown nav*/
+.navbar-nav {
+  .dropdown-menu {
+    background-color: rgba($darkblue, 0.9);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.176);
+  }
+}
+.admin-nav-wrap {
+  background-color: $bg-white;
+  border-bottom-color: $border-gainsboro;
+  box-shadow: 0 3px 3px $border-gainsboro;
+  .nav{
+    >li{
+      >a{
+        @extend %font-black;
+      }
+      >a.active, >a:hover{
+        @extend %font-red;
+      }
+    }
+  }
+  .navbar-form{
+    /*for search on navigation */
+    i{color: $font-gray; }
+  }
+}
+@media (min-width: 768px) {
+  .nav{
+    > li{
+      >a.active{
+        border-bottom-color: $main-red;
+      }
+    }
+    .mega-menu-content {
+      /*mega menu on the nav*/
+      padding: 15px;
+      ul.mega-menu-submenu {
+        h6 {
+          > a { color: $font-white;}
+        }
+        a {color: rgba($font-white, 0.8);}
+      }
+      .mega-menu-list {border-left-color: rgba($font-white, 0.15);}
+    }
+    .open{
+      /*the the style for the active menu when open the dropdown menu , override the template*/
+      >a, &>a:hover, &>a:focus{
+        background-color: transparent;
+        border-color: $main-red;
+      }
+      &>a:hover, &>a:focus{color: $main-red;}
+    }
+  }
+}
+@media (max-width: 767px) {
+  .nav{
+    .mega-menu-content {
+      ul.mega-menu-submenu {
+        a {color: $font-darkgray;}
+      }
+    }
+  }
+}
+
+/*for layout*/
+.box-blue{border-top-color: rgba($blue, 0.5);}
+//the box style is the first line in the index
+.box-brown{border-top-color: rgba($main-red, 0.5);}
+.box-brown, .box-blue{
+  span{color: $font-lightgray;}
+}
+
+.box-wrap{
+  @include box-shadow(0 2px 2px darken($bg-gray, 8%));
+  border-color: $border-gainsboro;
+  a{color: $font-gray;}
+  .bgc1{background-color:$darkbrown; }
+  .bgc2{background-color:$darkmagenta;}
+  .bgc3{background-color:$royalblue;}
+  .bgc4{background-color:$orange;}
+  .icon-logo{color:$font-white; }
+}
+.nav-tabs {
+  //this is nav tabs for main contents.
+  border-bottom-color: $border-gainsboro;
+  >li {
+    > a {
+      background-color: $bg-gray;
+      color: $font-gray;
+      border-color: $border-gainsboro;
+    }
+  }
+}
+.list-badge {
+  //for list group badge}
+  color: $font-darkgray;
+  background-color: transparent;
+}
+.nav-pills.nav-stacked {
+  //for left subNav
+  > li {
+    border-bottom-color: $border-silver;
+    >a{color:$font-gray;}
+  }
+  >li.active{
+    a{
+      color: $font-white;
+      background-color: darken($blue,10%);
+    }
+  }
+}
+.pagination{
+  //for pagination
+  >li{
+    >a{
+      color: $font-gray;
+    }
+  }
+}
+
+.path-wrap{
+  /*The path of the page*/
+  border-bottom-color: $border-gainsboro;
+  .breadcrumb{
+    a{color: $font-gray;}
+  }
+  h1{color: $font-darkgray;}
+}
+
+.alert-warning{
+  //notification
+  border-color: rgba($main-red,0.25);
+  color: $font-warning;
+}
+
+.footer-wrap{
+  border-top-color: $border-gainsboro;
+  background-color: $bg-white;
+  .copyright{color: $font-lightgray;}
+}

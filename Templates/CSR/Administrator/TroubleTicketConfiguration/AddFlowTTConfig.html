@@ -1,0 +1,70 @@
+﻿<div class="modal-content etak-modal" id="AddFlowTTConfigModal" ng-controller="AddFlowTTConfigController">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'Add_Flow_From_Template' | translate}}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+    </div>
+    <div class="modal-body without-footer" ng-controller="TTWorkflowConfigurationSectionController">
+        <form class="form-horizontal" name="addflow.AddFlowTTConfigUIForm">
+
+            <!--<etbossform name="AddFlowTTConfigForm" field="{{datas}}"></etbossform>-->
+
+            <form accessible_form="accessibleForm" name="AddFlowTTConfigForm" class="etak-form form-horizontal" novalidate>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-6" for="MVNO">{{'MVNO' | translate}}</label>
+                    <div class="col-md-6">
+                        <p id="AddFlowTTConfigForm_MVNO" class="form-control-static" for="MVNO">{{addflow.MVNOName}}</p>
+                    </div>
+                </div>
+                <div class="form-group row ng-hide">
+                    <label class="control-label col-md-6" for="Flow_Type">{{'Flow_Type' | translate}}</label>
+                    <div class="col-md-6">
+                        <p id="AddFlowTTConfigForm_Flow_Type" class="form-control-static" for="Flow_Type">{{addflow.FlowTypeName}}</p>
+                    </div>
+                </div>
+                <div class="form-group row" ng-show="addflow.TemplateAvailable == true">
+                    <label class="control-label col-md-6" for="Flow_Type_Template">{{'Flow_Type_Template' | translate}}</label>
+                    <div class="col-md-6">
+                        <!--<select class="form-control" ng-model="addflow.Flow_Type"
+                        ng-options="i.value as (i.name) for i in addflow.TTFlowType_template" ng-change="addflow.showMappingDepartment(addflow.Flow_Type)" ng-required></select>-->
+                        <p id="AddFlowTTConfigForm_Flow_Type_Template" class="form-control-static" for="Flow_Type_Template">{{addflow.FlowTypeTemplateName}}</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-6"></label>
+                    <div class="col-md-6">
+                        <span id="addflow_TemplateAvailable" class="help-block with-errors" ng-show="addflow.TemplateAvailable == false" ng-bind-html="addflow.TemplateNotAvailableMessage"></span>
+                    </div>
+                </div>
+                <div ng-show="addflow.TemplateAvailable == true">
+                    <div class="form-group row">
+                        <label class="control-label col-md-6" for="Department_Mapping">{{'Department_Mapping' | translate}}</label>
+                        <div class="col-md-6">
+                            <a id="Add_TTDepartment_btn" class="btn btn-default" href="#" ng-click="doing('Add')" ng-show="isTTWorkflowAddDepartmentEnable">{{'Add_TTDepartment' | translate}}</a>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-repeat="deptMapping in addflow.TTDepartmentMapping">
+                        <label class="control-label col-md-6">
+                            {{$index + 1}}. {{deptMapping.Name}}
+                        </label>
+                        <div class="col-md-6">
+                            <select class="form-control" ng-model="deptMapping.specificDepartmentId"
+                                    ng-options="i.value as (i.name) for i in addflow.TTDepartment" ng-required></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-bottom group clearfix">
+                    <div class="btn-set">
+                        <button type="submit" id="AddFlowTTConfigForm_btn_submit_1" class="btn btn-default" ng-click="AddFlowSubmit()"
+                                ng-show="addflow.TemplateAvailable == true">
+                            {{'Submit' | translate}}
+                        </button>
+                        <button type="button" id="AddFlowTTConfigForm_btn_cancel_2" class="btn btn-danger" data-dismiss="modal">{{'Cancel' | translate}}</button>
+                    </div>
+                </div>
+            </form>
+
+        </form>
+    </div>
+</div>

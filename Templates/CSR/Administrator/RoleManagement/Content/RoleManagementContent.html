@@ -1,0 +1,148 @@
+﻿<!--
+    Created and added by:
+    Mahdi Badari
+    Module Management HTML content
+    created 24 nov 2015
+-->
+
+<div class="two-boxes">
+    <div class="boxes">
+        <form class="form-horizontal">
+
+            <div class="top-role">
+                <div class="col-sm-12">
+                    <div class="radio col-sm-8">
+                        <label class="radio-inline">
+                            <input id="activaterole" type="radio" value="1" ng-click="setmoduleparent(2)" ng-model="filter.roletypeid" name="activaterole" ng-checked="moduleparent == 2" />
+                            <label for="activaterole"><span></span>{{'CSR' | translate}}</label>
+                        </label>
+                        <label class="radio-inline">
+                            <input id="deactivaterole" type="radio" value="2" ng-click="setmoduleparent(3)" ng-model="filter.roletypeid" ng-checked="moduleparent == 3" name="deactivaterole" />
+                            <label for="deactivaterole"><span></span>{{'SelfCare' | translate}}</label>
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-default col-sm-12" ng-click="getmvnorole(filter)">{{'Search' | translate}}</button>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <select ng-hide="{{!isETAKUser}}" ng-disabled="{{!isETAKUser}}" ng-model="filter.mvno" class="form-control col-sm-8">
+                            <option ng-selected="filter.mvno == MvnoDetail.orgid" ng-repeat="MvnoDetail in mvnolist" value="{{MvnoDetail.orgid}}">{{MvnoDetail.mvnoname}}</option>
+                        </select>
+                    </div>
+                    <!--<div class="col-sm-4">
+                        <button type="button" class="btn btn-default col-sm-12" ng-click="getmvnorole(filter)">{{'Search' | translate}}</button>
+                    </div>-->
+                </div>
+            </div>
+
+
+            <div class="tree-section">
+                <header class="title">
+                    <h3><i class="et networking9"></i>Roles of Selected MVNO</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#selectmvnoDetail" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <div id="selectmvnoDetail" class="collapse in">
+                    <!--Load role section-->
+                    <div ng-include="'templates/csr/administrator/rolemanagement/content/roles.html'"></div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="boxes left">
+        <form class="form-horizontal">
+            <div ng-include="'templates/csr/administrator/rolemanagement/content/modules.html'"></div>
+            <span class="modal-divider"></span>
+            <div clearfix" ng-include="'templates/csr/administrator/rolemanagement/content/users.html'"></div>
+            <div ng-include="'templates/csr/administrator/rolemanagement/content/securesection.html'"></div>
+        </form>
+</div>
+</div>
+
+
+<!--<div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal">-->
+                        <!--<div class="radio">
+                            <label class="radio-inline">
+                                <input id="activaterole" type="radio" value="1" ng-click="setmoduleparent(2)" ng-model="filter.roletypeid" name="activaterole" ng-checked="moduleparent == 2"/>
+                                <label for="activaterole"><span></span>{{'CSR' | translate}}</label>
+                            </label>
+                            <label class="radio-inline">
+                                <input id="deactivaterole" type="radio" value="2" ng-click="setmoduleparent(3)" ng-model="filter.roletypeid" ng-checked="moduleparent == 3" name="deactivaterole" />
+                                <label for="deactivaterole"><span></span>{{'SelfCare' | translate}}</label>
+                            </label>
+                        </div><br />-->
+                <!--<div class="row">
+                    <div class="col-sm-8">
+                        <select ng-disabled="{{!isETAKUser}}" ng-model="filter.mvno" class="form-control col-sm-8">
+                            <option ng-selected="filter.mvno == MvnoDetail.orgid" ng-repeat="MvnoDetail in mvnolist" value="{{MvnoDetail.orgid}}">{{MvnoDetail.mvnoname}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-default col-sm-12" ng-click="getmvnorole(filter)">{{'Search' | translate}}</button>
+                    </div>
+                </div>-->
+                <!--<div class="tree-section">
+                    <header class="title">
+                                <h3><i class="et networking9"></i>Roles of Selected MVNO</h3>
+                                <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#selectmvnoDetail" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                    </header>
+                    <div id="selectmvnoDetail" class="collapse in">-->
+                        <!--Load role section-->
+                        <!--<div ng-include="'templates/csr/administrator/rolemanagement/content/roles.html'"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="right-module">
+                <form class="form-horizontal">-->
+                     <!--Load module section-->
+                <!--<div class="mb-30" ng-include="'templates/csr/administrator/rolemanagement/content/modules.html'"></div>-->
+                <!--Load user section-->
+                <!--<div class="mb-30 clearfix" ng-include="'templates/csr/administrator/rolemanagement/content/users.html'"></div>
+                    <div ng-include="'templates/csr/administrator/rolemanagement/content/securesection.html'"></div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>-->
+<div id="commonModal" class="modal etak-content fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content etak-modal">
+            <div ng-show="showaddrolemodal" ng-hide="!(showaddrolemodal)">
+                <div ng-include="'templates/csr/administrator/rolemanagement/content/addrolemodal.html'"></div>
+            </div>
+            <div ng-show="showmodrolemodal" ng-hide="!(showmodrolemodal)">
+                <div ng-include="'templates/csr/administrator/rolemanagement/content/modifyrolemodal.html'"></div>
+            </div>
+            <div ng-show="showssmodal" ng-hide="!(showssmodal)">
+                <div ng-include="'templates/csr/administrator/rolemanagement/content/securesectionmodal.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+

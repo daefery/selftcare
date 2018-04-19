@@ -1,0 +1,92 @@
+﻿<div div ng-app="appMain" ng-controller="SearchCustomer" data-id="@ViewData[" temp"]">
+    <div class="container path-wrap">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Search</a></li>
+            <li><a href="#"><b> Billing Information</b></a></li>
+        </ol>
+        @*<h2>Billing & Payments</h2>*@
+    </div>
+
+
+    <!--start main content-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 clear-space">
+                <div class="sidebar normal-wrap">
+
+                    <ul>
+                        <li><a href="#" class="side-hover"><i class="icon-credit-card"></i>Products</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>Resource Info</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>Subscriber Prov.</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>Trouble Tickets</a></li>
+                        <li><a href="#"><i class="icon-paste"></i>DMC</a></li>
+                        @*
+                        <ul class="sub-item">
+                            <li><a href="#">manage EasyPay Settings</a></li>
+                            <li><a href="#">Lorem ipsum</a></li>
+                            <li><a href="#">Payment History</a></li>
+                        </ul>*@
+                        <li><a href="#"><i class="icon-pie-chart"></i>Billing</a></li>
+                        <li><a href="#"><i class="icon-pie-chart"></i>Invoicing & Payments</a></li>
+                    </ul>
+                </div>
+                <div class="side-link normal-wrap">
+                    <h5 class="title">Quick Tasks</h5>
+                    <ul class="content">
+                        <li><a href="#">Get help reading your bill</a></li>
+                        <li><a href="#">Update your billing address</a></li>
+                        <li><a href="#">See payment options</a></li>
+                        <li><a href="#">Monitor account use</a></li>
+                        <li><a href="#">Learn how to control monthly costs</a></li>
+                        <li><a href="#">More billing help</a></li>
+                        <li><a href="#">Manage Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 clear-space">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="normal-wrap">
+                                <h5 class="title">Billing Information</h5>
+                                <div class="content">
+                                    <div>Bank Accout Name : {{products.Billing.BankAccountName}}</div>
+                                    <div>Bank Account Number : {{products.Billing.BankAccountNumber}}</div>
+                                    <div>Billing category : {{products.Billing.BillingCategory}}</div>
+                                    <div>Billing Cyce : {{products.Billing.BillingCycle}}</div>
+                                    <div>Billing Date : {{products.Billing.BillingDate}}</div>
+
+
+                                    @*<table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td>Billing Category</td>
+                                                <td>Billing Cycle</td>
+                                                <td>Billing Date</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="model in products.Billing">
+                                                <td>{{model.BillingCategory}}</td>
+                                                <td>{{model.BillingCycle}}</td>
+                                                <td>{{model.BillingDate}}</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>*@
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

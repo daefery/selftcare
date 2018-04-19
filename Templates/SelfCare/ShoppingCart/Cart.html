@@ -1,0 +1,82 @@
+﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div class="inner-selfcare topup">
+        <div class="container">
+            <div class="panel-data clean clearfix">
+                <div class="selfcare-checkout">
+                    <div class="main-checkout">
+                        <div class="top-checkout">
+                            <h3><i class="et calculation3"></i> Checkout</h3>
+                        </div>
+                        <div ng-show="cartExist" style="float:right">
+                            <a id="buymore_balance" href="/SelfCare/Customer/App/TopUp" class="btn btn-with-icon"><span>Top Up</span></a>
+                            <a id="buymore_service" href="/SelfCare/Customer/App/BuyService" class="btn btn-with-icon"><span>Buy More Service</span></a>
+                        </div>
+                        <div ng-show="cartExist" class="checkout-items">
+                            <div class="checkout-list" ng-repeat="item in checkout.items">
+                                <div class="checkout-left">
+                                    <div class="item-no">
+                                        <h4 class="title-number" data-content="no"><span>no</span></h4>
+                                        <p>{{$index + 1}}</p>
+                                    </div>
+                                    <div class="device-thumbnail">
+                                        <h4 class="title-device" data-content="device"><span>device</span></h4>
+                                        <p>{{item.msisdn}}</p>
+                                    </div>
+                                </div>
+                                <div class="checkout-right">
+                                    <div class="checkout-item clearfix" ng-repeat="itemcheckout in item.device">
+                                        <div class="item-content">
+                                            <h4 class="title-detail" data-content="name"><span>name</span></h4>
+                                            <p>{{itemcheckout.name}}</p>
+                                        </div>
+                                        <div class="item-content small">
+                                            <h4 class="title-qty" data-content="amount"><span>amount</span></h4>
+                                            <p class="text-center">{{itemcheckout.amount}}</p>
+                                        </div>
+                                        <div class="item-content small">
+                                            <h4 class="title-opt" data-content="unit price"><span>unit price</span></h4>
+                                            <p>{{itemcheckout.unitprice}}</p>
+                                        </div>
+                                        <div class="item-content small">
+                                            <h4 class="title-action" data-content="actions"><span>actions</span></h4>
+                                            <button type="button" id="shoppingcart_removeitem_{{$index + 1}}" ng-click="removeItem($index, item.msisdn)" class="btn btn-primary btn-sm">remove <i class="et delete8"></i></button>
+                                        </div>
+                                    </div><!-- repeated -->
+                                </div>
+                            </div>
+                            <div class="checkout-summary">
+                                <div class="left-summary">
+                                    Total amount
+                                </div>
+                                <div class="right-summary">
+                                    <h2>$ {{totalPayment}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout-items" ng-show="!cartExist">
+                            <div class="alert alert-warning alert-dismissible">
+                                <i class="fa fa-warning"></i>
+                                You have no item in your basket !
+                                    
+                            </div>
+                            <a id="buymore_balance" href="/SelfCare/Customer/App/TopUp" class="btn btn-with-icon"><span>Top Up</span></a>
+                            <a id="buymore_service" href="/SelfCare/Customer/App/BuyService" class="btn btn-with-icon"><span>Buy More Service</span></a>
+                        </div>
+                        <div ng-show="cartExist">
+                            <button id="shoppingcart_checkout" type="button" class="btn btn-default btn-lg" ng-click="checkoutCart()"><i class="et lock22"></i> checkout</button>
+                            <button id="shoppingcart_removeall" type="button" ng-click="removeAllItem()" class="btn btn-danger btn-lg"><i class="fa fa-remove"></i> Reset Cart</button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+
+

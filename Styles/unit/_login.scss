@@ -1,0 +1,26 @@
+.login-warp{
+  width: 95%;
+  margin:10% auto;
+  .center{
+    text-align: center;
+  }
+  .form-control{
+    /* for input box*/
+    height: 40px;
+    font-family: $font-family-normal;
+  }
+  .link{
+    @extend %font-family-thin;
+    font-size: $h6-font-size;
+  }
+}
+@media (max-width: 767px){
+  /* the topbar and footerbar will be hidden on the mobile,becease the screen so small.*/
+  .topbar-wrap,.footer-wrap{display: none}
+}
+@media (min-width: 321px){
+  /*the main contents will be adjusted according to the screen size */
+  .login-warp {
+    width:310px;
+  }
+}

@@ -1,0 +1,187 @@
+.navbar-nav{
+/*for mega menu of dropdown nav*/
+  > li.mega-menu-dropdown{
+      position: static;
+      > .dropdown-menu {
+        left: auto;
+        width: auto;
+        .mega-menu-content {
+          margin: 0 auto;
+          @extend %li-clear-default;
+          ul.mega-menu-submenu{
+            h6{padding: 10px 0; }
+            li{
+              line-height: 30px;
+              font-size: 16px;
+              font-family: $font-family-thin;
+            }
+          }
+        }
+      }
+  }
+  > li.mega-menu-dropdown.mega-menu-full{
+    .dropdown-menu {
+      left: 0;
+      right: 0;
+    }
+  }
+  .dropdown-menu {
+    background-color: $darkblue;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.176);
+  }
+}
+.admin-nav-wrap{
+  @extend %fullscreen;
+  min-height: 70px;
+  background-color:$bg-white;
+  border: 0;
+  box-shadow: 0 3px 3px $border-gainsboro;
+  border-radius: 0;
+  .navbar-brand{padding-top: 20px}
+  .navbar-toggle{margin-top: 20px}
+  .nav{
+    >li{
+      >a{
+        color: $black;
+        font-family: $font-family-bold;
+        font-size:12px;
+        text-transform: uppercase;
+      }
+      >a.active{
+        color:$main-red;
+      }
+      >a:hover{
+        color:$main-red;
+      }
+    }
+  }
+  .navbar-form{
+    /*for search on navigation */
+    position: relative;
+    i{
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      top: 25px;
+      color: $font-gray;
+      font-size: 14px;
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .navbar-brand {
+    /* Adjust the logo of the right margin*/
+    padding-right: 20%;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav{
+    > li{
+      > a {
+        padding-bottom: 10px;
+        .icon-nav{
+          display: block;
+          width: 100%;
+          text-align: center;
+          padding-bottom: 6px;
+          font-size: 16px;
+        }
+      }
+      >a.active{
+        border-bottom: 3px solid $main-red;
+      }
+    }
+    .mega-menu-content {
+      padding: 15px;
+      ul.mega-menu-submenu {
+        h6 {
+          padding: 10px 0;
+          > a {
+            color: $font-white;
+          }
+        }
+        a {
+          color: rgba($font-white, 0.8);
+        }
+      }
+      .mega-menu-list {
+        border-left: 1px solid rgba($font-white, 0.15);
+      }
+    }
+    .open{
+      /*the the style for the active menu when open the dropdown menu , override the template*/
+      >a, &>a:hover, &>a:focus{
+        background-color: transparent;
+        border-color: $main-red;
+      }
+      &>a:hover, &>a:focus{
+        color: $main-red;
+      }
+    }
+  }
+  .navbar- form {
+    /*let the search align right */
+    padding-right: 0;
+    padding-top: 15px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  /*the input box of search is hidden on this media,just only display icon button*/
+  .status{
+    display: none;
+    position: absolute;
+    right:0;
+  }
+  .status-block{
+    /*for JQ, this class will be used when the mouse click button*/
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-brand{
+    width: 60%;
+    img{width: 100%;
+      max-width:206px ;
+      min-width: 150px;}
+  }
+  .nav{
+    > li{
+      > a {
+        .icon-nav{
+          display: inline-block;
+          padding-right: 15px;
+          padding-bottom: 6px;
+          font-size: 16px;
+        }
+      }
+    }
+    .mega-menu-content {
+      ul.mega-menu-submenu {
+        h6 {
+          padding: 10px 0;
+        }
+        a {
+          color: $font-darkgray;
+        }
+      }
+      .mega-menu-list {
+        padding-left: 50px;
+      }
+    }
+  }
+  .navbar-default{
+    .navbar-collapse{
+      margin-top: 10px;
+    }
+    .navbar-form{
+      border-color:transparent;
+      margin:0;
+    }
+  }
+}

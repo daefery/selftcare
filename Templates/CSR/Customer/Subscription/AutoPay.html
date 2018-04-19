@@ -1,0 +1,18 @@
+﻿<div class="modal-content etak-modal" ng-controller="AutoPayController">
+    <div class="modal-header">
+        <h3 class="modal-title" id="AutoPay_Title">{{'Manage_AutoPay' | translate}}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+    </div>
+    <div class="modal-body">
+        <div class="collapse in">
+            <div ng-include="'templates/csr/customer/subscription/creditcardtable.html'"></div>
+        </div>
+        <div style="margin-top:10px">
+            <button type="button" style="margin-top:0px" class="btn btn-default" data-target="#AddCCFormDiv" data-toggle="collapse">Add Credit Card</button>
+            <button type="button" class="btn btn-default" ng-disabled="isNewCCSelected()" ng-click="isNewCCSelected() || setDefaultCC()">Set Default</button>
+        </div>
+        <div style="margin-top:10px" id="AddCCFormDiv" class="collapse">
+            <etbossform ng-controller="AutoPayForm" name="autopayform" field="{{datas}}"></etbossform>
+        </div>
+    </div>
+</div>

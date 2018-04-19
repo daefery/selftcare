@@ -1,0 +1,103 @@
+﻿<!--TO DO change to dashboard controller-->
+<div class="selfcare-top">
+    <!--start banner-->
+    <div class="selfcare-feature">
+        <!-- top selfcare info -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="balance-info crumb">
+                        <h1>remaining balance</h1>
+                        <h3 class="amount total"><span><i class="et sim3"></i></span><sup>$</sup>{{custBalances}}</h3>
+
+                        <!--This user status section is still not used yet
+                            Delete style="border:none" if you want turn back it to normal-->
+                        <div class="user-status" style="border:none">
+                            <!--<h5><span>You are currently sign up for</span> easypay</h5>
+                            <p>your last payment of <span class="text-badge">$62.81</span> was received on 11/9/2015. Thank you.</p>-->
+                        </div>
+                        <div class="btn-group">
+                            <a href="/SelfCare/Customer/App/BuyService" ng-show="isBuyMoreEnable" class="btn btn-default btn-lg">Buy More</a>
+                            <a href="/SelfCare/Customer/App/TopUp" ng-show="isTopUpEnable" class="btn btn-default btn-lg">Top Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. top selfcare info -->
+        <!-- user cta -->
+        <div class="user-detail">
+            <div class="user-account">
+                <a href="#0" class="">see detail</a>
+            </div>
+            <div class="user-account">
+                <a href="#0" class="">payment history</a>
+            </div>
+            <div class="user-account">
+                <a href="#0" class="">billing support</a>
+            </div>
+        </div>
+        <!-- /. user cta -->
+        <!--<div class="container background">
+            <div class="crumb">
+                <h1>REMAINING BALANCE</h1>
+                <div class="row">
+                    <div class="col-xs-6 total"><sup>$</sup>{{custBalances}}</div>
+                    <div class="col-xs-6">
+                        <a href="/SelfCare/Customer/App/BuyService" class="btn blue btn-primary ">Buy More Service</a>  <a href="/SelfCare/Customer/App/TopUp" class="btn blue btn-primary ">Top Up</a>
+                    </div>
+                </div>
+                <div>
+                    You are currently signed up for EasyPay<br />
+                    Your last payment of $62.81 was received on 11/9/2015. Thank you.
+                </div>
+                <div class="link-active">
+                    <ul>
+                        <li><a href="#">See details</a><i class="icon-circle-right"></i></li>
+                        <li><a href="#">Payment history </a><i class="icon-circle-right"></i></li>
+                        <li><a href="#">Billing Support</a><i class="icon-circle-right"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <div class="selfcare-info" ng-controller="CustomerWrapperController">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-3 col-sm-3">
+                            <div class="user-info">
+                                <div class="user-icon">
+                                    <i class="et maleuser"></i>
+                                </div>
+                                <h3>Welcome</h3>
+                                <h5 ng-bind="info.main.username">Anonymous</h5>
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-3 col-sm-3">
+                            <div class="user-number">
+                                <h3>Mobile Number</h3>
+                                <h4 ng-bind="info.main.mobile">+1 234 567 8900</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="user-accnumber">
+                        <h3>Customer Id</h3>
+                        <h4 ng-bind="info.main.customerid">901222-12221</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="container path-wrap">
+        <ol class="breadcrumb">
+            <li><a href="#">Account Number</a></li>
+        </ol>
+        <h2>901222-12221</h2>
+    </div>-->
+</div>

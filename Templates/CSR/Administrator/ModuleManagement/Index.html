@@ -1,0 +1,54 @@
+﻿<!--
+    Created and added by:
+    Mahdi Badari
+    Module Management HTML content
+    created 06 nov 2015
+-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div ng-include="'templates/csr/administrator/SideBar/SideBar.html'"></div>
+        </div>
+        <div class="col-md-9 col-sm-9">
+
+                <div class="normal-wrap clearfix">
+                    <header class="title">
+                        <h3><i class="et cloud187"></i>Module Management</h3>
+                        <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#moduleDetail" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                        </div>
+                    </header>
+                    <div id="moduleDetail" class="collapse in">
+                        <div class="panel-data">
+                            <div ng-include="'templates/csr/administrator/modulemanagement/content/modulemanagementcontent.html'"></div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!--<div class="container">
+    <div class="row">
+        <section class="col-sm-3 col-xs-12">
+            <!--Load the sidebar, TODO make common side bar-->
+            <!--<div ng-include="'templates/csr/administrator/SideBar/SideBar.html'"></div>
+        </section>
+        <section class="col-sm-9 col-xs-12">-->
+            <!--Load the role management page, TODO change to directive route-->
+                    <!--<section class="normal-wrap">
+                        <div ng-include="'templates/csr/administrator/modulemanagement/content/modulemanagementcontent.html'"></div>
+                    </section>
+
+        </section>
+    </div>
+</div>-->

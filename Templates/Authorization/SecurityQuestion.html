@@ -1,0 +1,45 @@
+﻿<etbossform name="securityQuestionForm" value="SecurityQuestionController" ng-controller="securityQuestionFormController" class="login-warp" field="{{datas}}"></etbossform>
+
+<div class="modal fade" id="secFailedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body modal-body-info">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="aui-message info col-sm-12" style="text-align: center; color: black">
+                            <p class="pui-info-message">
+                                Your answer is incorrect.<br/> Do you want to do a verification by email or sms instead?
+                            </p>
+                            <button type="button" ng-click="send()" ng-controller="DirectSendEmailController" class="btn blue btn-primary" style="margin: 15px 80px 15px 15px;">Email</button>
+                            <a href="#" class="btn blue btn-primary" style="margin: 15px 80px 15px 15px;">SMS</a>
+                            <a href="#" class="btn blue btn-primary" data-dismiss="modal" aria-label="Close">No</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="secSuccessModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body modal-body-success">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="aui-message success col-sm-12" style="text-align: center;color: black">
+                            <p class="pui-success-message">
+                                The verification link has been sent to your email.<br />
+                                Please follow described procedure there. If you had trouble, please contact 31********
+                            </p>
+                            <a href="/Authorization/Login" target="_self" class="btn blue btn-primary" role="button">OK</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿<header class="main-header">
+
+        <div class="topbar-wrap"><!-- begin top header -->
+          <div class="container">
+            <div class="row no-gutters">
+              <div class="col-lg-8 col-md-8">
+                <div ng-include="'Templates/CSR/Themes/UserSetting.html'"></div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                <div class="top-search form-inline">
+                  <div ng-include="'Templates/CSR/Themes/ThemesButton.html'"></div>
+                    <!--<input type="text" class="form-control" placeholder="ex: 123456">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <a href="adavance-search.html" class="adv-search btn btn-default">advanced search</a>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- end top header -->
+
+
+          <div ng-include="'Templates/CSR/Themes/NavBar.html'"></div>
+            <!--<div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#etakMenu" aria-expanded="false">
+                      <span class="sr-only">Elephanttalk</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><img src="images/et-logo.png" alt="EletphantTalk" class="img-responsive"></a>
+            </div>
+
+              <div class="collapse navbar-collapse" id="etakMenu">
+                  <ul class="nav navbar-nav etak-nav">
+                      <li><a href="home.html" class="active"><i class="fa fa-home"></i>Home</a></li>
+                      <li><a href="#"><i class="et connection45"></i>NPM</a></li>
+                      <li><a href="#"><i class="et hand103"></i>MNP</a></li>
+                      <li><a href="#"><i class="et sim3"></i>SIM Cards</a></li>
+                      <li><a href="#"><i class="et document280"></i>LOG Query</a></li>
+                      <li><a href="#"><i class="et server20"></i>DMC</a></li>
+                      <li><a href="#"><i class="et card26"></i>Vouchers</a></li>
+                      <li><a href="#"><i class="et maze"></i>My TT’s</a></li>
+                      <li><a href="#"><i class="et shopping168"></i>Product Catalog</a></li>
+                      <li><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="et addition12"></i>Hot Actions</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Other Menu</a></li>
+                            <li><a href="#">Other Menu</a></li>
+                            <li><a href="#">Other Menu</a></li>
+                        </ul>
+                    </li>
+                  </ul>
+              </div>-->
+
+</header> <!-- end of main header -->
+
+<div class="top-dashboard">
+    <div id="activeRelativePath" class="container">
+        <bread-crumbs></bread-crumbs>
+    </div>
+</div>
+
+<div class="pin-wrapper" ng-controller="togglePinned" ng-hide="hidePinned">
+        <div class="pinned" id="pinned">
+            <div class="pinned-normal" ng-hide="showIconOnly">
+                <section class="detail-info">
+                    <dl class="dl-horizontal">
+                        <dt>{{'Customer_ID' | translate}}</dt>
+                        <dd>{{pinnedCustId}}</dd>
+                        <dt>{{'Customer_Name' | translate}}</dt>
+                        <dd>{{pinnedCustName}}</dd>
+                        <dt>{{'Phone_Number'|translate}}</dt>
+                        <dd>{{pinnedMSISDN}}</dd>
+                    </dl>
+                </section>
+            </div>
+            <div class="iconinfo-bg"></div><i class="icon-user" id="icon-info" ng-click="toggleShowIconOnly()"></i>
+        </div>
+    </div>
+

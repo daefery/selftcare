@@ -1,0 +1,60 @@
+﻿<div class="modal-content etak-modal">
+    <div ng-controller="AddReferenceTroubleTicketController">
+        <div class="modal-header">
+            <h3 class="modal-title">{{'ADD_REFERENCE'|translate}}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="top-modal-section">
+                    <div class="row">
+                        <div class="col-sm-4" ng-show="{{isETAKUser}}">
+                            MVNO: <span id="addreference-MVNO">{{CustomerDetailforTT.MVNOName}}</span>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            {{'Phone_Number'|translate}}: <span id="addreference-PhoneNumber">{{CustomerDetailforTT.PhoneNumber}}</span>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            {{'Customer_Id'|translate}}: <span id="addreference-CustomerId">{{CustomerDetailforTT.CustomerId}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mid-modal-section" style="padding-top:10px">
+                    <form id="AddReferenceTT" name="AddReferenceTT" class="form-horizontal row">
+                        <div class="col-sm-12 col-xs-12 no-padding">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">{{'URL'| translate}}</label>
+                                    <div class="col-sm-8">
+                                        <input id="TTreferenceURL" type="text" ng-model="Reference.Refurl" class="form-control " style="border-color:#e1e1e1" placeholder="URL">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">{{'Description'|translate}}</label>
+                                    <div class="col-sm-8">
+                                        <input id="TTreferenceDescription" type="text" ng-model="Reference.RefDescription" class="form-control " style="border-color:#e1e1e1" placeholder="Description">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="button-center-modal">
+                            <button id="SubmitAddReference" ng-click="SubmitAddReference()" class="btn btn-default btn-md">{{'Submit'|translate}}</button>
+                            <button id="CancelAddReference" class="btn btn-default btn-md" data-dismiss="modal" aria-label="Close">{{'Cancel'|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

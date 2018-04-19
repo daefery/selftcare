@@ -1,0 +1,267 @@
+﻿<script type="text/ng-template" id="tree_item_renderer.html">
+    {{data.name}}
+    <button ng-click="add(data)">View Child</button>
+    <button ng-click="delete(data)" ng-show="data.nodes.length > 0">Select Dealer</button>
+    <ul>
+        <li ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></li>
+    </ul>
+</script>
+
+
+<div class="title clearfix">
+    <h3><i class="et curriculum3"></i>{{'User_Detail' | translate}}</h3>
+    <div class="panel-options">
+        <ul>
+            <li>
+                <button type="button" class="btn-toggle" data-target="#userManagementDetails" data-toggle="collapse">
+                    <i class="et rounded61"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="panel-data no-pad" id="userManagementDetails">
+    <div class="two-boxes">
+        
+        
+        <div class="two-third-first">
+            <div class="user-information">
+                <dl class="dl-horizontal">
+                    <dt ng-hide="{{!isETAKUser}}">{{'MVNO' | translate}}: </dt>
+                    <dd ng-hide="{{!isETAKUser}}">{{fieldmvnoname}}</dd>
+                    <dt>{{'First_Name' | translate}}: </dt>
+                    <dd>{{detail.firstname}}</dd>
+                    <dt>{{'Middle_Name' | translate}}: </dt>
+                    <dd>{{detail.middlename}}</dd>
+                    <dt>{{'Last_Name' | translate}}: </dt>
+                    <dd>{{detail.lastname}}</dd>
+                    <dt>{{'BIRTHDATE' | translate}}: </dt>
+                    <dd>{{detail.dateofbirth}}</dd>
+                    <dt>{{'ADDRESS' | translate}}: </dt>
+                    <dd>{{detail.address}}</dd>
+                    <dt>{{'Email' | translate}}: </dt>
+                    <dd>{{detail.email}}</dd>
+                    <dt>{{'Mobile_Number' | translate}}: </dt>
+                    <dd>{{detail.mobilenumber}}</dd>
+                    <dt>{{'Job_Title' | translate}}: </dt>
+                    <dd>{{detail.jobtitle}}</dd>
+                    <dt ng-show="isdealerexist" ng-hide="!isdealerexist">{{'Dealer_Name' | translate}}: </dt>
+                    <dd ng-show="isdealerexist" ng-hide="!isdealerexist">{{dealername}} (ID: {{detail.dealerid}})</dd>
+                    <dt ng-show="!isdealerexist" ng-hide="isdealerexist">{{'Dealer_Name' | translate}}: </dt>
+                    <dd ng-show="!isdealerexist" ng-hide="isdealerexist">{{dealername}}</dd>
+                    <dt>{{'DEPARTMENT' | translate}}: </dt>
+                    <dd ng-repeat="TTSimpleDepartment in userdprt">{{TTSimpleDepartment.DepartmentNames.DefaultMessage}}</dd>
+                    <dd></dd>
+                    <dt>{{'Roles' | translate}}: </dt>
+                    <dd ng-repeat="Role in userroles">{{Role.RoleName}}</dd>
+                </dl>
+                <div class="user-option-box">
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="isloginallowed_checkbox" ng-model=detail.isloginallowed name="isloginallowed_checkbox" disabled />
+                                <label for="isloginallowed_checkbox"><span></span>{{'islocked' | translate}}</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="isverified_checkbox" ng-model=detail.isverified name="isverified_checkbox" disabled />
+                                <label for="isverified_checkbox"><span></span>{{'isverified' | translate}}</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="isclosed_checkbox" ng-model=detail.isclosed name="isclosed_checkbox" disabled />
+                                <label for="isclosed_checkbox"><span></span>{{'isclosed' | translate}}</label>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="two-third-last filled-lite" ng-controller="UserDetailSecureSectionController">
+            <h5>user options</h5>
+            <ul class="action-group">
+                <li><button type="button" ng-show="isEditEnable" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#userModal">{{'EDIT' | translate}}</button></li>
+                <li><button type="button" ng-show="isEmailEnable" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#emailModal">{{'Edit_Email' | translate}}</button></li>
+                <li><button type="button" ng-show="isRoleEnable" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#roleModal">{{'Assign_Role' | translate}}</button></li>
+                <li><button type="button" ng-show="isDealerEnable" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#dealerModal">{{'Assign_Dealer' | translate}}</button></li>
+                <li><button type="button" ng-show="isDepartmentEnable" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#deptModal">{{'Assign_Dept' | translate}}</button></li>
+            </ul>
+        </div>
+
+
+        
+       
+    </div>
+    
+</div>
+
+<div id="userModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'EDIT_USER_DETAIL' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body">
+                <etbossform value="EditUserDetailFormController" name="edituserform" ng-controller="EditUserDetailForm" field="{{datas}}"></etbossform>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="roleModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                <h3 class="modal-title">{{'Modify_User_Role' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" ng-repeat="Role in mvnorole">
+                    <!--<input type="checkbox" value="Role.RoleID" />{{Role.RoleName}} <br />-->
+                    <label class="checkbox-inline">
+                        <input id="{{Role.RoleID}}" type="checkbox" value="{{Role.RoleID}}" ng-checked="rolelist.indexOf(Role.RoleID) > -1" ng-click="toggleSelection(Role.RoleID)" name="{{Role.RoleName}}" ng-hide="false" />
+                        <label for="{{Role.RoleID}}"><span></span>{{Role.RoleName}}</label>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-disabled="isRoleChanged()" ng-click="assignrole()">{{'Submit' | translate}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{'Cancel' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dealerModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                <h3 class="modal-title">{{'Modify_User_Dealer' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body" style="height:400px">
+                <div class="form-group">
+                    <div class="col-sm-12" style="margin-bottom:10px">
+                        <div class="col-sm-6">
+                            <dl class="dl-horizontal">
+                                <dt>{{'Current_Dealer' | translate}}: </dt>
+                                <dd>{{detail.dealerid}}</dd>
+                            </dl>
+                        </div>
+                    </div><br />
+                    <div class="col-sm-12" style="margin-bottom:10px">
+                        <div class="col-sm-6">
+                            <label>Main Dealer</label>
+                            <select class="form-control" ng-change="getfirstdealer(mvnodealer)" ng-model="mvnodealer">
+                                <option value="{{maindealer.dealerid}}">{{maindealer.mvnoname}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 btn-group" style="margin-top:15px">
+                            <!--<button type="button" ng-click="getfirstdealer(mvnodealer)" class="btn btn-default">Child</button>-->
+                            <button type="button" class="btn btn-default" ng-click="assigndealer(mvnodealer)">Assign</button>
+                        </div>
+                    </div><br />
+                    <div class="col-sm-12" style="margin-bottom:10px">
+                        <div class="col-sm-6">
+                            <label>First Level Dealer</label>
+                            <select class="form-control" ng-model="dealer" ng-change="getsubdealer(dealer)">
+                                <option ng-repeat="DealerInfo in dealers" value="{{DealerInfo.DealerId}}">{{DealerInfo.DealerNode}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 btn-group" style="margin-top:15px">
+                            <!--<button type="button" ng-click="getsubdealer(dealer)" class="btn btn-default">Child</button>-->
+                            <button type="button" class="btn btn-default" ng-click="assigndealer(dealer)">Assign</button>
+                        </div>
+                    </div><br />
+                    <div class="col-sm-12" style="margin-bottom:10px">
+                        <div class="col-sm-6">
+                            <label>Second Level Dealer</label>
+                            <select class="form-control" ng-model="subdealer" ng-change="getsecsubdealer(subdealer)">
+                                <option ng-repeat="DealerInfo in subdealers" value="{{DealerInfo.DealerId}}">{{DealerInfo.DealerNode}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 btn-group" style="margin-top:15px">
+                            <!--<button type="button" class="btn btn-default" ng-click="getsubdealer(subdealer)">Child</button>-->
+                            <button type="button" class="btn btn-default" ng-click="assigndealer(subdealer)">Assign</button>
+                        </div>
+                    </div><br />
+                    <div class="col-sm-12" style="margin-bottom:10px">
+                        <div class="col-sm-6">
+                            <label>Third Level Dealer</label>
+                            <select class="form-control" ng-model="secsubdealer">
+                                <option ng-repeat="DealerInfo in secsubdealers" value="{{DealerInfo.DealerId}}">{{DealerInfo.DealerNode}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 btn-group" style="margin-top:15px">
+                            <button type="button" class="btn btn-default" ng-click="assigndealer(secsubdealer)">Assign</button>
+                        </div>
+                    </div><br />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-12" style="margin-bottom:10px">
+                    <div class="col-sm-6">
+                        <dl class="dl-horizontal">
+                            <dt>{{'Selected_Dealer' | translate}}: </dt>
+                            <dd>{{assigneddealer}}</dd>
+                        </dl>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-default" ng-disabled="isDealerChanged()" ng-click="recorddealerid()">{{'Submit' | translate}}</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">{{'Cancel' | translate}}</button>
+                    </div>
+                </div><br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="emailModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                <h3 class="modal-title">{{'EDIT_USER_EMAIL' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body">
+                <etbossform value="ChangeEmailFormController" name="changeemailform" ng-controller="ChangeEmailForm" field="{{datas}}"></etbossform>
+                <!--<div class="row">
+                    <div class="col-md-12">
+                        <etbossform value="ChangeEmailFormController" name="changeemailform" ng-controller="ChangeEmailForm" field="{{datas}}"></etbossform>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deptModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                <h3 class="modal-title">{{'Modify_User_Dept' | translate}}</h3>
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="row" ng-hide="!isNoDept">
+                    <p>&nbsp;&nbsp;This dealer node has no department available</p>
+                </div>
+                <div class="form-group" ng-repeat="TTDepartment in departments">
+                    <label class="checkbox-inline">
+                        <input id="{{TTDepartment.Id}}" type="checkbox" value="{{TTDepartment.Id}}" ng-checked="deptlist.indexOf(TTDepartment.Id) > -1" ng-click="toggleDeptSelecct(TTDepartment.Id)" ng-hide="false" />
+                        <label for="{{TTDepartment.Id}}"><span></span>{{TTDepartment.Names.DefaultMessage}}</label>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-disabled="isDeptChanged()" ng-click="assigndept()">{{'Submit' | translate}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{'Cancel' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

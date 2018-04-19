@@ -1,0 +1,102 @@
+﻿<!-- START : MULTISUBSCRIPTION -->
+<div class="col-lg-12 col-md-12">
+    <div class="normal-wrap dash-search">
+        <div class="title clearfix">
+            <h3>{{'SUBSCRIPTION_LIST'|translate}}</h3>
+            <div class="panel-options">
+                <ul>
+                    <li ng-show="isCustomerSummary_SubscriptionSwitchEnable">
+                        <button type="button" class="btn btn-default btn-sm btn-theme" ng-click="changeSubscriptionInfo(true)" ng-show="isCustomerSummary_SubscriptionSwitchEnable">
+                            {{'Switch'|translate}}
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn-toggle" data-target="#MultiSubscriptionContent" data-toggle="collapse">
+                            <i class="et rounded61"></i>
+                        </button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="collapse in" id="MultiSubscriptionContent">
+            <div class="panel-data clearfix">
+                <div class="table-responsive" ng-controller="paginationController">
+                    <table class="table table-bordered">
+                        <thead class="table-head">
+                            <tr>
+                                <th>#</th>
+                                <th ng-click="MultiSubscriptionInfo_Sort('Subscription.SubscriptionId')">
+                                    {{'Subscription_ID'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="MultiSubscriptionInfo_SortKey=='Subscription.SubscriptionId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="MultiSubscriptionInfo_Sort('Subscription.MSISDN')">
+                                    {{'Phone_Number'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="MultiSubscriptionInfo_SortKey=='Subscription.MSISDN'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="MultiSubscriptionInfo_Sort('Subscription.subscriptionStatus')">
+                                    {{'subscription_status'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="MultiSubscriptionInfo_SortKey=='Subscription.subscriptionStatus'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="MultiSubscriptionInfo_Sort('SimCard.simStatus')">
+                                    {{'SIMStatus'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="MultiSubscriptionInfo_SortKey=='SimCard.simStatus'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="MultiSubscriptionInfo_Sort('Subscription.createdDate')">
+                                    {{'Created_Date'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="MultiSubscriptionInfo_SortKey=='Subscription.createdDate'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="MultiSubscriptionInfo_Sort('Subscription.subscriptionType')">
+                                    {{'Subscription_Type'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="MultiSubscriptionInfo_SortKey=='Subscription.subscriptionType'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in ListMultiSubscriptionInfo | orderBy:MultiSubscriptionInfo_SortKey:MultiSubscriptionInfo_Reverse | itemsPerPage:MultiSubscriptionInfo_PageSize"
+                                ng-class="{'selected':item.Subscription==selectedMultiSubscription.Subscription}" ng-click="selectMultiSubscriptionInfo(item)"
+                                pagination-id="Pagination_ListMultiSubscriptionInfo" current-page="MultiSubscriptionInfo_currentPage">
+                                <td>{{MultiSubscriptionInfo_currentPage <= 1 ? ($index+1) : ($index+1) + ((MultiSubscriptionInfo_currentPage-1) * MultiSubscriptionInfo_PageSize)}}</td>
+                                <td>{{item.Subscription.SubscriptionId}}</td>
+                                <td ng-if="item.Subscription.MSISDN != null">{{item.Subscription.MSISDN}}</td>
+                                <td ng-if="item.Subscription.MSISDN == null">N/A</td>
+                                <td ng-if="item.Subscription.subscriptionStatus != null">{{item.Subscription.subscriptionStatus}}</td>
+                                <td ng-if="item.Subscription.subscriptionStatus == null">N/A</td>
+                                <td ng-if="item.SimCard.simStatus != null">{{item.SimCard.simStatus}}</td>
+                                <td ng-if="item.SimCard.simStatus == null">N/A</td>
+                                <td ng-if="item.Subscription.createdDate != null">{{item.Subscription.createdDate}}</td>
+                                <td ng-if="item.Subscription.createdDate == null">N/A</td>
+                                <td ng-if="item.Subscription.subscriptionType != null">{{item.Subscription.subscriptionType}}</td>
+                                <td ng-if="item.Subscription.subscriptionType == null">N/A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <dir-pagination-controls max-size="MultiSubscriptionInfo_PageSize"
+                                             direction-links="true"
+                                             boundary-links="true"
+                                             pagination-id="Pagination_ListMultiSubscriptionInfo"
+                                             ng-show="ListMultiSubscriptionInfo.length">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="SwitchSubscriptionConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h4 class="modal-title">{{'Confirmation' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{'Switch_Subscription_Confirmation_Question' | translate}} : {{selectedMultiSubscription.Subscription.SubscriptionId}}</p>
+                <p>{{'Are_You_Sure' | translate}}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-md" ng-click="changeSubscriptionInfo(false)">{{'Switch'|translate}}</button>
+                <button data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END : MULTISUBSCRIPTION -->

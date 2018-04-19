@@ -1,0 +1,65 @@
+﻿<!--Mahdi Badari multiple user result template
+    12 Nov 2015-->
+
+<style>
+    .selected {
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>
+<section >
+    <div class="table fullwidth" id="ccautopaytable">
+        <table class="table table-hover table-striped">
+            <thead class="table-head">
+                <tr>
+                    <!--<th>#</th>-->
+                    <th ng-click="sort('CardNumber')">
+                        {{'cc_number'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='firstname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('CreditCardType')">
+                        {{'cc_type'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='middlename'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('NameOnCard')">
+                        {{'cc_name'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='lastname'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('ExpirationDate')">
+                        {{'cc_expiry_date'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th ng-click="sort('IsDefault')">
+                        {{'Default'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='isclosed'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="item in cctabledata|itemsPerPage:5| orderBy:sortKey:reverse" ng-class=" {'selected':item.CustomerPaymentMeanId==selectedRow}" ng-click="setClickedRow(item)">
+                    <!--<td>{{$index + 1}}</td>-->
+                    <td>{{item.CardNumber}}</td>
+                    <td>{{item.CreditCardType}}</td>
+                    <td>{{item.NameOnCard}}</td>
+                    <td>{{item.ExpirationDate}}</td>
+                    <td>{{item.IsDefault}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12" style="text-align:center; margin-top:-10px" ng-show="isdataexist()">No Data Found</div>
+    <dir-pagination-controls max-size="10"
+                             direction-links="true"
+                             boundary-links="true"
+                             ng-show="cctabledata.length">
+    </dir-pagination-controls>
+</section>
+
+<!--end-->

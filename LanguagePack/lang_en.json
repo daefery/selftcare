@@ -1,0 +1,24 @@
+{  
+	"ADVANCED_SEARCH" : "Advance Search",
+	
+    "HOME" : "HOME",
+    "NPM" : "NPM",
+    "MNP" : "MNP",
+	"SIM_CARDS" : "SIM CARDS",
+	"LOG_QUERY" : "LOG QUERY",
+	"DMC" : "DMC",
+	"VOUCHERS" : "VOUCHERS",
+	"MY_TT" : "MY TT'S",
+    "PRODUCT_CATALOG": "PRODUCT CATALOG",
+
+    "DASHBOARD" : "Dasboard",
+    "CUSTOMER_DETAILS" : "Customer Detail",
+    "RESOURCE_INFORMATION" : "Resource Information",
+	"SUBSCRIBER_PROVISIONING" : "Subscriber Provisioning",
+	"PRODUCT_INFORMATION" : "Product Information",
+	"BILLING_INFORMATION" : "Billing Information",
+	"INVOICES_PAYMENT" : "Invoices Payment",
+	"HISTORY" : "History",
+    "NOTIFICATION": "Notification",
+    "TROUBLE_TICKETS" : "Trouble Tickets"
+}

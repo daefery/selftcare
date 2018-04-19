@@ -1,0 +1,26 @@
+﻿
+    <div class="title">
+        <h3><i class="et shopper2"></i>{{'Search_User' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#userMgt" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="userMgt" class="panel-data has-etboss collapse in">
+        <div class="single-row" ng-hide="{{!isETAKUser}}">
+            <div class="form-group">
+                <label for="parentmoduleid" class="col-md-6">{{'MVNO' | translate}}</label>
+                <select ng-disabled="{{!isETAKUser}}" ng-model="usearch.mvno" class="form-control col-md-6" required>
+                    <option ng-selected="usearch.mvno == MvnoDetail.orgid" ng-repeat="MvnoDetail in mvnolist" value="{{MvnoDetail.orgid}}">{{MvnoDetail.mvnoname}}</option>
+                </select>
+            </div>
+        </div>
+
+        <etbossform name="viewusercsrform" ng-controller="ViewCSRUsersForm" field="{{datas}}"></etbossform>
+    </div>

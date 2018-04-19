@@ -1,0 +1,9 @@
+﻿<div ng-controller="UploadFilesCtrl">
+    <div class="col-sm-9 clear-padding-left clear-padding-right" unicode-bidi: bidi-override;">
+        <span ng-repeat="file in Attachment">
+            <a  class="attach-style" data-toggle="clickover" pop-over poptitle="{{file.FileName}}" kind="download" param="file" on-download="upload.downloadFileAttachment(object)" on-delete="upload.deleteFileAttachment(object)">
+                <i class=" fa fa-file-o"></i>
+            </a>
+        </span>
+    </div>
+</div>

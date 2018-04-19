@@ -1,0 +1,27 @@
+﻿<section class="normal-wrap clearfix">
+    <header class="title">
+        <h3><i class="et gear44"></i>{{'Maintenance_Plan' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#appFirst" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div id="appFirst" class="apps-updates collapse in">
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-show="maintenancePlan.length==0">{{'No_Maintenance_Scheduled' | translate}}</li>
+            <li class="list-group-item" ng-repeat="maintenance in maintenancePlan" ng-hide="maintenancePlan.length==0">
+                <span class="badge"></span>
+                <strong>{{maintenance.Description}}</strong> <br />
+                {{maintenance.Date}}{{maintenance.EndDate}} <br />
+                {{maintenance.StartTime}} - {{maintenance.EndTime}} <br />
+                <a href={{maintenance.URLReference}} ng-hide="maintenance.URLReference==null">{{"More_details" | translate}}</a>
+            </li>
+        </ul>
+    </div>
+</section>

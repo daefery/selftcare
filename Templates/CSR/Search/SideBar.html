@@ -1,0 +1,96 @@
+﻿<!-- Rico Hartono Jahja
+Modified 21.10.2015
+    applying the latest design -->
+<!--<span class="arrow"></span>--> <!--if required to add the arrow icon-->
+<!--
+<div class="page-sidebar navbar-collapse" ng-controller="TabController">
+    <ul id="sidebar" class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+
+        <li>
+            <a id="dashA" href="/CSR/Customer/App/SearchPage" active-link="active" class="list-group-item">
+                <span class="title">{{'DASHBOARD'|translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a id="dashB" href="/CSR/Customer/App/SearchPage/CustomerDetailDashboard" active-link="active" class="list-group-item">
+                <span class="title">{{'CUSTOMER_DETAILS' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a id="dashC" href="" class="list-group-item closed">
+                <span class="title">{{'SUBSCRIPTION' | translate}}</span>
+                <span class="arrow"></span>
+            </a>
+            <ul>
+                <li>
+                    <a href="#" class="list-group-item">
+                        <span class="title">{{'RESOURCE_INFO' | translate}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item closed">
+                        <span class="title">{{'SERVICE_CONFIGURATION' | translate}}</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="#" class="list-group-item">
+                                <span class="title">{{'CALL_BARRING' | translate}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-group-item">
+                                <span class="title">{{'CALL_FORWARD' | translate}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-group-item closed">
+                                <span class="title">{{'DRL' | translate}}</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="" class="list-group-item">
+                <span class="title">{{'ORDER_PRODUCTS' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="list-group-item">
+                <span class="title">{{'BILLING_INFO_INVOICES' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="list-group-item">
+                <span class="title">{{'BALANCE_ADJUSTMENT' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a href="/CSR/Customer/App/SearchPage/TroubleTickets" active-link="active" class="list-group-item">
+                <span class="title">{{'TROUBLE_TICKETS' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="list-group-item">
+                <span class="title">{{'HISTORY' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a href="" class="list-group-item">
+                <span class="title">{{'NOTIFICATION' | translate}}</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+    -->
+
+<aside class="page-sidebar" ng-controller="CustomerDashboardSidebarController">
+    <ul id="sidebar" class="page-sidebar-menu">
+        <div ng-include="'Templates/Common/DynamicNavigation/SidebarTree.html'"></div>
+    </ul>
+</aside>

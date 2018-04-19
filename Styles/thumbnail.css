@@ -1,0 +1,154 @@
+/* thumbnail */
+
+
+
+.device-thumb {
+  position: relative;
+  display: block;
+  width: 320px; /* width di sesuaikan dengan yang di selfcare nya */
+  height: 100%;
+  z-index: 0;
+}
+
+.thumb-content {
+  background: rgba(255,255,255,.75);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.thumb-inner {
+  padding: 20px;
+  color: #555;
+}
+
+.thumb-inner h3 {
+  text-align: center;
+}
+
+.thumb-inner .btn {
+  display: block;
+  margin-top: 20px;
+}
+
+.active-device{
+  font-size: 50px;
+  color: #7A014E;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  padding: 10px;
+}
+.active-font{
+  font-size: 25px;
+  color: #7A014E;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+}
+.border-active-device{
+    margin-top:10px;
+    margin-bottom:10px;
+    border-top:2px solid #7A014E;
+    width:100%;
+}
+
+/*revani popover selfcare*/
+.qs {
+  background-color: #02bdda;
+  border-radius: 16px;
+  color: #e3fbff;
+  cursor: default;
+  display: inline-block;
+  font-family: 'Helvetica',sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  text-align: center;
+  width: 30px;
+}
+.qs .popover-rba {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-radius: 5px;
+  bottom: 42px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  display: none;
+  font-size: 12px;
+  font-family: 'Helvetica',sans-serif;
+  left: -85px;
+  padding: 7px 10px;
+  position: absolute;
+  width: 200px;
+  z-index: 4;
+}
+.qs .popover-rba:before {
+  border-top: 7px solid rgba(0, 0, 0, 0.85);
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  bottom: -7px;
+  content: '';
+  display: block;
+  left: 50%;
+  margin-left: -7px;
+  position: absolute;
+}
+.qs:hover .popover-rba {
+  display: block;
+  -webkit-animation: fade-in-rba .3s linear 1, move-up-rba .3s linear 1;
+  -moz-animation: fade-in-rba .3s linear 1, move-up-rba .3s linear 1;
+  -ms-animation: fade-in-rba .3s linear 1, move-up-rba .3s linear 1;
+}
+
+@-webkit-keyframes fade-in-rba {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in-rba {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fade-in-rba {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes move-up-rba {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 42px;
+  }
+}
+@-moz-keyframes move-up-rba {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 42px;
+  }
+}
+@-ms-keyframes move-up-rba {
+  from {
+    bottom: 30px;
+  }
+  to {
+    bottom: 42px;
+  }
+}
+/*revani end*/

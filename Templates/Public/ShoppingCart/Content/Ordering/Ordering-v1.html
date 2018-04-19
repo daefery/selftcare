@@ -1,0 +1,545 @@
+﻿<div ng-controller="OrderingController">
+<div class="step-title">
+    <h3>Ordering</h3>
+</div>
+    <div class="cart-badge">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="cart-count">
+            {{(Cart.CartList === undefined ? 0 : Cart.CartList.length)}}
+        </span>
+    </div>
+    <div class="reg-detail">
+
+        <!--<div class="reg-field">
+            <div class="form-content split">
+                <etbossform name="customertype" field="{{CustomerType}}"></etbossform>
+                <etbossform name="servicetype" field="{{ServiceType}}"></etbossform>
+            </div>
+        </div>
+
+        <div class="reg-field">
+            <div class="half product-csr prod-select">
+                <div class="row">
+                    <label class="col-md-4 col-sm-4 control-label">Product:</label>
+                    <div class="col-md-8">
+                        <etbossform name="product" field="{{Product}}"></etbossform>
+                        <i ng-controller="ModalCtrl" class="et info1 fa-lg" style="cursor:pointer; font-size:25px" ng-click="open('','Templates/CSR/Customer/CustomerRegistration/Content/Ordering/Content/ProductInfo.html')"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reg-field">
+            <div class="half product-csr row">
+                <label class="control-label col-sm-4">Promotion :</label>
+                <div class="col-sm-8 checkbox">
+                    <div class="pre-scrollable">
+                        <div ng-repeat="PromotionItem in jsonPromotion.promotion">
+                            <div class="col-md-12">
+                                <div class="col-md-10 form-group" style="">
+                                    <input type="checkbox" id="{{$index}}" value="" name="promotion_checkbox" ng-model="Voice_Mail"/>
+                                    <label for="{{$index}}"><span></span>{{PromotionItem.testName}}</label>
+                                </div>
+                                <div class="col-md-2">
+                                    <i ng-controller="ModalCtrl" class="et info1" style="cursor: pointer; padding-top: 5px" ng-click="open('sm','Templates/CSR/Customer/CustomerRegistration/Content/Ordering/Content/PromotionInfo.html')"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="reg-field">
+            <div class="half product-csr">
+                <etbossform ng-init="Order.BuyDevice='newDevice'" name="buydevice" field="{{BuyDevice}}"></etbossform>
+            </div>
+        </div>
+       
+
+        <div class="reg-field">
+            <div class="half product-csr">
+                <div class="form-content ">
+                    <div class="form-group row">
+                        <label class="control-label col-md-4 ng-binding" for="Plan" ng-bind="lang.Choose_Your_Plan"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Plan -->
+        <div class="reg-field" >
+            <section class="table">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="planTable" >
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Plan Name</th>
+                                <th>Description</th>
+                                <th>Price ($)</th>
+                                <!--<th>Feature</th>-->
+                                <!--<th>Auto Pay</th>-->
+                                <th>Info</th>
+                                <!--<th>Mandatory Feature Configuration Status</th>-->
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="itemPlan in Order.Plan">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <input id="plan_radio_{{$index}}" type="radio" name="plan_radio"
+                                               ng-model="plans.id" ng-value="{{itemPlan.Id}}"
+                                               ng-click="setClickedRow(itemPlan,'plan',$index)" />
+                                        <label for="plan_radio_{{$index}}"><span></span>&nbsp;</label>
+                                    </div>
+                                </td>
+                                <td>{{itemPlan.Names}}</td>
+                                <td>{{itemPlan.Descriptions}}</td>
+                                <td>{{itemPlan.Price}}</td>
+                                <!--<td>
+                    <button id="planFeatureBtn_{{$index}}" name="planFeatureBtn" type="button" ng-controller="ModalCtrl" class="btn btn-default"
+                            style="cursor: pointer; padding-top: 5px" ng-click="displayModal(itemPlan.Options)" disabled>
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    </button>
+                </td>-->
+                                <!--<td>
+                    <div class="form-group">
+                        <input id="autopay{{$index}}" type="checkbox" name="autopay" />
+                        <label for="autopay{{$index}}"><span></span>&nbsp;</label>
+                    </div>
+                </td>-->
+                                <td>
+                                    <button id="planInfoBtn_{{$index}}" name="planInfoBtn" class="btn btn-default" disabled
+                                            data-content="{{itemPlan.Descriptions}}"
+                                            placement="bottom" data-trigger="hover">
+                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                                <!--<td>
+                    <label id="featureStatus_{{$index}}" name="featureStatus"><span></span></label>
+                </td>-->
+                            </tr>
+                            <tr id="planAccordion_{{$index}}" name="planAccordion" ng-init="hideAccordion()">
+                                <td class="nopad" colspan="5">
+                                    <section class="table" ng-show="itemPlan.HasOptionalSpecifiedFeatures">
+                                        <div class="table-responsive">
+                                            <!--<div>
+                <label style="color: #7A014E" class="control-label col-md-4 ng-binding" ng-bind="lang.Optional_Features"></label>
+            </div><br/>-->
+                                            <div>
+                                                <label style="color: #7A014E" class="control-label col-md-4 ng-binding">Optional Specified Features</label>
+                                            </div>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>&nbsp;</th>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+                                                        <th>Price ($)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="itemOptional in itemPlan.OptionalSpecifiedFeatures">
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <input id="optionalFeatureCb_{{$index}}" type="checkbox" name="optionalFeatureCb"
+                                                                       value="{{itemOptional.Product.Id}}|{{itemOptional.Product.Names}}|{{itemOptional.Product.PurchaseOption.Id}}|{{itemOptional.Product.PurchaseOption.Amount}}" />
+                                                                <label for="optionalFeatureCb_{{$index}}"><span></span>&nbsp;</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{itemOptional.Product.Names}}</td>
+                                                        <td>{{itemOptional.Product.Descriptions}}</td>
+                                                        <td>{{itemOptional.Product.PurchaseOption.Amount}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                    <hr ng-show="itemPlan.HasOptionalSpecifiedFeatures" />
+                                    <section class="table" ng-show="itemPlan.HasOptionalGroupFeatures">
+                                        <div class="table-responsive">
+                                            <div>
+                                                <label style="color: #7A014E" class="control-label col-md-4 ng-binding">Optional Group Features</label>
+                                            </div>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>&nbsp;</th>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody ng-repeat="itemGroup in itemPlan.OptionalGroupFeatures track by $index">
+                                                <tr>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <input id="optionalGroupFeatureCb_{{$index}}" value="{{$index}}|{{itemGroup.Products}}" type="checkbox" name="optionalGroupFeatureCb"/>
+                                                            <label for="optionalGroupFeatureCb_{{$index}}"><span></span>&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{itemGroup.Names}}</td>
+                                                    <td>{{itemGroup.Descriptions}}</td>
+                                                </tr>
+                                                <tr name="childGroupAccordion" id="childGroupAccordion_{{$index}}" ng-init="hideChildAccordion()">
+                                                    <td class="nopad" colspan="3">
+                                                        <section class="table">
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>&nbsp;</th>
+                                                                    <th>Name</th>
+                                                                    <th>Description</th>
+                                                                    <th>Price ($)</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr ng-repeat="itemChild in itemGroup.Products track by $index">
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <input id="{{itemChild.Id}}_{{$index}}" type="checkbox" name="childGroupFeatureCb"
+                                                                                   value="{{itemChild.Id}}|{{itemChild.Names}}|{{itemChild.PurchaseOption.Id}}|{{itemChild.PurchaseOption.Amount}}" />
+                                                                            <label for="{{itemChild.Id}}_{{$index}}"><span></span>&nbsp;</label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>{{itemChild.Names}}</td>
+                                                                    <td>{{itemChild.Descriptions}}</td>
+                                                                    <td>{{itemChild.PurchaseOption.Amount}}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </section>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+       <!-- End of Plan -->
+
+        <div class="reg-field" ng-hide="isNewDevice">
+            <div class="half product-csr">
+                    <etbossform name="byodForm" field="{{BYOD}}"></etbossform>
+            </div>
+        </div>
+        <div class="reg-field" ng-show="HasDevice && !isOwnDevice">
+            <div class="half product-csr">
+                <div class="form-content ">
+                    <div class="form-group row">
+                        <label class="control-label col-md-4 ng-binding" for="Device" ng-bind="lang.Choose_Your_Device"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Buy Device-->
+        <div class="reg-field " ng-show="HasDevice && !isOwnDevice">
+            <section class="table pre-scrollable">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-condensed" id="deviceTable">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>SKU</th>
+                                <th>Device</th>
+                                <th>Color</th>
+                                <th>Memory</th>
+                                <th>Price ($)</th>
+                                <th>Info</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="itemDevice in Order.Devices">
+                                <td>
+                                    <div class="form-group">
+                                        <input id="device_radio_{{$index}}" type="radio" name="device_radio"
+                                               ng-model="device.id" ng-value="{{itemDevice.Product.Id}}" ng-click="setClickedRow(itemDevice,'device',$index)" />
+                                        <label for="device_radio_{{$index}}"><span></span>&nbsp;</label>
+                                    </div>
+                                </td>
+                                <td>{{itemDevice.Product.Id}}</td>
+                                <td>{{itemDevice.Product.Names}}</td>
+                                <td>{{itemDevice.Product.Color}}</td>
+                                <td>{{itemDevice.Product.Memory}}</td>
+                                <td>{{itemDevice.Product.PurchaseOption.Amount}}</td>
+                                <td>
+                                    <button id="deviceInfo_{{$index}}" name="deviceInfo" type="button" ng-controller="ModalCtrl" class="btn btn-default"
+                                            style="cursor: pointer; padding-top: 5px"
+                                            ng-click="open('','Templates/CSR/Customer/CustomerRegistration/Content/Ordering/Content/DeviceInfo.html')" disabled>
+                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <!-- End of Buy Device-->
+
+        <div class="reg-field "ng-show="HasOtherProd">
+            <div class="half product-csr">
+                <div class="form-content ">
+                    <div class="form-group row">
+                        <label class="control-label col-md-4 ng-binding" for="OtherProduct" ng-bind="lang.Other_Product"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Other Product-->
+        <div class="reg-field" ng-show="HasOtherProd">
+            <section class="table pre-scrollable">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Category</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price ($)</th>
+                                <th>Info</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="otherProduct in Order.OtherProduct">
+                                <td>
+                                    <div class="form-group">
+                                        <input id="otherproduct_radio_{{$index}}" type="checkbox" name="otherproduct_checkbox"
+                                               value="{{otherProduct.Product.Id}}|{{otherProduct.Product.Names}}|{{otherProduct.Product.PurchaseOption.Id}}|{{otherProduct.Product.PurchaseOption.Amount}}" />
+                                        <label for="otherproduct_radio_{{$index}}"><span></span>&nbsp;</label>
+                                    </div>
+                                </td>
+                                <td>{{otherProduct.Product.Category}}</td>
+                                <td>{{otherProduct.Product.Name}}</td>
+                                <td>{{otherProduct.Product.Descriptions}}</td>
+                                <td>{{otherProduct.Product.PurchaseOption.Amount}}</td>
+                                <td>
+                                    <button type="button" ng-controller="ModalCtrl" class="btn btn-default"
+                                            style="cursor: pointer; padding-top: 5px"
+                                            ng-click="open('','Templates/CSR/Customer/CustomerRegistration/Content/Ordering/Content/DeviceInfo.html')">
+                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <!-- End of Other Product -->
+        <!--<div class="reg-field">
+            <div class="half product-csr">
+                <div class="device-payment" ng-hide="isOwnDevice">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Device Payment Type :</label>
+                        <div class="col-sm-8">
+                            <etbossform name="devicepayment" field="{{devicepayment}}"></etbossform>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="reg-field clean">
+            <div class="half product-csr">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" style="padding: 0">Total Amount :</label>
+                    <div class="col-sm-8">
+                        <input type="text" ng-model="TotalAmount" ng-disabled="true" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+    <div class="button-inner clearfix">
+        <!--<button ng-click="ChangeCRPage('customerinfo')" ng-hide="cantContinue" class="next-btn">next <i class="fa fa-angle-right"></i></button>-->
+        <button ng-click="createShoppingCartSession()" ng-hide="cantContinue" class="next-btn">next <i class="fa fa-angle-right"></i></button>
+    </div>
+
+    <div class="modal etak-content fade" id="featureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            <i class="et delete8"></i>
+                        </span>
+                    </button>
+                    <h4 class="modal-title"><i class="et customerservice8"></i> {{lang.Configure_Feature}}</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- MANDATORY FEATURES -->
+                    <div class="panel panel-default" ng-show="HasMandatoryFeature">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{lang.Mandatory_Features}}</h3>
+                        </div>
+                        <div class="panel-body" ng-show="isHasMandatoryGroupFeature">
+                            <h4 >{{lang.Group_Option}}</h4>
+                            <hr/>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="control-label col-md-4 ng-binding" for="cbFeatures" ng-bind="lang.Features"></label>
+                                        </td>
+                                        <td>
+                                            <div class="selectContainer">
+                                                <select class="form-control" name="cbFeatures" id="cbFeatures">
+                                                    <option value="">Choose a feature</option>
+                                                    <option ng-repeat="list in rootFeatureList.MandatoryGroupFeatureList" id="{{list.Id}}"
+                                                            value="{{list.PurchaseOption[0].Charges[0].Prices[0].Amount}}|{{list.Descriptions}}">
+                                                        {{list.Names}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="control-label col-md-4 ng-binding" for="feature_description" ng-bind="lang.Description"></label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="feature_description" id="feature_description" class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-body" ng-show="isHasMandatorySpecifiedFeature">
+                            <h4>{{lang.Specified_Option}}</h4>
+                            <hr />
+                            <section class="table">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered table-striped table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>&nbsp;</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Price ($)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input id="mandatorySpecifiedFeatureList" type="checkbox" name="mandatorySpecifiedFeatureList"
+                                                                value="{{rootFeatureList.MandatorySpecifiedFeatureList.Id}}|{{rootFeatureList.MandatorySpecifiedFeatureList.PurchaseOption[0].Charges[0].Prices[0].Amount}}|{{rootFeatureList.MandatorySpecifiedFeatureList.Descriptions}}" />
+                                                        <label for="mandatorySpecifiedFeatureList"><span></span>&nbsp;</label>
+                                                    </div>
+                                                </td>
+                                                <td>{{rootFeatureList.MandatorySpecifiedFeatureList.Names}}</td>
+                                                <td>{{rootFeatureList.MandatorySpecifiedFeatureList.Descriptions}}</td>
+                                                <td>{{rootFeatureList.MandatorySpecifiedFeatureList.PurchaseOption[0].Charges[0].Prices[0].Amount}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>    
+                    </div>
+                    <!-- END OF MANDATORY FEATURES-->
+
+                    <!-- OPTIONAL FEATURES -->
+                    <div class="panel panel-default" ng-show="HasOptionalFeature">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{lang.Optional_Features}}</h3>
+                        </div>
+                        <div class="panel-body" ng-show="isHasOptionalGroupFeature">
+                            <h4>{{lang.Group_Option}}</h4>
+                            <hr />
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped table-condensed">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <label class="control-label col-md-4 ng-binding" for="cbOptionalGroupFeatures" ng-bind="lang.Features"></label>
+                                        </td>
+                                        <td>
+                                            <div class="selectContainer">
+                                                <select class="form-control" name="cbOptionalGroupFeatures" id="cbOptionalGroupFeatures">
+                                                    <option value="">Choose a feature</option>
+                                                    <option ng-repeat="list in rootFeatureList.OptionalGroupFeatureList" id="{{list.Id}}"
+                                                            value="{{list.PurchaseOption[0].Charges[0].Prices[0].Amount}}|{{list.Descriptions}}">
+                                                        {{list.Names}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="control-label col-md-4 ng-binding" for="optionalfeature_description" ng-bind="lang.Description"></label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="optionalfeature_description" id="optionalfeature_description" class="form-control" disabled>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-body" ng-show="isHasOptionalSpecifiedFeature">
+                            <h4>{{lang.Specified_Option}}</h4>
+                            <hr />
+                            <section class="table">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered table-striped table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>&nbsp;</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Price ($)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input id="optionalFeatureList" type="checkbox" name="optionalFeatureList"
+                                                                value="{{rootFeatureList.OptionalSpecifiedFeatureList.Id}}|{{rootFeatureList.OptionalSpecifiedFeatureList.PurchaseOption[0].Charges[0].Prices[0].Amount}}|{{rootFeatureList.OptionalSpecifiedFeatureList.Descriptions}}" />
+                                                        <label for="optionalFeatureList"><span></span>&nbsp;</label>
+                                                    </div>
+                                                </td>
+                                                <td>{{rootFeatureList.OptionalSpecifiedFeatureList.Names}}</td>
+                                                <td>{{rootFeatureList.OptionalSpecifiedFeatureList.Descriptions}}</td>
+                                                <td>{{rootFeatureList.OptionalSpecifiedFeatureList.PurchaseOption[0].Charges[0].Prices[0].Amount}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!-- END OF OPTIONAL FEATURES -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <!--
+                    <button type="button" id="btnSubmitChangeCustDetail" class="btn btn-default" ng-controller="UpdateCustomerDetailFormController" ng-click="saveChangesGeneral(update)" ng-disabled="editcustomerdetail.$invalid">{{'Submit'|translate}}</button>
+                    <button type="button" id="btnCancelEditCustDetail" class="btn btn-default" data-dismiss="modal"></button>
+                    -->
+                </div>
+                </div>
+            </div>
+   </div>
+
+    </div>

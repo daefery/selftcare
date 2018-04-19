@@ -1,0 +1,23 @@
+.button{
+  @extend %rounded-corners;
+  padding: 10px 30px 10px 30px;
+  font-family: $font-family-bold;
+  font-size: $button-size;
+  text-align: center;
+  box-shadow:0 0.5px 0.5px $font-lightgray;
+  background-image:none;
+}
+.btn-red{
+  color: $font-white;
+  border: 1px solid darken($main-red, 15%);
+  background-image:-webkit-linear-gradient(to top, darken($main-red, 5%), $main-red);
+  background-image:linear-gradient(to top,darken($main-red, 5%), $main-red);
+
+}
+.btn-red:hover{
+  border: 1px solid darken($main-red, 10%);
+  background-image:-webkit-linear-gradient(to top, $main-red, lighten($main-red, 10%));
+  background-image:linear-gradient(to top,$main-red, lighten($main-red, 10%));
+}
+
+

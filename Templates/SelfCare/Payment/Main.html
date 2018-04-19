@@ -1,0 +1,238 @@
+﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div class="inner-selfcare single-payment">
+
+        <div class="container">
+            <div class="payment-top">
+                <div class="payment-title">
+                    <h1>Single Payment</h1>
+                </div>
+                <div class="payment-amount">
+                    <div class="amount-number">
+                        <sup>$</sup>
+                        <h3>{{amount}}</h3>
+                    </div>
+                    <div class="amount-description">
+                        <p><span>{{totalItem}}</span> purchase</p>
+                    </div>
+                </div>               
+            </div>
+
+
+            <div class="panel-data clean">
+                <h3>Select Payment Method</h3>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div class="panel-group" id="singlePayment" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default paypal-pay">
+                                <div class="payment-heading" role="tab" id="headingOne">
+                                    <button role="button" class="clearfix" data-toggle="collapse" data-parent="#singlePayment" data-target="#paypal" aria-expanded="true" aria-controls="paypal">
+
+                                        <h5>Pay with my paypal account</h5>
+                                        <div class="right-action">
+                                            <span class="paypal-logo"></span>
+                                            <i class="fa fa-angle-right"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div id="paypal" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body payment">
+                                        <a href="#" title="Cara Kerja PayPal" ng-click="payBalance(pay)">
+                                            <img src="../images/buy-logo-large.png" alt="Buy Now with PayPal" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default card-pay">
+                                <div class="payment-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <button class="collapsed" class="clearfix" role="button" data-toggle="collapse" data-target="#cardMethod" data-parent="#singlePayment" href="#cardMethod" aria-expanded="false" aria-controls="cardMethod">
+                                            <h5>Pay with a Debit or Credit Card</h5>
+                                            <div class="right-action">
+                                                <span class="cc-logo"></span>
+                                                <i class="fa fa-angle-right"></i>
+                                            </div>
+                                        </button>
+                                    </h4>
+                                </div>
+                                <div id="cardMethod" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="cc-input">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Card Type</label>
+                                                <div class="col-md-8">
+                                                    <select ng-model="creditcard.cardtype" class="form-control">
+                                                        <option value="visa">VISA</option>
+                                                        <option value="mastercard">MASTER CARD</option>
+                                                        <option value="amex">AMERICAN EXPRESS</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Name On Card</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" id="" ng-model="creditcard.cardname" placeholder="Name On Card" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Card Number</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" id="" ng-model="creditcard.cardnumber" placeholder="Card Number" type="text">
+                                                    <div class="card-list">
+                                                        <span class="dash-card" ng-class="{'active':creditcard.cardtype=='visa'}">
+                                                            <i class="fa fa-cc-visa"></i>
+                                                        </span>
+                                                        <span class="dash-card" ng-class="{'active':creditcard.cardtype=='mastercard'}">
+                                                            <i class="fa fa-cc-mastercard"></i>
+                                                        </span>
+                                                        <span class="dash-card" ng-class="{'active':creditcard.cardtype=='amex'}">
+                                                            <i class="fa fa-cc-amex"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Expired Date</label>
+                                                <div class="col-md-3">
+                                                    <input class="form-control" id="" ng-model="creditcard.cardmonth" placeholder="Month" maxlength="2" type="text">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input class="form-control" id="" ng-model="creditcard.cardyear" maxlength="4" placeholder="Year" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">CSC</label>
+                                                <div class="col-md-4">
+                                                    <input class="form-control" ng-model="creditcard.cardcvv" id="" placeholder="CSC" type="text">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <a href="">What is this?</a>
+                                                </div>
+                                            </div>
+                                            <div class="form-bottom clearfix">
+                                                <button type="submit" ng-click="checkoutPayment(3, creditcard)" class="btn btn-default btn-lg">Pay Now</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default bank-pay">
+                                <div class="payment-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <button class="collapsed" class="clearfix" role="button" data-toggle="collapse" data-target="#bankMethod" data-parent="#singlePayment" href="#bankMethod" aria-expanded="false" aria-controls="cardMethod">
+                                            <h5>Pay with bank account</h5>
+                                            <div class="right-action">
+                                                <i class="fa fa-angle-right"></i>
+                                            </div>
+                                        </button>
+                                    </h4>
+                                </div>
+                                <div id="bankMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="cc-input">
+
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Bank Name</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" id="" ng-model="bankaccount.bankname" placeholder="Your bank name" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Account Number</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" id="" ng-model="bankaccount.accountnumber"  placeholder="Your bank account" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-bottom clearfix">
+                                                <button type="submit" ng-click="checkoutPayment(3, bankaccount)" class="btn btn-default btn-lg">Pay Now</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default balance-pay">
+                                <div class="payment-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <button class="collapsed" class="clearfix" role="button" data-toggle="collapse" data-target="#balanceMethod" data-parent="#singlePayment" href="#balanceMethod" aria-expanded="false" aria-controls="cardMethod">
+                                            <h5>Pay with bank account</h5>
+                                            <div class="right-action">
+                                                <i class="fa fa-angle-right"></i>
+                                            </div>
+                                        </button>
+                                    </h4>
+                                </div>
+                                <div id="balanceMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="cc-input">
+
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Name</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" id="" placeholder="name" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">Account Number</label>
+                                                <div class="col-md-8">
+                                                    <input class="form-control" id="" placeholder="name" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-bottom clearfix">
+                                                <button type="submit" ng-click="payBalance(pay)" class="btn btn-default btn-lg">Pay Now</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-sm-12">
+                        <aside class="cart-side">
+                            <div class="cart-help">
+                                <h3>Need a Help for your payment</h3>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h5><i class="et phone72"></i> 123-345-67890</h5>
+                                        <p>lorem ipsum customer help</p>
+                                    </li>
+                                    <li>
+                                        <h5><i class="fa fa-comment-o"></i> lorem ipsum</h5>
+                                        <p>lorem ipsum customer help</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    jQuery(function ($) {
+
+        $('.paypal-pay, .card-pay, .bank-pay, .balance-pay').on('show.bs.collapse', function () {
+            $(this).toggleClass("actived");
+        });
+
+        $('.paypal-pay, .card-pay, bank-pay, .balance-pay').on('hide.bs.collapse', function () {
+            $(this).removeClass("actived");
+        })
+    });
+
+</script>
+
+
+
+
+
+

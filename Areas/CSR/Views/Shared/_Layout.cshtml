@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html ng-app="CSRContents">
+<head lang="en">
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title ng-bind="'CSR &mdash; ' +  (title | translate)"> CSR Client</title>
+
+    @Styles.Render("~/Content/css")
+    <link href="~/Areas/CSR/Content/styles/custom.css" rel="stylesheet" />
+    <link href="~/Areas/CSR/Content/styles/admin.css" rel="stylesheet" />
+    <link href="~/Styles/angular-ui-notification.min.css" rel="stylesheet"/>
+    <link href="~/Areas/CSR/Content/styles/angular.treeview.css" rel="stylesheet" />
+    <link href="~/Areas/CSR/Content/styles/treeview.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-for-text-editor.css" rel="stylesheet" />
+    <link href="~/Content/text-editor-index.css" rel="stylesheet" />
+    <link href="~/Areas/CSR/Content/styles/tree-control-attribute.css" rel="stylesheet" />
+    <link href="~/Areas/CSR/Content/styles/tree-control.css" rel="stylesheet"/>
+    <link href="~/Areas/CSR/Content/styles/slick.css" rel="stylesheet" />
+
+    @*<link href="~/Styles/customer.css" rel="stylesheet">*@
+    @*<script src="~/Areas/CSR/Content/js/admin.js"></script>*@
+    <script src="~/Areas/CSR/Content/js/jquery.min.js"></script>
+    <script src="~/Areas/CSR/Content/js/forms.js"></script>
+    <script src="~/Areas/CSR/Content/js/icheck.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+
+    <div id="inject1"></div>
+</head>
+<body>
+    @*<div class="load" us-spinner="{radius:30, direction: -1,  speed: 2, width:10, length: 0, opacity: 0.6, corners:1, color: '#0A65AF', scale: 0.75, lines: 17}"></div>*@
+    <div class="load" us-spinner>
+        <span class="loading"></span>
+    </div>
+    <div id="blur">
+        <div ng-controller="LocalizationController" ng-init="initialize()">
+            @RenderBody()
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.Console = {};
+        (function (cr) {
+            var rootPath;
+            cr.rootPath = rootPath;
+        }(window.Console));
+        Console.rootPath = '@Url.Content("~")';
+    </script>
+
+    @Scripts.Render("~/bundles/common_lib")
+
+    <script src="~/Areas/CSR/Content/js/forms.js"></script>
+    <script src="~/Scripts/ng-breadcrumbs.min.js"></script>
+    <script src="~/Scripts/custom/dynamicMenu.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Areas/CSR/Bindings/ViewModels/Modules/CSRApp.js"></script>
+    <script src="@Url.Content("~/Scripts/App.js")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/angular_common")
+    <script src="~/Scripts/angular-translate.js"></script>
+    <script src="~/Scripts/common/controller/LocalizationController.js"></script>
+    <script src="~/Scripts/common/services/LocalizationService.js"></script>
+    <script src="~/Areas/CSR/Content/js/admin.js"></script>
+    @RenderSection("routings", required: false)
+    @RenderSection("controllers", required: false)
+    @RenderSection("services", required: false)
+    @RenderSection("directives", required: false)
+    <script type="text/javascript">
+        @RenderSection("footerScript", required: false)
+    </script>
+    <script>
+        $('.dropdown-toggle').dropdown()
+    </script>
+    <script src="~/Scripts/custom/activeButton.js"></script>
+    @Scripts.Render("~/bundles/text_editor_component")
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+﻿<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-lg-12 col-md-12">
+            <div class="main-content">
+                <div class="normal-wrap">
+                    <div class="title clearfix">
+                        <!--<h3>Subscriber Activation</h3>-->
+                    </div>
+                    <div class="collapse in" id="firstContent">
+                        <div class="panel-data">
+                            <form class="etak-form form-horizontal">
+                                
+                                <div class="form-content row">
+                                    <div class="col-lg-6">
+                                        <h4>Customer Information</h4>
+                                        <div class="form-group row">
+                                            <label for="" class="col-md-4 control-label">{{'full name' | uppercase}}</label>
+                                            <div class="col-md-8">
+                                                <p class="form-control-static">{{FullName | uppercase}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-md-4 control-label">{{'email' | uppercase}}</label>
+                                            <div class="col-md-8">
+                                                <p class="form-control-static">{{customerInfo.Email}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-md-4 control-label">{{'nationality' | uppercase}}</label>
+                                            <div class="col-md-8">
+                                                <p class="form-control-static">{{Nationality | uppercase}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-md-4 control-label">{{'customer address' | uppercase}}</label>
+                                            <div class="col-md-8">
+                                                <p class="form-control-static">{{CustomerAddress | uppercase}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="col-sm-12">
+                                            <h4>Order Detail</h4>
+
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">{{'store id' | uppercase}}</label>
+                                                <div class="col-md-8">
+                                                    <p class="form-control-static">{{orderDetail.StoreId | uppercase}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">{{'order date' | uppercase}}</label>
+                                                <div class="col-md-8">
+                                                    <p class="form-control-static">{{OrderDate}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">{{'Contact Name' | uppercase}}</label>
+                                                <div class="col-md-8">
+                                                    <p class="form-control-static">{{orderDetail.ShippingAddress.ContactName | uppercase}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">{{'Contact Phone' | uppercase}}</label>
+                                                <div class="col-md-8">
+                                                    <p class="form-control-static">{{orderDetail.ShippingAddress.ContactPhone | uppercase}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-4 control-label">{{'shipping address' | uppercase}}</label>
+                                                <div class="col-md-8">
+                                                    <p class="form-control-static">{{shippingAddress | uppercase}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Product Id</th>
+                                                    <th>Price</th> 
+                                                    <th>Quantity</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in orderDetail.OrderItems">
+                                                        <th scope="row">{{$index + 1}}</th>
+                                                        <td>{{item.ProductId}}</td>
+                                                        <td>{{item.UnitPrice}}</td>
+                                                        <td>{{item.Quantity}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-bottom clearfix">
+                                    <a href="/Authorization/Public/SelfActivation" type="button" class="btn btn-danger">it's not me</a>
+                                    <button type="button" ng-click="goNext(data)" class="btn btn-default">confirm</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

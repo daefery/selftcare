@@ -1,0 +1,31 @@
+﻿<slick ng-if="isCompiled == true" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false" style="margin-top: 30px;">
+    <div ng-repeat="device in Devices">
+        <span class="item-list">
+            <figure class="overlay-it" ng-click="switchdevice(device)">
+                <h5>{{device.Subscription.MSISDN}}</h5>
+                <img src="../../../Images/sample-device.png" class="img-responsive" alt="etak thumbnail" />
+                <figcaption>
+                    <p style="margin-top:20px; margin-left: 20px;">
+                        <span>{{"Status"|translate}}: {{device.SubscriptionIdentifierStatus}}</span><br />
+                        <span ng-hide="device.IsActive">
+                            Product:
+                            <br />
+                            <span>- {{device.Product.Device}}</span>
+                            <span>- {{device.Product.Plan}}</span>
+                            <span>- {{device.Product.AllowanceOrFeature}}</span>
+                        </span>
+                        <button style="margin-top: 10%; width: 60%" class="btn ng-scope" ng-click="activation(device)" ng-hide="device.IsActive">Activate</button>
+                        <button style="margin-top: 50%; width: 60%" class="btn ng-scope" ng-click="selectDevice(device)" ng-show="device.IsActive">Select</button>
+                    </p>
+                </figcaption>
+            </figure>
+        </span>
+    </div>
+    <div ng-if="notAvailableDevice != undefined" ng-repeat="itm in notAvailableDevice" style="pointer-events: none">
+        <span class="item-list">
+            <figure class="overlay-it">
+                <img src="../../../Images/transparent.png" class="img-responsive" alt="etak thumbnail" style="pointer-events: none" />
+            </figure>
+        </span>
+    </div>
+</slick>

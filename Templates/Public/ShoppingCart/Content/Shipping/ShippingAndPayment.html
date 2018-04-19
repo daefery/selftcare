@@ -1,0 +1,107 @@
+﻿<div ng-controller="ShippingAndPaymentController">
+    <!--<div class="step-title">
+        <h3>Shipping & Payment</h3>
+    </div>-->
+
+    <div class="cart-info">
+        <div class="container">
+            <h3 class="page-title">Shipping & Payment</h3>
+        </div>
+    </div>
+
+    <div style="height: 1100px; ">
+        <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-bottom:20px">
+                <h6>Shipping Info</h6>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-6" style="padding:0">
+                    <div class="col-sm-6" style="padding:0">
+                        <p>Delivery Method</p>
+                    </div>
+                    <div class="col-sm-6" style="padding:0; margin-top:-15px">
+                        <etbossform name="deliverymethod" field="{{deliverymethod}}"></etbossform>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="border-bottom: 1px solid #E9E9E9">
+            <etbossform name="shippingaddress" field="{{shippingaddress}}"></etbossform>
+            <etbossform type="split" name="shippingaddress2" field="{{shippingaddress2}}"></etbossform></div>
+        <div class="col-sm-12">
+            <section class="table pre-scrollable" style="max-height:200px;width:100%">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Description</th>
+                                <th>Price ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="Order in ordersumamry">
+                                <td>{{Order.item}}</td>
+                                <td>{{Order.description}}</td>
+                                <td>{{Order.price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-7"></div>
+            <div class="col-sm-5">
+                <div class="col-sm-12">
+                    <div class="col-sm-7">
+                        <p>Total Price</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" ng-model="Cart.TotalPrice" ng-disabled="true" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-7">
+                        <p>Shipping Cost</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" ng-model="shippingcost" ng-disabled="true" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-7">
+                        <p>Tax</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" ng-model="tax" ng-disabled="true" />
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-7">
+                        <p>Total</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" ng-model="totalpayment" ng-disabled="true" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <etbossform name="paymentmethod" field="{{paymentmethod}}"></etbossform>
+        </div>
+        <div class="col-sm-12">
+            <etbossform name="cardtype" field="{{cardtype}}"></etbossform>
+        </div>
+    </div>
+    <div class="checkout-bottom">
+        <div class="btn-group">
+            <a ng-click="ChangeCRPage('customerinfo')" class="btn btn-default">prev </a>
+            <a ng-click="ChangeCRPage('summary')" class="btn btn-default next">next</a>
+        </div>
+    </div>
+
+
+    
+
+</div>

@@ -1,0 +1,182 @@
+﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div ng-include="'Templates/SelfCare/Themes/Info.html'"></div>
+    <div class="inner-selfcare topup">
+        <div class="container">
+            <div class="panel-data clean">
+                <h3>Pay your top up Amount</h3>
+                <form name="topupform" class="etak-form form-horizontal" novalidate>
+                    <div class="single-form">
+                        <div class="single-entry topupcard third-grid">
+                            <span class="amount-selected"> <h4><i class="fa fa-check-circle-o"></i> {{headDetails}}</h4></span>
+                            <div class="btn-group purple-button" role="group" aria-label="...">
+                                <button type="button" id="topup_cashcard" class="btn btn-default btn-lg" ng-class="{'active':topUpType=='cash'}" ng-click="selectType('cash')">Cash Card</button>
+                                <button type="button" id="topup_pincard" class="btn btn-default btn-lg"
+                                        ng-class="{'active':topUpType=='pin'}" ng-click="selectType('pin')">
+                                    Pin Card
+                                </button>
+                            </div>
+                            <div class="form-content col-xs-12 col-sm-12" ng-if="topUpType=='cash'">
+                                <label for="" class="text-center">Select Amount</label>
+                                <div class="form-group row">
+                                    <input type="hidden" name="balance" ng-model="pay.amount" />
+                                    <div class="topup-amount">
+                                        <div class="ordering-page">
+                                            <div class="no-padding">
+                                                <slick touch-move="false" ng-if="isCompiled == true" infinite="false" speed="300" slides-to-show="4" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                                                    <div ng-repeat="product in MoneteryCashCardCollection track by $index">
+                                                        <span class="related-item box-inline" style="min-height: 300px; width:90%; margin-left:5%; cursor:default">
+                                                            <span class="circle-data-price">
+                                                                <sup>{{product.currency}}</sup>{{product.amount}}
+                                                            </span>
+                                                            <span class="device-slide-description purple-button">
+                                                                <h4 class="ng-binding">{{product.Names}}</h4>
+                                                                <button class="btn btn-default" ng-show="pay.amount == product.amount" type="button" disabled name="publicPlanBtn" id="publicPlanBtn_1020000055">Selected</button>
+                                                                <button class="btn btn-default" ng-show="pay.amount != product.amount" type="button" name="publicPlanBtn2" id="publicPlanBtn_1020000056" style="left:35%" ng-click="selectBalance(product)">Select</button>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </slick>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="amount-pay-price">
+                                    <div class="price-details">
+                                        <label for="" class="control-label">Price</label>
+                                    </div>
+                                    <div class="price-details">
+                                        <p>${{pay.amount}}</p>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group row">
+                                  <label for="" class="col-md-3 control-label">Price</label>
+                                  <div class="col-md-9">
+                                    <p>${{pay.amount}}</p>
+                                  </div>
+                                </div>-->
+                                <!--<div class="form-group row">
+                                    <label class="col-md-4 control-label" for=""><h3>Paymenet</h3></label>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <button class="btn btn-default" ng-click="setMethod('paypal')" ng-disabled="isPayPal" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#paypal" aria-expanded="true" aria-controls="collapseOne">
+                                                            Pay with my Paypal account
+                                                        </button>
+                                                    </h4>
+                                                </div>
+                                                <div id="paypal" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="panel-body">
+                                                        <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/ppc-acceptance-large.png" class="img-responsive" alt="PayPal Credit" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingTwo">
+                                                    <h4 class="panel-title">
+                                                        <button class="collapsed btn btn-default" ng-click="setMethod('creditcard')" ng-disabled="!isPayPal" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#creditcard" aria-expanded="false" aria-controls="collapseTwo">
+                                                            Pay with a Debit or Credit Card
+                                                        </button>
+                                                    </h4>
+                                                </div>
+                                                <div id="creditcard" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                    <div class="panel-body">
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">Card Type</label>
+                                                            <div class="col-md-8">
+                                                                <select ng-model="pay.cardtype" class="form-control">
+                                                                    <option value="visa">VISA</option>
+                                                                    <option value="mastercard">MASTER CARD</option>
+                                                                    <option value="amex">AMERICAN EXPRESS</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">Card Number</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" id="" ng-model="pay.cardnumber" placeholder="Card Number" type="text">
+                                                                <div class="card-list clearfix">
+                                                                    <span class="dash-card" ng-class="{'active':pay.cardtype=='visa'}">
+                                                                        <i class="fa fa-cc-visa"></i>
+                                                                    </span>
+                                                                    <span class="dash-card" ng-class="{'active':pay.cardtype=='mastercard'}">
+                                                                        <i class="fa fa-cc-mastercard"></i>
+                                                                    </span>
+                                                                    <span class="dash-card" ng-class="{'active':pay.cardtype=='amex'}">
+                                                                        <i class="fa fa-cc-amex"></i>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">Expired Date</label>
+                                                            <div class="col-md-3">
+                                                                <input class="form-control" id="" ng-model="pay.cardmonth" placeholder="Month" maxlength="2" type="text">
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input class="form-control" id="" ng-model="pay.cardyear" maxlength="4" placeholder="Year" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="" class="col-md-4 control-label">CSC</label>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" ng-model="pay.csc" id="" placeholder="CSC" type="text">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <a href="">What is this?</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                            </div>
+
+                            <div class="form-content" ng-if="topUpType!='cash'">
+                                <div class="form-group row">
+                                    <label for="" class="col-md-3 control-label">Pin Number</label>
+                                    <div class="col-md-9">
+                                        <input name="vouchercode" class="form-control" id="" placeholder="Card Number" type="text" ng-model="pay.pinnumber" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-bottom clearfix">
+                                <button type="submit" ng-if="topUpType!='cash'" id="topup_activatePin" ng-disabled="topupform.vouchercode.$error.required" class="btn btn-default filled btn-lg" ng-click="activatePin(pay)">Activate Now</button>
+                                <button type="submit" ng-if="topUpType=='cash'" id="topup_paybalance"
+                                        class="btn btn-default filled btn-lg"
+                                        ng-click="addToCart()">
+                                    <i class="fa fa-shopping-cart"></i> Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="clear"></span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

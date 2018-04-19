@@ -1,0 +1,1443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{274F9DF3-16C7-42FE-A161-497AD62B10A9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>console</RootNamespace>
+    <AssemblyName>console</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>db3ca88f</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Services" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Authorization\AuthorizationAreaRegistration.cs" />
+    <Compile Include="Areas\Authorization\Controllers\AccountConfirmationController.cs" />
+    <Compile Include="Areas\Authorization\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Authorization\Controllers\RecoverPasswordController.cs" />
+    <Compile Include="Areas\Authorization\Controllers\ResendKeyController.cs" />
+    <Compile Include="Areas\Authorization\Controllers\VerifyController.cs" />
+    <Compile Include="Areas\CSR\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\CSR\CSRAreaRegistration.cs" />
+    <Compile Include="Areas\Public\Controllers\customerController.cs" />
+    <Compile Include="Areas\Public\PublicRegistration.cs" />
+    <Compile Include="Areas\SelfCare\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\SelfCare\SelfCareRegistration.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UtilityController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utils\EWCConst.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Authorization\AuthorizationViewModel.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\AccountConfirmationController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\AuthorizationController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\ChangePasswordController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\ConfirmationController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\RecoverAgreementController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\RecoverResendKeyController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\RecoverPasswordController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\ResendKeyController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\SecurityQuestionController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\SetSecurityQuestionController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Directives\Components\AuthContentContentLoader.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\AccountConfirmationForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\ChangePasswordForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\ConfirmationForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\LoginForm.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\CustomerAccountManagement\CustAccManagementController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\CustomerAccountManagement\CustAccPermissionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\MaintenanceManagement\MaintenancePlanController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\MaintenanceManagement\UpdateHistoryController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\ModuleManagement\ModulePermissionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\RoleManagement\RolePermissionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\MaintenancePlanSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTClassConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTDepartmentConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTFlowRuleConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTFlowTypeConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTKPIConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTOperationTypeConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTPriorityConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTQuestionCodeConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTQuestionConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTStatusConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTSubTypeConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTTypeConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\TTWorkflowConfigurationSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Section\UpdateHistorySectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTFlowRuleConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTWorkflowConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\UserManagement\UserPermissonController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\CSRMaintenanceManagementController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\CSRUpdateHistoryController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\ETButtonsController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\Section\TTDashboardSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\Section\TTSupportDashboardSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\Section\TTSupportDetailSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\TTStatisticsController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Inventory\InventoryManagement\InventoryPermissionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Inventory\Orders\OrderPermissionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\MyAccount\MyAccountSidebarController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\CustomerActionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\CSRAdjustCustomerBalanceController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTKPIConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTQuestionConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTQuestionCodeConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTSubTypeConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Section\SubscriptionDashboardSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Section\CustomerDetailSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\AutoPayController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\ConfigurationDetailController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\DeviceSwapController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\NumberSwapController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\PortabilityInfoController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\SelectNumberController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\SIMSwapController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\SubscriptionDashboardController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Subscription\SubscriptionsLifecycleHistoryController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Testing\TestingModuleController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Header\MenuSetting\CSRMenuSettingController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Custom\httpPrefixDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Custom\sitemapPopoverDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheNavigationService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\SubscriptionService.js" />
+    <Content Include="Areas\CSR\Content\images\checkbox-blue.png" />
+    <Content Include="Areas\CSR\Content\images\checkbox-red.png" />
+    <Content Include="Areas\CSR\Content\images\checkbox-yellow.png" />
+    <Content Include="Areas\CSR\Content\images\checkbox.png" />
+    <Content Include="Areas\CSR\Content\images\et-logo-blue.png" />
+    <Content Include="Areas\CSR\Content\images\et-logo-default.png" />
+    <Content Include="Areas\CSR\Content\images\et-logo-red.png" />
+    <Content Include="Areas\CSR\Content\images\et-logo-yellow.png" />
+    <Content Include="Areas\CSR\Content\images\radio-blue.png" />
+    <Content Include="Areas\CSR\Content\images\radio-brand.png" />
+    <Content Include="Areas\CSR\Content\images\radio-red.png" />
+    <Content Include="Areas\CSR\Content\images\radio-yellow.png" />
+    <Content Include="Areas\CSR\Content\styles\slick.css" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CSRMaintenanceManagementService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Component\SelfcareBreadcrumbController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Activation\ActivationController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Examples\ExamplesController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\ManageAutoPay\AddCreditCard.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\ManageAutoPay\View.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\ManageService\ManageServiceController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Security\ChangePassword.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\ShoppingCart\ShoppingCartController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Starting\DevicesController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Header\TopManageDeviceMenuController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\ModuleForm\ActivationForm.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\ModuleForm\AddCreditCardForm.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\ModuleForm\ExamplesForm.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CustomerProductsService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\ManageDeviceCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\ManageDeviceService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\PaymentCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\ProductService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\PaymentFunctionService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\RevenueCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\RevenueService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SecureSectionService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfCareActivationService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfCareCommonService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfCareGetterSetterService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfShoppingCartCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfShoppingFunctionService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\ShoppingCartService.js" />
+    <Content Include="Areas\SelfCare\Content\images\commercial.png" />
+    <Content Include="Areas\SelfCare\Content\styles\cart.css" />
+    <Content Include="fonts\icons.svg" />
+    <Content Include="Images\all.png" />
+    <Content Include="Images\apps-ss.png" />
+    <Content Include="Images\bg-inner.jpg" />
+    <Content Include="Images\bg-one.png" />
+    <Content Include="Images\bg-top.jpg" />
+    <Content Include="Images\bg-top1.jpg" />
+    <Content Include="Images\bg-top2.jpg" />
+    <Content Include="Images\bg.jpg" />
+    <Content Include="Images\bg1.jpg" />
+    <Content Include="Images\bg3.jpg" />
+    <Content Include="Images\buy-logo-large.png" />
+    <Content Include="Images\cancel.png" />
+    <Content Include="Images\chart.png" />
+    <Content Include="Images\device1.jpg" />
+    <Content Include="Images\device2.jpg" />
+    <Content Include="Images\device3.jpg" />
+    <Content Include="Images\device4.jpg" />
+    <Content Include="Images\empty-image.png" />
+    <Content Include="Images\error-400.png" />
+    <Content Include="Images\et-logo-white.png" />
+    <Content Include="Images\etak-404.png" />
+    <Content Include="Images\etak-500.png" />
+    <Content Include="Images\file.png" />
+    <Content Include="Images\folder-closed.png" />
+    <Content Include="Images\folder.png" />
+    <Content Include="Images\logo-white.png" />
+    <Content Include="Images\logo-white1.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\mc-card.jpg" />
+    <Content Include="Images\monitoring.png" />
+    <Content Include="Images\no-feature.png" />
+    <Content Include="Images\sample-device.png" />
+    <Content Include="Images\selfcarecart-bg.jpg" />
+    <Content Include="Images\shopping.png" />
+    <Content Include="Images\simcard-icon-sm.png" />
+    <Content Include="Images\support.png" />
+    <Content Include="Images\thank.png" />
+    <Content Include="Images\time.png" />
+    <Content Include="Images\top-arrow.svg" />
+    <Content Include="Images\transparent.png" />
+    <Content Include="Images\visa-card.jpg" />
+    <Content Include="Images\white-background.png" />
+    <Content Include="Images\work.png" />
+    <Content Include="Scripts\common\services\AddressValidatorService.js" />
+    <Content Include="Scripts\common\services\MultiSubscriptionCacheService.js" />
+    <Content Include="Scripts\common\services\MultiSubscriptionService.js" />
+    <Content Include="Scripts\common\services\SelfcareMultisubscriptionCheckerService.js" />
+    <Content Include="Scripts\common\services\SendSMSService.js" />
+    <Content Include="Scripts\common\services\SideBarTreeService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\TroubleTicketFunctionService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\CoverageCheck\CoverageCheckController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\CustomerInfo\CustomerInfoController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\CustomerRegistrationController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\CustomerRegistrationHeaderController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\NumberSelection\NumberSelectionController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\Ordering\OrderingController-old.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\Ordering\OrderingController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\ShippingAndPayment\ShippingAndPaymentController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\ShoppingBasket\ShoppingBasketController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\ShoppingCart\Summary\SummaryController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTClassConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTOperationTypeConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTPriorityConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTTypeConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\Navigation\TTDashboardSidebarController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\ModuleForm\ActivationForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\RecoverPasswordForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\RecoverResendKeyForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\ResendKeyForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\SetSecurityQuestionForm.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Modules\AuthorizationApps.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Routings\AuthorizationRouting.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Routings\RecoverPasswordRouting.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Routings\AccountConfirmationRouting.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Routings\ResendKeyRouting.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Routings\VerifyCSRUserRouting.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Services\AccountConfirmationService.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Services\CSRConfirmationService.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Services\RecoverPasswordService.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Services\ResendKeyService.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Services\SecurityQuestionService.js" />
+    <Content Include="Areas\Authorization\Content\fonts\icomoon.svg" />
+    <Content Include="Areas\Authorization\Content\images\bg.png" />
+    <Content Include="Areas\Authorization\Content\images\et-logo.png" />
+    <Content Include="Areas\Authorization\Content\images\mobile-shadow.png" />
+    <Content Include="Areas\Authorization\Content\images\mobile.png" />
+    <Content Include="Areas\Authorization\Content\images\mobile1.png" />
+    <Content Include="Areas\Authorization\Content\images\mobile992.png" />
+    <Content Include="Areas\Authorization\Content\js\bootstrap.min.js" />
+    <Content Include="Areas\Authorization\Content\js\jquery.min.js" />
+    <Content Include="Areas\Authorization\Content\stylesheets\bootstrap.css" />
+    <Content Include="Areas\Authorization\Content\stylesheets\custom.css" />
+    <Content Include="Areas\CSR\Bindings\Models\CustomerDashboard\CustomerDashboardModel.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Components\CSRContentBreadCrumbsController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Components\CSRContentRedirectPageController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Components\CSRContentTabController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\ModuleManagement\ModuleManagementController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTDepartmentConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTFlowTypeConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\TroubleTicketConfiguration\TTStatusConfigurationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\UserManagement\EditUserController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\UserManagement\ViewUserController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\CustomerDetail\CustomerDetailFormsController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\RoleManagement\RoleController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\UserManagement\AddUserController.js" />
+    <Content Include="Areas\Authorization\Bindings\ViewModels\Controllers\VerifyCSRUserFormController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\CustomerDetail\CustomerRemarksFormController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\CSRContentDashboardController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Dashboard\CSRTroubleTicketDashboardController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Inventory\Orders\OrderDetailController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Inventory\Orders\OrderManagementController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Inventory\InventoryManagement\InventoryManagementController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\MyAccount\MyAccountController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\CSRAdvanceSearchController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\CSRContentCustomerDetailInformationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\CSRContentPaginationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\CSRContentSearchCustomerController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\CSRSetToggleController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Section\CustomerDashboardSectionController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\TroubleTicketbyCustomerId\ViewDetailController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\TroubleTicketbyCustomerId\NextOperationController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\TroubleTicketbyCustomerId\AddReferenceController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\TroubleTicketbyCustomerId\UpdateController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\TroubleTicketbyCustomerId\CreateController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\TroubleTicketbyCustomerId\ViewAllController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Custom\UploadFileController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Header\Sitemap\CSRSitemapController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Header\Themes\CSRHeaderThemesController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Admin\Navigation\AdminSidebarController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\SearchCustomer\Navigation\CustomerDashboardSidebarController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Contents\Inventory\Navigation\InventorySidebarController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Controllers\Navigation\CSRContentNavController.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Components\CSRContentContentLoader.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Components\CSRContentBreadcrumbDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Components\CSRContentButtonPageDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Components\CSRContentSearchBoxDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Custom\CSRCustomTreeDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Custom\CSRTreeViewDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Custom\HTMLCompilerDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\Custom\PopOverDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Directives\SearchPage\CSRContentSearchPageDirective.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Modules\CSRApp.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Routings\CSRContentRouting.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Routings\CSRErrorRouting.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\AccountService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheAdminService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheEnumService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheInventoryService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheMyAccountServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\AdvanceSearchService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheSearchServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheTroubleTicketService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CacheUserManagementService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CSRCacheServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CSRCustomerDetailService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\CSRGetterSetterService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\DeviceManagementServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\GeneralFunctionsServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\ModuleManagementServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\NavigationServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\RoleManagementService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\SearchServices.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\ThemesService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\TroubleTicketService.js" />
+    <Content Include="Areas\CSR\Bindings\ViewModels\Services\UserManagementService.js" />
+    <Content Include="Areas\CSR\Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\CSR\Content\fonts\icomoon.svg" />
+    <Content Include="Areas\CSR\Content\images\blue.png" />
+    <Content Include="Areas\CSR\Content\images\darkmagenta.png" />
+    <Content Include="Areas\CSR\Content\images\et-logo.png" />
+    <Content Include="Areas\CSR\Content\images\file.png" />
+    <Content Include="Areas\CSR\Content\images\flag\id.png" />
+    <Content Include="Areas\CSR\Content\images\flag\es.png" />
+    <Content Include="Areas\CSR\Content\images\flag\en.png" />
+    <Content Include="Areas\CSR\Content\images\folder-closed.png" />
+    <Content Include="Areas\CSR\Content\images\folder.png" />
+    <Content Include="Areas\CSR\Content\images\icon-user.png" />
+    <Content Include="Areas\CSR\Content\images\img-download.png" />
+    <Content Include="Areas\CSR\Content\images\orange.png" />
+    <Content Include="Areas\CSR\Content\images\red%402x.png" />
+    <Content Include="Areas\CSR\Content\images\red.png" />
+    <Content Include="Areas\CSR\Content\js\admin.js" />
+    <Content Include="Areas\CSR\Content\js\angular-tree-control.js" />
+    <Content Include="Areas\CSR\Content\js\angular.treeview.js" />
+    <Content Include="Areas\CSR\Content\js\bootstrap.min.js" />
+    <Content Include="Areas\CSR\Content\js\jquery.pin.js" />
+    <Content Include="Areas\CSR\Content\js\jstree.min.js" />
+    <Content Include="Areas\CSR\Content\styles\admin.css" />
+    <Content Include="Areas\CSR\Content\styles\tree-control-attribute.css" />
+    <Content Include="Areas\CSR\Content\styles\tree-control.css" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\Contents\Activation\ActivationController.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Controllers\ModuleForm\FeatureForm.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Directives\PublicWeb.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Modules\PublicApps.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Routings\PublicRouting.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicAddressService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicProductsService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicPaymentService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicPortabilityService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicRegistrationCacheServices.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicRegistrationService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicTaxService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicDeviceManagementServices.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicCacheService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\PublicGetterSetterService.js" />
+    <Content Include="Areas\Public\Bindings\ViewModels\Services\SelfActivationService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\BuyMore\TopUpController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Devices\ManageDeviceController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Payment\PaymentController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Support\TroubleTicketController.js" />
+    <Content Include="Areas\CSR\Content\styles\angular.treeview.css" />
+    <Content Include="Areas\CSR\Content\styles\custom.css" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\BuyMore\BuyServiceController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\UsageDetail\UsageDetailController.js" />
+    <Content Include="Areas\CSR\Content\styles\treeview.css" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Header\CustomerWrapperController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\ModuleForm\SelfRegisterForm.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Routings\SelfErrorRouting.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\BuyMoreService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\BuyMoreCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CustomerRegistrationCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CustomerRegistrationDetailService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CustomerWrapperService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\PaymentService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfCareIdleHandlerService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SupportCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SupportService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\TroubleTicketService.js" />
+    <Content Include="Areas\SelfCare\Content\fonts\etak.svg" />
+    <Content Include="Areas\SelfCare\Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-semibold-webfont.svg" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-thin-webfont.svg" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-bold-webfont.svg" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-light-webfont.svg" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-regular-webfont.svg" />
+    <Content Include="Areas\SelfCare\Content\images\etak-top.jpg" />
+    <Content Include="Areas\SelfCare\Content\js\html5shiv.min.js" />
+    <Content Include="Areas\SelfCare\Content\js\plugin.js" />
+    <Content Include="Areas\SelfCare\Content\js\respond.min.js" />
+    <Content Include="Areas\SelfCare\Content\styles\main.css" />
+    <Content Include="Areas\SelfCare\Content\styles\mobile.css" />
+    <Content Include="Areas\SelfCare\Content\styles\slick.css" />
+    <Content Include="Content\font-awesome-for-text-editor.css" />
+    <Content Include="fonts\etak.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\myriadsetpro-semibold-webfont.svg" />
+    <Content Include="fonts\myriadsetpro-thin-webfont.svg" />
+    <Content Include="fonts\opensans-bold-webfont.svg" />
+    <Content Include="fonts\opensans-light-webfont.svg" />
+    <Content Include="fonts\opensans-regular-webfont.svg" />
+    <Content Include="Images\404.png" />
+    <Content Include="Images\als-images\calculator.png" />
+    <Content Include="Images\als-images\camera.png" />
+    <Content Include="Images\als-images\card.png" />
+    <Content Include="Images\als-images\chess.png" />
+    <Content Include="Images\als-images\clock.png" />
+    <Content Include="Images\als-images\cut.png" />
+    <Content Include="Images\als-images\heart.png" />
+    <Content Include="Images\als-images\light_bulb.png" />
+    <Content Include="Images\als-images\mail.png" />
+    <Content Include="Images\als-images\map.png" />
+    <Content Include="Images\als-images\mobile_phone.png" />
+    <Content Include="Images\als-images\music_note.png" />
+    <Content Include="Images\als-images\protection.png" />
+    <Content Include="Images\als-images\television.png" />
+    <Content Include="Images\blue.png" />
+    <Content Include="Images\buy-four.jpg" />
+    <Content Include="Images\buy-one.jpg" />
+    <Content Include="Images\buy-three.jpg" />
+    <Content Include="Images\buy-two.jpg" />
+    <Content Include="Images\checkbox.png" />
+    <Content Include="Images\company-offer.jpg" />
+    <Content Include="Images\confluence-logo.png" />
+    <Content Include="Images\darkmagenta.png" />
+    <Content Include="Images\etak-logo.png" />
+    <Content Include="Images\intranet-logo.png" />
+    <Content Include="Images\jira-logo.png" />
+    <Content Include="Images\radio.png" />
+    <Content Include="Images\select2-spinner.gif" />
+    <Content Include="Images\select2.png" />
+    <Content Include="Images\select2x2.png" />
+    <Content Include="Images\service-comm.png" />
+    <Content Include="Images\stock-logo.png" />
+    <Content Include="Images\thin_left_arrow_333.png" />
+    <Content Include="Images\thin_right_arrow_333.png" />
+    <Content Include="Images\top-bg.jpg" />
+    <Content Include="Images\top-feature.jpg" />
+    <Content Include="Scripts\angular-idle.js" />
+    <Content Include="Scripts\angular-idle.min.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\common\controller\AuthCommonController.js" />
+    <Content Include="Scripts\common\directives\CarouselDirective.js" />
+    <Content Include="Scripts\common\directives\SetActiveLinkDirective.js" />
+    <Content Include="Scripts\common\directives\EtakFormUtilityDirective.js" />
+    <Content Include="Scripts\common\services\AuthCommonService.js" />
+    <Content Include="Scripts\common\services\AutoLoginService.js" />
+    <Content Include="Scripts\common\services\CaptchaVerificationService.js" />
+    <Content Include="Scripts\common\services\CommonCacheService.js" />
+    <Content Include="Scripts\common\services\IdleHandlerService.js" />
+    <Content Include="Scripts\common\services\LocalStorageProvider.js" />
+    <Content Include="Scripts\common\services\RefreshTokenService.js" />
+    <Content Include="Scripts\common\services\ShoppingCartService.js" />
+    <Content Include="Scripts\common\services\StartingPageService.js" />
+    <Content Include="Scripts\custom\angular-re-captcha.js" />
+    <Content Include="Scripts\custom\angular-recaptcha.js" />
+    <Content Include="Scripts\custom\angular-tree-control.js" />
+    <Content Include="Scripts\custom\angular.treeview.js" />
+    <Content Include="Scripts\custom\jquery.bootstrap.wizard.js" />
+    <Content Include="Scripts\custom\modalpopup.js" />
+    <Content Include="Scripts\custom\prettify.js" />
+    <Content Include="Scripts\custom\select.js" />
+    <Content Include="Scripts\bootstrap-wysiwyg.js" />
+    <Content Include="Content\text-editor-index.css" />
+    <Content Include="Scripts\jquery.hotkeys.js" />
+    <Content Include="Scripts\custom\utility.js" />
+    <Content Include="Scripts\custom\paginationServerSide.js" />
+    <Content Include="Scripts\dirPagination.js" />
+    <Content Include="Areas\CSR\Content\js\forms.js" />
+    <Content Include="Areas\CSR\Content\js\icheck.min.js" />
+    <Content Include="Areas\CSR\Content\js\jquery.min.js" />
+    <Content Include="Areas\CSR\Content\styles\.idea\encodings.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\inspectionProfiles\profiles_settings.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\inspectionProfiles\Project_Default.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\misc.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\modules.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\scopes\scope_settings.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\vcs.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\watcherTasks.xml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\workspace.xml" />
+    <Content Include="Areas\CSR\Content\styles\test.css" />
+    <Content Include="Areas\CSR\Content\styles\bootstrap.css" />
+    <Content Include="Areas\CSR\Content\styles\bootstrap.min.css" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme1.css" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme2.css" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme3.css" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme4.css" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\Dashboard\DashboardController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\ModuleForm\SelfContentForm.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\ModuleForm\SelfNavForm.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Navigation\NavigationControllers.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Registration\RegistrationController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\UpdateProfile\UpdateProfileController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\YourProfile\YourProfileController.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Directives\SelfCareWeb.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Modules\SelfCareApps.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Routings\RegistrationRouting.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Routings\SelfContentRouting.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Routings\SelfFooterRouting.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Routings\SelfHeaderRouting.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Routings\SelfNavRouting.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CustomerCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CustomerDetailService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\CustomerSummaryService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\NavigationMenuCacheService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfCareDashboardService.js" />
+    <Content Include="Areas\SelfCare\Bindings\ViewModels\Services\SelfCareNavigationService.js" />
+    <Content Include="Areas\SelfCare\Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\SelfCare\Content\fonts\icomoon.svg" />
+    <Content Include="Areas\SelfCare\Content\images\advertisement.png" />
+    <Content Include="Areas\SelfCare\Content\images\bg.png" />
+    <Content Include="Areas\SelfCare\Content\images\devicetest1.png" />
+    <Content Include="Areas\SelfCare\Content\images\devicetest2.png" />
+    <Content Include="Areas\SelfCare\Content\images\et-logo.png" />
+    <Content Include="Areas\SelfCare\Content\images\mobile-shadow.png" />
+    <Content Include="Areas\SelfCare\Content\images\mobile.png" />
+    <Content Include="Areas\SelfCare\Content\images\mobile1.png" />
+    <Content Include="Areas\SelfCare\Content\images\mobile992.png" />
+    <Content Include="Areas\SelfCare\Content\js\bootstrap.min.js" />
+    <Content Include="Areas\SelfCare\Content\js\jquery.min.js" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\encodings.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\inspectionProfiles\profiles_settings.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\inspectionProfiles\Project_Default.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\misc.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\modules.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\scopes\scope_settings.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\vcs.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\watcherTasks.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\workspace.xml" />
+    <Content Include="Areas\SelfCare\Content\styles\bootstrap.css" />
+    <Content Include="Areas\SelfCare\Content\styles\bootstrap.min.css" />
+    <Content Include="Areas\SelfCare\Content\styles\custom.css" />
+    <Content Include="Areas\SelfCare\Content\styles\dynamic.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-translate.js" />
+    <Content Include="Scripts\angular-translate.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\common\controller\LocalizationController.js" />
+    <Content Include="Scripts\common\directives\ErrorMessageDirectives.js" />
+    <Content Include="Scripts\common\directives\EtakFormDirectives.js" />
+    <Content Include="Scripts\common\directives\LoadingPageDirective.js" />
+    <Content Include="Scripts\common\routings\ErrorHandlerRouting.js" />
+    <Content Include="Scripts\common\services\EnumCodeServices.js" />
+    <Content Include="Scripts\common\services\LocalizationService.js" />
+    <Content Include="Scripts\common\services\ErrorHandlingService.js" />
+    <Content Include="Scripts\custom\activeButton.js" />
+    <Content Include="Scripts\custom\angular-spinner.js" />
+    <Content Include="Scripts\custom\ng-iban.js" />
+    <Content Include="Scripts\custom\dynamicDashboard.js" />
+    <Content Include="Scripts\custom\dynamicMenu.js" />
+    <Content Include="Scripts\custom\spin.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.nicescroll.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\slick.min.js" />
+    <Content Include="Scripts\textangular\textAngular-rangy.min.js" />
+    <Content Include="Scripts\textangular\textAngular-sanitize.min.js" />
+    <Content Include="Scripts\textangular\textAngular.min.js" />
+    <Content Include="Styles\angular-ui-notification.min.css" />
+    <Content Include="Styles\customer.css" />
+    <Content Include="Styles\customer-new.css" />
+    <Content Include="Styles\datepicker.css" />
+    <Content Include="Scripts\ng-breadcrumbs.js" />
+    <Content Include="Scripts\ng-breadcrumbs.min.js" />
+    <Content Include="Styles\prettify.css" />
+    <Content Include="Styles\select.css" />
+    <Content Include="Styles\select-bootstrap.css" />
+    <Content Include="Styles\select-combo.css" />
+    <Content Include="Styles\textAngular.css" />
+    <Content Include="Styles\thumbnail.css" />
+    <Content Include="Styles\visualcaptcha.css" />
+    <Content Include="Templates\Authorization\AccountConfirmation.html" />
+    <Content Include="Templates\Authorization\ChangePassword.html" />
+    <Content Include="Templates\Authorization\Confirmation.html" />
+    <Content Include="Templates\Authorization\CSRSetPassword.html" />
+    <Content Include="Templates\Authorization\RecoverAgreement.html" />
+    <Content Include="Templates\Authorization\RecoverResendKey.html" />
+    <Content Include="Templates\Authorization\RecoverPassword.html" />
+    <Content Include="Templates\Authorization\Login.html" />
+    <Content Include="Templates\Authorization\Main.html" />
+    <Content Include="Templates\Authorization\ResendKey.html" />
+    <Content Include="Templates\Authorization\SecurityQuestion.html" />
+    <Content Include="Templates\Authorization\SelfActivation_ActivateNumber.html" />
+    <Content Include="Templates\Authorization\SelfActivation_CustomerInfo.html" />
+    <Content Include="Templates\Authorization\SelfActivation_Main.html" />
+    <Content Include="Templates\Authorization\SelfActivation_Success.html" />
+    <Content Include="Templates\Authorization\SetSecurityQuestion.html" />
+    <Content Include="Templates\Common\ActiveRelativePath.html" />
+    <Content Include="Templates\Common\dirPagination-dashboard.tpl.html" />
+    <Content Include="Templates\Common\DynamicNavigation\SidebarTree.html" />
+    <Content Include="Templates\Common\DynamicNavigation\Sitemap.html" />
+    <Content Include="Templates\Common\TextAreaEditor\Editor.html" />
+    <Content Include="Templates\CSR\Administrator\AdminContent.html" />
+    <Content Include="Templates\CSR\Administrator\CustomerAccountManagement\Content\CustomerTable.html" />
+    <Content Include="Templates\CSR\Administrator\CustomerAccountManagement\Content\ResultSection.html" />
+    <Content Include="Templates\CSR\Administrator\CustomerAccountManagement\Content\SearchSection.html" />
+    <Content Include="Templates\CSR\Administrator\CustomerAccountManagement\Index.html" />
+    <Content Include="Templates\CSR\Administrator\MaintenanceManagement\MaintenancePlan.html" />
+    <Content Include="Templates\CSR\Administrator\MaintenanceManagement\UpdateHistory.html" />
+    <Content Include="Templates\CSR\Administrator\ModuleManagement\Content\description.html" />
+    <Content Include="Templates\CSR\Administrator\ModuleManagement\Content\ModuleManagementContent.html" />
+    <Content Include="Templates\CSR\Administrator\ModuleManagement\Content\modules.html" />
+    <Content Include="Templates\CSR\Administrator\ModuleManagement\Content\MVNOAccess.html" />
+    <Content Include="Templates\CSR\Administrator\ModuleManagement\Content\SecuredSection.html" />
+    <Content Include="Templates\CSR\Administrator\ModuleManagement\Index.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\AddRoleModal.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\ModifyRoleModal.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\RoleManagementContent.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\SecureSection.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\SecureSectionModal.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Index.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\Modules.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\Roles.html" />
+    <Content Include="Templates\CSR\Administrator\RoleManagement\Content\Users.html" />
+    <Content Include="Templates\CSR\Administrator\SideBar\SideBar.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\Testing.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\AddFlowTTConfig.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\AddStepTTConfig.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\FlowRule\AddTTFlowRule.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\FlowRule\ManageTTFlowRule.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\FlowRule\ModifyTTFlowRule.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\KPI\AddTTKPI.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\KPI\ManageTTKPI.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\KPI\ModifyTTKPI.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Question\AddTTQuestion.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Question\ManageTTQuestion.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Question\ModifyTTQuestion.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Department\AddTTDepartment.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Department\ManageTTDepartment.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Department\ModifyTTDepartment.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\FlowType\AddTTFlowType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\FlowType\ManageTTFlowType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\FlowType\ModifyTTFlowType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\ModifyStepTTConfig.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Class\AddTTClass.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Class\ManageTTClass.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Class\ModifyTTClass.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\QuestionCode\AddTTQuestionCode.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\QuestionCode\ManageTTQuestionCode.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\QuestionCode\ModifyTTQuestionCode.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\OperationType\AddTTOperationType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\OperationType\ManageTTOperationType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\OperationType\ModifyTTOperationType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Status\AddTTStatus.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Status\ManageTTStatus.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Status\ModifyTTStatus.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Priority\AddTTPriority.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Priority\ManageTTPriority.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Priority\ModifyTTPriority.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\SubType\AddTTSubType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\SubType\ManageTTSubType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\SubType\ModifyTTSubType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Type\AddTTType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Type\ManageTTType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\Type\ModifyTTType.html" />
+    <Content Include="Templates\CSR\Administrator\TroubleTicketConfiguration\WorkFlowConfigurationTT.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\AddUser\AddUser.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\AddUser\AddUserForm.html" />
+    <Content Include="Templates\Authorization\CSRConfirmation.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\Index.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\AddUser\tempAddUserContent.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\UserDetail\tempUserDetailContent.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\UserDetail\UserDetail.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\UserDetail\UserDetailContent.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\ViewUser\ViewUserFilter.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\ViewUser\ViewUserTable.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\ViewUser\temptViewUserContent.html" />
+    <Content Include="Templates\CSR\Administrator\UserManagement\ViewUser\ViewUser.html" />
+    <Content Include="Templates\CSR\Customer\Action\SwitchDevice.html" />
+    <Content Include="Templates\CSR\Customer\Balance\BalanceAdjustment.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\AutoPay.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\ConfigurationDetail.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\CreditCardTable.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\DeactivateSubscription.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\DeviceSwap.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\NumberSwap.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\PortabilityInfo.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\SelectNumber.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\SIMSwap.html" />
+    <Content Include="Templates\CSR\Customer\Subscription\SubscriptionDashboard.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\AddAttachment.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\AttachmentTTDisplay.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\AttachmentTTUpload.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\DetailTTDashboard.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\DetailTTInfo.html" />
+    <Content Include="Templates\CSR\Inventory\Testing.html" />
+    <Content Include="Templates\CSR\MyAccount\PersonalSetting\NotImplemented.html" />
+    <Content Include="Templates\CSR\MyAccount\RolePermission\NotImplemented.html" />
+    <Content Include="Templates\CSR\MyAccount\Testing.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\BalanceAdjustment\BalanceAdjustment.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\BillingInvoice\BillingInvoice.html" />
+    <Content Include="Templates\CSR\Components\Searchbox.html" />
+    <Content Include="Templates\Common\DynamicNavigation\NavigationSort.html" />
+    <Content Include="Templates\CSR\Content\CSRContents.html" />
+    <Content Include="Templates\CSR\Customer\CustomerDetailInformation.html" />
+    <Content Include="Templates\CSR\Customer\EditCustomer\DeleteCustomerPopUp.html" />
+    <Content Include="Templates\CSR\Customer\EditCustomer\EditCustomerLanguageSettingPopUp.html" />
+    <Content Include="Templates\CSR\Customer\EditCustomer\EditCustomerRemarksPopUp.html" />
+    <Content Include="Templates\CSR\Customer\EditCustomer\EditCustomerStatusPopUp.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\ActionAssociateTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\ActionCloseTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\AddComment.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\AddReferenceTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\CreateTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\DashboardTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\DashboardTTResult.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\DashboardTTSearch.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\Statistics.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\StatisticsContent.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\SupportRequestTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\SupportRequestTTDetail.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\SupportRequestTTResult.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\SupportRequestTTSearch.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\DetailTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\EscalateSupportRequest.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\UpdateExtendedTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\UpdateSupportRequest.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\UpdateTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Content\ViewTT.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Index.html" />
+    <Content Include="Templates\CSR\Customer\TroubleTicket\Sidebar\Sidebar.html" />
+    <Content Include="Templates\CSR\Inventory\DeviceManagement\Index.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Content\Details\OrderDetailFields.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Content\Details\OrderItemDetails.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Content\MainContent.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Content\Details\OrderDetail.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Content\Details\OrderItemTable.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Content\OrderTable.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Content\TableandButton.html" />
+    <Content Include="Templates\CSR\Inventory\InventoryManagement\Content\InventoryForm.html" />
+    <Content Include="Templates\CSR\Inventory\Orders\Index.html" />
+    <Content Include="Templates\CSR\Inventory\Sidebar\Sidebar.html" />
+    <Content Include="Templates\CSR\Inventory\InventoryManagement\Content\InventoryTable.html" />
+    <Content Include="Templates\CSR\Inventory\InventoryManagement\Inventory.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\CallBarring\CallBarring.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\CallForward\CallForward.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\DRL\DRL.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\MNP\MNP.html" />
+    <Content Include="Templates\CSR\MyAccount\PersonalSetting\PersonalSetting.html" />
+    <Content Include="Templates\CSR\MyAccount\RolePermission\RolePermission.html" />
+    <Content Include="Templates\CSR\MyAccount\Credential\CredentialContent.html" />
+    <Content Include="Templates\CSR\MyAccount\Overview\OverviewContent.html" />
+    <Content Include="Templates\CSR\MyAccount\PersonalSetting\PersonalSettingContent.html" />
+    <Content Include="Templates\CSR\MyAccount\RolePermission\RolePermissionContent.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\NPM\NPM.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\OrderAndProduct\OrderAndProduct.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\ProductCatalog\ProductCatalog.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\ResourceInfo\ResourceInfo.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\SIMCard\SIMCard.html" />
+    <Content Include="Templates\CSR\Customer\Action\FreezeUnfreezeDelete.html" />
+    <Content Include="Templates\CSR\Customer\Action\Activate.html" />
+    <Content Include="Templates\CSR\Search\MultiSubscription.html" />
+    <Content Include="Templates\CSR\Themes\Footer.html" />
+    <Content Include="Templates\CSR\Themes\Header.html" />
+    <Content Include="Templates\CSR\Themes\NavBar.html" />
+    <Content Include="Templates\CSR\Themes\ThemesButton.html" />
+    <Content Include="Templates\CSR\Themes\UserSetting.html" />
+    <Content Include="Templates\CSR\NotImplementedYet\Voucher\Voucher.html" />
+    <Content Include="Templates\ErrorPage\NotFound.html" />
+    <Content Include="Templates\ErrorPage\InternalServerError.html" />
+    <Content Include="Templates\ErrorPage\BadRequest.html" />
+    <Content Include="Templates\CSR\Search\CustomerDetailSearch.html" />
+    <Content Include="Templates\CSR\Search\Dashboard.html" />
+    <Content Include="Templates\CSR\Search\MultipleResultPage.html" />
+    <Content Include="Templates\CSR\Search\SideBar.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\Register\Main.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\Register\Register.html" />
+    <Content Include="Templates\CSR\Administrator\AdminHeader.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icomoon.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\bg.png" />
+    <Content Include="Images\et-logo.png" />
+    <Content Include="Images\mobile-shadow.png" />
+    <Content Include="Images\mobile.png" />
+    <Content Include="Images\mobile1.png" />
+    <Content Include="Images\mobile992.png" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-aria.js" />
+    <Content Include="Scripts\angular-aria.min.js" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-loader.js" />
+    <Content Include="Scripts\angular-loader.min.js" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-messages.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-touch.js" />
+    <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
+    <Content Include="fonts\MyriadSetPro-Semibold.eot" />
+    <Content Include="fonts\MyriadSetPro-Semibold.ttf" />
+    <Content Include="fonts\MyriadSetPro-Thin.eot" />
+    <Content Include="fonts\MyriadSetPro-Thin.ttf" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Areas\CSR\Views\web.config" />
+    <Content Include="Areas\CSR\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CSR\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CSR\Content\styles\.idea\.name" />
+    <Content Include="Areas\CSR\Content\styles\.idea\admin.iml" />
+    <Content Include="Areas\CSR\Content\styles\unit\_button.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_common.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_fonts.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_footer.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_icon.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_layout.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_nav.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_path.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_tooltip.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_topbar.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_type.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_variables.scss" />
+    <Content Include="Areas\CSR\Content\fonts\MyriadSetPro-Semibold.eot" />
+    <Content Include="Areas\CSR\Content\fonts\MyriadSetPro-Semibold.ttf" />
+    <Content Include="Areas\CSR\Content\fonts\MyriadSetPro-Thin.eot" />
+    <Content Include="Areas\CSR\Content\fonts\MyriadSetPro-Thin.ttf" />
+    <Content Include="Areas\Authorization\Views\web.config" />
+    <Content Include="Areas\Authorization\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Authorization\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Authorization\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Authorization\Content\fonts\icomoon.eot" />
+    <Content Include="Areas\Authorization\Content\fonts\icomoon.ttf" />
+    <Content Include="Areas\Authorization\Content\fonts\icomoon.woff" />
+    <Content Include="Areas\Authorization\Content\fonts\MyriadSetPro-Semibold.eot" />
+    <Content Include="Areas\Authorization\Content\fonts\MyriadSetPro-Semibold.ttf" />
+    <Content Include="Areas\Authorization\Content\fonts\MyriadSetPro-Thin.eot" />
+    <Content Include="Areas\Authorization\Content\fonts\MyriadSetPro-Thin.ttf" />
+    <Content Include="Areas\Authorization\Content\stylesheets\custom.css.map" />
+    <Content Include="Areas\Authorization\Content\stylesheets\custom.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_banner.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_button.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_common-wrap.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_fonts.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_footer.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_icon.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_layout.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_login.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_nav.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_path.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_sidebar.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_topbar.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_type.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_utilities.scss" />
+    <Content Include="Areas\Authorization\Content\stylesheets\unit\_variables.scss" />
+    <Content Include="Areas\CSR\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\CSR\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\CSR\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\CSR\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\SelfCare\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\SelfCare\Content\fonts\icomoon.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\icomoon.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\icomoon.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\MyriadSetPro-Semibold.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\MyriadSetPro-Semibold.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\MyriadSetPro-Thin.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\MyriadSetPro-Thin.ttf" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\.name" />
+    <Content Include="Areas\SelfCare\Content\styles\.idea\admin.iml" />
+    <Content Include="Areas\SelfCare\Content\styles\custom.css.map" />
+    <Content Include="Areas\SelfCare\Content\styles\custom.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_button.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_common.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_fonts.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_footer.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_icon.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_layout.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_nav.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_path.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_tooltip.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_topbar.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_type.scss" />
+    <Content Include="Areas\SelfCare\Content\styles\unit\_variables.scss" />
+    <Content Include="Areas\SelfCare\Views\Customer\App.cshtml" />
+    <Content Include="Areas\SelfCare\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\SelfCare\Views\Shared\_RegisterLayout.cshtml" />
+    <Content Include="Areas\SelfCare\Views\web.config" />
+    <Content Include="Areas\SelfCare\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\CSR\Content\fonts\open-sans300.woff" />
+    <Content Include="Areas\CSR\Content\fonts\open-sans400.woff" />
+    <Content Include="Areas\CSR\Content\fonts\open-sans600.woff" />
+    <Content Include="Areas\CSR\Content\fonts\open-sans700.woff" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme1.css.map" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme1.scss" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme2.css.map" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme2.scss" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme3.css.map" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme3.scss" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme4.css.map" />
+    <Content Include="Areas\CSR\Content\styles\themes\theme4.scss" />
+    <Content Include="Areas\CSR\Views\Customer\App.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\CSR\Content\fonts\icomoon.eot" />
+    <Content Include="Areas\CSR\Content\fonts\icomoon.ttf" />
+    <Content Include="Areas\CSR\Content\fonts\icomoon.woff" />
+    <Content Include="Areas\CSR\Content\styles\admin.css.map" />
+    <Content Include="Areas\CSR\Content\styles\admin.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_multi-level-sidebar.scss" />
+    <Content Include="Areas\CSR\Content\styles\unit\_theme.scss" />
+    <Content Include="Areas\SelfCare\Views\Customer\Registration.cshtml" />
+    <Content Include="Areas\SelfCare\Views\Customer\Confirmation.cshtml" />
+    <Content Include="Areas\Authorization\Views\CSRVerifyUser\VerifyCSR.cshtml" />
+    <Content Include="Areas\Authorization\Views\Verify\VerifyCode.cshtml" />
+    <Content Include="Areas\Authorization\Views\Verify\SetPassword.cshtml" />
+    <Content Include="Areas\Authorization\Views\ResendKey\Index.cshtml" />
+    <Content Include="Areas\Authorization\Views\AccountConfirmation\Index.cshtml" />
+    <Content Include="Areas\CSR\Content\styles\treeview.css.map" />
+    <Content Include="Areas\CSR\Content\styles\treeview.scss" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\etak.ttf" />
+    <Content Include="fonts\etak.woff" />
+    <Content Include="fonts\etak.eot" />
+    <Content Include="fonts\myriadsetpro-thin-webfont.eot" />
+    <Content Include="fonts\myriadsetpro-thin-webfont.ttf" />
+    <Content Include="fonts\myriadsetpro-thin-webfont.woff" />
+    <Content Include="fonts\myriadsetpro-thin-webfont.woff2" />
+    <Content Include="fonts\MyriadPro-Bold.eot" />
+    <Content Include="fonts\MyriadPro-Bold.ttf" />
+    <Content Include="fonts\MyriadPro-Bold.woff" />
+    <Content Include="fonts\myriadsetpro-semibold-webfont.eot" />
+    <Content Include="fonts\myriadsetpro-semibold-webfont.ttf" />
+    <Content Include="fonts\myriadsetpro-semibold-webfont.woff" />
+    <Content Include="fonts\myriadsetpro-semibold-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\opensans-bold-webfont.eot" />
+    <Content Include="fonts\opensans-bold-webfont.ttf" />
+    <Content Include="fonts\opensans-bold-webfont.woff" />
+    <Content Include="fonts\opensans-bold-webfont.woff2" />
+    <Content Include="fonts\opensans-light-webfont.eot" />
+    <Content Include="fonts\opensans-light-webfont.ttf" />
+    <Content Include="fonts\opensans-light-webfont.woff" />
+    <Content Include="fonts\opensans-light-webfont.woff2" />
+    <Content Include="fonts\opensans-regular-webfont.eot" />
+    <Content Include="fonts\opensans-regular-webfont.ttf" />
+    <Content Include="fonts\opensans-regular-webfont.woff" />
+    <Content Include="fonts\opensans-regular-webfont.woff2" />
+    <Content Include="Areas\Public\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Public\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Public\Views\customer\app.cshtml" />
+    <Content Include="Areas\Public\Views\web.config" />
+    <Content Include="Areas\SelfCare\Content\fonts\etak.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\etak.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\etak.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\SelfCare\Content\fonts\FontAwesome.otf" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-semibold-webfont.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-semibold-webfont.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-semibold-webfont.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-semibold-webfont.woff2" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-thin-webfont.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-thin-webfont.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-thin-webfont.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\myriadsetpro-thin-webfont.woff2" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-bold-webfont.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-bold-webfont.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-bold-webfont.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-bold-webfont.woff2" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-light-webfont.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-light-webfont.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-light-webfont.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-light-webfont.woff2" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-regular-webfont.eot" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-regular-webfont.ttf" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-regular-webfont.woff" />
+    <Content Include="Areas\SelfCare\Content\fonts\opensans-regular-webfont.woff2" />
+    <Content Include="fonts\icons.eot" />
+    <Content Include="fonts\icons.ttf" />
+    <None Include="Properties\PublishProfiles\console.pubxml" />
+    <None Include="Properties\PublishProfiles\Etak Publish Test.pubxml" />
+    <Content Include="Areas\Authorization\Views\RecoverPassword\Index.cshtml" />
+    <Content Include="Areas\Authorization\Views\RecoverPassword\Confirmation.cshtml" />
+    <None Include="Properties\PublishProfiles\ETAKConsole.pubxml" />
+    <None Include="Properties\PublishProfiles\ETAKUI.pubxml" />
+    <Content Include="Scripts\custom\angular-ui-notification.min.js" />
+    <None Include="Properties\PublishProfiles\ETAKUI2.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\custom.css" />
+    <Content Include="Templates\CSR\Billing\BillingInformation.html" />
+    <Content Include="Templates\CSR\Billing\InvoicesPayments.html" />
+    <Content Include="Templates\CSR\Components\WarningMessage.html" />
+    <Content Include="Templates\CSR\Customer\CustomerDetails.html" />
+    <Content Include="Templates\CSR\Customer\CustomerInformationSnapShot.html" />
+    <Content Include="Templates\CSR\Customer\LastActivities.html" />
+    <Content Include="Templates\CSR\Dashboard\ETButtons.html" />
+    <Content Include="Templates\CSR\Dashboard\InfoBoxes.html" />
+    <Content Include="Templates\CSR\Dashboard\LastSession.html" />
+    <Content Include="Templates\CSR\Dashboard\Main.html" />
+    <Content Include="Templates\CSR\Dashboard\MaintenanceTasksPlanned.html" />
+    <Content Include="Templates\CSR\Dashboard\NotificationTabs.html" />
+    <Content Include="Templates\CSR\Dashboard\Shorcut.html" />
+    <Content Include="Templates\CSR\Dashboard\Update.html" />
+    <Content Include="Templates\CSR\MyAccount\Credential\Credential.html" />
+    <Content Include="Templates\CSR\MyAccount\myAccountSideBar.html" />
+    <Content Include="Templates\CSR\MyAccount\Overview\Overview.html" />
+    <Content Include="Templates\CSR\MyAccount\Main.html" />
+    <Content Include="Templates\CSR\Product\ProductInformation.html" />
+    <Content Include="Templates\CSR\Product\Widget.html" />
+    <Content Include="Templates\CSR\Search\AdvanceSearch.html" />
+    <Content Include="Templates\CSR\Search\Results.html" />
+    <Content Include="Templates\CSR\Search\Search.html" />
+    <Content Include="Templates\CSR\Search\SearchResults.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Widget.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\AccountUsage.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\Advertisement.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\ContractInformation.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\EasyPay.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\MostDataUsage.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\PlanAndService.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\RemainingBalance.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\ContentOfThePage\ViewOrManageDevice.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\CustomerProfile\Content\GeneralInformation.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\CustomerProfile\Main.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\Dashboard\Main.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\UpdateCustomer\Content\GeneralUpdate.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\UpdateCustomer\Content\PasswordUpdate.html" />
+    <Content Include="Templates\CSR\TroubleTickets\Customer\UpdateCustomer\Main.html" />
+    <Content Include="Templates\ErrorPage\NotImplemented.html" />
+    <Content Include="Templates\Public\Activation\SelfActivation_ActivateNumber.html" />
+    <Content Include="Templates\Public\Activation\SelfActivation_CustomerInfo.html" />
+    <Content Include="Templates\Public\Activation\SelfActivation_Main.html" />
+    <Content Include="Templates\Public\Activation\SelfActivation_Success.html" />
+    <Content Include="Templates\Public\Home\Index.html" />
+    <Content Include="Templates\Public\PublicContent.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\CoverageCheck\CoverageCheck.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\CustomerInfo\CustomerInfo.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\NumberSelection\Content\BrowseICCID.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\NumberSelection\Content\ExistingNumber.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\NumberSelection\Content\ICCIDInfo.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\NumberSelection\Content\NewNumber.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\NumberSelection\NumberSelection.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Ordering\Content\DeviceInfo.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Ordering\Content\ProductInfo.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Ordering\Content\PromotionInfo.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Ordering\Ordering-v1.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Ordering\Ordering-old.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Ordering\Ordering.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Payment\Payment.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Shipping\Shipping.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\ShoppingCart\ShoppingCart.html" />
+    <Content Include="Templates\Public\ShoppingCart\Content\Summary\Summary.html" />
+    <Content Include="Templates\Public\ShoppingCart\Header\Header.html" />
+    <Content Include="Templates\Public\ShoppingCart\Index.html" />
+    <Content Include="Templates\Public\Themes\Footer.html" />
+    <Content Include="Templates\Public\Themes\Header.html" />
+    <Content Include="Templates\SelfCare\Activation\SelfActivation_ActivateNumber.html" />
+    <Content Include="Templates\SelfCare\Activation\SelfActivation_Success.html" />
+    <Content Include="Templates\SelfCare\BillingAndUsage\Main.html" />
+    <Content Include="Templates\SelfCare\BuyMore\Services.html" />
+    <Content Include="Templates\SelfCare\BuyMore\TopUp.html" />
+    <Content Include="Templates\SelfCare\CustomerRegistration\Content\NumberVerification\Main.html" />
+    <Content Include="Templates\SelfCare\CustomerRegistration\Content\CustomerInfo\Main.html" />
+    <Content Include="Templates\SelfCare\CustomerRegistration\Content\Finish\Main.html" />
+    <Content Include="Templates\SelfCare\CustomerRegistration\Header\Main.html" />
+    <Content Include="Templates\SelfCare\CustomerRegistration\Main.html" />
+    <Content Include="Templates\SelfCare\Dashboard\AccountUsage.html" />
+    <Content Include="Templates\SelfCare\Dashboard\Commercial.html" />
+    <Content Include="Templates\SelfCare\Dashboard\ContractInformation.html" />
+    <Content Include="Templates\SelfCare\Dashboard\EasyPay.html" />
+    <Content Include="Templates\SelfCare\Dashboard\Main.html" />
+    <Content Include="Templates\SelfCare\Dashboard\MostDataUsage.html" />
+    <Content Include="Templates\SelfCare\Dashboard\PlanAndService.html" />
+    <Content Include="Templates\SelfCare\Dashboard\RemainingBalance.html" />
+    <Content Include="Templates\SelfCare\Dashboard\ViewOrManageDevice.html" />
+    <Content Include="Templates\SelfCare\Devices\DeviceSlickCollection.html" />
+    <Content Include="Templates\SelfCare\Devices\Main.html" />
+    <Content Include="Templates\SelfCare\DynamicDashboard\MenuContractInformationAndAccountUsage.html" />
+    <Content Include="Templates\SelfCare\DynamicDashboard\MenuDataUsage.html" />
+    <Content Include="Templates\SelfCare\DynamicDashboard\MenuEasypayPlanAndService.html" />
+    <Content Include="Templates\SelfCare\DynamicDashboard\MenuYourDevice.html" />
+    <Content Include="Templates\SelfCare\ErrorPage\ErrorMessageDirective.html" />
+    <Content Include="Templates\SelfCare\ErrorPage\ErrorPopupDirective.html" />
+    <Content Include="Templates\SelfCare\Examples\ETBOSSForm.html" />
+    <Content Include="Templates\SelfCare\ManageAutoPay\AddCreditCard.html" />
+    <Content Include="Templates\SelfCare\ManageAutoPay\View.html" />
+    <Content Include="Templates\SelfCare\Payment\Main.html" />
+    <Content Include="Templates\SelfCare\Payment\PaymentResult.html" />
+    <Content Include="Templates\SelfCare\ManageServices\Main.html" />
+    <Content Include="Templates\SelfCare\Security\ChangePassword.html" />
+    <Content Include="Templates\SelfCare\SelfContents.html" />
+    <Content Include="Templates\SelfCare\ShoppingCart\Cart.html" />
+    <Content Include="Templates\SelfCare\ShoppingCart\Summary.html" />
+    <Content Include="Templates\SelfCare\Starting\Devices.html" />
+    <Content Include="Templates\SelfCare\Support\CreateTroubleTicket.html" />
+    <Content Include="Templates\SelfCare\Support\DetailTroubleTicket.html" />
+    <Content Include="Templates\SelfCare\Support\Main.html" />
+    <Content Include="Templates\SelfCare\Support\ViewTroubleTicket.html" />
+    <Content Include="Templates\SelfCare\Themes\Footer.html" />
+    <Content Include="Templates\SelfCare\Themes\Header.html" />
+    <Content Include="Templates\SelfCare\Themes\Info.html" />
+    <Content Include="Templates\SelfCare\Themes\Nav.html" />
+    <Content Include="Templates\SelfCare\Themes\Breadcrumb.html" />
+    <Content Include="Templates\SelfCare\UpdateProfile\GeneralUpdate.html" />
+    <Content Include="Templates\SelfCare\UsageDetail\Main.html" />
+    <Content Include="Templates\SelfCare\UsageDetail\DataUsage.html" />
+    <Content Include="Templates\SelfCare\UsageDetail\SMSUsage.html" />
+    <Content Include="Templates\SelfCare\UsageDetail\VoiceUsage.html" />
+    <Content Include="Templates\SelfCare\UsageDetail\UsageDetail.html" />
+    <Content Include="Templates\SelfCare\YourProfile\DetailInformation.html" />
+    <Content Include="Templates\SelfCare\YourProfile\GeneralInformation.html" />
+    <Content Include="Templates\SelfCare\YourProfile\Main.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Styles\custom.css.map" />
+    <Content Include="Styles\custom.scss" />
+    <Content Include="Styles\unit\_banner.scss" />
+    <Content Include="Styles\unit\_button.scss" />
+    <Content Include="Styles\unit\_common-wrap.scss" />
+    <Content Include="Styles\unit\_fonts.scss" />
+    <Content Include="Styles\unit\_footer.scss" />
+    <Content Include="Styles\unit\_icon.scss" />
+    <Content Include="Styles\unit\_layout.scss" />
+    <Content Include="Styles\unit\_login.scss" />
+    <Content Include="Styles\unit\_nav.scss" />
+    <Content Include="Styles\unit\_path.scss" />
+    <Content Include="Styles\unit\_sidebar.scss" />
+    <Content Include="Styles\unit\_topbar.scss" />
+    <Content Include="Styles\unit\_type.scss" />
+    <Content Include="Styles\unit\_utilities.scss" />
+    <Content Include="Styles\unit\_variables.scss" />
+    <Content Include="Styles\bootstrap.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Authorization\Bindings\Models\Login\" />
+    <Folder Include="Areas\Authorization\Models\" />
+    <Folder Include="Areas\CSR\Bindings\ViewModels\Controllers\Footer\" />
+    <Folder Include="Areas\CSR\Bindings\ViewModels\Filters\" />
+    <Folder Include="Areas\CSR\Models\" />
+    <Folder Include="Areas\Public\Bindings\ViewModels\Filters\" />
+    <Folder Include="Areas\Public\Content\" />
+    <Folder Include="Areas\SelfCare\Bindings\Models\CustomerDashboard\" />
+    <Folder Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Contents\BillingAndUsage\" />
+    <Folder Include="Areas\SelfCare\Bindings\ViewModels\Controllers\Footer\" />
+    <Folder Include="Areas\SelfCare\Bindings\ViewModels\Filters\" />
+    <Folder Include="Templates\CSR\Administrator\UserManagement\Content\" />
+    <Folder Include="Templates\CSR\Inventory\Activation\" />
+    <Folder Include="Templates\CSR\MyAccount\Content\" />
+    <Folder Include="Templates\Public\ShoppingCart\Content\CoverageCheck\Content\" />
+    <Folder Include="Templates\Public\ShoppingCart\Content\CustomerInfo\Content\" />
+    <Folder Include="Templates\Public\ShoppingCart\Content\Payment\Content\" />
+    <Folder Include="Templates\Public\ShoppingCart\Content\Shipping\Content\" />
+    <Folder Include="Templates\Public\ShoppingCart\Content\ShoppingCart\Content\" />
+    <Folder Include="Templates\Public\ShoppingCart\Content\Summary\Content\" />
+    <Folder Include="Views\MyAccount\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Authorization\Bindings\ViewModels\ModuleForm\SecurityQuestionForm.js" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:24727/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

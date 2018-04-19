@@ -1,0 +1,108 @@
+/* Page Sidebar */
+%common-li{
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  margin-top: -1px;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+.page-sidebar{
+  /* Default sidebar menu */
+  /* light sidebar menu */
+  .page-sidebar-menu{
+    font-family: Open Sans;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* 1st level links */
+    /* all links */
+    > li{
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      > a {
+        @extend %common-li;
+        position: relative;
+        padding: 10px 15px;
+      }
+    }
+    > li.heading {
+      padding: 15px;
+    }
+    > li.heading + li > a {
+      border-top: 0;
+    }
+
+    > li.active > a {
+      font-size: 14px;
+    }
+    li{
+      > a{
+        > .arrow:before {
+          float: right;
+          width: 10px;
+          text-align: center;
+          margin-top: -1px;
+          margin-right: 5px;
+          margin-left: 5px;
+          display: inline;
+          font-size: 16px;
+          font-family: icomoon;
+          height: auto;
+          content: "\e61f";
+          text-shadow: none;
+        }
+        > .arrow.open:before {
+          content: "\e621";
+        }
+      }
+    }
+    .sub-menu {
+      list-style: none;
+      display: none;
+      padding: 0;
+      margin:0;
+      li {
+        margin: 0;
+        padding: 0;
+        /* 2nd level sub menu */
+        > a{
+          @extend %common-li;
+          padding: 6px 15px 6px 43px;
+        }
+        > .sub-menu{
+          margin: 0;
+          > li {
+            /* 3rd level sub menu */
+            > a {
+              @extend %normal-border;
+              padding-left: 60px;
+            }
+            > .sub-menu {
+              margin: 0;
+              > li{
+                /* 4rd level sub menu */
+                > a {
+                  @extend %normal-border;
+                  padding-left: 80px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    li.active{
+      > .sub-menu {
+        display: block;
+      }
+    }
+  }
+}
+.page-sidebar.navbar-collapse{
+  padding: 0;
+  box-shadow: none;
+}

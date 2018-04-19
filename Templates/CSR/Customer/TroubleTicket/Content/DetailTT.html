@@ -1,0 +1,25 @@
+﻿<!--
+    Created by Revani Bagus Amrulloh
+    8 December 2015
+-->
+<!--
+    For: Trouble ticket info from trouble ticket by customer id page
+    List contoller: - TicketInformationTroubleTicketbyCustomerIdController  // Main Controller (Line 19)
+                                                                            // Path : Areas/CSR/Bindings/ViewModels/Controllers/Contents/SearchCustomer/CSRContentCustomerTroubleTickets.js
+                    - ModalCtrl // Common controller to control modal popup (Line 21)
+    URL: CSR/Customer/App/SearchPage/TroubleTicketInfo
+    Route Config : Areas/CSR/Bindings/ViewModels/Routings/CSRContentRouting.js
+    Called From : Templates/CSR/Customer/TroubleTicket/Index.html
+-->
+
+<div class="container">
+    <div class="row">
+        <!--Side Bar-->
+        <div class="col-sm-3 col-xs-12">
+            <div ng-include="'Templates/CSR/Search/SideBar.html'"></div>
+        </div>
+        <!--End Side Bar-->
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/DetailTTInfo.html'"></div>
+    </div>
+</div>
+

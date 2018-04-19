@@ -1,0 +1,177 @@
+﻿<!--<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>-->
+<div class="container" ng-controller="TTWorkflowConfigurationSectionController">
+    <div class="row">
+        <section class="col-sm-3 col-xs-12">
+            <!--Load the sidebar, TODO make common side bar-->
+            <div ng-include="'Templates/CSR/Administrator/Sidebar/Sidebar.html'"></div>
+        </section>
+        <div class="col-sm-9 col-xs-12">
+            <section class="normal-wrap">
+                <header class="title">
+                    <h3>
+                        <i class="et file148"></i> {{'Trouble_Ticket_Workflow_Configuration' | translate}}
+                    </h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li ng-show="isTTWorkflowDraftModeEnable">
+                                <button type="button" id="TTWorkflow_changeDraftMode" class="btn btn-default" ng-click="changeDraftMode()" ng-show="isTTWorkflowDraftModeEnable">
+                                    {{DraftModeText}}
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#workflowConfig" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <div id="workflowConfig" class="panel-data">
+                    <form class="form-horizontal" name="form.WorkFlowConfigurationTTUIForm">
+                        <!-- for half side input -->
+                        <div class="form-group row half-width" ng-show="{{isETAKUser}}">
+                            <label class="col-sm-4 control-label">{{'MVNO' | translate}} : </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="keySearch.keyMVNO" ng-change="updateOnChangeMVNO(keySearch)" ng-disabled="{{!isETAKUser}}">
+                                    <option value="{{item.value}}" ng-repeat="item in TTMVNO" ng-selected="keySearch.keyMVNO == item.value">{{item.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end of input -->
+                        <div class="form-group row half-width">
+                            <label class="col-sm-4 control-label">{{'Flow_Type' | translate}} : </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" ng-model="keySearch.keyFlowType" ng-change="updateOnChangeFlowType(keySearch)">
+                                    <option value="{{item.FlowTypeId}}" ng-repeat="item in TTFlowType" ng-selected="keySearch.keyFlowType == item.FlowTypeId">{{item.Names.DefaultMessage}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row half-width">
+                            <span class="col-md-8 col-md-push-4">
+                                <a class="btn btn-red btn-lg mt-30" type="button" href="#" ng-click="addflow.openAddFlowInterface(keySearch.keyMVNO, keySearch.keyFlowType)" ng-show="isTTWorkflowAddFromTemplateEnable">
+                                    <i class="et addition12"></i> {{'Add_Flow_From_Template' | translate}}
+                                </a>
+                            </span>
+                        </div>
+                    </form>
+
+                    <div class="inline-box">
+                        <ul class="btn-inline">
+                            <li ng-show="isTTWorkflowRemoveEnable">
+                                <a class="btn btn-default" type="button" href="#" data-target="{{Modal_RemoveStepModal}}" data-toggle="modal" ng-show="isTTWorkflowRemoveEnable">{{'Remove_Step' | translate}}</a>
+                            </li>
+                            <li ng-show="isTTWorkflowAddEnable">
+                                <a class="btn btn-default" type="button" href="#" ng-click="addstep.openAddStepInterface(keySearch.keyMVNO)" ng-show="isTTWorkflowAddEnable">{{'Add_Step' | translate}}</a>
+                            </li>
+                            <li ng-show="isTTWorkflowModifyEnable">
+                                <a class="btn btn-default" type="button" href="#" ng-click="update.openModifyStepInterface(keySearch.keyMVNO)" ng-show="isTTWorkflowModifyEnable">{{'Modify_Step' | translate}}</a>
+                            </li>
+                        </ul>
+                        <div class="table fullwidth more-data">
+                            <table class="table table-hover table-responsive">
+                                <thead class="table-head">
+                                    <tr>
+                                        <th>#</th>
+                                        <th ng-click="sortKey='CurrentDepartment.Names.DefaultMessage';reverse=!reverse">
+                                            {{'Current_Department'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='CurrentDepartment.Names.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='CurrentStatus.Names.DefaultMessage';reverse=!reverse">
+                                            {{'Current_Status'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='CurrentStatus.Names.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='OperationType.Names.DefaultMessage';reverse=!reverse">
+                                            {{'Operation'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='OperationType.Names.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='NextStatus.Names.DefaultMessage';reverse=!reverse">
+                                            {{'Next_Status'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='NextStatus.Names.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='NextDepartment.Names.DefaultMessage';reverse=!reverse">
+                                            {{'Next_Department'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='NextDepartment.Names.DefaultMessage'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortKey='ScreenType';reverse=!reverse">
+                                            {{'Screen_Type'| translate}}
+                                            <span class="fa fa-sort" ng-show="sortKey=='ScreenType'" ng-class="{'fa fa-chevron-up':reverse,'fa fa-chevron-down':!reverse}"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-init="sortKey='CurrentDepartment.Names.DefaultMessage';reverse=false;">
+                                    <tr dir-paginate="item in CstData| orderBy:sortKey:reverse | itemsPerPage:10" ng-class=" {'selected':item.WorkflowId==selectedRow}" ng-click="setClickedRow(item)" current-page="currentPage">
+                                        <td>{{currentPage <= 1 ? ($index+1) : ($index+1) + ((currentPage-1) * 10) }}</td>
+                                        <td>{{item.CurrentDepartment.Names.DefaultMessage}}</td>
+                                        <td>{{item.CurrentStatus.Names.DefaultMessage}}</td>
+                                        <td>{{item.OperationType.Names.DefaultMessage}}</td>
+                                        <td>{{item.NextStatus.Names.DefaultMessage}}</td>
+                                        <td>{{item.NextDepartment.Names.DefaultMessage}}</td>
+                                        <td>{{item.ScreenType}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <dir-pagination-controls max-size="10"
+                                                 direction-links="true"
+                                                 boundary-links="true"
+                                                 ng-show="CstData.length">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveStepModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <h3 class="modal-title">{{'Remove_Step' | translate}} - {{DraftModeText}}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{{'Confirmation_AreYouSureToDeleteThis_Step' | translate}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-md" ng-click="removeStep()" ng-disabled="deleteDisabled">{{'Delete'|translate}}</button>
+                <button data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddFlowModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/AddFlowTTConfig.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddStepModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/AddStepTTConfig.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModifyStepModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/ModifyStepTTConfig.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddTTDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div ng-include="'Templates/CSR/Administrator/TroubleTicketConfiguration/Department/AddTTDepartment.html'"></div>
+    </div>
+</div>

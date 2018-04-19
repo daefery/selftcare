@@ -1,0 +1,116 @@
+﻿<!--<div class="btn-group btn-group-justified  btn-md" role="group" aria-label="..." >
+    <div class="btn-group" role="group" >
+        <button type="button" class="btn btn-default">Intranet</button>
+        <a class="btn btn-default" href ng-click="redirect.setButton(1)">Intranet </a>
+    </div>
+    <div class="btn-group" role="group">
+        <a class="btn btn-default" href ng-click="redirect.setButton(2)">Jira </a>
+    </div>
+    <div class="btn-group" role="group">
+        <a class="btn btn-default" target="_self" href ng-click="redirect.setButton(3)">Confluence</a>
+    </div>
+    <div class="btn-group" role="group">
+        <a class="btn btn-default" target="_self" href ng-click="redirect.setButton(4)">ETAK Stocks </a>
+    </div>
+</div>-->
+
+<div class="row no-gutters feat-apps" ng-controller="ETButtonsController">
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 widgets" ng-show="isIntranetEnable">
+        <a href ng-click=" redirect.setbutton(1)" class="apps-menu intranet">
+            <figure>
+                <img src="images/intranet-logo.png" alt="intranet app" class="img-responsive">
+            </figure>
+            <h3>Intranet</h3>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 widgets" ng-show="isJiraEnable">
+        <a href ng-click="redirect.setButton(2)" class="apps-menu jira">
+            <figure>
+                <img src="images/jira-logo.png" alt="jira app" class="img-responsive">
+            </figure>
+            <h3>Jira</h3>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 widgets" ng-show="isConfluenceEnable">
+        <a href ng-click="redirect.setButton(3)" class="apps-menu confluence">
+            <figure>
+                <img src="images/confluence-logo.png" alt="confluence app" class="img-responsive">
+            </figure>
+            <h3>confluence</h3>
+        </a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 widgets" ng-show="isStockEnable">
+        <a href="" class="apps-menu etak">
+            <figure>
+                <img src="images/stock-logo.png" alt="Etak Stock app" class="img-responsive">
+            </figure>
+            <h3>ETAK Stock</h3>
+        </a>
+    </div>
+
+</div>
+
+
+<!--<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="box-wrap ">
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <div class="ruond-bg bgc1"><i class="icon-earth icon-logo"></i></div>
+                </div>
+                <div class="col-md-9 col-xs-12">
+                    <a href ng-click="redirect.setButton(1)">
+                        <h2>Intranet</h2>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="box-wrap">
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <div class="ruond-bg bgc2"><i class="icon-library icon-logo"></i></div>
+                </div>
+                <div class="col-md-9 col-xs-12">
+                    <a href ng-click="redirect.setButton(2)">
+                        <h2>Jira</h2>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="box-wrap">
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <div class="ruond-bg bgc3"><i class="icon-enlarge icon-logo"></i></div>
+                </div>
+                <div class="col-md-9 col-xs-12">
+                    <a href ng-click="redirect.setButton(3)">
+                        <h2>Confluence</h2>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="box-wrap">
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <div class="ruond-bg bgc4"><i class="icon-credit icon-logo"></i></div>
+                </div>
+                <div class="col-md-9 col-xs-12">
+                    <a href="#">
+                        <h2>ETAK stocks</h2>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->

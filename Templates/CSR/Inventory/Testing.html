@@ -1,0 +1,17 @@
+﻿<div class="container">
+    <div class="row">
+        <section class="col-sm-3 col-xs-12">
+            <div ng-include="'templates/csr/inventory/SideBar/SideBar.html'"></div>
+        </section>
+        <section class="col-sm-9 col-xs-12">
+            <section class="normal-wrap">
+                <div ng-include="'templates/csr/inventory/orders/content/maincontent.html'"></div>
+            </section>
+            <span class="m-30"></span>
+            <section class="normal-wrap" ng-show="isInventoryShowTableEnabled">
+                <div ng-include="'templates/csr/inventory/orders/content/tableandbutton.html'"></div>
+            </section>
+
+        </section>
+    </div>
+</div>

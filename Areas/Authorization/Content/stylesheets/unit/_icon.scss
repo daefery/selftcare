@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'icomoon';
+  src:url('../fonts/icomoon.eot?8xygjy');
+  src:url('../fonts/icomoon.eot?#iefix8xygjy') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?8xygjy') format('truetype'),
+  url('../fonts/icomoon.woff?8xygjy') format('woff'),
+  url('../fonts/icomoon.svg?8xygjy#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  padding-right: 5px;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-circle-o-right:before {
+  content: "\e600";
+}
+.icon-paste:before {
+  content: "\e92d";
+}
+.icon-credit-card:before {
+  content: "\e93f";
+}
+.icon-phone-hang-up:before {
+  content: "\e943";
+}
+.icon-envelop:before {
+  content: "\e945";
+}
+.icon-pie-chart:before {
+  content: "\e99a";
+}
+.icon-play3:before {
+  content: "\ea1c";
+}
+.icon-circle-right:before {
+  content: "\ea42";
+}
+.icon-skype:before {
+  content: "\eac6";
+}
+.icon-search:before {
+  content: "\e986";
+}

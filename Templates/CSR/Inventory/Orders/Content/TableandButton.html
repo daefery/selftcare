@@ -1,0 +1,99 @@
+﻿<div class="normal-wrap order-list">
+    <div class="title clearfix">
+        <h3><i class="et office"></i>{{'Order_Lists' | translate}}</h3>
+        <div class="panel-options" ng-controller="ViewOrderSecureSectionController">
+            <ul>
+                <li class="btn-active" ng-show="isCancelOrderEnable"><button ng-disabled="isDetailShow()" type="button" data-toggle="modal" data-target="#cancelOrder" class="btn btn-default">{{'Cancel_Order' | translate}}</button></li>
+                <li class="btn-active" ng-show="isUpdateOrderEnable"><button ng-disabled="isDetailShow()" type="button" data-toggle="modal" data-target="#updateOrder" class="btn btn-default">{{'Update_Order' | translate}}</button></li>
+                <li class="btn-active" ng-show="isOrderDetailEnable"><a class="btn btn-default" ng-disabled="isDetailShow()" type="button" ng-click="isDetailShow() || okcancel()">{{'Order_Detail' | translate}}</a></li>
+            </ul>
+            <!--<ul>
+            <li class="btn-active" style="margin-top:10px"><button type="button" data-toggle="modal" data-target="#cancelOrder" class="btn btn-danger">{{'Cancel_Order' | translate}}</button></li>
+            <li class="btn-active" style="margin-top:10px"><button type="button" data-toggle="modal" data-target="#updateOrder" class="btn btn-danger">{{'Update_Order' | translate}}</button></li>
+            <li class="btn-active"><a style="margin-top:10px" class="btn btn-default" type="button" href="/CSR/Customer/App/Inventory/Orders/OrderDetail">{{'Order_Detail' | translate}}</a></li>
+        </ul>-->
+        </div>
+    </div>
+    <div class="collapse in" id="orderManagementListTable">
+        <div class="panel-data">
+            <!--<div ng-include="'templates/csr/inventory/orders/content/ordertable.html'"></div>-->
+            <div class="recompileserversidepaging" compile="includeMultiplePageResultHtml"></div>
+            <!--<div class="row">
+                <div class="col-md-08" style="margin-top:20px">
+                    <div ng-include="'templates/csr/inventory/orders/content/ordertable.html'"></div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<!--<header class="title">
+    <ul>
+        <li class="btn-active" style="margin-top:-10px"><button type="button" data-toggle="modal" data-target="#cancelOrder" class="btn btn-danger">{{'Cancel_Order' | translate}}</button></li>
+        <li class="btn-active" style="margin-top:-10px"><button type="button" data-toggle="modal" data-target="#updateOrder" class="btn btn-danger">{{'Update_Order' | translate}}</button></li>
+        <li class="btn-active"><a style="margin-bottom:30px" class="btn btn-default" type="button" href="/CSR/Customer/App/Inventory/Orders/OrderDetail">{{'Order_Detail' | translate}}</a></li>
+    </ul>
+    <h6>{{'Order_Lists' | translate}}</h6>
+</header>
+<div style="margin-bottom:5px; margin-top:10px"></div>
+<div class="row">
+    <div class="col-md-12">
+        <div ng-include="'templates/csr/inventory/orders/content/ordertable.html'"></div>
+    </div>
+</div>-->
+
+<div id="cancelOrder" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h4 class="modal-title">{{'Cancel_Order' | translate}}</h4>
+            </div>
+            <div class="modal-body" style="height:350px">
+                <div class="text-content row">
+                    <dl class="dl-horizontal col-sm-12 col-xs-12">
+                        <dt>{{'Order_ID' | translate}}: </dt>
+                        <dd>{{mainpageDetail.OrderNumber}}</dd>
+                        <dt>{{'Order_Date' | translate}}: </dt>
+                        <dd>{{mainpageDetail.OrderDate}}</dd>
+                        <dt>{{'Customer_Id' | translate}}: </dt>
+                        <dd>{{mainpageDetail.CustomerId}}</dd>
+                        <dt>{{'Customer_Name' | translate}}: </dt>
+                        <dd>{{mainpageDetail.ShippingAddress.ContactName}}</dd>
+                        <dt>{{'Customer_Mobile' | translate}}: </dt>
+                        <dd>{{mainpageDetail.ShippingAddress.ContactPhone}}</dd>
+                    </dl>
+                </div>
+                <etbossform value="CancelOrderFormController" name="cancelorderform" ng-controller="CancelOrderForm" field="{{datas}}"></etbossform>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="updateOrder" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h4 class="modal-title">{{'Update_Order' | translate}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="text-content row">
+                    <dl class="dl-horizontal col-sm-12 col-xs-12">
+                        <dt>{{'Order_ID' | translate}}: </dt>
+                        <dd>{{mainpageDetail.OrderNumber}}</dd>
+                        <dt>{{'Order_Date' | translate}}: </dt>
+                        <dd>{{mainpageDetail.OrderDate}}</dd>
+                        <dt>{{'Customer_Id' | translate}}: </dt>
+                        <dd>{{mainpageDetail.CustomerId}}</dd>
+                        <dt>{{'Customer_Name' | translate}}: </dt>
+                        <dd>{{mainpageDetail.ShippingAddress.ContactName}}</dd>
+                        <dt>{{'Customer_Mobile' | translate}}: </dt>
+                        <dd>{{mainpageDetail.ShippingAddress.ContactPhone}}</dd>
+                    </dl>
+                </div>
+                <etbossform value="UpdateOrderFormController" name="updateorderform" ng-controller="UpdateOrderForm" field="{{datas}}"></etbossform>
+            </div>
+        </div>
+    </div>
+</div>

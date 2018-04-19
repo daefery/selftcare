@@ -1,0 +1,274 @@
+﻿<div class="modal-content etak-modal" id="EscalateSupportRequestModal" ng-controller="EscalateSupportRequestController">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'Escalate_Support_Request' | translate}}</h3>
+        <button id="CancelEscalateSupport_btn" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+        <!--<button id="CancelEscalateSupport_btn" data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>-->
+    </div>
+    <div class="modal-body modal-scroll">
+        <form class="form-horizontal bottom-space" name="escalate.form.EscalateUIForm">
+            <div class="row">
+                <div class="col-md-4 col-sm-4" ng-show="{{isETAKUser}}">
+                    <div class="box-info">
+                        <label class="control-label">{{'MVNO'| translate}} : {{escalate.DealerId}}</label>
+                    </div>
+                </div>
+                <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                    <div class="box-info">
+                        <label class="control-label">{{'Phone_Number'| translate}} : {{escalate.Mobile}}</label>
+                    </div>
+                </div>
+                <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                    <div class="box-info">
+                        <label class="control-label">{{'Customer_ID'| translate}} : {{escalate.CustomerId}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label">{{'Ticket_Code'|translate}}:</label>
+                        <div class="col-sm-8">
+                            <label class="form-control">{{escalate.TicketCode}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label">{{'Ticket_Number'|translate}}:</label>
+                        <div class="col-sm-8">
+                            <label class="form-control">{{escalate.TicketNumber}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label">{{'Type'| translate}} : </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" ng-model="escalate.TypeId" ng-change="escalate.updateOnChangeTicketType(escalate.TypeId)"
+                                    ng-options="i.value as (i.name) for i in escalate.TTType">
+                                <!--<option value="{{item.value}}" ng-repeat="item in escalate.TTType" ng-selected="escalate.TypeId == item.value">{{item.name}}</option>-->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label">{{'Creation_Time'|translate}}:</label>
+                        <div class="col-sm-8">
+                            <label class="form-control">{{escalate.Creation_Time}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label">{{'SubType'| translate}} : </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="EscalateSubTypeId" ng-model="escalate.SubTypeId" ng-change="escalate.updateOnChangeSubTypeId(escalate.SubTypeId)" ng-required
+                                    ng-options="i.value as (i.name) for i in escalate.TTSubType">
+                                <!--<option value="{{item.value}}" ng-repeat="item in escalate.TTSubType" ng-selected="escalate.SubTypeId == item.value">{{item.name}}</option>-->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <span class="modal-divider"></span>
+
+
+                    <div class="qa-table">
+                        <h5 class="moda-title">Q & A:</h5>
+                        <table class="table table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Questions</th>
+                                    <th>Answers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="QandA in questionAndAnswer">
+                                    <td ng-attr-id="{{ 'escalate-tt-question-' + $index }}">{{QandA.question}}</td>
+                                    <td>
+                                        <textarea class="form-control" name="QandA_{{$index}}" ng-model="QandA.answer" cols="60" rows="2" ng-maxlength="{{escalate.AnswerMaxLength}}" required></textarea>
+                                        <span ng-show="escalate.form.EscalateUIForm['QandA_{{$index}}'].$invalid" class="help-block with-errors">Enter an answer</span>
+                                        <span ng-show="escalate.form.EscalateUIForm['QandA_{{$index}}'].$error.maxlength" class="help-block with-errors" ng-bind-html="lang.validationmessage.maxlength"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+            <h3 class="modal-title bordered">{{'Description' | translate}} : </h3>
+
+
+            <div class="upload-box">
+                <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AttachmentTTUpload.html'"></div>
+            </div>
+
+
+
+            <!--<div class="row">
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label">{{'Description' | translate}} : </label>
+                        <div class="col-sm-8">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AttachmentTTUpload.html'"></div>
+                    </div>
+                </div>
+            </div>-->
+
+
+            <!--<div class="row">-->
+                <!--<div class="col-sm-4 col-xs-12">
+                    <div>
+                        <label class="control-label">{{'MVNO'| translate}} : {{escalate.DealerId}}</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div>
+                        <label class="control-label">{{'Phone_Number'| translate}} : {{escalate.Mobile}}</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div>
+                        <label class="control-label">{{'Customer_ID'| translate}} : {{escalate.CustomerId}}</label>
+                    </div>
+                </div>-->
+                <div class="col-sm-12 col-xs-12">
+                    <!--<div class="form-group">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">{{'Ticket_Code'|translate}}:</label>
+                                <div class="col-sm-8">
+                                    <label class="form-control">{{escalate.TicketCode}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">{{'Ticket_Number'|translate}}:</label>
+                                <div class="col-sm-8">
+                                    <label class="form-control">{{escalate.TicketNumber}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">{{'Type'| translate}} : </label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" ng-model="escalate.TypeId" ng-change="escalate.updateOnChangeTicketType(escalate.TypeId)"
+                                            ng-options="i.value as (i.name) for i in escalate.TTType">
+                                        <!--<option value="{{item.value}}" ng-repeat="item in escalate.TTType" ng-selected="escalate.TypeId == item.value">{{item.name}}</option>-->
+                                    <!--</select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">{{'Creation_Time'|translate}}:</label>
+                                <div class="col-sm-8">
+                                    <label class="form-control">{{escalate.Creation_Time}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">{{'SubType'| translate}} : </label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" name="EscalateSubTypeId" ng-model="escalate.SubTypeId" ng-change="escalate.updateOnChangeSubTypeId(escalate.SubTypeId)" ng-required
+                                            ng-options="i.value as (i.name) for i in escalate.TTSubType">-->
+                                        <!--<option value="{{item.value}}" ng-repeat="item in escalate.TTSubType" ng-selected="escalate.SubTypeId == item.value">{{item.name}}</option>-->
+                                    <!--</select>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                <!--</div>-->
+                <!--<div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="qa-table modal-body">
+                            <h5 class="moda-title">Q & A:</h5>
+                            <table class="table table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Questions</th>
+                                        <th>Answers</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="QandA in questionAndAnswer">
+                                        <td ng-attr-id="{{ 'escalate-tt-question-' + $index }}">{{QandA.question}}</td>
+                                        <td>
+                                            <textarea class="form-control" name="QandA_{{$index}}" ng-model="QandA.answer" cols="60" rows="2" ng-maxlength="{{escalate.AnswerMaxLength}}" required></textarea>
+                                            <span ng-show="escalate.form.EscalateUIForm['QandA_{{$index}}'].$invalid" class="help-block with-errors">Enter an answer</span>
+                                            <span ng-show="escalate.form.EscalateUIForm['QandA_{{$index}}'].$error.maxlength" class="help-block with-errors" ng-bind-html="lang.validationmessage.maxlength"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>-->
+                <!--<div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">{{'Description' | translate}} : </label>
+                                <div class="col-sm-8">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AttachmentTTUpload.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            <text-angular ng-model="escalate.Description" name="EscalateDescriptionEditor"
+                          ta-text-editor-class="border-around container" ta-html-editor-class="border-around"
+                          ng-maxlength="{{escalate.DescriptionMaxLength}}" maxlength="{{escalate.DescriptionMaxLength}}"></text-angular>
+            <span id="EscalateDescriptionEditor_Validate_maxlength" ng-show="escalate.form.EscalateUIForm.EscalateDescriptionEditor.$error.maxlength" class="help-block with-errors">{{lang.validationmessage.maxlength}}</span>
+
+                <!--<div class="col-sm-12 col-xs-12">
+                    <div class="">
+                        <div class="col-sm-12">
+                            <text-angular ng-model="escalate.Description" name="EscalateDescriptionEditor"
+                                          ta-text-editor-class="border-around container" ta-html-editor-class="border-around"
+                                          ng-maxlength="{{escalate.DescriptionMaxLength}}" maxlength="{{escalate.DescriptionMaxLength}}"></text-angular>
+                            <span id="EscalateDescriptionEditor_Validate_maxlength" ng-show="escalate.form.EscalateUIForm.EscalateDescriptionEditor.$error.maxlength" class="help-block with-errors">{{lang.validationmessage.maxlength}}</span>
+                        </div>
+                    </div>
+                </div>-->
+            <span class="modal-divider"></span>
+            <div class="modal-buttons">
+                <button id="SubmitEscalateSupport_btn" type="submit" ng-click="escalate.form.EscalateUIForm.$valid && escalateSupportRequest()" class="btn btn-default pull-right">{{'Submit'|translate}}</button>
+                <button id="CancelEscalateSupport_btn" data-dismiss="modal" class="btn btn-default btn-md">{{'Cancel'|translate}}</button>
+            </div>
+
+                <!--<div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <button id="SubmitEscalateSupport_btn" type="submit" ng-click="escalate.form.EscalateUIForm.$valid && escalateSupportRequest()" class="btn btn-success pull-right btn-md">{{'Submit'|translate}}</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <button id="CancelEscalateSupport_btn" data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </form>
+    </div>
+</div>
+<!--<div class="modal-footer"></div>-->

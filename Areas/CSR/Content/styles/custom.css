@@ -1,0 +1,15 @@
+﻿.normal-wrap .sub-title {
+    padding: 15px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.normal-wrap .clear-wrap-padding {
+    margin: 0 -15px;
+}
+
+.bg-gray {
+    background-color: #f6f6f6;
+}
+
+

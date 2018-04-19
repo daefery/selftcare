@@ -1,0 +1,44 @@
+﻿<div ng-controller="NumberSelectionController">
+    <div class="modal-header">
+        <h3 class="modal-title">SIM Detail</h3>
+    </div>
+    <div class="modal-body" style="height:200px">
+        <div class="col-xs-12" style="border: 2px solid #E9E9E9">
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">ICCID</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].iccid}}</div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">IMSI</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].imsi}}</div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">PUK 1</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].puk1}}</div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">PUK 2</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].puk2}}</div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">Start Date</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].startdate}}</div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">End Date</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].enddate}}</div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">First Use</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].firstuse}}</div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-5" style="padding:0">Last Use</div>
+                <div class="col-sm-7" style="padding:0">: {{iccidCR[0].lastuse}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="close()" class="btn btn-danger btn-md pull-right">Close</button>
+    </div>
+</div>

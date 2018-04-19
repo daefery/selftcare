@@ -1,0 +1,65 @@
+﻿<!--
+    Created and added by:
+    Mahdi Badari
+    Module Management HTML content
+    created 24 nov 2015
+-->
+
+<!--TO DO take data from database (This page and the partial page in this page)-->
+
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal">
+
+                    <!--TO DO (1) disabled this section, so this section is fixed because this section content depend with what MVNO the user come from-->
+                        <select ng-change="getModuleTree(mvno)" ng-model="mvno" class="form-control">
+                                    <option value="" disabled selected hidden>Domain</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">CSR</option>
+                                    <option value="3">SelfCare</option>
+                        </select>
+                    <!--End (1)-->
+
+
+                <div class="tree-section">
+                    <header class="title">
+                                <h3><i class="et network65"></i>Modules Tree View</h3>
+                                <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#treeDetail" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                    </header>
+                    <div id="treeDetail" class="collapse in">
+                        <!--Load role section-->
+                        <div ng-include="'templates/csr/administrator/modulemanagement/content/modules.html'"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="right-module">
+                <form class="form-horizontal">
+                         <!--Load module section-->
+                        <div class="mb-30" ng-include="'templates/csr/administrator/modulemanagement/content/description.html'"></div>
+
+                    <!--Load user section-->
+                    <div class="mb-30 clearfix" ng-include="'templates/csr/administrator/modulemanagement/content/mvnoaccess.html'"></div>
+
+                        <!--Load user section-->
+                        <div class="mb-30 clearfix" ng-include="'templates/csr/administrator/modulemanagement/content/securedsection.html'"></div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+

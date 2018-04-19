@@ -1,0 +1,142 @@
+﻿<div class="modal-content etak-modal" id="UpdateSupportRequestModal" ng-controller="UpdateSupportRequestController">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'Update_Support_Request' | translate}}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="et delete8"></i></button>
+    </div>
+    <div class="modal-body modal-scroll clean">
+        <form class="form-horizontal bottom-space" name="update.UpdateSupportRequestUIForm">
+            <div class="row">
+                <div class="col-md-4 col-sm-4" ng-show="{{isETAKUser}}">
+                    <div class="box-info">
+                        <label class="control-label">{{'MVNO'| translate}} : {{update.DealerId}}</label>
+                    </div>
+                </div>
+                <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                    <div class="box-info">
+                        <label class="control-label">{{'Phone_Number'| translate}} : {{update.Mobile}}</label>
+                    </div>
+                </div>
+                <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                    <div class="box-info">
+                        <label class="control-label">{{'Customer_ID'| translate}} : {{update.CustomerId}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <span class="modal-divider"></span>
+
+            <div class="row">
+
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="row">
+                            <label class="col-sm-4 control-label">{{'Support_ID'|translate}}:</label>
+                            <div class="col-sm-8">
+                                <label class="form-control clean">{{update.Support_ID}}</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="row">
+                            <label class="col-sm-4 control-label">{{'Creation_Time'|translate}}:</label>
+                            <div class="col-sm-8">
+                                <label class="form-control clean">{{update.Creation_Time}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="row">
+                <label class="col-sm-2 control-label">{{'Category'| translate}} : </label>
+                <div class="col-sm-10">
+                    <select class="form-control medium" ng-model="update.CategoryId"
+                            ng-options="i.value as (i.name) for i in update.TTCategory">
+                        <!--<option value="{{item.value}}" ng-repeat="item in update.TTCategory" ng-selected="update.CategoryId == item.value">{{item.name}}</option>-->
+                    </select>
+                </div>
+            </div>
+            <span class="modal-divider"></span>
+            <h3 class="modal-title bordered">{{'Description' | translate}} : </h3>
+
+                <!--<label class="control-label">{{'Description' | translate}} : </label>-->
+                <div class="upload-box">
+                    <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AttachmentTTUpload.html'"></div>
+                </div>
+
+
+                <!--<div class="col-sm-8 col-xs-12">
+            <div class="row">
+                <label class="col-sm-4 control-label">{{'Description' | translate}} : </label>
+                <div class="col-sm-8">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+            <div class="form-group">
+                <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AttachmentTTUpload.html'"></div>
+            </div>
+        </div>-->
+
+
+                <div class="textarea-box">
+                    <text-angular ng-model="update.Description" name="UpdateDescriptionEditor"
+                                  ta-text-editor-class="border-around container" ta-html-editor-class="border-around"
+                                  ng-maxlength="{{update.DescriptionMaxLength}}" maxlength="{{update.DescriptionMaxLength}}"></text-angular>
+                    <span id="UpdateDescriptionEditor_Validate_maxlength" ng-show="update.UpdateSupportRequestUIForm.UpdateDescriptionEditor.$error.maxlength" class="help-block with-errors">{{lang.validationmessage.maxlength}}</span>
+                </div>
+                <!--<div class="row">
+            <div class="">
+                <div class="col-sm-12">
+                    <text-angular ng-model="update.Description" name="UpdateDescriptionEditor"
+                                  ta-text-editor-class="border-around container" ta-html-editor-class="border-around"
+                                  ng-maxlength="{{update.DescriptionMaxLength}}" maxlength="{{update.DescriptionMaxLength}}"></text-angular>
+                    <span id="UpdateDescriptionEditor_Validate_maxlength" ng-show="update.UpdateSupportRequestUIForm.UpdateDescriptionEditor.$error.maxlength" class="help-block with-errors">{{lang.validationmessage.maxlength}}</span>
+                </div>
+            </div>
+        </div>-->
+
+
+                <label class="modal-title control-label"><h3>{{'Comments' | translate}} : </h3></label>
+                <textarea class="form-control" id="commentEditor" placeholder="Blank If No Comment"></textarea>
+
+                <!--<div class="row">
+
+
+
+                        <label class="col-sm-4 control-label">{{'Comments' | translate}} : </label>
+                        <div class="col-sm-8">
+                        </div>
+
+
+
+        </div>
+
+
+
+                    <textarea class="form-control" id="commentEditor" placeholder="Blank If No Comment"></textarea>-->
+                <!--<div class="row">
+
+                <div class="col-sm-6 col-xs-12">
+
+                        <button id="SubmitUpdateSupport_btn" ng-click="update.UpdateSupportRequestUIForm.$valid && modifyUpdateSupportRequest()" class="btn btn-success pull-right btn-md">{{'Submit'|translate}}</button>
+
+                </div>
+                <div class="col-sm-6 col-xs-12">
+
+                        <button id="CancelUpdateSupport_btn" data-dismiss="modal" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+
+                </div>
+
+        </div>-->
+                <div class="modal-buttons">
+                    <button id="SubmitUpdateSupport_btn" ng-click="update.UpdateSupportRequestUIForm.$valid && modifyUpdateSupportRequest()" class="btn btn-default pull-right">{{'Submit'|translate}}</button>
+                    <button id="CancelUpdateSupport_btn" data-dismiss="modal" class="btn btn-default">{{'Cancel'|translate}}</button>
+                </div>
+
+
+</div>
+    </form>
+</div>
+    <!--<div class="modal-footer"></div>-->
+</div>

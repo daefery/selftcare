@@ -1,0 +1,154 @@
+.navbar-nav{
+/*for mega menu of dropdown nav*/
+  > li.mega-menu-dropdown{
+      position: static;
+      > .dropdown-menu {
+        left: auto;
+        width: auto;
+        .mega-menu-content {
+          margin: 0 auto;
+          @extend %li-clear-default;
+          ul.mega-menu-submenu{
+            h6{padding: 10px 0; }
+            li{
+              line-height: 30px;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+  }
+  > li.mega-menu-dropdown.mega-menu-full{
+    .dropdown-menu {
+      left: 0;
+      right: 0;
+    }
+  }
+  .dropdown-menu {
+    @extend %clear-border;
+  }
+}
+.admin-nav-wrap{
+  width: $full-width;
+  min-height: 70px;
+  border-bottom: 1px solid $border-gainsboro;
+  .navbar-brand{padding-top: 20px}
+  .navbar-toggle{margin-top: 20px}
+  .nav{
+    >li{
+      >a{
+        font-family: $font-family-bold;
+        font-size:12px;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .navbar-form{
+    /*for search on navigation */
+    //padding: 5px 0 0 5px;
+    margin-top:15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-brand {
+    /* Adjust the logo of the right margin*/
+    padding-right: 15%;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav{
+    > li{
+      > a {
+        padding-bottom: 10px;
+        .icon-nav{
+          display: block;
+          width: 100%;
+          text-align: center;
+          padding-bottom: 6px;
+          font-size: 16px;
+        }
+      }
+      >a.active{
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+      }
+    }
+    .mega-menu-content {
+      /*mega menu on the nav*/
+      padding: 15px;
+      ul.mega-menu-submenu {
+        h6 {
+          padding: 10px 0;
+        }
+      }
+    }
+  }
+  .navbar-form {
+    /*let the search align right */
+    .adv-search{
+      margin-top: 3px;
+    }
+  }
+}
+//
+//@media (min-width: 768px) and (max-width: 1200px) {
+//  /*the input box of search is hidden on this media,just only display icon button*/
+//  .status{
+//    display: none;
+//    position: absolute;
+//    right:0;
+//  }
+//  .status-block{
+//    /*for JQ, this class will be used when the mouse click button*/
+//    display: block;
+//  }
+//}
+
+@media (max-width: 767px) {
+  .navbar-brand{
+    width: 60%;
+    img{width: 100%;
+      max-width:206px ;
+      min-width: 150px;}
+  }
+  .nav{
+    > li{
+      > a {
+        .icon-nav{
+          display: inline-block;
+          padding-right: 15px;
+          padding-bottom: 6px;
+          font-size: 16px;
+        }
+      }
+    }
+    .mega-menu-content {
+      ul.mega-menu-submenu {
+        h6 {
+          padding: 10px 0;
+        }
+        a {
+          color: $font-darkgray;
+        }
+      }
+      .mega-menu-list {
+        padding-left: 50px;
+      }
+    }
+  }
+  .navbar-default{
+    .navbar-collapse{
+      margin-top: 10px;
+    }
+    .navbar-form{
+      border-color:transparent;
+      margin:0;
+      .adv-search{
+        margin-top: 3px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

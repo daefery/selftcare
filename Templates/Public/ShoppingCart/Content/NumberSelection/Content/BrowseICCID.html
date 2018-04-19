@@ -1,0 +1,27 @@
+﻿<div ng-controller="NumberSelectionController">
+    <div class="modal-header">
+        <h3 class="modal-title">Browse SIM Card</h3>
+    </div>
+    <div class="modal-body">
+        <section class="table pre-scrollable" style="max-height:300px;width:100%">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ICCID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="iccid in iccidCR">
+                            <td>{{iccid.iccid}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="close()" class="btn btn-success btn-md">Select</button>
+        <button ng-click="close()" class="btn btn-danger btn-md pull-right">Close</button>
+    </div>
+</div>

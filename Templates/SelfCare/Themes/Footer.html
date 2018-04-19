@@ -1,0 +1,62 @@
+﻿<!--<footer class="footer-wrap clearfix" id="SelfCareFooter">
+    <div class="copyright">
+        <p>Copyrights © 2014 All Rights Reserved by Elephanttalk Inc.</p>
+        <p>reserved by  kinsd boish</p>
+        <div>
+            <span><i class="icon-envelop"></i> info@elephanttalk.com</span>
+            <span><i class="icon-phone-hang-up"></i>68+ 456789 9875</span>
+            <span><i class="icon-skype"></i>elephanttalk</span>
+        </div>
+    </div>
+</footer>-->
+
+<footer class="footer-wrap" id="SelfCareFooter">
+   <div class="copyright">
+        <p>Copyrights © 2015 All Rights Reserved by Elephanttalk Inc.</p>
+       <!--  <div>
+           <span><i class="icon-envelop"></i> info@elephanttalk.com</span>
+           <span><i class="icon-phone-hang-up"></i>68+ 456789 9875</span>
+           <span><i class="icon-skype"></i>elephanttalk</span>
+       </div> -->
+    </div>
+</footer>
+<nav class="pushmenu pushmenu-left">
+  <div class="user-mobile">
+    <a href="javascript:;" id="mobClose" class="btn btn-circle"><i class="et delete8"></i></a>
+    <span class="etcircle-icon medium">
+      <i class="et repair31"></i><!-- remove this <i></i> if will use another element -->
+    </span>
+    <ul class="user-mobmenu">
+      <li><a href="/SelfCare/Customer/App/UpdateProfile" class="btn btn-primary"><i class="et cogwheel33"></i> Edit</a></li>
+      <li><a href="/SelfCare/Customer/App/YourProfile" class="btn btn-primary">Profile</a> <i class="et right127"></i></li>
+    </ul>
+  </div>
+ <nav class="mob-nav">
+   <ul>
+     <li ng-repeat="nav in getVal">
+       <a id="selfcare_nav_mobile_{{$index + 1}}" ng-click="check()" href={{nav.Link}}>
+         {{nav.Menu}}</a>
+       <!--<a href="#"><i class="fa fa-home"></i> Home</a>-->
+     </li>
+    <li ng-controller="LogoutController as logout">
+        <a id="logout" ng-click="logout.destroySession()" href="/Authorization/Login" target="_self"><i class="et turnon"></i></a>
+    </li>
+    <!-- <li>
+       <a href="#"><i class="et industrial1"></i> Managed Service</a>
+     </li>
+     <li>
+       <a href="#"><i class="et smartphones17"></i> Manage Devices</a>
+     </li>
+     <li>
+       <a href="#"><i class="et credit-card28"></i> Billing and Usages</a>
+     </li>
+     <li>
+       <a href="#"><i class="et assistance"></i> Support</a>
+     </li>
+     <li>
+       <a href="#"><i class="et shopping145"></i> Shopping</a>
+     </li>-->
+   </ul>
+ </nav>
+
+</nav>

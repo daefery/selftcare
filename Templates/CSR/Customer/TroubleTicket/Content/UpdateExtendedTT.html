@@ -1,0 +1,45 @@
+﻿<div class="modal-content etak-modal">
+    <div ng-controller="UpdateExtendedTTTroubleTicketbyCustomerIdController">
+        <div class="modal-header">
+            <h3 class="modal-title">{{'Update'|translate}} {{'Extended'|translate}} {{'Info'|translate}}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="top-modal-section">
+                    <div class="row">
+                        <div class="col-sm-4" ng-show="{{isETAKUser}}">
+                            MVNO: {{CustomerDetailforTT.MVNOName}}
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            {{'Phone_Number'|translate}}: {{CustomerDetailforTT.PhoneNumber}}
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            {{'Customer_Id'|translate}}: {{CustomerDetailforTT.CustomerId}}
+                        </div>
+                    </div>
+                </div>
+                <div class="mid-modal-section">
+                    <etbossform name="UpdateExtendedInfoTT" type="split" field="{{UpdateExtendedInfoTT}}"></etbossform>
+                    <div class="sub-modal">
+                        <form name="updateExtendedTextEditorForm">
+                            <div>
+                                <span>{{'Remarks'|translate}}</span>
+                                <div style="border:1px solid black">
+                                    <text-angular ng-model="UpdateExtendedTTSection.Remarks" name="updateExtendedTextDescriptionEditor"
+                                                  ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-buttons clearfix">
+                        <div class="btn-group pull-right">
+                            <button id="SubmitUpdateExtentedInfo_btn" ng-click="SubmitUpdateExtendedInfoTT()" class="btn btn-success pull-right btn-md">{{'Submit'|translate}}</button>
+                            <button id="CancelUpdateExtentedInfo_btn" ng-click="CancelUpdateExtendedInfoTT()" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿<div ng-controller="ShippingAndPaymentController">
+    <!--<div class="step-title">
+        <h3>Shipping</h3>
+    </div>-->
+    <div class="cart-info">
+      
+            <h3 class="page-title">Shipping</h3>
+      
+    </div>
+
+   
+        <!--<div class="col-sm-12">
+            <div class="col-sm-12" style="margin-bottom:20px">
+                <h4><i class="fa fa-truck"></i> Shipping Info</h4>
+            </div>
+        </div>-->
+        <div class="shopping-area">
+            <etbossform type="split" name="shippingaddress2" field="{{shippingaddress2}}"></etbossform>
+            <div class="col-sm-12 normal-wrap" ng-hide="isValidDelAddress">
+                <header class="title">
+                    <h3>
+                        <i class="et office"></i>Please Verify Your Shipping Address
+                    </h3>
+                    <!-- for small wrap buttons-->
+                </header>
+                <div class="panel-text clearfix">
+                    <dl class="dl-horizontal">
+                        <dt>This Address : </dt>
+                        <dd>{{ShippingAndPayment.shippingaddress}}, {{ShippingAndPayment.shippingcity}}, {{ShippingAndPayment.shippingstate}}, {{ShippingAndPayment.shippingzipcode}}</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        {{DelAddressResponse}}
+                    </dl>
+                </div>
+            </div>
+        </div>
+    
+
+    
+
+
+    <div class="checkout-bottom">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12">
+                <div class="btn-group">
+                    <button ng-click="ChangeCRPage('customerinfo')" class="btn btn-default">prev </button>
+                    <button ng-click="validateForm('payment')" class="btn btn-default next">next</button>
+                </div>
+            </div>
+       </div>
+        
+    </div>
+
+</div>

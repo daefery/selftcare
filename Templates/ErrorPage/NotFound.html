@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/Styles/custom.css" rel="stylesheet" />
+    <link href="/Styles/bootstrap.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <section class="notify-page">
+        <article class="error404-page">
+            <div class="container">
+                <figure>
+                    <img src="../../../../../Images/etak-404.png" class="img-responsive" alt="elephanttalk communication">
+                </figure>
+            </div>
+            <div class="bottom-options">
+                <hgroup class="notify-top">
+                    <h3><span>ooops!</span> This isn't the page you're looking for</h3>
+                    <h5>it has been moved, deleted or does not exist</h5>
+                </hgroup>
+                <div class="bottom-act">
+                    You might try <a href="#">searching elephanttalk site,</a> or you could <a href="#" onclick="javascript:GoToHomePage()">go back to where you were.</a>
+                </div>
+            </div>
+        </article>
+    </section>
+
+
+    <!--<div class="container">
+        <div class="url-error-wrap">
+            <p class="error-number">404</p>
+            <p class="tit">Sorry, the page not found!</p>
+            <p class="detail" style="text-align: center;">
+                You can press the back button on the browser or
+            </p>
+            <p class="detail" style="text-align: center;">
+                back to <a href="#" onclick="javascript:GoToHomePage()">Home Page</a>
+            </p>
+        </div>
+    </div>-->
+    <script type="text/javascript">
+
+        function GoToHomePage() {
+            var currUrl = window.location.href.toString();
+            var origin = window.location.origin;
+            if (currUrl != null)
+            {
+                if (currUrl.toLowerCase().indexOf('selfcare') > -1)
+                    window.location.href = origin + '/Selfcare/Customer/App';
+                if (currUrl.toLowerCase().indexOf('csr') > -1)
+                    window.location.href = origin + '/CSR/Customer/App';
+            }
+
+        }
+
+    </script>
+</body>
+</html>

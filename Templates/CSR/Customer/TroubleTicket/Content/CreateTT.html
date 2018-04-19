@@ -1,0 +1,90 @@
+﻿<div class="modal-content etak-modal">
+    <div ng-controller="CreateTroubleTicketbyCustomerIdController">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+            <h3 class="modal-title"><i class="et checked28"></i> {{'Create'|translate}} {{'Trouble_Ticket'|translate}}</h3>
+        </div>
+        <div class="modal-body ticket modal-scroll">
+            <div class="container">
+                <div class="row no-gutters nopad">
+                    <div class="col-md-4 col-sm-4" ng-show="{{isETAKUser}}">
+                        <div class="top-ticket">
+                            <!-- <i class="et business133"></i> -->
+                            MVNO: {{CustomerDetailforTT.MVNOName}}
+                        </div>
+                    </div>
+                    <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                        <div class="top-ticket border">
+                            <!-- <i class="et smartphones17"></i> -->
+                            {{'Phone_Number'|translate}}: {{CustomerDetailforTT.PhoneNumber}}
+                        </div>
+                    </div>
+                    <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                        <div class="top-ticket">
+                            <!-- <i class="et users39"></i> -->
+                            {{'Customer_Id'|translate}}: {{CustomerDetailforTT.CustomerId}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <etbossform name="CreateTT" type="split" field="{{CreateTT}}"></etbossform>
+                </div>
+                <div class="qa-table">
+                    <h5>Q & A:</h5>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Questions</th>
+                                <th>Answers</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="QandA in questionAndAnswer">
+                                <td>{{QandA.question}}</td>
+                                <td>
+                                    <textarea ng-model="snippet[$index]" cols="60" rows="2"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="upload-modal">
+                        <p>Description</p>
+                        <!--ng-repeat how much attachment-->
+                        <div class="upload-entry" ng-controller="UploadFilesCtrl">
+                            <span ng-repeat="file in filenames">
+                                <a style="margin-right:8px; color:gray; cursor:pointer;" data-toggle="clickover" pop-over items="items" on-delete="removeAttachment(file)" size="{{file.size}}" poptitle="{{file.name}}"><i class="et uploading34"></i></a>
+                            </span>
+                            <div class="fileUpload btn btn-primary btn-xs">
+                                <span>{{'Add_Attachment'|translate}}</span>
+                                <input type="file" class="upload" onchange="angular.element(this).scope().uploadFiles(this)" multiple />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form name="createTextEditorForm">
+                    <div>
+                        <span>{{'Description'|translate}}</span>
+                        
+                            <text-angular ng-model="CreateTicketEditor" name="createTextDescriptionEditor"
+                                          ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                       
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="button-center-modal">
+                            <button ng-click="SubmitCreateTT()" class="btn btn-default btn-md">{{'Submit'|translate}}</button>
+                            <button ng-click="close()" class="btn btn-default btn-md" data-dismiss="modal" aria-label="Close">{{'Cancel'|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>

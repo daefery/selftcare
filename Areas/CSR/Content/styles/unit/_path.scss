@@ -1,0 +1,19 @@
+.path-wrap{
+  /*The path of the page*/
+  @extend %border-bottom;
+  @extend %bottom-space;
+  .breadcrumb{
+    @extend %font-family-thin;
+    padding: 10px 0 0 0;
+    margin-bottom: -5px;
+    background-color: transparent;
+    a{
+      font-size: $normal-font-size;
+      color: $font-gray;
+    }
+  }
+  h2{
+    color: $font-darkgray;
+    margin: 15px 0;
+  }
+}

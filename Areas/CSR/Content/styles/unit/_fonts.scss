@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'MyriadSetPro-Thin';
+  src: url('../fonts/MyriadSetPro-Thin.eot'); /* IE */
+  src: local('Myriad-Pro'), url('../fonts/MyriadSetPro-Thin.ttf') format('truetype'); /* non-IE */
+  /*src: local('Myriad-Pro'), url('../fonts/Myriad-Pro.woff') format('woff'); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'MyriadSetPro-Semibold';
+  src: url('../fonts/MyriadSetPro-Semibold.eot'); /* IE */
+  src: local('Myriad-Pro-Bold'), url('../fonts/MyriadSetPro-Semibold.ttf') format('truetype'); /* non-IE */
+  /*src: local('Myriad-Pro-Bold'), url('/fonts/Myriad-Pro-Bold.woff') format('woff'); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Myriad-Pro-Bolder';
+  src: url('../fonts/Myriad-Pro-Bolder.eot'); /* IE */
+  src: local('Myriad-Pro-Bolder'), url('../fonts/Myriad-Pro-Bolder.ttf') format('truetype'); /* non-IE */
+  /*src: local('Myriad-Pro-Bolder'), url('/fonts/Myriad-Pro-Bolder.woff') format('woff'); /* Modern Browsers */
+}
+
+b, strong { font-family: MyriadSetPro-Semibold, sans-serif; }

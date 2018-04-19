@@ -1,0 +1,68 @@
+﻿<form name="myForm" class="form-horizontal login-warp" ng-submit="doRegister(reg)">
+    <div class="form-group center">
+        <img src="images/et-logo.png">
+    </div>
+    
+    <div class="form-group">
+        <input type="text" class="form-control" ng-minlength="11" ng-maxlength="11" ng-pattern="onlyNumbers" name="phone" ng-model="reg.phone" placeholder="Phone Number" required>
+        <span class="label label-danger" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+            <span ng-show="myForm.phone.$error.required">Phone is required.</span>
+            <span ng-show="myForm.phone.$error.pattern">Phone must number.</span>
+            <span ng-show="myForm.phone.$error.minlength || myForm.phone.$error.maxlength">Input lenght must 11.</span>
+        </span>
+    </div>
+
+    <div class="form-group center">
+        <button type="submit" class="button blue btn-primary" ng-disabled="myForm.phone.$invalid" style="width: 100%">Register</button>
+    </div>
+    <div class="form-group center">
+        Don't have any phone number?
+        <a href="#" class="link"> Purchase</a>
+        or <a href="Authorization/Login" class="link" target="_self">Back</a>
+    </div>
+</form>
+
+<button type="button" class="hidden" data-toggle="modal" data-target="#exampleModal" id="emailpopup">email</button>
+<button type="button" class="hidden" id="modal_btn_success" data-toggle="modal" data-target=".modal_success">notify</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="alert alert-danger" role="alert"> <strong>{{errorMessage}}</strong> </div>
+            </div>
+            <div class="modal-body">
+                <form name="emForm" class="form-horizontal login-warp" ng-submit="doNewEmail(reg)">
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" ng-model="reg.email" placeholder="Email" required>
+                        <span class="label label-danger" ng-show="emForm.email.$dirty && emForm.email.$invalid">
+                            <span ng-show="emForm.email.$error.required">Email is required.</span>
+                            <span ng-show="emForm.email.$error.email">Email not valid.</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group center">
+                        <button type="submit" class="button blue btn-primary" ng-disabled="emForm.email.$invalid" style="width: 100%">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal_success" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" ng-click="goLogin()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>{{successMessage}}</strong><br />
+                        <b class="warning">{{instruction}}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

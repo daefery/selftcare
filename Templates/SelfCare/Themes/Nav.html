@@ -1,0 +1,116 @@
+﻿<nav class="navbar admin-nav-wrap clearfix" role="navigation">
+    <div class="container" ng-controller="NavChangeCtrl">
+        <div class="navbar-header">
+            <button type="button" id="nav_list" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#etakMenu" aria-expanded="false">
+            <span class="sr-only">Elephanttalk</span>
+            <i class="fa fa-navicon"></i>
+            </button>
+            <a class="navbar-brand" ng-click="check()" href="/SelfCare/Customer/App"><img src="images/et-logo.png" alt="ElephantTalk" class="img-responsive"></a>
+        </div>
+        <div>
+            <div class="collapse navbar-collapse dropdown">
+                <ul class="nav navbar-nav">
+                    <li ng-repeat="nav in getVal"><a id="selfcare_nav_{{$index + 1}}" ng-click="check()" href={{nav.Link}}>{{nav.Menu}}</a></li>
+                    <!--<li>
+                        <button class="btn top" data-toggle="dropdown">
+                            <span class="et maleuser"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a id="yourprofile" href="/SelfCare/Customer/App/YourProfile">Profile</a></li>
+                            <li><a id="updateprofile" href="/SelfCare/Customer/App/UpdateProfile">Edit</a></li>
+                            <li><a id="changepassowrd" href="/SelfCare/Customer/App/ChangePassword">Change Password</a></li>
+                            <li><a href="#" ng-controller="ModalCtrl" ng-click="open('','Templates/Common/DynamicNavigation/NavigationSort.html')">Sort Navigation Menu</a></li>
+                        </ul>
+                    </li>-->
+                    <li ng-if="shoppingcart.isCartShow">
+                        <button id="shoppingcart_basket" class="btn top cart" data-toggle="dropdown">
+                            <i class="icon shoppingstore70"></i>
+                            <span class="badge" ng-bind="shoppingcart.count"></span>
+                        </button>
+                        <ul class="dropdown-menu cart-top">
+                            <div ng-repeat="shopping in shoppingcart.items">
+                                <h5 style="text-align: center;">{{shopping.msisdn}}</h5>
+                                <li ng-repeat="item in shopping.device" id="shopping_cart_basketitem_{{$index+1}}">
+                                    <span>
+                                        {{item.name}}
+                                    </span>
+                                </li>
+                            </div>
+
+                            <li>
+                                <a id="viewall_chart" href="/SelfCare/Customer/App/Cart">view cart</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ng-if="!shoppingcart.isCartShow && isActiveDevice.ShowShoppingChart">
+                        <button id="shoppingcart_basket" class="btn top cart">
+                            <i class="icon shoppingstore70"></i>
+                            <span class="badge" ng-bind="shoppingcart.count"></span>
+                        </button>
+                    </li>
+                    <li ng-show="isActiveDevice.ShowProfile">
+                        <button class="btn top" data-toggle="dropdown">
+                            <span class="et maleuser"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a id="yourprofile" href="/SelfCare/Customer/App/YourProfile">Profile</a></li>
+                            <li><a id="updateprofile" href="/SelfCare/Customer/App/UpdateProfile">Edit</a></li>
+                            <li><a id="changepassowrd" href="/SelfCare/Customer/App/ChangePassword">Change Password</a></li>
+                            <li ng-show="isActiveDevice.ShowNavigationSort"><a href="#" ng-controller="ModalCtrl" ng-click="open('','Templates/Common/DynamicNavigation/NavigationSort.html')">Sort Navigation Menu</a></li>
+                        </ul>
+                    </li>
+                    <button hidden id="cek_shoppingcart" ng-click="recheck_cart()"></button>
+                    <li ng-controller="TopManageDeviceMenuController" ng-show="isManageDeviceHeaderEnable && isActiveDevice.ShowManageDevice ">
+                        <button class="btn top" data-toggle="dropdown">
+                            <span class="et smartphones17"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="MSISDNCollection in MSISDNParentChild"><a id="MSISDNManageDevice{{$index}}" style="cursor:pointer" ng-click="ChangeCustomer(MSISDNCollection)">{{MSISDNCollection.MSISDN}} <i class="fa fa-check success" ng-if="MSISDNCollection.MSISDN === SelectedDevice"></i></a></li>
+                        </ul>
+                    </li>
+                    <li ng-controller="LogoutController as logout" ng-show="isActiveDevice.ShowLogout">
+                        <a id="logout" ng-click="logout.destroySession()" href="/Authorization/Login" target="_self"><i class="et turnon"></i></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+<div class="clearfix"><!-- please don't delete,this is the clear fix--></div>
+
+
+<script>
+  //setTimeout(function(){
+    $(function() {
+
+      // mobile menu
+      $('#nav_list').click(function() {
+        $(this).toggleClass('active');
+        $('.selfcare-site').toggleClass('actived');
+        $('.pushmenu-push').toggleClass('pushmenu-push-toright');
+        $('.pushmenu-left').toggleClass('pushmenu-open');
+
+      });
+
+      $('#mobClose').click(function() {
+        $('.pushmenu-left').toggleClass('pushmenu-open');
+        $('.selfcare-site').toggleClass('actived');
+
+      });
+    });
+  //}, 1000);
+
+</script>

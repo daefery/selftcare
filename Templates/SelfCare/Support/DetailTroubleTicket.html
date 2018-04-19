@@ -1,0 +1,80 @@
+﻿<div class="inner-page">
+    <div id="activeRelativePathForSelfcare" ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div ng-include="'Templates/SelfCare/Themes/Info.html'"></div>
+
+    <div class="container">
+        <div class="inner-selfcare">
+            <div class="panel-data clean">
+                <h3>Support Request Details</h3>
+                <div class="row">
+                    <form accessible_form="accessibleForm" class="etak-form form-horizontal" name="commentForm" novalidate>
+                        <div class="row form-content">
+                            <div class="col-sm-12 col-lg-12" ng-controller="TroubleTicketInfoController">
+                                <div class="info-data">
+                                    <etbossform name="ttselfcareinfo" type="split" field="{{trouble_ticket_info}}"></etbossform>
+                                </div>
+                                <div style="padding-top:20px">
+                                    <label>Description:</label>
+                                    <div class="description-box">
+                                        <div align="justify" ng-bind-html="TroubleTicketDetailResponse.TroubleTicketDetail.Description" id="TicketInfo-GeneralInfo-Description" class="ng-binding"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12 grey">
+                                <div class="form-group row">
+                                    <div class="col-sm-12" style="background-color: rgb(243, 243, 243);" ng-show="isAddCommentEnable">
+                                        <div class="form-group row">
+                                            <div class="col-md-12" style="padding-top:20px">
+                                                <h5>Leave Your Comment</h5>
+                                                <br />
+                                                <textarea name="comment" required class="form-control"
+                                                          ng-model="TTaddComment.comment"
+                                                          placeholder="Add your comment" ng-maxlength="3096" id="comment_box"></textarea>
+                                                <span id="tt_comment" class="help-block with-errors" ng-show="commentForm.$submitted && (commentForm.comment.$error.required)">field is mandatory</span>
+                                                <span id="tt_comment-errormaxlength" class="help-block with-errors" ng-show="commentForm.$submitted && (commentForm.comment.$error.maxlength)">Sorry, you can't input more than 3096 character</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-bottom clearfix">
+                                            <button type="submit" id="tt_comment_btn_submit" class="btn btn-default" ng-click="commentForm.$valid && add_comment(TTaddComment, commentForm)">Submit Comment</button>
+                                        </div>
+                                    </div>
+                                    <div id="comment_update" class="selfcare-comment col-sm-12">
+                                        <ul class="media-list">
+                                            <li class="media" dir-paginate="com in ttcomments|itemsPerPage:5" style="border-bottom:none;border-top:1px solid #e5e5e5">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <span class="media-object">
+                                                            <i class="et message97"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading clearfix">
+                                                        {{com.UserInfo.FullName}}<span class="comment-date">
+                                                            <i class="fa fa-clock-o"></i> on {{com.UpdateTime}}
+                                                        </span>
+                                                    </h6>
+                                                    <div class="comment-box text-breakall">
+                                                        <p ng-bind-html="com.Comment"></p>
+                                                    </div>
+                                                    <a href="" class="edit-comment" ng-click="focusComment()">
+                                                        <i class="fa fa-edit"></i> Reply
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <dir-pagination-controls max-size="5"
+                                                                 direction-links="true"
+                                                                 boundary-links="true"
+                                                                 ng-show="ttcomments.length">
+                                        </dir-pagination-controls>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿<!--Revani multiple result template
+    28 oct 2015-->
+
+<section class="normal-wrap" ng-controller="paginationController">
+    <div class="table-responsive">
+        <a id="tt_createticket" ng-click="gotoDashboard()" class="btn btn-outline btn-sm" style="margin-bottom: 10px;float: right;">
+            <i class="et business133"></i>  Go To Customer Dashboard
+        </a>
+        <table class="table table-hover table-striped">
+            <thead class="table-head">
+                <tr>
+                    <th>#</th>
+                    <th id="advancesearch-orderby-customerid" ng-click="orderBy('CustomerId')">
+                        {{'Customer_ID'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='CustomerId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th id="advancesearch-orderby-customerstatus">
+                        {{'Customer_Status'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='simstatus'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th id="advancesearch-orderby-customername" ng-click="orderBy('Name')">
+                        {{'Customer_Name'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th id="advancesearch-orderby-subscriptionid" ng-click="orderBy('SubscriptionId')">
+                        {{'Subscription_ID'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='SubscriptionId'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th id="advancesearch-orderby-phonenumber" ng-click="orderBy('PHONE')">
+                        {{'Phone_Number'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='PHONE'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th id="advancesearch-orderby-subscriptionstatus">
+                        {{'subscription_status'| translate}}
+                        <span class="glyphicon sort-icon" ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-attr-id="{{ 'advance-search-row-' + $index }}" dir-paginate="item in advanceSearchResult|itemsPerPage:10" ng-click="SelectCustomer(item.MSISDN, item.CustomerId, item.SubscriptionId)" ng-class="{'advancesearchselected':item.CustomerId==selectedCustomerId&&item.SubscriptionId==selectedSubscriptionId&&item.MSISDN==selectedMSISDN}">
+                    <td ng-attr-id="{{ 'advance-search-Number-' + $index }} ">{{item.Number}}</td>
+                    <td ng-attr-id="{{ 'advance-search-CustomerId-' + $index }}">{{item.CustomerId}}</td>
+                    <td ng-attr-id="{{ 'advance-search-CustomerStatus-' + $index }}">{{item.CustomerStatus}}</td>
+                    <td ng-attr-id="{{ 'advance-search-CustomerName-' + $index }}">{{item.CustomerName}}</td>
+                    <td ng-attr-id="{{ 'advance-search-SubscriptionId-' + $index }}">{{item.SubscriptionId}}</td>
+                    <td ng-attr-id="{{ 'advance-search-MSISDN-' + $index }}">{{item.MSISDN}}</td>
+                    <td ng-attr-id="{{ 'advance-search-SubscriptionStatus-' + $index }}">{{item.SubscriptionStatus}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12" style="text-align:center" ng-show="isdataexist()">No Data Found</div>
+
+    <server-side-paging total-page="{{pagingServerSide}}" function-name="getSearchByPageNumber" max-grid="11"></server-side-paging>
+</section>
+
+<!--end-->
+

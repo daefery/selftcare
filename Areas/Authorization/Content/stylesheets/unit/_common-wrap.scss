@@ -1,0 +1,55 @@
+@mixin rounded-corners($radius:3px){
+  -webkit-border-radius:$radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+%rounded-corners{
+ @include rounded-corners;
+}
+%clear-border-size{
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
+%bottom-space{margin-bottom: 20px;}
+.normal-wrap{
+  /*main content of pages set a common background box */
+  @extend %rounded-corners;
+  @extend %bottom-space;
+  border: 1px solid $border-gray;
+  box-shadow: 0px 2px 2px $border-gray;
+  .title{
+    height: 57px;
+    background-color: $tit-bg-gray;
+    @extend %border-bottom;
+    line-height: 57px;
+    display: block;
+    padding: 0 20px 0 20px;
+    -webkit-border-radius:3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    -o-border-radius: 3px 3px 0 0;
+    -ms-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+  }
+  .content{
+    background-color: $bg-white;
+    padding: 25px 20px 25px 20px;
+    min-height:170px;
+    @extend %rounded-corners;
+  }
+}
+
+.secondary{
+  /*for secondary text, include date ect.*/
+  color: $font-lightgray;
+}
+.highlight{
+  /*for highlighted text, for example user name*/
+  color: $font-darkgray;
+  font-size: $h4-font-size;
+}
+
+

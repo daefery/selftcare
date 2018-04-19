@@ -1,0 +1,103 @@
+﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div ng-include="'Templates/SelfCare/Themes/Info.html'"></div>
+    <div class="inner-selfcare">
+        <div class="container">
+            <div class="panel-data clean">
+                <div class="box-sides">
+                    <div class="box-sides-entry pad-right20">
+                        <h3 class="selfcare-title">Your Plan</h3>
+                        <b>Plan :</b> <p>{{ExistingPlan.HtmlModel.Name}}</p><br />
+                        <b>Description :</b> <p>{{ExistingPlan.HtmlModel.Description}}</p><br />
+                    </div>
+                    <div class="box-sides-entry filled pad-side20 third-grid">
+                        <h3 class="title-selfcare">Promotion</h3>
+                        <div class="row">
+                            <slick ng-if="Promotions != undefined" touch-move="false" infinite="false" speed="300" slides-to-show="4" class="list-overlay plan-packages" responsive="breakpoints" draggable="false" style="margin-top: 30px;">
+                                <div ng-repeat="pro in Promotions">
+                                    <span ng-if="pro.PurchaseOptions.length > 0" class="circle-data-price">
+                                        $ {{pro.HtmlModel.Amount}}
+                                    </span>
+                                    <span ng-if="pro.PurchaseOptions.length < 1" class="circle-data-price">
+                                        $ 0
+                                    </span>
+                                    <span class="device-slide-description">
+                                        <h4>{{pro.HtmlModel.Name}}</h4>
+                                    </span>
+                                    <center>
+                                        <button type="button" ng-disabled="pro.Id == currentPromotionId" class="btn btn-default" tabindex="0" ng-click="selectPromotion(pro.Id)">
+                                            <b ng-show="pro.Id == currentPromotionId">selected</b>
+                                            <b ng-show="pro.Id != currentPromotionId">select</b>
+                                        </button>
+                                    </center>
+                                </div>
+                            </slick>
+                            <div ng-show="isPromotion" class="btn-group pull-right">
+                                <div style="text-align:center">
+                                    <p>TOTAL PRICE</p>
+                                    <h4>$ {{totalPayment}}</h4>
+                                </div><br />
+                                <button ng-disabled="currentFeatureId == 0" ng-click="addToCart('ALLOWANCE')" class="btn btn-default">
+                                    <i class="fa fa-shopping-cart"></i> add to cart
+                                </button>
+                                <button ng-disabled="currentFeatureId == 0" type="submit" ng-click="purchase()" class="btn btn-default">
+                                    pay with balance
+                                </button>
+                            </div>
+                                
+                            <div ng-if="Promotions == undefined">
+                                <p class="alert alert-warning alert-dismissible">
+                                    promotion not available !
+                                </p>
+                            </div>
+                        </div>
+                        <h3 class="title-selfcare">Cash Card</h3>
+                        <div class="row">
+                            <slick ng-if="CashCards != undefined" touch-move="false" infinite="false" speed="300" slides-to-show="4" class="list-overlay plan-packages" responsive="breakpoints" draggable="false" style="margin-top: 30px;">
+                                <div ng-repeat="cc in CashCards">
+                                    <span class="circle-data-price">
+                                        $ {{cc.HtmlModel.Amount}}
+                                    </span>
+                                    <span class="device-slide-description">
+                                        <h4>{{cc.HtmlModel.Name}}</h4>
+                                    </span>
+                                    <center>
+                                        <button type="button" ng-disabled="cc.Id == currentCashCardId" class="btn btn-default" tabindex="0" ng-click="selectCashCard(cc.Id)">
+                                            <b ng-show="cc.Id == currentCashCardId">selected</b>
+                                            <b ng-show="cc.Id != currentCashCardId">select</b>
+                                        </button>
+                                    </center>
+                                </div>
+                            </slick>
+                            <div ng-show="isCashCard" class="btn-group pull-right">
+                                <div style="text-align:center">
+                                    <p>TOTAL PRICE</p>
+                                    <h4>$ {{totalPayment}}</h4>
+                                </div><br />
+                                <button ng-click="addToCart('CASHCARD_ALLOWANCE')" class="btn btn-default">
+                                    <i class="fa fa-shopping-cart"></i> add to cart
+                                </button>
+                                <button type="submit" ng-click="purchase()" class="btn btn-default">
+                                    pay with balance
+                                </button>
+                            </div>
+                            <div ng-if="CashCards == undefined">
+                                <p class="alert alert-warning alert-dismissible">
+                                    Cash cards not available !
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

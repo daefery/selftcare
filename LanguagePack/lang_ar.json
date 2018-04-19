@@ -1,0 +1,24 @@
+﻿{  
+	"ADVANCED_SEARCH" : "بحث متقدم",
+	
+    "HOME" : "الصفحة الرئيسية",
+    "NPM" : "NPM",
+    "MNP" : "MNP",
+	"SIM_CARDS" : "Kartu SIM",
+	"LOG_QUERY" : "Riwayat Query",
+	"DMC" : "DMC",
+	"VOUCHERS" : "كوبون",
+	"MY_TT" : "تذكرة مشكلة",
+    "PRODUCT_CATALOG": "كتالوج",
+
+    "DASHBOARD" : "لوحة القيادة",
+    "CUSTOMER_DETAILS" : "تفاصيل العملاء",
+    "RESOURCE_INFORMATION" : "معلومات الموارد",
+	"SUBSCRIBER_PROVISIONING" : "المشترك التزويد",
+	"PRODUCT_INFORMATION" : "معلومات المنتج",
+	"BILLING_INFORMATION" : "معلومات الفواتير",
+	"INVOICES_PAYMENT" : "دفع الفواتير",
+	"HISTORY" : "تاريخ",
+    "NOTIFICATION": "الإخطار",
+    "TROUBLE_TICKETS" : "مشكلة التذاكر"
+}

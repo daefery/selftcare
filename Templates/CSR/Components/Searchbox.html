@@ -1,0 +1,12 @@
+﻿<form class="navbar-form pull-left" id="searchID" ng-submit="SearchPhoneNumber(searchMSISDN)">
+    <input type="text" class="form-control input-small" placeholder="Search Phone Number" name="searchParameter" id="txtSearch" ng-model="searchMSISDN" autofocus>
+    <i class="icon-search" aria-hidden="true" style="cursor: pointer;" ng-click="SearchPhoneNumber(searchMSISDN)"></i>
+</form>
+<script>
+    $(document).ready(function (e) {
+        var path = window.location.pathname;
+        if (path == '/CSR/Customer/App') {
+            $("#txtSearch").focus();
+        }
+    });
+</script>

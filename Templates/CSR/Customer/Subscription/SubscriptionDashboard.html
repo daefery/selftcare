@@ -1,0 +1,379 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3">
+            <div ng-include="'Templates/CSR/Search/SideBar.html'"></div>
+        </div>
+        <!--start main content-->
+        <div class="col-lg-9 col-md-9">
+            <div ng-controller="SubscriptionDashboardSectionController">
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="normal-wrap">
+                            <header class="title">
+                                <h3><i class="et phone2"></i>{{'SUBSCRIPTION_DETAILS' | translate}}</h3>
+                                <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#subscriptionDetailContent" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </header>
+                            <div id="subscriptionDetailContent" class="collapse in">
+                                <div ng-controller="CustomerActionController">
+                                    <div class="split-buttons">
+                                        <ul>
+                                            <li ng-show="isSubscriptionDashboardNumberSwapEnable">
+                                                <button type="button" id="subscriptionDetail_NumberSwapForm" class="btn btn-default" ng-click="NumberSwap.openNumberSwapModal()" ng-show="isSubscriptionDashboardNumberSwapEnable">
+                                                    <i class="fa fa-edit"></i> {{'Number_Swap' | translate}}
+                                                </button>
+                                            </li>
+                                            <li ng-show="isSubscriptionDashboardActionButtonEnable">
+                                                <button type="button" id="subscriptionDetail_ActionForm" class="btn btn-default" ng-click="ShowModalCustomerAction()" ng-show="isSubscriptionDashboardActionButtonEnable">
+                                                    <i class="fa fa-edit"></i> {{ButtonActionName | translate}}
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="modal etak-content fade in" id="CustomerActionActivate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content etak-modal">
+                                                <div>
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title">{{'Activate'|translate}}</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <etbossform name="ActivateForm" field="{{ActivateDatas}}"></etbossform>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="modal etak-content fade in" id="CustomerActionFreezeUnfreezeDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div ng-include="'Templates/CSR/customer/action/FreezeUnfreezeDelete.html'"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-text clearfix">
+                                    <dl class="dl-horizontal">
+                                        <dt>{{'MDN/MSISDN' | translate}} : </dt>
+                                        <dd id="subscriptionDetail_PhoneNumber">{{selectedMultiSubscription.Subscription.MSISDN}}</dd>
+                                        <dt>{{'subscription_status' | translate}} : </dt>
+                                        <dd id="subscriptionDetail_SubscriptionStatus">{{selectedMultiSubscription.Subscription.subscriptionStatus}}</dd>
+                                        <dt>{{'Subscriber_Type' | translate}} : </dt>
+                                        <dd id="subscriptionDetail_SubscriberType">{{selectedMultiSubscription.Subscription.subscriptionType}}</dd>
+                                        <dt>{{'Subscriber_Category' | translate}} : </dt>
+                                        <dd id="subscriptionDetail_SubscriberCategory">{{selectedMultiSubscription.Subscription.subscriptionCategory}}</dd>
+                                        <dt>{{'Mobile_Type' | translate}} : </dt>
+                                        <dd id="subscriptionDetail_MobileType">{{selectedMultiSubscription.Subscription.MobileType}}</dd>
+                                        <dt>{{'Create_Date' | translate}} : </dt>
+                                        <dd id="subscriptionDetail_CreateDate">{{selectedMultiSubscription.Subscription.createdDate}}</dd>
+                                    </dl>
+                                </div>
+                                <div class="split-buttons">
+                                    <ul>
+                                        <li ng-show="isSubscriptionDashboardPortabilityInfoEnable">
+                                            <button type="button" id="subscriptionDetail_PortabilityDetailsForm" class="btn btn-default" data-toggle="modal" data-target="#PortabilityInfoModal" ng-show="isSubscriptionDashboardPortabilityInfoEnable">
+                                                <i class="fa fa-edit"></i> {{'Portability_Details' | translate}}
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6" ng-show="isICCIDExists">
+                        <div class="normal-wrap">
+                            <header class="title">
+                                <div class="panel-options">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="" id="SubscriptionDashboard_tablist_1" data-target="#SubscriptionDashboard_tabs_1" aria-controls="SubscriptionDashboard_tabs_1" role="tab" data-toggle="tab">
+                                                {{'DEVICE_INFORMATION' | translate}}
+                                            </a>
+                                        </li>
+                                        <li role="presentation" class="">
+                                            <a href="" id="SubscriptionDashboard_tablist_2" data-target="#SubscriptionDashboard_tabs_2" aria-controls="SubscriptionDashboard_tabs_2" role="tab" data-toggle="tab">
+                                                {{'RESOURCE_DETAILS' | translate}}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#SubscriptionDashboard_tablist_Content" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </header>
+                            <div id="SubscriptionDashboard_tablist_Content" class="tab-content collapse in">
+                                <div role="tabpanel" class="tab-pane fade active in" id="SubscriptionDashboard_tabs_1">
+                                    <div id="deviceInformationContentTab">
+                                        <div class="panel-text clearfix">
+                                            <dl class="dl-horizontal">
+                                                <dt>{{'Status' | translate}} : </dt>
+                                                <dd id="deviceInformation_Status">{{selectedDeviceInfo.Status}}</dd>
+                                                <dt>{{'IMEI' | translate}} : </dt>
+                                                <dd id="deviceInformation_IMEI">{{selectedMultiSubscription.Subscription.IMEI}}</dd>
+                                                <dt>{{'Brand' | translate}} : </dt>
+                                                <dd id="deviceInformation_Brand">{{selectedDeviceInfo.Brand}}</dd>
+                                                <dt>{{'Model' | translate}} : </dt>
+                                                <dd id="deviceInformation_Model">{{selectedDeviceInfo.ProductName}}</dd>
+                                                <dt>{{'Exists_Since' | translate}} : </dt>
+                                                <dd id="deviceInformation_ExistsSince">{{selectedDeviceInfo.startDate}}</dd>
+                                                <dt>{{'Last_Modified' | translate}} : </dt>
+                                                <dd id="deviceInformation_LastModified">{{selectedDeviceInfo.LastModified}}</dd>
+                                                <dt>{{'Scenario' | translate}} : </dt>
+                                                <dd id="deviceInformation_Scenario">{{selectedDeviceInfo.Scenario}}</dd>
+                                                <dt>{{'Last_Time_Sent' | translate}} : </dt>
+                                                <dd id="deviceInformation_LastTimeSent">{{selectedDeviceInfo.LastTimeSent}}</dd>
+                                                <dt>{{'Last_Scenario_Status' | translate}} : </dt>
+                                                <dd id="deviceInformation_LastScenarioStatus">{{selectedDeviceInfo.LastScenarioStatus}}</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="split-buttons">
+                                            <ul>
+                                                <li ng-show="isSubscriptionDashboardDeviceUsageHistoryEnable">
+                                                    <button type="button" id="subscriptionDetail_DeviceUsageHistoryForm" class="btn btn-default" data-toggle="modal" data-target="#DeviceUsageHistoryModal" ng-show="isSubscriptionDashboardDeviceUsageHistoryEnable">
+                                                        <i class="fa fa-edit"></i> {{'Device_Usage_History' | translate}}
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="SubscriptionDashboard_tabs_2">
+                                    <div id="resourceDetailContentTab">
+                                        <div class="panel-text clearfix">
+                                            <dl class="dl-horizontal">
+                                                <dt>{{'SIM_Status' | translate}} : </dt>
+                                                <dd id="resourceDetail_SIM_Status">{{selectedSIM.simStatus}}</dd>
+                                                <dt>{{'ICCID' | translate}} : </dt>
+                                                <dd id="resourceDetail_ICCID">{{selectedSIM.ICCID}}</dd>
+                                                <dt>{{'IMSI' | translate}} : </dt>
+                                                <dd id="resourceDetail_IMSI">{{selectedSIM.IMSI1}}</dd>
+                                                <dt>{{'PUK' | translate}} : </dt>
+                                                <dd id="resourceDetail_PUK">{{selectedSIM.PUK1}}</dd>
+                                                <dt>{{'PUK2' | translate}} : </dt>
+                                                <dd id="resourceDetail_PUK2">{{selectedSIM.PUK2}}</dd>
+                                                <dt>{{'Start_Date' | translate}} : </dt>
+                                                <dd id="resourceDetail_Start_Date">{{selectedMultiSubscription.Subscription.startDate}}</dd>
+                                                <dt>{{'End_Date' | translate}} : </dt>
+                                                <dd id="resourceDetail_End_Date">{{selectedMultiSubscription.Subscription.endDate}}</dd>
+                                                <dt>{{'First_Used' | translate}} : </dt>
+                                                <dd id="resourceDetail_First_Used">{{selectedMultiSubscription.Subscription.firstUsed}}</dd>
+                                                <dt>{{'Last_Used' | translate}} : </dt>
+                                                <dd id="resourceDetail_Last_Used">{{selectedMultiSubscription.Subscription.LastUsed}}</dd>
+                                            </dl>
+                                        </div>
+                                        <div class="split-buttons">
+                                            <ul>
+                                                <li ng-show="isSubscriptionDashboardConfigurationDetailsEnable">
+                                                    <button type="button" id="subscriptionDetail_ConfigurationDetailsForm" class="btn btn-default" data-toggle="modal" data-target="#ConfigurationDetailModal" ng-show="isSubscriptionDashboardConfigurationDetailsEnable">
+                                                        <i class="fa fa-edit"></i> {{'Configuration_Details' | translate}}
+                                                    </button>
+                                                </li>
+                                                <li ng-show="isSubscriptionDashboardSIMDeviceSwapEnable">
+                                                    <button type="button" id="resourceDetail_SIMDeviceSwapForm" class="btn btn-default" ng-click="open_SIMDeviceSwapModal()" ng-show="isSubscriptionDashboardSIMDeviceSwapEnable">
+                                                        <i class="fa fa-edit"></i> {{'SIM_Swap' | translate}}
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6" ng-show="!isICCIDExists">
+                        <div class="normal-wrap">
+                            <header class="title">
+                                <h3><i class="et phone2"></i>{{'DEVICE_INFORMATION' | translate}}</h3>
+                                <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#deviceInformationContent" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </header>
+                            <div id="deviceInformationContent" class="collapse in">
+                                <div>
+                                    <div class="split-buttons">
+                                        <ul>
+                                            <li ng-show="isSubscriptionDashboardSIMDeviceSwapEnable">
+                                                <button type="button" id="deviceInformation_SIMDeviceSwapForm" class="btn btn-default" ng-click="open_SIMDeviceSwapModal()" ng-show="isSubscriptionDashboardSIMDeviceSwapEnable">
+                                                    <i class="fa fa-edit"></i> {{'Device_Swap' | translate}}
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel-text clearfix">
+                                    <dl class="dl-horizontal">
+                                        <dt>{{'Status' | translate}} : </dt>
+                                        <dd id="deviceInformation_Status">{{selectedDeviceInfo.Status}}</dd>
+                                        <dt>{{'esn' | translate}} : </dt>
+                                        <dd id="deviceInformation_IMEI">{{selectedMultiSubscription.Subscription.IMEI}}</dd>
+                                        <dt>{{'Brand' | translate}} : </dt>
+                                        <dd id="deviceInformation_Brand">{{selectedDeviceInfo.Brand}}</dd>
+                                        <dt>{{'Model' | translate}} : </dt>
+                                        <dd id="deviceInformation_Model">{{selectedDeviceInfo.ProductName}}</dd>
+                                        <dt>{{'IMSI' | translate}} : </dt>
+                                        <dd id="deviceInformation_IMSI">{{selectedMultiSubscription.Subscription.IMSI}}</dd>
+                                        <dt>{{'PUK' | translate}} : </dt>
+                                        <dd id="deviceInformation_PUK">{{selectedSIM.PUK1}}</dd>
+                                        <dt>{{'PUK2' | translate}} : </dt>
+                                        <dd id="deviceInformation_PUK2">{{selectedSIM.PUK2}}</dd>
+                                        <dt>{{'Start_Date' | translate}} : </dt>
+                                        <dd id="deviceInformation_Start_Date">{{selectedDeviceInfo.startDate}}</dd>
+                                        <dt>{{'End_Date' | translate}} : </dt>
+                                        <dd id="deviceInformation_End_Date">{{selectedDeviceInfo.endDate}}</dd>
+                                    </dl>
+                                </div>
+                                <div class="split-buttons">
+                                    <ul>
+                                        <li ng-show="isSubscriptionDashboardConfigurationDetailsEnable">
+                                            <button type="button" id="deviceInformation_ConfigurationDetailsForm" class="btn btn-default" data-toggle="modal" data-target="#ConfigurationDetailModal" ng-show="isSubscriptionDashboardConfigurationDetailsEnable">
+                                                <i class="fa fa-edit"></i> {{'Configuration_Details' | translate}}
+                                            </button>
+                                        </li>
+                                        <li ng-show="isSubscriptionDashboardDeviceUsageHistoryEnable">
+                                            <button type="button" id="deviceInformation_DeviceUsageHistoryForm" class="btn btn-default" data-toggle="modal" data-target="#DeviceUsageHistoryModal" ng-show="isSubscriptionDashboardDeviceUsageHistoryEnable">
+                                                <i class="fa fa-edit"></i> {{'Device_Usage_History' | translate}}
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <!-- SubscriptionsLifecycleHistory BEGIN -->
+                        <div class="normal-wrap" ng-controller="SubscriptionsLifecycleHistoryController">
+                            <header class="title">
+                                <h3><i class="et office"></i>{{'Subscriptions_Lifecycle_History'|translate}}</h3>
+                                <div class="panel-options">
+                                    <ul>
+                                        <li>
+                                            <button type="button" class="btn-toggle" data-target="#SubscriptionsLifecycleHistoryContent" data-toggle="collapse">
+                                                <i class="et rounded61"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </header>
+                            <div class="collapse in" id="SubscriptionsLifecycleHistoryContent">
+                                <div class="panel-data clearfix">
+                                    <div class="table-responsive" ng-controller="paginationController">
+                                        <table class="table table-bordered">
+                                            <thead class="table-head">
+                                                <tr>
+                                                    <th ng-click="sort('Resource_Type')">
+                                                        {{'Resource_Type'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Resource_Type'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('Resource_Number')">
+                                                        {{'Resource_Number'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Resource_Number'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('Event_Name')">
+                                                        {{'Event_Name'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Event_Name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('Date')">
+                                                        {{'Date'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('Previous_Status')">
+                                                        {{'Previous_Status'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Previous_Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('Current_Status')">
+                                                        {{'Current_Status'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='Current_Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                    <th ng-click="sort('USER_NAME')">
+                                                        {{'USER_NAME'| translate}}
+                                                        <span class="glyphicon sort-icon" ng-show="sortKey=='USER_NAME'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr dir-paginate="item in ListSubscriptionsLifecycleHistory | orderBy:sortKey:reverse | itemsPerPage:10" ng-class="{'selected':item.Id==SelectedSubscriptionsLifecycleHistory.Id}" ng-click="selectSubscriptionsLifecycleHistory(item)"
+                                                    pagination-id="Pagination_ListSubscriptionsLifecycleHistory">
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{item.Resource_Type}}</td>
+                                                    <td>{{item.Resource_Number}}</td>
+                                                    <td>{{item.Event_Name}}</td>
+                                                    <td>{{item.Date}}</td>
+                                                    <td>{{item.Previous_Status}}</td>
+                                                    <td>{{item.Current_Status}}</td>
+                                                    <td>{{item.User_Name}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <dir-pagination-controls max-size="10"
+                                                                 direction-links="true"
+                                                                 boundary-links="true"
+                                                                 pagination-id="Pagination_ListSubscriptionsLifecycleHistory"
+                                                                 ng-show="ListSubscriptionsLifecycleHistory.length">
+                                        </dir-pagination-controls>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SubscriptionsLifecycleHistory END -->
+                    </div>
+                </div>
+
+                <div class="modal fade" id="PortabilityInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div ng-include="'Templates/CSR/Customer/Subscription/PortabilityInfo.html'"></div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="NumberSwapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div ng-include="'Templates/CSR/Customer/Subscription/NumberSwap.html'"></div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="ConfigurationDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div ng-include="'Templates/CSR/Customer/Subscription/ConfigurationDetail.html'"></div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="SIMSwapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div ng-include="'Templates/CSR/Customer/Subscription/SIMSwap.html'"></div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="DeviceSwapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div ng-include="'Templates/CSR/Customer/Subscription/DeviceSwap.html'"></div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="SelectNumberModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div ng-include="'Templates/CSR/Customer/Subscription/SelectNumber.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

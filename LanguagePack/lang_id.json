@@ -1,0 +1,24 @@
+{  
+	"ADVANCED_SEARCH" : "Pencarian Lanjut",
+	
+    "HOME" : "Rumah",
+    "NPM" : "NPM",
+    "MNP" : "MNP",
+	"SIM_CARDS" : "Kartu SIM",
+	"LOG_QUERY" : "Riwayat Query",
+	"DMC" : "DMC",
+	"VOUCHERS" : "Kupon",
+	"MY_TT" : "Tiket Problem Saya",
+    "PRODUCT_CATALOG": "Katalog Produk",
+
+    "DASHBOARD" : "Dasbor",
+    "CUSTOMER_DETAILS" : "Detail Information",
+    "RESOURCE_INFORMATION" : "Informasi Sumber Daya",
+	"SUBSCRIBER_PROVISIONING" : "Provisi Pelanggan",
+	"PRODUCT_INFORMATION" : "Informasi Product",
+	"BILLING_INFORMATION" : "Informasi Tagihan",
+	"INVOICES_PAYMENT" : "Faktur Pembayaran",
+	"HISTORY" : "Riwayat",
+    "NOTIFICATION": "Pemberitahuan",
+    "TROUBLE_TICKETS" : "Tiket Masalah"
+}

@@ -1,0 +1,29 @@
+﻿<section class="normal-wrap clearfix">
+    <header class="title">
+        <h3><i class="et avatar31"></i>{{'Update_History' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li>
+
+                    <button type="button" class="btn-toggle" data-target="#appSecond" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div id="appSecond" class="apps-updates collapse in">
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-show="UpdateHistories.length==0">{{'No_Update_History' | translate}}</li>
+            <li class="list-group-item" ng-repeat="UpdateHistory in UpdateHistories" ng-hide="UpdateHistories.length==0">
+                <span class="badge"></span>
+                <strong ng-show="isETAKUser">{{UpdateHistory.Affected_MVNOs}} &mdash; </strong>
+                <strong>{{UpdateHistory.UpdateDate}}</strong> &mdash;
+                <strong>{{UpdateHistory.Description}}</strong> &mdash; 
+                <span>{{UpdateHistory.Detail}}</span> &ensp; 
+                <a href={{UpdateHistory.URLReference}} ng-hide="UpdateHistory.URLReference==null">{{"More_details" | translate}}</a>
+            </li>
+        </ul>
+    </div>
+</section>

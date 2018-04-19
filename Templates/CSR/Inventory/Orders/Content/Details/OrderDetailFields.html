@@ -1,0 +1,151 @@
+﻿
+    <div class="title clearfix">
+        <h3><i class="et office"></i>{{'Order_Detail' | translate}}</h3>
+        <div class="panel-options" ng-controller="OrderDetailSecureSectionController">
+            <ul>
+                <li class="btn-active" style="margin-top:10px" ng-show="isCancelOrderEnable"><button type="button" data-toggle="modal" data-target="#cancelOrder" class="btn btn-danger">{{'Cancel_Order' | translate}}</button></li>
+                <li class="btn-active" style="margin-top:10px" ng-show="isUpdateOrderEnable"><button type="button" data-toggle="modal" data-target="#updateOrder" class="btn btn-danger">{{'Update_Order' | translate}}</button></li>
+                <li class="btn-active"><a style="margin-top:10px" class="btn btn-default" type="button" href="/CSR/Customer/App/Inventory/Orders">{{'To_Search_Orders' | translate}}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="collapse in" id="orderManagementDetail">
+        <div class="panel-data">
+            <div class="row">
+                <dl class="dl-horizontal col-sm-12 col-xs-12">
+                    <dt>{{'Order_ID' | translate}}: </dt>
+                    <dd>{{orderDetail.OrderNumber}}</dd>
+                    <dt>{{'Order_Date' | translate}}: </dt>
+                    <dd>{{orderDetail.OrderDate}}</dd>
+                    <dt>{{'Customer_Id' | translate}}: </dt>
+                    <dd>{{orderDetail.CustomerId}}</dd>
+                    <dt>{{'Customer_Name' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingAddress.ContactName}}</dd>
+                    <dt>{{'Customer_Mobile' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingAddress.ContactPhone}}</dd>
+                    <dt>{{'Status' | translate}}: </dt>
+                    <dd>{{orderStatus}}</dd>
+                    <dt>{{'Completion_Date' | translate}}: </dt>
+                    <dd>{{orderCompletionDate}}</dd>
+                </dl>
+                <dl class="dl-horizontal col-sm-12 col-xs-12">
+                    <dt>{{'Expected_Shipping_Date' | translate}}: </dt>
+                    <dd>{{orderDetail.DeliveryDate}}</dd>
+                    <dt>{{'Shipping_Method' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingMethod}}</dd>
+                    <dt>{{'Address' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingAddress.ShipToAddress1}}</dd>
+                    <dt>{{'City' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingAddress.ShipToCity}}</dd>
+                    <dt>{{'State' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingAddress.ShipToState}}</dd>
+                    <dt>{{'Country' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingAddress.ShipToCountry}}</dd>
+                    <dt>{{'Zip_Code' | translate}}: </dt>
+                    <dd>{{orderDetail.ShippingAddress.ShipToZip}}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+
+
+<!--<header class="title">
+    <ul>
+        <li class="btn-active" style="margin-top:-10px"><button type="button" data-toggle="modal" data-target="#cancelOrder" class="btn btn-danger">{{'Cancel_Order' | translate}}</button></li>
+        <li class="btn-active" style="margin-top:-10px"><button type="button" data-toggle="modal" data-target="#updateOrder" class="btn btn-danger">{{'Update_Order' | translate}}</button></li>
+    </ul>
+    <h6>{{'Order_Detail' | translate}}</h6>
+</header>
+<div class="sub-line">line</div>
+<div style="margin-bottom:5px; margin-top:10px"></div>
+<div class="text-content row">
+    <dl class="dl-horizontal col-sm-5 col-xs-12">
+        <dt>{{'Order_ID' | translate}}: </dt>
+        <dd>{{orderDetail.OrderNumber}}</dd>
+        <dt>{{'Order_Date' | translate}}: </dt>
+        <dd>{{orderDetail.OrderDate}}</dd>
+        <dt>{{'Customer_Id' | translate}}: </dt>
+        <dd>{{orderDetail.CustomerId}}</dd>
+        <dt>{{'Customer_Name' | translate}}: </dt>
+        <dd>{{orderDetail.ShippingAddress.ContactName}}</dd>
+        <dt>{{'Customer_Mobile' | translate}}: </dt>
+        <dd>{{orderDetail.ShippingAddress.ContactPhone}}</dd>
+        <dt>{{'Status' | translate}}: </dt>
+        <dd>{{orderDetail.address}}</dd>
+        <dt>{{'Completion_Date' | translate}}: </dt>
+        <dd>{{orderDetail.email}}</dd>
+    </dl>
+    <dl class="dl-horizontal col-sm-7 col-xs-12">
+        <dt>{{'Expected_Shipping_Date' | translate}}: </dt>
+        <dd>{{orderDetail.mobilenumber}}</dd>
+        <dt>{{'Shipping_Method' | translate}}: </dt>
+        <dd>{{orderDetail.jobtitle}}</dd>
+        <dt>{{'Address' | translate}}: </dt>
+        <dd>{{orderDetail.ShippingAddress.ShipToAddress1}}</dd>
+        <dt>{{'City' | translate}}: </dt>
+        <dd>{{orderDetail.ShippingAddress.ShipToCity}}</dd>
+        <dt>{{'State' | translate}}: </dt>
+        <dd>{{orderDetail.ShippingAddress.ShipToState}}</dd>
+        <dt>{{'Country' | translate}}: </dt>
+        <dd>{{orderDetail.ShippingAddress.ShipToCountry}}</dd>
+        <dt>{{'Zip_Code' | translate}}: </dt>
+        <dd>{{orderDetail.ShippingAddress.ShipToZip}}</dd>
+    </dl>
+</div>-->
+
+<div id="cancelOrder" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Cancel_Order' | translate}}</h3>
+            </div>
+            <div class="modal-body has-no-footer">
+                <div class="text-content row">
+                    <dl class="dl-horizontal col-sm-12 col-xs-12">
+                        <dt>{{'Order_ID' | translate}}: </dt>
+                        <dd>{{orderDetail.OrderNumber}}</dd>
+                        <dt>{{'Order_Date' | translate}}: </dt>
+                        <dd>{{orderDetail.OrderDate}}</dd>
+                        <dt>{{'Customer_Id' | translate}}: </dt>
+                        <dd>{{orderDetail.CustomerId}}</dd>
+                        <dt>{{'Customer_Name' | translate}}: </dt>
+                        <dd>{{orderDetail.ShippingAddress.ContactName}}</dd>
+                        <dt>{{'Customer_Mobile' | translate}}: </dt>
+                        <dd>{{orderDetail.ShippingAddress.ContactPhone}}</dd>
+                    </dl>
+                </div>
+                <etbossform value="CancelOrderFormController" name="cancelorderform" ng-controller="CancelOrderForm" field="{{datas}}"></etbossform>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="updateOrder" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Update_Order' | translate}}</h3>
+            </div>
+            <div class="modal-body has-no-footer">
+                <div class="text-content row">
+                    <dl class="dl-horizontal col-sm-12 col-xs-12">
+                        <dt>{{'Order_ID' | translate}}: </dt>
+                        <dd>{{orderDetail.OrderNumber}}</dd>
+                        <dt>{{'Order_Date' | translate}}: </dt>
+                        <dd>{{orderDetail.OrderDate}}</dd>
+                        <dt>{{'Customer_Id' | translate}}: </dt>
+                        <dd>{{orderDetail.CustomerId}}</dd>
+                        <dt>{{'Customer_Name' | translate}}: </dt>
+                        <dd>{{orderDetail.ShippingAddress.ContactName}}</dd>
+                        <dt>{{'Customer_Mobile' | translate}}: </dt>
+                        <dd>{{orderDetail.ShippingAddress.ContactPhone}}</dd>
+                    </dl>
+                </div>
+                <etbossform value="UpdateOrderFormController" name="updateorderform" ng-controller="UpdateOrderForm" field="{{datas}}"></etbossform>
+            </div>
+        </div>
+    </div>
+</div>

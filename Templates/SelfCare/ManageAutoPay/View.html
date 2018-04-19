@@ -1,0 +1,90 @@
+﻿﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div class="inner-selfcare">
+        <div class="container">
+            <div class="panel-data">
+                <h3 class="title-selfcare">Manage Auto Pay</h3>
+                <div class="service-item">
+                    <div class="no-padding">
+                        <!--Hiden because this part still using dummy data (Your Auto Pay Services section)-->
+                        <!--<div class="no-padding" id="viewAllAutoPayServices">
+                            <h5 style="margin-bottom:20px">Your Auto Pay Services:</h5>
+                            <div class="table-entry">
+                                <div class="table fullwidth more-data">
+                                    <table class="table table-hover table-striped table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>MDN</th>
+                                                <th>Service Name</th>
+                                                <th>Price</th>
+                                                <th>Renewal Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in AutoPayServices">
+                                                <td id="AutoPayServicesMDN{{$index}}">{{item.MDN}}</td>
+                                                <td id="AutoPayServicesServiceName{{$index}}">{{item.ServiceName}}</td>
+                                                <td id="AutoPayServicesPrice{{$index}}">{{item.Price}}</td>
+                                                <td id="AutoPayServicesRenewal{{$index}}">{{item.Renewal}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="col-sm-12" style="text-align:center" ng-show="isdataexist">You don't have any auto pay service</div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="no-padding" id="viewCreditCardProfile">
+                            <h5 style="margin-top:20px">Your Credit Card Profile:</h5><br /><br />
+                            <div ng-show="selectedCC">Selected Credit Card: {{selectedCC}}</div><br />
+
+                            <slick ng-if="CreditCardCollection != 'undefined'" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                                <div ng-repeat="card in CreditCardCollection">
+                                    <span class="item-list">
+                                        <figure class="overlay-it">
+                                            <h5 id="ccProfileCardNumber{{$index}}">{{card.CardNumber}}</h5>
+                                            <h5 id="hidden{{$index}}" ng-show="selectedCC==card.CardNumber"></h5>
+                                            <img ng-if="'Master Card'==card.CreditCardType" src="/Images/mc-card.jpg" class="img-responsive" alt="etak thumbnail" />
+                                            <img ng-if="'Visa'==card.CreditCardType" src="/Images/visa-card.jpg" class="img-responsive" alt="etak thumbnail" />
+                                            <figcaption style="cursor:default">
+                                                <p style="padding-top:20px;margin-left: 19px;">
+                                                    <span id="ccProfileCardType{{$index}}">Card Type: {{card.CreditCardType}}</span><br />
+                                                    <span id="ccProfileName{{$index}}">Name on Card: {{card.NameOnCard}}</span><br />
+                                                    <span id="ccProfileExpiration{{$index}}">Expiration Date: {{getExpirationDate(card.ExpirationDate)}}</span><br />
+                                                    <button class="btn ng-scope" style="margin-top: 20%;" ng-click="UseThisCard(card.CustomerPaymentMeanId)" ng-hide="selectedCC==card.CardNumber">Use This Card</button>
+                                                </p>
+                                            </figcaption>
+                                        </figure>
+                                    </span>
+                                    <div class="thumb-content" ng-if="selectedCC==card.CardNumber">
+                                        <div class="thumb-inner">
+                                            <figcaption>
+                                                <p style="text-align: center;padding-top:20px">
+                                                    <span id="ccProfileCardType{{$index}}{{$index}}">Card Type: {{card.CreditCardType}}</span><br />
+                                                    <span id="ccProfileName{{$index}}{{$index}}">Name on Card: {{card.NameOnCard}}</span><br />
+                                                    <span id="ccProfileExpiration{{$index}}{{$index}}">Expiration Date: {{getExpirationDate(card.ExpirationDate)}}</span><br />
+                                                </p>
+                                                <div class="fa fa-check-circle active-device no-padding"></div>
+                                                <div class="active-font">
+                                                    {{'SELECTED'|translate}}
+                                                </div>
+                                            </figcaption>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="notAvailableCC != undefined" ng-repeat="itm in notAvailableCC" style="pointer-events: none">
+                                    <span class="item-list">
+                                        <figure class="overlay-it">
+                                            <img src="../../../Images/transparent.png" class="img-responsive" alt="etak thumbnail" style="pointer-events: none" />
+                                        </figure>
+                                    </span>
+                                </div>
+                            </slick>
+                            <div class="col-sm-12" id="isCreditCardExist" style="text-align:center" ng-show="isCreditCardExist">You don't have any credit card profile</div>
+                        </div>
+                        <a href="/SelfCare/Customer/App/ManageAutoPay/AddCreditCard" class="btn btn-default" role="button">Add Credit Card</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

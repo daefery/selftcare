@@ -1,0 +1,324 @@
+﻿<!--<div class="container">
+    <div class="row">
+        <div ng-include="'Templates/CSR/Search/Content/CustomerInformation.html'"></div>
+    </div>
+    <div class="row">
+        <div ng-include="'Templates/CSR/Search/Content/SubscriptionInformation.html'"></div>
+    </div>
+</div>-->
+<!--start main content-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 clear-space">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="normal-wrap">
+                            <div class="title">
+                                <h5 style="display:inline"> Customer Information</h5>
+                                <div style=" float: right; display: inline"></div>
+                            </div>
+                            <div class="content">
+                                <div class="col-md-12 col-xs-12 col-sm-12" style="padding:0px">
+                                    <div class="col-md-6 col-xs-12 col-sm-6">
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">Name</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerData.FirstName}} {{products.Customer.CustomerData.LastName}}</div>
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">Nationality</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerData.Nationality}}</div>
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">Date of Birth</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.CustomerInformation.DateOfBirth}}</div>
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">ID Type</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.CustomerInformation.IdType}}</div>
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">ID Number</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.CustomerInformation.IdNumber}}</div>
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">MVNO</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.CustomerInformation.MvnoName}}</div>
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">Customer Id</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerID}}</div>
+                                        <div class="col-md-3 col-xs-5 col-sm-4" style="padding:0px">Status</div>
+                                        <div class="col-md-9 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerStatus}}</div>
+                                    </div>
+
+                                    <div class="col-md-6 col-xs-12 col-sm-6">
+                                        <div class="col-md-4 col-xs-5 col-sm-4" style="padding:0px">Fiscal Address</div>
+                                        <div class="col-md-8 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerData.FiscalAddress.Addresses}}</div>
+                                        <div class="col-md-4 col-xs-5 col-sm-4" style="padding:0px">Delivery Address</div>
+                                        <div class="col-md-8 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerData.DeliveryAddress.Addresses}}</div>
+                                        <div class="col-md-4 col-xs-5 col-sm-4" style="padding:0px">Customer Address</div>
+                                        <div class="col-md-8 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerData.CustomerAddress.Addresses}}</div>
+                                        <div class="col-md-4 col-xs-5 col-sm-4" style="padding:0px">Bank Number</div>
+                                        <div class="col-md-8 col-xs-7 col-sm-8" style="padding:0px">: {{products.Customer.CustomerData.BankInformation.BankNumber}}</div>
+                                    </div>
+                                </div>
+                                <div><span style="visibility:hidden">space</span></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="normal-wrap">
+                        <div class="title">
+                            <h5 style="display:inline">Subscription Information</h5>
+                            <div style=" float: right; display: inline"></div>
+                        </div>
+                        <div class="content">
+
+                            <div class="col-sm-5" style="padding:0px">Phone Number </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.CustomerSubscription.PhoneNumber}} </div>
+                            <div class="col-sm-5" style="padding:0px">ICCID </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.SimCard.ICCID}} </div>
+                            <div class="col-sm-5" style="padding:0px">IMSI </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.Subscription.IMSI}} </div>
+                            <div class="col-sm-5" style="padding:0px">Subcribe Type </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.CustomerSubscription.SubscriberType}} </div>
+                            <div class="col-sm-5" style="padding:0px">Subcribe Category </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.CustomerSubscription.SubscriberCategory}} </div>
+                            <div class="col-sm-5" style="padding:0px">SIM Status </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.SimCard.SimStatus}} </div>
+                            <div class="col-sm-5" style="padding:0px">Create Date </div>
+                            <div class="col-sm-7" style="padding:0px">: {{null}} </div>
+                            <div class="col-sm-5" style="padding:0px">First Used </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.CustomerSubscription.FirstUsed}} </div>
+
+                            <div><span style="visibility:hidden">space</span></div>
+                          
+                            <div class="col-md-12"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="normal-wrap">
+                        <div class="title">
+                            <h5 style="display:inline">Subcription Actions</h5>
+                            <div style=" float: right; display: inline"></div>
+                        </div>
+                        <div class="content">                          
+                            <div class="row" style="padding:1%">
+                                <div class="col-md-12">
+                                    <div class="col-sm-4" style="padding:0px">VoiceMail </div>
+                                    <div class="col-sm-1" style="padding:0px">: </div>
+                                    <div class="col-sm-7 iradio_square-red checked" style="position: relative;"><input tabindex="9" type="radio" id="input-4" name="demo-radio" checked="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);" ng-model="products.SubcscriptionActivation.VoiceMail"></div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding:1%">
+                                <div class="col-md-12">
+                                    <div class="col-sm-4" style="padding:0px">Roaming </div>
+                                    <div class="col-sm-1" style="padding:0px">: </div>
+                                    <div class="col-sm-7 iradio_square-red" style="padding:0px"><input input tabindex="9" type="radio" id="input-5" name="demo-radio" checked="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);" ng-model="products.SubcscriptionActivation.Roaming"></div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding:1%">
+                                <div class="col-md-12">
+                                    <div class="col-sm-4" style="padding:0px">WelcomeSMS </div>
+                                    <div class="col-sm-1" style="padding:0px">: </div>
+                                    <div class="col-sm-7 iradio_square-red checked" style="position: relative;"><input tabindex="9" type="radio" id="input-6" name="demo-radio" checked="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);" ng-model="products.SubcscriptionActivation.WelcomingSms"></div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding:1%">
+                                <div class="col-md-12">
+                                    <div class="col-sm-4" style="padding:0px">DRL </div>
+                                    <div class="col-sm-1" style="padding:0px">: </div>
+                                    <div class="col-sm-7 iradio_square-red" style="padding:0px"><input input tabindex="9" type="radio" id="input-7" name="demo-radio" checked="" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);" ng-model="products.SubcscriptionActivation.DataRoamingLimit"></div>
+                                </div>
+                            </div>
+                            <div><span style="visibility:hidden">space</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="normal-wrap">
+
+
+                        <div class="title">
+                            <h5 style="display:inline">Order & Products</h5>
+                            <div style=" float: right; display: inline"></div>
+                        </div>
+                        <div class="content">
+
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>OrderID</td>
+                                        <td>Production Name</td>
+                                        <td>Order Date</td>
+                                        <td>Status</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in products.CustomerOrders">
+                                        <td>{{item.BillingInfo.BillingCycle}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>Product Name</td>
+                                        <td>Start Date</td>
+                                        <td>End Date</td>
+                                        <td>Balance</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in products.CustomerProducts | limitTo:5">
+                                        <td>{{item.ProductName}}</td>
+                                        <td><!--{{item.StartDate}}--></td>
+                                        <td><!--{{item.EndDate}}--></td>
+                                        <td><!--{{item.BillingInfo.BillingIssueDate}}--></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div class="col-md-12"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="normal-wrap">
+                        <div class="title">
+                            <h5 style="display:inline">Balances & Adjusment</h5>
+                            <div style=" float: right; display: inline"></div>
+                        </div>
+                        <div class="content">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>Balance</td>
+                                        <td>Balance with VAT</td>
+                                        <td>Other Balance</td>
+                                        <td>Other Balance with VAT</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in products.CustomerBalance.PrePaidBalance">
+                                        <td>{{item.Balance.Balance}}</td>
+                                        <td>{{item.Balance.BalanceVAT}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>Credit Limit</td>
+                                        <td>CL with VAT</td>
+                                        <td>Unbilled Balance</td>
+                                        <td>Unbilled Balance with VAT</td>
+                                        <td>Other Balance</td>
+                                        <td>Other Balance with VAT</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in products.CustomerBalance.PostPaidBalance">
+                                        <td>{{item.CreditLimit}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.BillingInfo.UnbilledBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.OtherBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="normal-wrap">
+
+
+                        <div class="title">
+                            <h5 style="display:inline">Billing & Invoices</h5>
+                            <div style=" float: right; display: inline"></div>
+                        </div>
+                        <div class="content">
+
+                            <div class="col-sm-5" style="padding:0px">Billing Category </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.BillingAndInvoices.BillingInfo.BillingCategory}} </div>
+                            <div class="col-sm-5" style="padding:0px">Billing Cycle </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.BillingAndInvoices.BillingInfo.BillingCycle}} </div>
+                            <div class="col-sm-5" style="padding:0px">Last Invoice No </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.BillingAndInvoices.LastInvoice.InvoiceNumber}} </div>
+                            <div class="col-sm-5" style="padding:0px">LI Amount </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.BillingAndInvoices.LastInvoice.Amount}} </div>
+                            <div class="col-sm-5" style="padding:0px">Last Billing </div>
+                            <div class="col-sm-7" style="padding:0px">: {{null}} </div>
+                            <div class="col-sm-5" style="padding:0px">Issue Date </div>
+                            <div class="col-sm-7" style="padding:0px">: {{null}} </div>
+                            <div class="col-sm-5" style="padding:0px">LI Due Date </div>
+                            <div class="col-sm-7" style="padding:0px">: {{null}} </div>
+                            <div class="col-sm-5" style="padding:0px">Return Causes </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.BillingAndInvoices.ReturnCause}} </div>
+                            <div class="col-sm-5" style="padding:0px">Next Invoice Due Date </div>
+                            <div class="col-sm-7" style="padding:0px">: {{null}} </div>
+                            <div class="col-sm-5" style="padding:0px">Payment Method </div>
+                            <div class="col-sm-7" style="padding:0px">: {{products.BillingAndInvoices.PaymentMethod}} </div>
+
+                            <div><span style="visibility:hidden">space</span></div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="normal-wrap">
+
+                        <!--Revani Start-->
+                        <div class="title">
+                            <h5 style="display:inline">Open Trouble Ticket</h5>
+                            <div style=" float: right; display: inline"></div>
+                        </div>
+                        <div class="content">
+                            
+
+                            <table class="table table-bordered table-hover" style="table-layout:fixed">
+                                <thead>
+                                    <tr>
+                                        <td style="word-wrap:break-word">Departement</td>
+                                        <td style="word-wrap:break-word">Agent</td>
+                                        <td style="word-wrap:break-word">Ticket Code</td>
+                                        <td style="word-wrap:break-word">Ticket No</td>
+                                        <td style="word-wrap:break-word">Submitted By</td>
+                                        <td style="word-wrap:break-word">Report Time</td>
+                                        <td style="word-wrap:break-word">Incident Class</td>
+                                        <td style="word-wrap:break-word">Severity Level</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in products.CustomerBalance.PostPaidBalance">
+                                        <td>{{item.CreditLimit}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.BillingInfo.UnbilledBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.OtherBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                        <td>{{item.OtherBalance}}</td>
+                                        <td>{{item.BillingInfo.BillingIssueDate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>         
+        </div>
+
+    </div>
+</div>
+
+

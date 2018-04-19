@@ -1,0 +1,131 @@
+﻿<div class="normal-wrap custom">
+    <header class="title">
+
+        <div class="panel-options" ng-controller="AddRoleSecureSectionController">
+            <ul ng-show="isAddRoleEnable">
+                <li>
+                    <button type="button" data-toggle="modal" ng-disabled="isRoleSelected()" ng-click="emptylistthenfill(); showmodal(2)" data-target="#commonModal" class="btn btn-default">{{'Modify_Role' | translate}}</button>
+                </li>
+                <!--<li>
+            <button type="button" data-toggle="modal" data-target="#remroleModal" class="btn btn-default">{{'Remove_Role' | translate}}</button>
+        </li>-->
+                <li>
+                    <button type="button" data-toggle="modal" ng-disabled="isMvnoSelected()" ng-click="emptylist(); showmodal(1)" data-target="#commonModal" class="btn btn-default">{{'Add_Role' | translate}}</button>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+    <div class="etak-tree mid">
+        <div data-angular-treeview="true"
+                 data-tree-id="treemodule"
+                 data-tree-model="moduletree"
+                 data-node-id="ModuleID"
+                 data-node-label="ModuleName"
+                 data-node-children="Child">
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--<section class="normal-wrap">
+    <header class="bg-gray title wrap-padding">
+        <ul>
+            <li class="btn-active" style="margin-top:-20px"><button type="button" data-toggle="modal" data-target="#modroleModal" class="btn btn-default">{{'Modify_Role' | translate}}</button></li>
+        </ul>
+        <ul>
+            <li class="btn-active" style="margin-top:-20px"><button type="button" data-toggle="modal" data-target="#remroleModal" class="btn btn-default">{{'Remove_Role' | translate}}</button></li>
+        </ul>
+        <ul>
+            <li class="btn-active" style="margin-top:-20px"><button type="button" data-toggle="modal" data-target="#addroleModal" class="btn btn-default">{{'Add_Role' | translate}}</button></li>
+        </ul>
+    </header>
+    <br />
+    <div data-angular-treeview="true"
+         data-tree-id="treemodule"
+         data-tree-model="moduletree"
+         data-node-id="ModuleID"
+         data-node-label="ModuleName"
+         data-node-children="Child">
+    </div>
+</section>-->
+
+<div id="modroleModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Modify_Role' | translate}}</h3>
+            </div>
+            <div class="modal-body">
+                <form role="form" novalidate class="simple-form">
+                    <etbossform name="rolestatusform" ng-controller="RoleStatusForm" field="{{datasrole}}"></etbossform>
+                    <div class="row bordered">
+                        <div class="col-sm-12">
+                            <h5 class="small-title">Role's New Module Permission</h5>
+                            <div class="etak-tree mid">
+                                <treecontrol class="tree-classic" tree-model="modroletree" selected-nodes="selectedNodes" options=" treeoptions">
+                                    <input ng-checked="rolelist.indexOf(node.ModuleID) > -1" ng-click="toggleSelection(node)" id="{{node.ModuleID}}" type="checkbox" ng-hide="false" />
+                                    <label for="{{node.ModuleID}}"><span></span>{{node.ModuleName}}</label>
+                                </treecontrol>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="margin-top:0px" class="btn btn-default" ng-disabled="isRoleChanged()" ng-click="modifyrole(products)">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="remroleModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Remove_Role' | translate}}</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure want to delete this role?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" ng-click="deleterole()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addroleModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content etak-modal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                <h3 class="modal-title">{{'Add_Role' | translate}}</h3>
+            </div>
+            <div class="modal-body">
+                <form role="form" novalidate class="simple-form">
+                    <etbossform name="addroleform" ng-controller="AddRoleForm" field="{{datas}}"></etbossform>
+                    <div class="row bordered">
+                        <div class="col-sm-12">
+                            <div class="etak-tree mid">
+                                <treecontrol class="tree-classic" tree-model="modroletree" selected-nodes="selectedNodes" options="treeoptions">
+                                    <input ng-checked="rolelist.indexOf(node.ModuleID) > -1" ng-click="toggleSelection(node);" id="{{node.ModuleID}}" type="checkbox" ng-hide="false" />
+                                    <label for="{{node.ModuleID}}"><span></span>{{node.ModuleName}}</label>
+                                </treecontrol>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="createRole(role)">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

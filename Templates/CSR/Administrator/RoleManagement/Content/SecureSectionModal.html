@@ -1,0 +1,33 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+    <h4 class="modal-title">{{'Assign_SecureSection' | translate}}</h4>
+</div>
+<div class="modal-body role-admin scroll-content">
+    <div class="top-categories">
+        <div class="category-item" id="myGroup">
+            <div class="category-wrap clearfix" ng-repeat="item in allsecsec" style="margin-bottom:5px">
+                <!--<input type="checkbox" value="Role.RoleID" />{{Role.RoleName}} <br />-->
+                <label class="label-top" for="{{item.ModuleName}}" data-parent="#myGroup">
+                    <span></span><em class="label-description"><strong>{{item.ModuleName}}</strong></em>
+                    <button type="button" ng-click="hideclick(item.ModuleID)" class="btn btn-expand" data-toggle="collapse" data-target="#{{item.ModuleID}}{{item.ModuleID}}">
+                        <span class="btn-text">
+                            <i class="et right127"></i>
+                        </span>
+                    </button>
+                </label> <!--ng-class=" {'collapse collapsing':item.ModuleID!=selectedRow, 'in':item.ModuleID == selectedRow}"-->
+                <div  data-parent="#myGroup" id="{{item.ModuleID}}{{item.ModuleID}}" class="expand-content collapse" style="margin-left:10px; margin-right:10px">
+                    <div class="label-has-select clearfix" ng-repeat="ModuleSecureSectionDomain in item.ModuleSecureSection">
+                        <label class="checkbox-inline">
+                            <input id="{{ModuleSecureSectionDomain.SectionID}}" type="checkbox" value="{{ModuleSecureSectionDomain.SectionID}}" ng-checked="roleSSlist.indexOf(ModuleSecureSectionDomain.SectionID) > -1" ng-click="ssSelection(ModuleSecureSectionDomain.SectionID)" name="{{ModuleSecureSectionDomain.SectionName}}" ng-hide="false" />
+                            <label for="{{ModuleSecureSectionDomain.SectionID}}"><span></span><em class="label-description"><strong>{{ModuleSecureSectionDomain.SectionName}}</strong>Target Module: {{ModuleSecureSectionDomain.TargetModuleName}}</em></label>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-disabled="isRoleSSChanged()" ng-click="assignss()">Assign</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+</div>

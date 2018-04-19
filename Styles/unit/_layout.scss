@@ -1,0 +1,95 @@
+.box-blue{
+  border-top: 4px solid $lightblue;
+}
+.box-brown{
+  border-top: 4px solid rgba($main-red, 0.5);
+}
+.box-brown, .box-blue{
+  min-height: 120px;
+  padding:20px 0;
+  h6{
+    margin-bottom: 5px;
+  }
+  span{
+    color: $font-lightgray;
+  }
+  p{
+    @extend %font-family-thin;
+    font-size: $h2-font-size;
+    margin: 0;
+  }
+}
+.transparent-wrap, .baseinfo-wrap{
+  .form-box{
+    border: 1px solid $border-silver;
+    background-color: $bg-white;
+    padding: 5px 10px;
+    position: relative;
+    button, .btn{
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color:$border-silver;
+      height: 100%;
+      width: 60px;
+      border-radius: 0;
+      padding-top: 20px;
+    }
+    label{
+      @extend %font-family-thin;
+    }
+    input{
+      @extend %font-family-thin;
+      height: 20px;
+      line-height: 20px;
+    }
+  }
+}
+.normal-wrap{
+  %nav-tabs-active{
+    border-top: 0;
+    border-bottom-color:transparent;
+    background-color: $bg-white;
+  }
+  .nav-tabs{
+    @extend %border-bottom;
+    li{
+      a{
+        font-size: $h6-font-size;
+        color: $font-darkgray;
+        border-radius: 0;
+        border: 1px solid $border-gainsboro;
+        border-top-width: 0;
+        margin: 0 0 0 -1px;
+        padding: 23px 15px 15px 15px;
+        background-color: transparent;
+        &:hover, &:focus{
+          @extend %nav-tabs-active;
+        }
+      }
+    }
+    .selected{
+      @extend %nav-tabs-active;
+    }
+  }
+  .list-group-item{
+    border: 1px solid $border-silver;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding: 10px 0;
+  }
+  .badge {
+    font-size:18px;
+    font-weight: 100;
+    color: $font-darkgray;
+    background-color: transparent;
+    border-radius:0;
+    @extend %font-family-thin;
+  }
+  .tab-content{
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}
+

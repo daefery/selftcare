@@ -1,0 +1,115 @@
+﻿<style>
+    .selected {
+        background-color: #ffa;
+        color: black;
+        font-weight: bold;
+        opacity: 0.8;
+        filter: alpha(opacity=40);
+    }
+
+    .fullwidth {
+        width: 100%;
+    }
+</style>
+<div>
+    <div class="title clearfix">
+        <h3><i class="et database19"></i>{{'Browse_TT' | translate}} {{'Search' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#searchTicket" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="collapse in" id="searchTicket">
+        <form class="etak-form form-horizontal" name="form.BrowseTTUIForm">
+            <div class="form-content split">
+                <div class="form-group row" ng-show="{{isETAKUser}}">
+                    <label class="col-md-4 col-sm-4 control-label">{{'MVNO' | translate}} : </label>
+                    <div class="col-md-8 col-sm-8">
+                        <select name="MVNO" class="form-control" ng-model="keySearch.keyMVNO" ng-change="updateOnChangeMVNO(keySearch)" ng-disabled="{{!isETAKUser}}">
+                            <option value="{{item.value}}" ng-repeat="item in TTMVNO" ng-selected="keySearch.keyMVNO == item.value">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label">{{'TT_Code' | translate}} : </label>
+                    <div class="col-md-8 col-sm-8">
+                        <input name="TT_Code" ng-model="keySearch.keyTT_Code" ng-change="updateselected(keySearch)" type="text" class="form-control " placeholder=""
+                               ng-class="{ error: form.BrowseTTUIForm.TT_Code.$invalid }" ng-pattern="/^[0-9%]+$/">
+                        <span id="TT_CodeValidateNumber" ng-bind-html="lang.validationmessage.number" class="help-block with-errors" ng-show="form.BrowseTTUIForm.TT_Code.$error.pattern"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label">{{'From' | translate}} : </label>
+                    <div class="col-md-8 col-sm-8">
+                        <div class="input-group date">
+                            <input name="From" type="text" ng-model="keySearch.keyFrom" class="form-control " placeholder="{{DatePlaceholder}}" ng-change="updateselected(keySearch)" readonly>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label text-nowrap">{{'Ticket_Number' | translate}} : </label>
+                    <div class="col-md-8 col-sm-8">
+                        <input name="ID_Number" ng-model="keySearch.keyID_Number" ng-change="updateselected(keySearch)" type="text" class="form-control " placeholder=""
+                               ng-class="{ error: form.BrowseTTUIForm.ID_Number.$invalid }" ng-pattern="/^[0-9%]+$/">
+                        <span id="ID_NumberValidateNumber" ng-bind-html="lang.validationmessage.number" class="help-block with-errors" ng-show="form.BrowseTTUIForm.ID_Number.$error.pattern"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label">{{'To' | translate}} :</label>
+                    <div class="col-md-8 col-sm-8">
+                        <div class="input-group date">
+                            <input name="To" type="text" ng-model="keySearch.keyTo" class="form-control " placeholder="{{DatePlaceholder}}" ng-change="updateselected(keySearch)" readonly>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                        <span id="ValidateDateRange" ng-bind-html="lang.validationmessage.daterange" class="help-block with-errors" ng-show="form.BrowseTTUIForm.$error.dateRange_FromTo"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label">{{'MSISDN' | translate}} :</label>
+                    <div class="col-md-8 col-sm-8">
+                        <input name="MSISDN" ng-model="keySearch.keyMSISDN" ng-change="updateselected(keySearch)" type="text" class="form-control " placeholder=""
+                               ng-class="{ error: form.BrowseTTUIForm.MSISDN.$invalid }" ng-pattern="/^[0-9%]+$/">
+                        <span id="MSISDNValidateNumber" ng-bind-html="lang.validationmessage.number" class="help-block with-errors" ng-show="form.BrowseTTUIForm.MSISDN.$error.pattern"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label">{{'Status'| translate}} :</label>
+                    <div class="col-md-8 col-sm-8">
+                        <select name="Status" class="form-control" ng-model="keySearch.keyStatus" ng-change="updateselected(keySearch)">
+                            <option value="">Any</option>
+                            <option value="{{item.StatusId}}" ng-repeat="item in TTStatus" ng-selected="keySearch.keyStatus == item.StatusId">{{item.Names.DefaultMessage}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label">{{'Class'| translate}} : </label>
+                    <div class="col-md-8 col-sm-8">
+                        <select name="Class" class="form-control" ng-model="keySearch.keyClass" ng-change="updateselected(keySearch)">
+                            <option value="">Any</option>
+                            <option value="{{item.Id}}" ng-repeat="item in TTClass" ng-selected="keySearch.keyClass == item.Id">{{item.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-sm-4 control-label">{{'Priority'| translate}} :</label>
+                    <div class="col-md-8 col-sm-8">
+                        <select name="Priority" class="form-control" ng-model="keySearch.keyPriority" ng-change="updateselected(keySearch)">
+                            <option value="">Any</option>
+                            <option value="{{item.Id}}" ng-repeat="item in TTPriority" ng-selected="keySearch.keyPriority == item.Id">{{item.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-bottom more clearfix">
+                <button name="Search_btn" type="button" class="btn btn-blue btn-big" ng-click="form.BrowseTTUIForm.$valid && search()"><i class="icon-search"></i>{{'Search' | translate}}</button>
+                <button name="Reset_btn" type="button" class="btn btn-red btn-big" ng-click="resetSearch()"><i class="icon"></i>{{'Reset' | translate}}</button>
+            </div>
+        </form>
+    </div>
+</div>

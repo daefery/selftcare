@@ -1,0 +1,21 @@
+﻿<div class="modal-content etak-modal" ng-controller="SitemapCtrl">
+
+    <div class="modal-header">
+        <h3 class="modal-title">Site Map</h3>
+        <button ng-click="close()" class="close" data-dismiss="modal" aria-label="Close"><i class="et delete8"></i></button>
+
+    </div>
+    <div class="modal-body sitemap-scroll">
+        <div data-angular-treeview="true"
+            data-tree-id="treemodule"
+            data-tree-model="moduletree"
+            data-node-id="ModuleID"
+            data-node-label="ModuleName"
+            data-node-children="Child"
+            data-tree-template="sitemap">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="close()" class="btn btn-danger btn-md pull-right">Close</button>
+    </div>
+</div>

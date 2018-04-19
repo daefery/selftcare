@@ -1,0 +1,19 @@
+.path-wrap{
+  /*The path of the page*/
+  border-bottom: 1px solid $border-gainsboro;
+  margin-bottom: 20px;
+  .breadcrumb{
+
+    padding: 10px 0 0 0;
+    margin-bottom: -5px;
+    background-color: transparent;
+    a{
+      font-size: 13px;
+      color: $font-gray;
+    }
+  }
+  h1{
+    color: $font-darkgray;
+    margin: 15px 0;
+  }
+}

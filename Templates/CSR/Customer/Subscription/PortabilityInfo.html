@@ -1,0 +1,75 @@
+﻿<div class="modal-content etak-modal" ng-controller="PortabilityInfoController">
+    <div class="modal-header">
+        <h3 class="modal-title" id="PortabilityInfo_Title">{{'Portability_Info' | translate}}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="table-responsive" ng-controller="paginationController">
+                    <table class="table table-bordered">
+                        <thead class="table-head">
+                            <tr>
+                                <th ng-click="sort('Reference_Code')">
+                                    {{'Reference_Code'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Reference_Code'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('MSISDN')">
+                                    {{'MSISDN'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='MSISDN'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('Mobile_Type')">
+                                    {{'Mobile_Type'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Mobile_Type'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('Request_Date')">
+                                    {{'Request_Date'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Request_Date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('Donor_Operator')">
+                                    {{'Donor_Operator'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Donor_Operator'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('Receptor_Operator')">
+                                    {{'Receptor_Operator'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Receptor_Operator'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('CW_Date')">
+                                    {{'CW_Date'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='CW_Date'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                                <th ng-click="sort('Status')">
+                                    {{'Status'| translate}}
+                                    <span class="glyphicon sort-icon" ng-show="sortKey=='Status'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in ListPortabilityInfo | orderBy:sortKey:reverse | itemsPerPage:10" ng-class="{'selected':item.Id==SelectedPortabilityInfo.Id}" ng-click="selectPortabilityInfo(item)"
+                                pagination-id="Pagination_ListPortabilityInfo">
+                                <td>{{$index + 1}}</td>
+                                <td>{{item.Reference_Code}}</td>
+                                <td>{{item.MSISDN}}</td>
+                                <td>{{item.Mobile_Type}}</td>
+                                <td>{{item.Request_Date}}</td>
+                                <td>{{item.Donor_Operator}}</td>
+                                <td>{{item.Receptor_Operator}}</td>
+                                <td>{{item.CW_Date}}</td>
+                                <td>{{item.Status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <dir-pagination-controls max-size="10"
+                                             direction-links="true"
+                                             boundary-links="true"
+                                             pagination-id="Pagination_ListPortabilityInfo"
+                                             ng-show="ListPortabilityInfo.length">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="PortabilityInfo_btn_Close" class="btn btn-danger ng-binding" data-dismiss="modal">{{'Close' | translate}}</button>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿<div class="etak-modal" ng-controller="OrderingController">
+    <div class="modal-header">
+        <h3 class="modal-title">Product Info</h3>
+        <button ng-click="close()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+    </div>
+    <div class="modal-body has-table">
+        <section class="table pre-scrollable">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Priority</th>
+                            <th>Credit Limit</th>
+                            <th>Price ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="info in ProductInfo">
+                            <td>{{info.service}}</td>
+                            <td>{{info.priority}}</td>
+                            <td>{{info.creditlimit}}</td>
+                            <td>{{info.price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+</div>

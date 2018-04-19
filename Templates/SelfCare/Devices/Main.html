@@ -1,0 +1,70 @@
+﻿﻿<div class="inner-page">
+    <div ng-include="'Templates/SelfCare/Themes/Breadcrumb.html'"></div>
+    <div class="ng-scope" ng-include="'Templates/SelfCare/Themes/Info.html'"></div>
+    <div class="inner-selfcare">
+        <div class="container">
+            <div class="info-title clearfix">
+                <h3 class="title-selfcare">Manage Device</h3>
+                <a href="/SelfCare/Customer/App/BuyMore/Device" class="btn btn-with-icon"><span><i class="et repair31"></i> Buy More Device</span></a>
+            </div>
+            <div class="panel-data">
+                <div class="service-item">
+                    <div class="no-padding">
+                        <div>Active Device: {{CurrentMsisdn}}</div><br />
+                        <slick ng-if="isCompiled == true" touch-move="false" infinite="false" speed="300" slides-to-show="3" class="list-overlay plan-packages" responsive="breakpoints" draggable="false">
+                            <div ng-repeat="device in Device">
+                                <span class="item-list">
+                                    <figure class="overlay-it">
+                                        <h5>{{device.Subscription.MSISDN}}</h5>
+                                        <img src="../../../Images/sample-device.png" class="img-responsive" alt="etak thumbnail" />
+                                        <figcaption>
+                                            <p style="margin-top:20px; margin-left: 20px;">
+                                                <span>{{"Status"|translate}}: {{device.SubscriptionIdentifierStatus}}</span><br />
+                                                <span ng-hide="device.IsActive">
+                                                    Product:
+                                                    <br />
+                                                    <span>- {{device.Product.Device}}</span>
+                                                    <br />
+                                                    <span>- {{device.Product.Plan}}</span>
+                                                    <br />
+                                                    <span>- {{device.Product.AllowanceOrFeature}}</span>
+                                                </span>
+                                                <button style="margin-top: 10%; width: 60%" class="btn ng-scope" ng-click="activation(device)" ng-hide="device.IsActive">Activate</button>
+                                                <button style="margin-top: 50%; width: 60%" class="btn ng-scope" ng-click="switchdevice(device)" ng-show="device.IsActive">Select</button>
+                                            </p>
+                                        </figcaption>
+                                    </figure>
+                                </span>
+                                <div class="thumb-content" ng-if="CurrentMsisdn === device.MSISDN">
+                                    <div class="thumb-inner">
+                                        <figcaption>
+                                            <p style="text-align: center;margin-top:20px;">
+                                                <span>{{"Status"|translate}}: {{device.SubscriptionIdentifierStatus}}</span><br />
+                                            </p>
+                                            <div class="fa fa-check-circle active-device no-padding"></div>
+                                            <div class="active-font">
+                                                {{'SELECTED'|translate}}
+                                            </div>
+                                        </figcaption>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="notAvailableDevice != undefined" ng-repeat="itm in notAvailableDevice" style="pointer-events: none">
+                                <span class="item-list">
+                                    <figure class="overlay-it">
+                                        <img src="../../../Images/transparent.png" class="img-responsive" alt="etak thumbnail" style="pointer-events: none" />
+                                    </figure>
+                                </span>
+                            </div>
+                        </slick>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

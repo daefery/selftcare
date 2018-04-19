@@ -1,0 +1,16 @@
+﻿<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal-body-error">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="aui-message error col-sm-12" ng-if="$root.IsError" ng-init="false">
+                            <p class="pui-error-message">{{$root.ErrorResponseMessage}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

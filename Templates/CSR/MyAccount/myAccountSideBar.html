@@ -1,0 +1,29 @@
+﻿<!--<div class="page-sidebar navbar-collapse">
+    <ul id="sidebar" class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+        <li>
+            <a id="dashA" href="/CSR/Customer/App/MyAccount" active-link="active" class="list-group-item">
+                <span class="title">{{'OVERVIEW'|translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a id="myaccB" href="/CSR/Customer/App/MyAccount/Credential" active-link="active" class="list-group-item">
+                <span class="title">{{'CREDENTIALS' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a id="myaccC" href="/CSR/Customer/App/MyAccount/RolePermission" active-link="active" class="list-group-item">
+                <span class="title">{{'ROLE_PERMISSION' | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a id="myaccD" href="/CSR/Customer/App/MyAccount/PersonalSetting" active-link="active" class="list-group-item">
+                <span class="title">{{'PERSONAL_SETTINGS' | translate}}</span>
+            </a>
+        </li>
+    </ul>
+</div>-->
+<aside class="page-sidebar" ng-controller="MyAccountSideBarController">
+    <ul id="sidebar" class="page-sidebar-menu">
+        <div ng-include="'Templates/Common/DynamicNavigation/SidebarTree.html'"></div>
+    </ul>
+</aside>

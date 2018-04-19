@@ -1,0 +1,71 @@
+﻿<div ng-include="'Templates/SelfCare/Dashboard/remainingbalance.html'"></div>
+<!-- START: belows code can be removed after implementation is finished
+            Below code is used to retrieve error message directive -->
+<!--<error-popup></error-popup>-->
+<!-- END -->
+
+<!-- main selfcare mid-content -->
+<!--for multi subscription common test-->
+<div class="selfcare-content">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-9 col-sm-9 left-side">
+                <div class="selfcare-left sortMainDashboard">
+                    <div ng-repeat="item in mainDashboard.DashboardMenu">
+                        <div ng-include="item"></div>
+                        <!--<div ng-include="'Templates/SelfCare/Dashboard/AccountUsage.html'"></div>-->
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-3 col-sm-3">
+                <aside class="selfcare-right">
+
+                    <div class="right-entry" ng-include="'Templates/SelfCare/Dashboard/Commercial.html'"></div>
+
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</div>
+   <!-- <div class="selfcare-content">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-8 col-sm-8 left-side sortMainDashboard">
+                  <div class="selfcare-left">
+
+                  <div indexOf {{shake}}" ng-repeat="item in mainDashboard.DashboardMenu"">
+                      <div ng-include="item"></div>
+                  </div>
+
+                    <div ng-show="dynamic=='yes'">
+                        <button ng-click="default()" class="btn btn-default btn-md" style="width:33%">Default</button>
+                        <button ng-click="save()" class="btn btn-success btn-md" style="width:33%">OK</button>
+                        <button ng-click="close()" class="btn btn-danger btn-md pull-right" style="width:33%">Cancel</button>
+                    </div>
+
+                  </div>&lt;!&ndash; /. selfcare-left &ndash;&gt;
+
+
+
+                </div>&lt;!&ndash; /. col &ndash;&gt;
+
+                <div class="col-md-4 col-sm-4">
+                    <aside class="selfcare-right">
+
+                            <div class="right-entry" ng-include="'Templates/SelfCare/Dashboard/Commercial.html'"></div>
+
+                    </aside>
+                </div>
+
+
+            </div> &lt;!&ndash; /. custom &ndash;&gt;
+
+        </div>
+    </div>
+-->
+<!-- /. main selfcare mid-content -->
+

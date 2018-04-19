@@ -1,0 +1,158 @@
+@import "unit/variables";
+.tree-demo{margin: 10px 0}
+/**** begin Jstree icon ****/
+%jstree-clear-dufault{
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
+}
+.jstree-children{
+  @extend %jstree-clear-dufault;
+}
+.jstree-container-ul{
+  @extend %jstree-clear-dufault;
+}
+.jstree-node {
+  @extend %jstree-clear-dufault;
+  white-space: nowrap;
+}
+/*fonts color*/
+.jstree-anchor{
+  &:focus{outline: 0;}
+  &:link,&:visited,&:hover,&:active{
+    text-decoration: none;
+    color: inherit;
+  }
+}
+/*setting width between icons and checkbox*/
+.jstree-icon, .jstree-icon:empty{
+  display: inline-block;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  text-align: center;
+}
+.jstree-wholerow-ul,.jstree-anchor, .jstree-icon{  position: relative;}
+.jstree-wholerow-ul{
+  /*for the empty div*/
+  display: inline-block;
+  min-width: 100%;
+  .jstree-leaf{
+    > .jstree-ocl{
+      cursor: pointer;
+    }
+  }
+  /*line-height between li */
+  .jstree-wholerow{
+    width: 100%;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+.jstree-default{
+  .jstree-node {
+    /*for the li aligning */
+    min-height: 24px;
+    line-height: 24px;
+    margin-left: 24px;
+    min-width: 24px;
+  }
+  .jstree-anchor {
+    line-height: 24px;
+    height: 24px;
+  }
+  .jstree-icon {
+    /*link the icon images*/
+    background-image: url(../images/32px.png);
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    &:empty {
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
+  }
+  > .jstree-no-dots{
+    .jstree-leaf{
+      > .jstree-ocl{background: 0 0;}
+    }
+    .jstree-open{
+      > .jstree-ocl {
+        background-position: -36px -4px;
+      }
+      > .jstree-anchor {
+        > .icon-folder:before {
+          /*icon folder open */
+          margin-left: 2px;
+          content: "\e930";
+        }
+      }
+    }
+    .jstree-closed{
+      > .jstree-ocl { background-position: -4px -4px; }
+    }
+  }
+}
+
+.jstree-default{
+  /*jstree-clicked for  check box*/
+  .jstree-checkbox {
+    background-position: -164px -4px;
+  }
+  .jstree-checkbox:hover {
+    background-position: -164px -36px;
+  }
+  .jstree-clicked{
+    /*jstree-clicked for  checked box*/
+    > .jstree-checkbox {
+      background-position: -228px -4px;
+    }
+    > .jstree-checkbox:hover {
+      background-position: -228px -36px;
+    }
+  }
+  .jstree-anchor{
+    /*jstree-clicked for first check box */
+    > .jstree-undetermined {
+      background-position: -196px -4px;
+    }
+    > .jstree-undetermined:hover {
+      background-position: -196px -36px;
+    }
+  }
+  .jstree-themeicon-custom {
+    /*display icons, such as folder icon*/
+    background-color: transparent;
+    background-image: none;
+    background-position: 0 0;
+  }
+}
+/**** end Jstree icon ****/
+
+/**** begin Jstree mousehover backgroud color ****/
+.jstree-default{
+  .jstree-wholerow-clicked{
+    background: none;
+    border: 0;
+    background-color: $bg-gray;
+    box-shadow: none;
+  }
+  .jstree-wholerow-hovered{
+    border: 0;
+    background-color:$bg-drakgary;
+    box-shadow: none;
+  }
+}
+/**** end Jstree mousehover backgroud color ****/
+
+
+

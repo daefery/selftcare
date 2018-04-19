@@ -1,0 +1,89 @@
+﻿<!--Message Notification and User Setting-->
+
+            <div class="row no-gutters">
+                <div class="col-lg-4 col-md-4">
+                    <div class="user-top">
+
+                            <div class="user-account clearfix">
+                              <p class="user-name">Welcome, <span ng-bind="firstName"></span></p>
+                              <a href="javascript:;" class="user-thumbnail dropdown-toggle clearfix" data-toggle="dropdown">
+                                <i class="et maleuser"></i><i class="fa fa-angle-down"></i>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="/CSR/Customer/App/MyAccount" id="usersetting_myaccount"><i class="et business133"></i> my account</a></li>
+                                <!--<li><a ng-controller="ModalCtrl" ng-click="open('','Templates/Common/DynamicNavigation/NavigationSort.html')"><i class="et levels1"></i> Change Navigation Menu</a></li>-->
+                                  <li ng-controller="LogoutController as logout"><a id="usersetting_logout" ng-click="logout.destroySession()" href="/Authorization/Login" target="_self"><i class="fa fa-power-off"></i> log out</a></li>
+                              </ul>
+                            </div>
+                    </div><!-- end top user block -->
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="top-csr">
+                        <div class="languange">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                              <span class="flag {{SelectedLanguage.code}}"><i class="et earth207"></i>{{SelectedLanguage.name}}</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="(key, value) in languages">
+                                    <a href="#" ng-click="changeLanguage(key)" class="{{key}}"><span>{{value.name}}</span></a>
+                                </li>
+                            </ul>
+                          </div>
+                        </div><!-- end language selector -->
+
+                        <a href="#" class="sitemap" ng-controller="SitemapCtrl" ng-click="openSitemapModal()"><i class="fa fa-globe"></i> site map</a>
+
+
+                        <div class="color-setting">
+                            <ul class="list-unstyled" ng-controller="themesCtrl as themes">
+                                <li><a href="" class="btn-theme1" id="theme1" ng-click="themes.changeThemesOne()"></a></li>
+                                <li><a href="" class="btn-theme2" id="theme2" ng-click="themes.changeThemesTwo()"></a></li>
+                                <li><a href="" class="btn-theme3" id="theme3" ng-click="themes.changeThemesThree()"></a></li>
+                                <li><a href="" class="btn-theme4" id="theme4" ng-click="themes.changeThemesFour()"></a></li>
+                            </ul>
+                        </div>
+
+                        <a class="nav-setting" ng-controller="MenuSettCtrl" ng-click="openMenuSettModal()"><i class="et levels1"></i> Menu Setting</a>
+
+                        <!--<div class="theme-pill" ng-controller="themesCtrl as themes">
+                            <a href="" class="btn-theme1" id="theme1" ng-click="themes.changeThemesOne()"></a>
+                            <a href="" class="btn-theme2" id="theme2" ng-click="themes.changeThemesTwo()"></a>
+                            <a href="" class="btn-theme3" id="theme3" ng-click="themes.changeThemesThree()"></a>
+                            <a href="" class="btn-theme4" id="theme4" ng-click="themes.changeThemesFour()"></a>
+                        </div>-->
+
+
+
+                        <!--<div class="btn-group theme-pill" ng-controller="themesCtrl as themes">
+                          <a href="javascript:;" class="btn-theme1 dropdown-toggle" id="theme1" ng-click="themes.changeThemesFirst()" data-toggle="dropdown"></a>
+                          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="et choosing"></i></a>
+                          <ul class="dropdown-menu">
+                            <li>
+                                <a href="" class="btn-theme1" id="theme1" ng-click="themes.changeThemesFirst()"></a>
+                            </li>
+                            <li>
+                                <a href="" class="btn-theme2" id="theme2" ng-click="themes.changeThemesTwo()"></a>
+                            </li>
+                            <li>
+                                <a href="" class="btn-theme3" id="theme3" ng-click="themes.changeThemesThree()"></a>
+                            </li>
+                            <li>
+                                <a href="" class="btn-theme4" id="theme4" ng-click="themes.changeThemesFour()"></a>
+                            </li>
+                          </ul>
+                        </div>-->
+                   </div>
+               </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+

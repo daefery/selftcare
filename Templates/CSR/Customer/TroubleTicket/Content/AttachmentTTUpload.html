@@ -1,0 +1,35 @@
+﻿<!--Attachment-->
+<!--<div class="col-sm-11 no-padding">
+    <div ng-controller="UploadFilesCtrl">
+        <div class="col-sm-12 no-padding">
+            <div class="col-sm-9 clear-padding-left clear-padding-right"  unicode-bidi: bidi-override;">
+                <span ng-repeat="file in filenames">
+                    <a style="margin-right:8px; color:gray; cursor:pointer;" data-toggle="clickover" pop-over items="items" on-delete="removeAttachment(file)" size="{{file.size}}" poptitle="{{file.name}}"><i class="fa fa-file-o"></i></a>
+                </span>
+            </div>
+            <div class="col-sm-3 no-padding fileUpload btn btn-default pull-right" style="width: 130px; margin:0">
+                <span>{{'Add_Attachment'|translate}}</span>
+                <input type="file" class="upload" onchange="angular.element(this).scope().uploadFiles(this)" multiple accept="{{allowedUploadExt}}" />
+            </div>
+        </div>
+    </div>
+</div>-->
+<!--End Attachment-->
+
+
+<div class="form-group custom-modal">
+    <div ng-controller="UploadFilesCtrl">
+        <div class="row">
+            
+            <div class="col-sm-3 fileUpload btn btn-default">
+                <span>{{'Add_Attachment'|translate}}</span>
+                <input type="file" class="upload" onchange="angular.element(this).scope().uploadFiles(this)" multiple accept="{{allowedUploadExt}}" />
+            </div>
+            <div class="col-sm-9" unicode-bidi bidi-override;">
+                <span ng-repeat="file in filenames">
+                    <a style="margin-right:8px; color:gray; cursor:pointer;" data-toggle="clickover" pop-over items="items" on-delete="removeAttachment(file)" size="{{file.size}}" poptitle="{{file.name}}"><i class="fa fa-file-o"></i></a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

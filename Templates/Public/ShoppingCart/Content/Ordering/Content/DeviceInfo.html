@@ -1,0 +1,34 @@
+﻿<div class="etak-modal" ng-controller="OrderingController">
+    <div class="modal-header">
+        <h3 class="modal-title">Product Info</h3>
+        <button ng-click="close()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+    </div>
+    <div class="modal-body clearfix">
+
+            <div class="row">
+                <div class="col-md-5 col-sm-6">
+                    <div class="prod-thumbnail">
+                        <div style="height:100% ; width:100%; background-color:gainsboro"></div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-6">
+                    <div class="device-info">
+                        <h5>Detail Info</h5>
+                        <dl class="dl-horizontal">
+                            <dt><strong>Available Color</strong></dt>
+                            <dd><span ng-repeat="color in deviceInfo[0].color">{{color.value}} ,</span></dd>
+                            <dt><strong>Memory</strong></dt>
+                            <dd>: {{deviceInfo[0].memory}}</dd>
+                            <dt><strong>Quantity</strong></dt>
+                            <dd>: {{deviceInfo[0].quantity}}</dd>
+                            <dt><strong>Other Details</strong></dt>
+                            <dd>{{deviceInfo[0].otherdetails}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+</div>

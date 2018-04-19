@@ -1,0 +1,42 @@
+﻿<div class="table-entry">
+    <div class="table fullwidth more-data">
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>Ticket Code</th>
+                    <th>Ticket Number</th>
+                    <th>Creation Time</th>
+                    <th>Submitted by</th>
+                    <th>Department</th>
+                    <th>Priority</th>
+                    <th>Class</th>
+                    <th>Status</th>
+                    <th>Updates</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-attr-id="{{ 'tt-view-row-' + $index }}" pagination-id="tt-view" dir-paginate="item in listTT|itemsPerPage:10" ng-class="{'advancesearchselected':$index == selectedRow}" ng-click="setClickedRow($index)" current-page="currentPage" total-items="listTT_TotalCount">
+                    <td ng-attr-id="{{ 'tt-view-TicketCode-' + $index }}">{{item.TicketCode}}</td>
+                    <td ng-attr-id="{{ 'tt-view-TicketNumber-' + $index }}">{{item.TicketNumber}}</td>
+                    <td ng-attr-id="{{ 'tt-view-ReportTime-' + $index }}">{{item.ReportTime | date: 'd MMMM y HH:mm'}}</td>
+                    <td ng-attr-id="{{ 'tt-view-OperatorInfo-' + $index }}">{{item.OperatorInfo.FullName}}</td>
+                    <td ng-attr-id="{{ 'tt-view-Department-' + $index }}">{{item.Department.Name}}</td>
+                    <td ng-attr-id="{{ 'tt-view-Priority-' + $index }}">{{item.Priority.Name}}</td>
+                    <td ng-attr-id="{{ 'tt-view-Class-' + $index }}">{{item.Class.Name}}</td>
+                    <td ng-attr-id="{{ 'tt-view-Status-' + $index }}">{{item.Status.Name}}</td>
+                    <td ng-attr-id="{{ 'tt-view-UpdateTime-' + $index }}">{{item.UpdateTime | date: 'd MMMM y HH:mm'}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!--{{selectedRow}}-->
+        <div class="col-sm-12" style="text-align:center" ng-show="isdataexist()">No Ticket Found</div>
+        <!--<div class="recompileserversidepaging" compile="CompilePaginationServerSide"></div>-->
+        <dir-pagination-controls pagination-id="tt-view"
+                                 max-size="5"
+                                 direction-links="true"
+                                 boundary-links="true"
+                                 template-url="Templates/Common/dirPagination-dashboard.tpl.html"
+                                 on-page-change="getSearchByPageNumberForTroubleTicketByCustomerId(newPageNumber)">
+        </dir-pagination-controls>
+    </div>
+</div>

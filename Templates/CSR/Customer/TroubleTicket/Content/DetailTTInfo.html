@@ -1,0 +1,503 @@
+﻿<!--Main Content-->
+<div ng-controller="TicketInformationTroubleTicketbyCustomerIdController">
+    <div class="col-md-9" ng-controller="ModalCtrl">
+        <!--General Info Section-->
+        <div class="normal-wrap dash-detail">
+            <!--Title Page-->
+            <header class="title">
+                <h3>{{'GENERAL_INFO'|translate}}</h3>
+                <div class="panel-options">
+                    <ul>
+                        <li>
+                            <button type="button" class="btn btn-default" ng-click="OpenUpdateTTModal()" ng-show="isTTDetailUpdateTroubleTicketEnable">{{'Update'|translate}} {{'Trouble Ticket'|translate}}</button>
+                        </li>
+                        <li>
+                            <span class="btn-group" ng-show="isTTDetailActionsEnable">
+                                <button type="button" id="dropdownMenu1UpdateTT" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{'Actions'|translate}}
+                                    <span class="fa fa-angle-down"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1UpdateTT">
+                                    <li ng-repeat="action in TicketInfo.AvailableOperation">
+                                        <a ng-attr-id="{{ 'action-tt-button-' + action.Name }}" ng-click="openActionPageModal(action.Id, action.Name, action.ScreenType)">{{action.Name}}</a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </li>
+                        <li>
+                            <a class="btn btn-toggle text-uppercase" ng-attr-href="{{Link_Back_To_List}}"><i class="fa fa-angle-left"></i> {{'Back' | translate}}</a>
+                        </li>
+                        <li>
+                            <button type="button" class="btn-toggle" data-target="#ttgeneralInfo" data-toggle="collapse">
+                                <i class="et rounded61"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <div id="ttgeneralInfo" class="collapse in">
+                <!-- begin ticket general info -->
+                <div class="general-ticket-info">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 col-sm-4" ng-show="{{isETAKUser}}">
+                            <div class="ticket-information">
+                                <i class="et signal97"></i>
+                                <div class="ticket-information-detail">
+                                    MVNO: <span id="detailtt-MVNO">{{TicketInfo.CustomerDetail.MVNOName}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                            <div class="ticket-information border">
+                                <i class="fa fa-phone-square"></i>
+                                <div class="ticket-information-detail">
+                                    {{'Phone_Number'|translate}}: <span id="detailtt-PhoneNumber">{{TicketInfo.CustomerDetail.PhoneNumber}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-md-4 col-sm-4' : 'col-md-6 col-sm-6'}}">
+                            <div class="ticket-information">
+                                <i class="et office"></i>
+                                <div class="ticket-information-detail">
+                                    {{'Customer_Id'|translate}}: <span id="detailtt-CustomerId">{{TicketInfo.CustomerDetail.CustomerId}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end ticket general info -->
+                <div class="panel-data">
+
+
+                    <!-- begin ticket detail -->
+                    <div class="ticket-detail">
+                        <div class="split-box">
+                            <div class="half-box">
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'TT_Code'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="ttcode-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.TicketCode}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'TT_Type'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="TicketType-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.TicketType}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'CREATION_TIME'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="CreationTime-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.CreationTime}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'Incident_Class'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="IncidentClass-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.IncidentClass}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'Submitted_By'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="SubmittedBy-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.SubmittedBy}}" />
+                                    </div>
+                                </div>
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'Status'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="Status-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.Status}}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="half-box">
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'Ticket_Number'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="TicketNumber-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.TicketNumber}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'TT_Subtype'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="TicketSubtype-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.TicketSubtype}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'TIME_RECEIVED'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="TimeReceived-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.TimeReceived}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'Priority'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="Priority-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.Priority}}" />
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-sm-6"><strong>{{'DEPARTMENT'|translate}}:</strong></div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="Department-detaildisable" disabled value="{{TicketInfo.GeneralInfo.TicketDetail.Department}}" />
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div><!-- end fluid stacking box -->
+                    </div>
+                    <!-- end ticket detail -->
+                    <!-- begin QA info -->
+                    <div class="qa-ticket-info">
+                        <div class="section-title">
+                            <h3>Q & A</h3>
+                        </div>
+                        <table class="table table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Questions</th>
+                                    <th>Answers</th>
+                                </tr>
+                            </thead>
+                            <tbody style="word-break:break-all;">
+                                <tr ng-repeat="QandA in TicketInfo.GeneralInfo.QuestionAndAnswer">
+                                    <td style="width:20%" ng-attr-id="{{ 'detail-tt-question-' + $index }}"><i class="fa fa-question-circle"></i><span class="qa-entry">{{QandA.question}}</span></td>
+                                    <td ng-attr-id="{{ 'detail-tt-answer-' + $index }}" class="qa-answer-entry">{{QandA.answer}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- end QA info -->
+                    <!-- begin other description -->
+                    <div class="other-description">
+                        <div class="section-title">
+                            <h3>{{'Description'|translate}}:</h3>
+                        </div>
+                        <div class="upload-box">
+                            <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AttachmentTTDisplay.html'"></div>
+                            <button class="btn btn-default" data-toggle="modal" data-target="#AddAttachmentModal" ng-show="isTTDetailAddAttachmentEnable">
+                                <i class="fa fa-upload"></i> {{'Add_Attachment' | translate}}
+                            </button>
+
+                            <div class="modal fade" id="AddAttachmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AddAttachment.html'"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-box">
+                            <div align="justify" id="TicketInfo-GeneralInfo-Description" ng-bind-html="TicketInfo.GeneralInfo.Description">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end other description -->
+                    <!-- begin update info -->
+                    <div class="info-updates" id="update-info">
+                        <div class="section-title has-btn">
+                            <h3>{{'INFORMATIVE_UPDATES'|translate}}:</h3>
+                            <button class="btn pull-right btn-default" id="openAddCommentModal_InformativeUpdates-button" ng-click="openAddCommentModal_InformativeUpdates()" ng-show="isTTDetailAddUpdatesEnable">
+                                <i class="fa fa-plus-circle"></i> {{'Add_Updates'|translate}}
+                            </button>
+                        </div>
+
+                        <div class="informative-box">
+                            <article class="row" ng-repeat="Info in TicketInfo.GeneralInfo.InformativeUpdates | orderBy:'date.parse(UpdateTime)' ">
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img class="img-responsive" ng-src="{{Info.UserInfo.Photo}}" />
+                                        <figcaption class="text-center">{{Info.UserInfo.FullName}}</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-10 col-sm-10">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-heading clearfix">
+                                            <h5 class="comment-title">{{Info.UserInfo.FullName}}</h5>
+                                            <span class="text-muted">
+                                                <time class="comment-date" datetime="{{Info.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    {{Info.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}
+                                                </time>
+                                            </span>
+                                            <div class="pull-right">
+                                                <a class="btn btn-default btn-sm" ng-click="openDeleteCommentModal(Info.Id)" ng-show="isTTDetailDeleteUpdatesEnable">{{'Delete' | translate}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="comment-post text-breakall" ng-bind-html="Info.Comment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <!-- end update info -->
+                    <!-- begin resolution-info -->
+                    <div class="info-updates" id="resolution-info">
+                        <div class="section-title">
+                            <h3>{{'RESOLUTION'|translate}}:</h3>
+                        </div>
+
+                        <div class="informative-box">
+                            <article class="row" ng-repeat="Resolution in TicketInfo.GeneralInfo.Resolution | orderBy:'date.parse(UpdateTime)' ">
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img class="img-responsive" ng-src="{{Resolution.UserInfo.Photo}}" />
+                                        <figcaption class="text-center">{{Resolution.UserInfo.FullName}}</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-10 col-sm-10">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-heading clearfix">
+                                            <h5 class="comment-title">{{Resolution.UserInfo.FullName}}</h5>
+                                            <span class="text-muted">
+                                                <time class="comment-date" datetime="{{Resolution.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    {{Resolution.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}
+                                                </time>
+                                            </span>
+                                            <div class="pull-right">
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="comment-post text-breakall" ng-bind-html="Resolution.Comment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <!-- end resolution-info -->
+                    <!-- begin comment-info -->
+                    <div class="informative-box" id="comment-info">
+                        <div class="section-title has-btn">
+                            <h3>{{'Comments'|translate}}:</h3>
+                            <a class="btn btn-default pull-right" href="#" ng-click="openAddCommentModal_Comments()" ng-show="isTTDetailAddCommentEnable">
+                                <i class="fa fa-commenting"></i> {{'Add_Comment' | translate}}
+                            </a>
+                        </div>
+                        <div class="informative-box">
+                            <article class="row" ng-repeat="Comments in TicketInfo.GeneralInfo.Comments | orderBy:'date.parse(UpdateTime)' ">
+                                <div class="col-md-2 col-sm-2 hidden-xs">
+                                    <figure class="thumbnail">
+                                        <img class="img-responsive" ng-src="{{Comments.UserInfo.Photo}}" />
+                                        <figcaption class="text-center">{{Comments.UserInfo.FullName}}</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="col-md-10 col-sm-10">
+                                    <div class="panel panel-default arrow left">
+                                        <div class="panel-heading clearfix">
+                                            <h5 class="comment-title">{{Comments.UserInfo.FullName}}</h5>
+                                            <span class="text-muted">
+                                                <time class="comment-date" datetime="{{Comments.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    {{Comments.UpdateTime | date : 'dd MMMM yyyy HH:mm'}}
+                                                </time>
+                                            </span>
+                                            <div class="pull-right">
+                                                <a class="btn btn-default btn-sm" ng-click="openDeleteCommentModal(Comments.Id)" ng-show="isTTDetailDeleteCommentEnable">{{'Delete' | translate}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="comment-post text-breakall" ng-bind-html="Comments.Comment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <!-- end comment-info -->
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="AddCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AddComment.html'"></div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="DeleteCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content etak-modal">
+                    <div class="modal-header">
+                        <h3 class="modal-title">{{'Remove' | translate}}</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+                        <!--<h4 class="modal-title">{{'Remove' | translate}}</h4>-->
+                    </div>
+                    <div class="modal-body">
+                        <p>{{'Confirmation_AreYouSureToDeleteThis' | translate}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="deleteComment()">{{'Delete'|translate}}</button>
+                        <button data-dismiss="modal" class="btn btn-default">{{'Cancel'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <span class="mt-30"></span>
+
+        <div class="normal-wrap" ng-show="isUpdateExtendedInfoEnable">
+            <header class="title">
+                <h3>{{'EXTENDED_INFO'|translate}}</h3>
+                <div class="panel-options">
+                    <ul>
+                        <li>
+                            <button type="button" class="btn btn-default" ng-click="OpenUpdateExtendedInfoTTModal()">{{'Update'|translate}} {{'Extended'|translate}} {{'Info'|translate}}</button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-default" ng-click="OpenAddReferenceModal()">{{'ADD_REFERENCE'|translate}}</button>
+                        </li>
+
+                        <li>
+                            <button type="button" class="btn-toggle" data-target="#ttextendedInfo" data-toggle="collapse">
+                                <i class="et rounded61"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <div id="ttextendedInfo" class="collapse in">
+                <div class="panel-data">
+
+                    <div class="row no-gutters clearfix">
+                        <div class="kpi-box clearfix">
+                            <div class="col-md-8">
+
+                                <div class="row">
+                                    <div class=" col-md-4">
+                                        Time left for resolution:
+                                    </div>
+                                    <div class=" col-md-8">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="background-color:lightgray"
+                                                 ng-style="TimeSpentStyle()">
+                                                <div ng-show="TimeLeftVal<30">
+                                                    {{TicketInfo.ExtendedInfo.TimeLeftForResolution}} Hours Remaining
+                                                </div>
+                                            </div>
+                                            <div class="progress-bar" ng-class="ColorProgressControl()" role="progressbar" ng-style="TimeLeftStyle()">
+                                                <div ng-show="TimeLeftVal>29">
+                                                    {{TicketInfo.ExtendedInfo.TimeLeftForResolution}} Hours Remaining
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" col-md-4">
+                                <div class="kpi-time">
+                                    <span class="col-md-6">{{'KPI_TIME'|translate}}:</span>
+                                    <span class="col-md-6">
+                                        <input type="text" disabled value="{{TicketInfo.ExtendedInfo.KPITime}}" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="split-box mb-30">
+                        <div class="onethird-box">
+                            <div class="row">
+                                <div class="col-sm-4 ng-binding">{{'TAG'|translate}}:</div>
+                                <div class="col-sm-8">
+                                    <div class="input-group padr-20">
+                                        <input type="text" class="" value="{{TicketInfo.ExtendedInfo.Tag}}" disabled="">
+                                        <!--  <span class="input-group-addon glyphicon glyphicon-chevron-down"></span> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="onethird-box">
+                            <div class="row">
+                                <div class="col-sm-4 ng-binding">{{'ESCALATION'|translate}}:</div>
+                                <div class="col-sm-8">
+                                    <div class="input-group padr-20">
+                                        <input type="text" class="" value="{{TicketInfo.ExtendedInfo.Escalation}}" disabled="">
+                                        <!--  <span style="top: 0;" class="input-group-addon glyphicon glyphicon-chevron-down"></span> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="onethird-box">
+                            <div class="row">
+                                <div class="col-sm-4 ng-binding">{{'ESCALATION_REASON'|translate}}:</div>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <input type="text" class="" value="{{TicketInfo.ExtendedInfo.EscalationReason}}" disabled="">
+                                        <!-- <span class="input-group-addon glyphicon glyphicon-chevron-down"></span> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-15">
+                        <h5>{{'Remarks'|translate}}</h5>
+                        <div class="box-bordered">
+                            <div align="justify" id="TicketInfo-ExtendedInfo-Remarks" ng-bind-html="TicketInfo.ExtendedInfo.Remarks">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5>{{'EXTERNAL_REFERENCES'|translate}}</h5>
+                    <div class="box-bordered">
+                        <div ng-repeat="References in TicketInfo.ExtendedInfo.ExternalReferences">
+                            <a ng-href="{{References.Refurl}}" target="_blank">{{References.RefDescription}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="UpdateTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/UpdateTT.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="ActionCloseTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/ActionCloseTT.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="ActionAssociateTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/ActionAssociateTT.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddReferenceTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/AddReferenceTT.html'"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="UpdateExtendedInfoTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div ng-include="'Templates/CSR/Customer/TroubleTicket/Content/UpdateExtendedTT.html'"></div>
+    </div>
+</div>
+<!--End Main Content-->

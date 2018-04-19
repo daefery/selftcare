@@ -1,0 +1,45 @@
+﻿
+
+    <div class="etakwizard-row">
+        <!--<div class="etakwizard-step" ng-class="coveragecheck" ng-hide="isDefault">
+            <a href="" id="covCheckId"ng-click="ChangeCRPage('coveragecheck')" ng-class="btnCoverageCheck" type="button" class="btn btn-circle " ng-disabled="covCheckPass">{{coverageCheckStepNumber}}</a>
+            <p>Coverage Check</p>
+        </div>-->
+
+        <div class="etakwizard-step" ng-class="ordering">
+            <a href="" id="orderingId" ng-click="ChangeCRPage('ordering')" ng-class=" btnordering" type="button" class="btn btn-arrow" ng-disabled="orderingPass">{{orderingStepNumber}}</a>
+            <p>Ordering</p>
+        </div>
+        <div class="etakwizard-step" ng-class="shoppingCart">
+            <a href="" ng-click="ChangeCRPage('shoppingCart')" ng-class=" btnshoppingcart" type="button" class="btn btn-arrow" ng-disabled="shoppingCartPass">{{shoppingCartStepNumber}}</a>
+            <p>Shopping Basket</p>
+        </div>
+        <div class="etakwizard-step" ng-class="customerinfo">
+            <a href="" ng-click="ChangeCRPage('customerinfo')" ng-class=" btncustinfo" type="button" class="btn btn-arrow" ng-disabled="custInfoPass">{{customerInfoStepNumber}}</a>
+            <p>Customer Information</p>
+        </div>
+
+        <!--<div class="etakwizard-step" ng-class="numberselection">
+            <a href="" ng-click="ChangeCRPage('numberselection')" ng-class=" btnnumberselect" type="button" class="btn btn-arrow" ng-disabled="numberSelectionPass">{{numberSelectionStepNumber}}</a>
+            <p>Number Selection</p>
+        </div>-->
+
+        <div class="etakwizard-step" ng-class="shipping">
+            <a href="" ng-click="ChangeCRPage('shipping')" ng-class=" btnshipping" type="button" class="btn btn-arrow" ng-disabled="shippingPass">{{shippingStepNumber}}</a>
+            <p>Shipping</p>
+        </div>
+
+        <div class="etakwizard-step" ng-class="payment">
+            <a href="" ng-click="ChangeCRPage('payment')" ng-class=" btnpayment" type="button" class="btn btn-arrow" ng-disabled="paymentPass">{{paymentStepNumber}}</a>
+            <p>Payment</p>
+        </div>
+
+        <div class="etakwizard-step last" ng-class="summary">
+            <a href="" ng-click="ChangeCRPage('summary')" ng-class=" btnsummary" type="button" class="btn btn-arrow" ng-disabled="summaryPass">{{summaryStepNumber}}</a>
+            <p><i class="fa fa-check-circle" ng-hide="isCreateInProgress"></i>Summary</p>
+        </div>
+
+    </div>
+
+
+

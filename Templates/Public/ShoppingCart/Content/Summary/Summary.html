@@ -1,0 +1,138 @@
+﻿<div ng-controller="SummaryController">
+    <div class="step-title">
+        <h3>Summary</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="col-md-12 col-sm-12">
+                <section class="normal-wrap">
+                    <header class="title">
+                        <h6>General Summary</h6>
+                    </header>
+                    <div class="sub-line"></div>
+                    <div class="text-content row">
+                        <dl class="dl-horizontal col-sm-12 col-xs-12">
+                            <dt>Order Date : </dt>
+                            <dd>{{OrderDate}}</dd>
+                            <dt>Order No : </dt>
+                            <dd>{{OrderNo}}</dd>
+                            <dt>Customer ID : </dt>
+                            <dd>{{custId}}</dd>
+                            <dt>Customer Name : </dt>
+                            <dd>{{custName}}</dd>
+                        </dl>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <section class="normal-wrap">
+                    <header class="title">
+                        <h6>Order Summary</h6>
+                    </header>
+                    <div class="sub-line"></div>
+                    <div class="text-content row">
+                        <p>DEVICE</p>
+                        <section class="table" style="width: 100%" ng-hide="Summary.OrderedDeviceSummary.length <= 0">
+                            <div class="">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Description</th>
+                                            <th>Qty</th>
+                                            <th>Price ($)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="Order in Summary.OrderedDeviceSummary">
+                                            <td>{{Order.id}}</td>
+                                            <td>{{Order.description}}</td>
+                                            <th>{{Order.quantity}}</th>
+                                            <td>{{Order.price}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <p>PLANS</p>
+                        <section class="table" style="width: 100%" ng-hide="Summary.OrderedPlanSummary.length <= 0">
+                            <div class="">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Description</th>
+                                            <th>Qty</th>
+                                            <th>Price ($)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="Order in Summary.OrderedPlanSummary">
+                                            <td>{{Order.id}}</td>
+                                            <td>{{Order.description}}</td>
+                                            <th>{{Order.quantity}}</th>
+                                            <td>{{Order.price}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <p ng-hide="Summary.OrderedOtherProductSummary.length <= 0">OTHER PRODUCTS</p>
+                        <section class="table" style="width: 100%" ng-hide="Summary.OrderedOtherProductSummary.length <= 0">
+                            <div class="">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Description</th>
+                                        <th>Qty</th>
+                                        <th>Price ($)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="Order in Summary.OrderedOtherProductSummary">
+                                        <td>{{Order.id}}</td>
+                                        <td>{{Order.description}}</td>
+                                        <th>{{Order.quantity}}</th>
+                                        <td>{{Order.price}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <div>
+                            <p>TOTAL ORDERED ITEMS : <span>$ {{TotalPaymentOrder}}</span></p><br/>
+                            <p>TAX : <span>$ {{TotalTax}}</span></p><br/>
+                            <p>TOTAL PAYMENT : <span>$ {{totalPayment}}</span></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <section class="normal-wrap">
+                    <header class="title">
+                        <h6>Shipping Summary</h6>
+                    </header>
+                    <div class="sub-line"></div>
+                    <div class="text-content row">
+                        <dl class="dl-horizontal col-sm-12 col-xs-12">
+                            <dt>Shipping Type : </dt>
+                            <dd>{{shippingMethod}}</dd>
+                            <dt>Shipping Address : </dt>
+                            <dd>{{shippingAddress}}</dd>
+                            <dt>Shipping Cost : </dt>
+                            <dd>{{sumShippingCost}}</dd>
+                        </dl>
+                    </div>
+                </section>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="button-inner clearfix">
+        <button ng-click="finish()" class="next-btn finish">Finish <i class="fa fa-angle-right"></i></button>
+    </div>
+
+</div>

@@ -1,0 +1,641 @@
+/* -----------------------------------------------------------------------------
+  Responsive styles
+----------------------------------------------------------------------------- */
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 75em) {
+
+}
+
+
+
+
+
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 62em) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+  .left-side {
+    border-right: none;
+  }
+}
+
+@media only screen and (min-width : 993px) and (max-width : 1024px) {
+  .selfcare-site .container {
+    width: 100%;
+  }
+
+  .main-header.selfcare .navbar-collapse.collapse {
+    padding: 0;
+  }
+
+  .main-header.selfcare .navbar-nav > li > a {
+    line-height: 30px;
+    padding: 11px 15px;
+  }
+  
+  .main-header.selfcare .navbar-nav {
+    float: right;
+  }
+
+  .box-content.inside .box-content .btn.btn-default {
+    max-width: 65%;
+  }
+
+  .box-stacked.half .btn-default.rounded {
+    max-width: 45%;
+  }
+
+  .main-header.selfcare .navbar-nav > li > .dropdown-menu {
+    margin-top: 1px;
+  }
+  .btn-group.flat {
+    max-width: 46%;
+  }
+
+  .selfcare-info .col-md-9 .col-md-3 {
+    width: 50%;
+  }
+
+}
+
+@media only screen and (min-width : 801px) and (max-width : 988px) {
+  .main-header.selfcare .container,
+  .main-dashboard.selfcare .container {
+    width: 100%;
+    max-width: 988px;
+  }
+
+  .main-header.selfcare .navbar-brand {
+    padding: 0;
+  }
+
+  .main-header.selfcare .navbar-brand img {
+    margin: 10px auto;
+  }
+
+}
+
+
+
+
+
+
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 800px) {
+  .selfcare-site .footer-wrap {
+    display: block;
+  }
+  .selfcare-left {
+    padding-right: 0;
+  }
+
+  .account-number {
+    width: auto;
+  }
+
+  .right-entry {
+    padding: 15px 0;
+  }
+
+  .single-form,
+  .single-entry,
+  .cell-entry,
+  .cell-entry {
+    display: block;
+    width: 100%;
+  }
+
+  .cell-entry,
+  .cell-entry.more-device {
+      padding: 20px;
+  }
+
+  .main-header.selfcare.sticky-up {
+    top: -88px;
+  }
+
+  .main-header.selfcare .navbar-nav > li > a {
+    line-height: 28px;
+    padding: 0px 12px;
+  }
+
+  .inner-selfcare.single-payment .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border: none;
+    background: transparent;
+  }
+
+
+
+
+ /* .single-entry.left {
+    display: table-caption;
+    width: 100%;
+  }
+
+  .single-entry.right {
+    display: table-footer-group;
+  }*/
+
+
+
+}
+
+
+@media only screen and (max-width : 48em) {
+  .main-header.selfcare .container,
+  .main-dashboard.selfcare .container {
+    width: 100%;
+    max-width: 768px;
+  }
+
+  .right-entry {
+    padding: 15px;
+  }
+
+  .user-stats .quarter-box {
+    width: 49%;
+    margin-bottom: 10px;
+  }
+
+  .btn-default.rounded {
+    max-width: 100%;
+  }
+
+  .selfcare-left {
+    padding-bottom: 55px;
+  }
+
+  .pushmenu {
+    overflow: auto;
+  }
+
+  .box-stacked.half .btn-default.rounded {
+    max-width: 100%;
+  }
+
+  .enroled-entry .btn.btn-default {
+    display: block;
+    max-width: 100%;
+  }
+
+  .main-header.selfcare .btn.top {
+    line-height: inherit;
+  }
+
+  .main-header.selfcare .btn.top > .et {
+    font-size: 2.4rem;
+    line-height: 14px;
+  }
+
+  .main-header.selfcare .navbar-nav > li > a {
+    line-height: 35px;
+  }
+
+  .main-header.selfcare .navbar-collapse.collapse {
+    padding: 0;
+  }
+
+  .main-header.selfcare .navbar-nav > li > a {
+    line-height: 28px;
+    padding: 0px 12px;
+  }
+
+  .selfcare-site .item-list.has-actived:after {
+    font-size: 48px;
+  }
+
+  .service-item .plan-packages .item-list.has-actived:before {
+    bottom: -167px;
+  }
+
+  .service-item .slick-prev, .service-item .slick-next {
+    top: 18%;
+  }
+
+  .selfcare-site .plan-packages .slick-list {
+    min-height: 178px;
+  }
+
+  .selfcare-site #extraOption .spec-title {
+    max-width: 100%;
+  }
+
+  .inner-selfcare .feature-box h3 {
+    color: #333;
+  }
+
+  .form-bottom.custom .rounded-block {
+    max-width: 35%;
+  }
+
+   .profile-info h4 {
+        text-align: left;
+        
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+@media only screen and (min-width: 641px) and (max-width: 767px) {
+  .main-header.selfcare .navbar-header {
+    float: none;
+  }
+
+  .main-header.selfcare .navbar-brand img {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .main-header.selfcare .navbar-nav > li > a {
+    line-height: 28px;
+    padding: 0px 10px;
+  }
+
+  .self-care .form-bottom {
+    margin-top: 55px;
+    }   
+
+  .self-care .tab-form > li {
+        display: block;
+        float: none;
+        width: 100%;
+    }
+
+   .self-care .tab-form > li.active a {
+        border: none;
+        background: #3399ed;
+        color: #fff;
+    }
+
+
+}
+
+
+
+@media only screen and (max-width : 43.125em) {
+  .selfcare-right {
+    display: none;
+  }
+
+  .user-detail {
+    display: block;
+    bottom: 0;
+    height: auto;
+  }
+  
+  .user-icon {
+    float: none;
+    background: transparent;
+    border: none;
+  }
+
+  .selfcare-info {
+    text-align: center;
+  }
+
+  .user-stats .quarter-box {
+    width: 48%;
+    margin-bottom: 20px;
+  }
+
+  .selfcare-left .etcircle-icon.big {
+    width: 65px;
+    height: 65px;
+  }
+
+  .selfcare-left .etcircle-icon.big i {
+    line-height: 60px;
+    font-size: 3.6rem;
+  }
+
+  .bottom-data {
+    font-size: 90%;
+  }
+
+  .box-content.contract h3,
+  .selfcare-left h3{
+    text-align: center;
+  }
+
+  .box-stacked.half .btn-default.rounded {
+    max-width: 75%;
+  }
+
+  .enroled-entry i {
+    margin: 0 auto 20px;
+  }
+
+  .enroled-entry .btn.btn-default {
+    display: block;
+    max-width: 100%;
+  }
+
+  .box-content.inside .box-content .btn.btn-default {
+    display: block;
+    max-width: 100%;
+    margin: 20px auto 30px;
+  }
+
+  .selfcare-left .etcircle-icon.big {
+    margin: 0 auto 20px;
+  }
+
+  .box-sides.three-part .box-sides-entry {
+    width: 100%;
+  }
+
+  .single-entry.balance {
+    border-left: none;
+  }
+
+  .footer-wrap p {
+    font-size: 90%;
+  }
+
+  .selfcare-site.actived:after {
+    right: -40;
+  }
+
+  .box-content.inside p {
+    padding-left: 80px;
+  }
+
+  .balance-info {
+    padding-top: 140px;
+  }
+
+  .spec-title h3 {
+    font-size: 1.6rem;
+  }
+
+  h3.service-price {
+    color: #fff;
+  }
+
+  .form-bottom.custom .rounded-block {
+    max-width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .btn-group.flat {
+    max-width: 100%;
+  }
+
+  .btn-group.flat .btn {
+    margin-bottom: 20px;
+  }
+
+  .inner-selfcare.topup .panel-data.clean {
+    padding: 20px;
+  }
+
+  .single-entry.balance {
+    border-left: none;
+  }
+
+  .single-entry.topupcard {
+    padding-right: 0;
+  }
+
+  .inner-box .title.has-icon h3 {
+    line-height: 34px;
+    margin: 0 0 20px;
+    padding: 0;
+    display: block;
+  }
+
+  .title.has-icon .btn.btn-outline {
+    float: none;
+    border-radius: 16px;
+    line-height: 36px;
+    display: block;
+    font-size: 1.6rem;
+  }
+
+  .single-entry.topupcard.third-grid .btn-group > .btn {
+    display: block;
+  }
+
+  .single-entry.topupcard.third-grid .btn-default.filled {
+    margin: 20px auto;
+  }
+
+  .grid .amount-box {
+    display: block;
+    min-width: 100%;
+  }
+
+  .inner-selfcare.single-payment .btn-default.filled {
+    font-size: 90%;
+  }
+
+  .self-care .form-bottom {
+    margin-top: 55px;
+    }
+
+    .self-care .tab-form > li,
+    .self-care .form-content.split .form-group.row,
+    .panel-data.clean .form-content.split .form-group.row,
+    .self-care .tab-form > li,
+    .panel-data.clean .tab-form > li {
+        display: block;
+        float: none;
+        width: 100%;
+    }
+
+    .self-care .tab-form > li.active a,
+    .panel-data.clean .tab-form > li.active a {
+        border: none;
+        background: #3399ed;
+        color: #fff;
+    }
+
+   
+
+}
+
+
+
+
+
+
+
+@media only screen and (max-width : 30em) {
+  .box-stacked.half div {
+    min-width: 100%;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .user-account {
+    line-height: 48px;
+    font-size: 1.6rem;
+  }
+
+  .user-info {
+    text-align: center;
+  }
+
+  .top-user {
+    text-align: center;
+  }
+
+  .selfcare .top-wrap li a {
+    border-left: none;
+  }
+
+  .main-header.selfcare.sticky-up {
+    top: -56px;
+  }
+
+  .main-header.selfcare .navbar-toggle {
+    padding: 0;
+    line-height: 48px;
+    font-size: 3.4rem;
+    margin: 0 15px 0 0;
+  }
+
+  .main-header.selfcare .navbar-brand img {
+    margin: 5px 30px 5px 15px;
+  }
+
+  .amin-header.selfcare .navbar-brand {
+    float: none;
+  }
+
+
+  .selfcare-content .btn {
+    padding: 12px;
+    font-size: 1.6rem;
+  }
+
+  .balance-info {
+    padding-top: 100px;
+  }
+
+  .balance-info h1 {
+    font-size: 3rem;
+  }
+
+  .single-form,
+  .box-sides,
+  .single-entry,
+  .box-sides-entry,
+  .amount-pay-price,
+  .price-details {
+    display: block;
+  }
+
+  .single-entry.topupcard.third-grid {
+    width: 100%;
+  }
+
+}
+
+
+
+
+/* Extra Small device */
+
+
+@media only screen and (max-width : 24.375em) {
+  .user-account {
+    font-size: 1.4rem;
+  }
+
+  .main-header.selfcare .navbar-brand img {
+    margin: 10px auto;
+    display: block;
+    float: none;
+  }
+
+  .balance-info {
+    padding-top: 64px;
+  }
+
+  .user-stats .quarter-box {
+    width: 48%;
+  }
+
+  .box-content.inside p {
+    padding-left: 64px;
+  }
+
+  .selfcare-left .etcircle-icon.big i {
+    line-height: 48px;
+  }
+
+  .selfcare-left .etcircle-icon.big i {
+    line-height: 60px;
+  }
+
+
+
+}
+
+@media only screen and (max-width : 22.5em) {
+  .balance-info {
+    padding-top: 90px;
+  }
+
+  .user-account {
+    display: block;
+    width: 100%;
+  }
+
+  .user-stats .quarter-box {
+    width: 48%;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width : 20em) {
+{
+  font-size: 90%;
+}
+
+  .user-info,
+  .user-detail {display: none;}
+
+  .balance-info h1 {
+    font-size: 28px;
+    color: #f9f9f9;
+  }
+
+  .balance-info {
+    margin-top: 35px;
+  }
+
+  .main-header.selfcare.sticky-up {
+    top: -30px;
+  }
+
+
+}

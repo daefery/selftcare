@@ -1,0 +1,88 @@
+﻿<div class="normal-wrap">
+    <header class="clear-wrap-padding bg-gray">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="#payments" class="selected" aria-controls="home" role="tab" data-toggle="tab">PAYMENTS<span class="badge-blue">1</span></a></li>
+            <li role="presentation"><a href="#invoices" aria-controls="profile" role="tab" data-toggle="tab">INVOICES<span class="badge-blue">6</span></a></li>
+            <li role="presentation"><a href="#unpaidinvoices" aria-controls="messages" role="tab" data-toggle="tab">UNPAID INVOICES <span class="badge-gray">0</span></a></li>
+        </ul>
+    </header>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="payments">
+            <div class="media">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="~/Areas/CSR/Content/icon-user.png" alt="...">
+                                <img src="~/Areas/CSR/Content/images/icon-user.png" />
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading"><a href="#">{{products.InvoiceAndPayments.BankAccountName }}</a></h5>
+                            <p>
+                                Bank Account:&nbsp;{{products.InvoiceAndPayments.BankAccountNumber }}
+                                Currency Type:&nbsp;{{products.InvoiceAndPayments.Currency }}
+                            </p>
+                            <div class="media-body">
+                                    <p><a href="#">Edit Account Information</a></p>
+                                </div>
+                            </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub-line"><!--line--></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="invoices">
+            <div class="media" ng-repeat="customerinvoice in products.InvoiceAndPayments.LastestInvoices.Invoice">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="~/Areas/CSR/Content/icon-user.png" alt="...">
+                                <img src="~/Areas/CSR/Content/images/icon-user.png" />
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading"><a href="#">{{ customerinvoice.InvoiceId }}</a> | Date: {{customerinvoice.IssuedDate}}</h5>
+                            <p>
+                                Invoice Amount:&nbsp;{{customerinvoice.Amount }}
+                                Product Purchased:&nbsp;{{customerinvoice.ProductPurchased }}
+                            </p>
+                            <div class="media-body">
+                                <p><a href="#">View Detail</a></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="unpaidinvoices">
+            <div class="media" ng-repeat="unpaidinvoice in products.InvoiceAndPayments.UnbilledInvoices.Invoice">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="~/Areas/CSR/Content/icon-user.png" alt="...">
+                                <img src="~/Areas/CSR/Content/images/icon-user.png" />
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading"><a href="#">{{ unpaidinvoice.InvoiceId }}</a> | Date: {{unpaidinvoice.IssuedDate}}</h5>
+                            <p>
+                                Invoice Amount:&nbsp;{{unpaidinvoice.Amount }}
+                                Product Purchased:&nbsp;{{unpaidinvoice.ProductPurchased }}
+                            </p>
+                            <div class="media-body">
+                                <p><a href="#">View Detail</a></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

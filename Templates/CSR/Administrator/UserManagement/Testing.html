@@ -1,0 +1,39 @@
+﻿<div class="container">
+    <div class="row">
+        <section class="col-md-3 col-sm-3">
+            <div ng-include="'templates/csr/administrator/SideBar/SideBar.html'"></div>
+        </section>
+        <section class="col-md-9 col-sm-9">
+            <section class="normal-wrap">
+                <div ng-include="'templates/csr/administrator/usermanagement/viewUser/viewuserfilter.html'"></div>
+            </section>
+            <span class="m-30"></span>
+            <section class="normal-wrap" ng-show="isUserMShowTableEnabled">
+                <header class="title">
+                    <h3><i class="et avatar31"></i>{{'Search_User_Result' | translate}}</h3>
+                    <div class="panel-options">
+                        <ul>
+                            <li>
+                                <a class="btn btn-default" type="button" href="/CSR/Customer/App/Admin/UserManagement/AddUser">{{'ADD_USER' | translate}}</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-default" type="button" href="/CSR/Customer/App/Admin/UserManagement/UserDetail">{{'User_Detail' | translate}}</a>
+                            </li>
+                            <li>
+                                <button type="button" class="btn-toggle" data-target="#usermgtDetail" data-toggle="collapse">
+                                    <i class="et rounded61"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </header>
+                <div id="usermgtDetail" class="collapse in">
+                    <div class="panel-data">
+                        <div ng-include="'templates/csr/administrator/usermanagement/viewUser/viewuser.html'"></div>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+    </div>
+</div>

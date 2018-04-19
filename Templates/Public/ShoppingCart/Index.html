@@ -1,0 +1,40 @@
+﻿<div class="shopping-page">
+    <!-- top -->
+    <!--<section class="top-content shop-now">
+        <div class="shop-offer">
+            <div class="slide-item">
+                <h1>1</h1>
+            </div>
+            <div class="slide-item second">
+                <h1>2</h1>
+            </div>
+        </div>
+    </section>-->
+    <!-- /. top -->
+
+    <section class="top-content shop-now">
+        <div class="container">
+            <div class="shoppingpage-title">
+                <h1><span>Choose our plans and packages at</span> etakshop</h1>
+                <h4>No hassle. Just etak mobile</h4>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <div class="container" ng-controller="CustomerRegistrationHeaderController">
+        <!-- <div class="row"> -->
+        <div class="etakwizard">
+            <div ng-hide="isShoppingCart" ng-include="'Templates/Public/ShoppingCart/Header/Header.html'"></div>
+        </div>
+        <div class="step-entry">
+            <div ng-include src="ShowCurrentPage()"></div>
+        </div>
+        <!-- </div> -->
+    </div>
+
+
+</div>

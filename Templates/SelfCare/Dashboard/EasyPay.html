@@ -1,0 +1,38 @@
+﻿<!--<h5 class="title">You are currently enrolled in EasyPay</h5>
+<div class="content">
+    <p>
+        If you have an outstanding balance due, your next automatic
+        payment will occur on 11/14/2015 and will be made with
+        card number ************0732
+    </p>
+
+    <a href="#">
+        Manage EasyPay >
+    </a>
+</div>-->
+<div class="enroled-entry" ng-controller="EasyPayDefaultCardController">
+    <div class="row no-gutters">
+        <div class="col-md-2 col-sm-4">
+            <span class="etcircle-icon big">
+                <i class="et payment6"></i>
+            </span>
+        </div>
+        <div class="col-md-10 col-sm-8">
+            <h3>You are currently enrolled in EasyPay</h3>
+
+
+            <p>
+                <!--The description change to the current development status-->
+                <!--If you have an outstanding balance due, your next automatic
+                payment will occur on 11/14/2015 and will be made with
+                card number ************0732-->
+                Your default card number used is {{selectedCard}}
+            </p>
+            <a href="/SelfCare/Customer/App/ManageAutoPay" class="btn btn-default rounded">manage easypay</a>
+        </div>
+    </div>
+</div>
+
+
+
+

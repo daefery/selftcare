@@ -1,0 +1,54 @@
+﻿
+    <div class="title">
+        <h3><i class="et magnifying-glass34"></i>{{'Search_User' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li>
+                    <button type="button" class="btn-toggle" data-target="#userMgt" data-toggle="collapse">
+                        <i class="et rounded61"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="userMgt" class="panel-data has-etboss collapse in">
+        <div class="single-row" ng-hide="{{!isETAKUser}}">
+            <div class="form-group">
+                <label for="parentmoduleid" class="col-sm-6">{{'MVNO' | translate}}</label>
+                <select ng-disabled="{{!isETAKUser}}" ng-model="usearch.mvno" class="form-control col-sm-6" required>
+                    <option ng-selected="usearch.mvno == MvnoDetail.orgid" ng-repeat="MvnoDetail in mvnolist" value="{{MvnoDetail.orgid}}">{{MvnoDetail.mvnoname}}</option>
+                </select>
+            </div>
+        </div>
+        <etbossform name="csrsearchcustomerformid" ng-controller="CSRSearchCustomerForm" field="{{datas}}"></etbossform>
+    </div>
+
+
+
+
+
+
+
+        <!--<div class="normal-wrap">
+            <header class="title">
+                <h3><i class="et calculation3"></i>{{'Search_User' | translate}}</h3>
+                <div class="panel-options">
+                    <ul>
+                        <li>
+                            <button type="button" class="btn-toggle" data-target="#orderMgt" data-toggle="collapse">
+                                <i class="et rounded61"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <div id="userMgt" class="panel-data collapse in">
+                <div class="col-sm-12" style="margin-bottom:10px">
+                    <label for="parentmoduleid" class="col-sm-6" style="margin-left:-15px">{{'MVNO' | translate}}</label>
+                    <select ng-disabled="{{!isETAKUser}}" ng-model="usearch.mvno" class="form-control col-sm-8" style="width: 390px; margin-left: 28px;" required>
+                        <option ng-selected="usearch.mvno == MvnoDetail.orgid" ng-repeat="MvnoDetail in mvnolist" value="{{MvnoDetail.orgid}}">{{MvnoDetail.mvnoname}}</option>
+                    </select>
+                </div><br />
+                <etbossform name="csrsearchcustomerformid" ng-controller="CSRSearchCustomerForm" field="{{datas}}"></etbossform>
+            </div>
+        </div>-->

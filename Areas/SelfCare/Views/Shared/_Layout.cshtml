@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html ng-app="SelfContent">
+<head lang="en">
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title ng-bind="'SelfCare &mdash; ' + title">Self-Care</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Areas/SelfCare/Content/styles/custom.css" rel="stylesheet" />
+    <script src="~/Areas/SelfCare/Content/js/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <link href="~/Areas/SelfCare/Content/styles/dynamic.css" rel="stylesheet" />
+    <link href="~/Areas/SelfCare/Content/styles/slick.css" rel="stylesheet"/>
+    <link href="~/Areas/SelfCare/Content/styles/main.css" rel="stylesheet" />
+    <link href="~/Areas/SelfCare/Content/styles/mobile.css" rel="stylesheet" />
+    <link href="~/Styles/thumbnail.css" rel="stylesheet" />
+    <link href="~/Areas/SelfCare/Content/styles/cart.css" rel="stylesheet"/>
+
+
+
+    <!--[if lt IE 9]>
+      <script src="~/Scripts/html5shiv.min.js"></script>
+      <script src="~/Scripts/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-controller="LocalizationController" ng-init="startingPage()">
+    <div class="load" us-spinner="{radius:30, direction: -1,  speed: 2, width:10, length: 0, opacity: 0.6, corners:1, color: '#7A014E', scale: 0.75, lines: 17}"></div>
+
+    <div id="blur">
+        @RenderBody()
+    </div>
+
+    <script type="text/javascript">
+        window.Console = {};
+        (function (cr) {
+            var rootPath;
+            cr.rootPath = rootPath;
+        }(window.Console));
+        Console.rootPath = '@Url.Content("~")';
+    </script>
+    @Scripts.Render("~/bundles/common_lib")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/App.js"></script>
+    <script src="~/Scripts/custom/dynamicMenu.js"></script>
+    <script src="~/Scripts/custom/dynamicDashboard.js"></script>
+    @Scripts.Render("~/bundles/angular_common")
+    <script src="~/Scripts/angular-translate.js"></script>
+    <script src="~/Scripts/common/controller/LocalizationController.js"></script>
+    <script src="~/Scripts/common/services/LocalizationService.js"></script>
+    <script src="~/Areas/SelfCare/Bindings/ViewModels/Modules/SelfCareApps.js"></script>
+    <script src="~/Scripts/jquery.nicescroll.min.js"></script>
+    <script src="~/Areas/Selfcare/Content/js/plugin.js"></script>
+    @RenderSection("routings", required: false)
+    @RenderSection("controllers", required: false)
+    @RenderSection("services", required: false)
+    @RenderSection("directives", required: false)
+
+</body>
+</html>

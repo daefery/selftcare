@@ -1,0 +1,24 @@
+﻿<div class="user-detail-inner" ng-controller="CustomerWrapperController" ng-init="withbalance()">
+    <div class="container">
+        <div class="box-sides">
+            <div class="box-sides-entry user-inner">
+                <!--ng-show="isCustomerContactEnable">-->
+                <i class="et business133"></i>
+                <h3>Customer Id</h3>
+                <h4 ng-bind="info.child.customerid">901222-12221</h4>
+            </div>
+
+            <div class="box-sides-entry boxed user-inner">
+                <i class="et smartphones17"></i>
+                <h3>Mobile Number</h3>
+                <h4 ng-bind="info.child.mobile">+1 234 567 8900</h4>
+            </div>
+
+            <div class="box-sides-entry user-inner">
+                <i class="et computing82"></i>
+                <h3>Balance</h3>
+                <h4><sup>$</sup><span ng-bind="info.child.balance"></span></h4>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+.sidebar{
+  @extend %li-clear-default;
+  li{
+    @extend %border-bottom;
+    border-top:1px solid $bg-white;
+    line-height: 48px;
+    a{
+      font-family: $font-family-bold;
+      color: $font-black;
+      padding-left: 20px;
+      display: block;
+      &:hover, &:active, &:focus{
+        color: $main-pink;
+        text-decoration: none;
+      }
+    }
+    &:hover,&:active, &:focus,.side-hover{
+      /* checked menu choose this class name,class=side-hover*/
+      background-color:$bg-white;
+      color: $main-pink;
+    }
+  }
+  .sub-item{
+    li{
+      a{margin-left: 20px}
+    }
+
+  }
+}
+.side-link{
+  @extend %li-clear-default;
+  li{
+    line-height: 30px;
+  }
+}
+@media (min-width: 1200px){
+  .sidebar, .side-link{
+    margin-right: 10%;
+  }
+  .clear-space{
+    padding: 0;
+  }
+}

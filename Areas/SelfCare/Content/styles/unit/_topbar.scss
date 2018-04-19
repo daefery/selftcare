@@ -1,0 +1,98 @@
+/* temp topbar */
+.topbar-wrap{
+  min-height: 42px;
+  a{
+    text-decoration: none;
+  }
+  .user-info{
+      >a{
+        @extend %normal-border;
+        display: inline-block;
+        border-bottom-width: 0;
+        border-top-width: 0;
+        height: 42px;
+        padding-top: 13px;
+        margin-left:-1px ;
+        text-align: center;
+        width: 60px;
+    }
+  }
+  .user-name {
+    text-align: right;
+    @extend %li-clear-default;
+    line-height: 40px;
+    i{
+      padding: 0 10px;
+    }
+    >ul {
+      >li {
+        display: inline-block;
+        padding-right: 15px;
+
+      }
+      .clear-right-padding{
+        margin-right: -15px;
+        /* clear margin-right of "a" on bootstrap framework, let "a" keep the align right .*/
+      }
+    }
+  }
+}
+
+
+.toplist-menu{
+  @extend %li-clear-default;
+  line-height: 40px;
+  .dropdown-menu-line{
+    a{
+      padding: 8px 15px;
+      margin-top: -1px;
+      border: 1px solid rgba($border-silver,.4);
+      color: $font-gray;
+    }
+  }
+  >ul {
+    > li {
+      display: inline-block;
+      padding-right: 10px;
+      padding-left: 10px;
+
+    }
+    &>li:hover{ background-color: darken($main-red, 10%);}
+  }
+}
+//Search on topbar
+.navbar-form{
+  position: relative;
+  margin-top: 6px;
+  margin-bottom: 3px;
+  box-shadow:inset 0 0px 0 rgba(255, 255, 255, .1), 0 0px 0 rgba(255, 255, 255, .1);
+}
+.navbar-form i {
+  position: absolute;
+  z-index: 1;
+  right: 25px;
+  top: 50%;
+  margin-top: -7px;
+}
+.navbar-form input[type="text"]
+{
+  border-radius: 17px;
+  padding-right: 25px;
+  font-weight: 400;
+}
+//topbar
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}
+
+@media (max-width:383px) {
+  .user-info, .user-name{width: 100%; clear: both;}
+  .user-name{
+    border-top-width: 1px;
+    border-top-style: solid;
+  }
+}
+

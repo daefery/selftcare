@@ -1,0 +1,91 @@
+﻿
+    <div class="title clearfix">
+        <h3><i class="et office"></i>{{'USER_PERSONAL_OVERVIEW' | translate}}</h3>
+        <div class="panel-options">
+            <ul>
+                <li class="btn-active customize"><button id="overview_edit" ng-click="resetOverForm()" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">{{'EDIT' | translate}}</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="collapse in" id="accOverview">
+        <div class="panel-data account">
+           
+                <dl class="dl-horizontal">
+                    <dt>{{'USER_NAME' | translate}}: </dt>
+                    <dd>{{products.FirstName}} {{products.LastName}}</dd>
+                    
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>{{'BIRTHDATE' | translate}}: </dt>
+                    <dd>{{products.DateofBirth}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>{{'ADDRESS' | translate}}: </dt>
+                    <dd>{{products.Address}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>{{'EMAIL' | translate}}: </dt>
+                    <dd>{{products.Email}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>{{'PHONE_NUMBER' | translate}}: </dt>
+                    <dd>{{products.PhoneNumber}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>{{'JOB_TITLE' | translate}}: </dt>
+                    <dd>{{products.JobTitle}}</dd> 
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>{{'DEPARTMENT' | translate}}: </dt>
+                    <dd ng-repeat="TTSimpleDepartment in accdprt">{{TTSimpleDepartment.DepartmentNames.DefaultMessage}}</dd>
+                </dl>
+   
+   
+   
+
+                <!--<dl class="dl-horizontal col-sm-12 col-xs-12">
+                    <dt>{{'USER_NAME' | translate}}: </dt>
+                    <dd>{{products.FirstName}} {{products.LastName}}</dd>
+                    <dt>{{'BIRTHDATE' | translate}}: </dt>
+                    <dd>{{products.DateofBirth}}</dd>
+                </dl>
+                <dl class="dl-horizontal col-sm-12 col-xs-12">
+                    <dt>{{'ADDRESS' | translate}}: </dt>
+                    <dd>{{products.Address}}</dd>
+                    <dt>{{'EMAIL' | translate}}: </dt>
+                    <dd>{{products.Email}}</dd>
+                    <dt>{{'PHONE_NUMBER' | translate}}: </dt>
+                    <dd>{{products.PhoneNumber}}</dd>
+                </dl>
+                <dl class="dl-horizontal col-sm-12 col-xs-12">
+                    <dt>{{'JOB_TITLE' | translate}}: </dt>
+                    <dd>{{products.JobTitle}}</dd>
+                </dl>
+                <dl class="dl-horizontal col-sm-12 col-xs-12">
+                    <dt>{{'DEPARTMENT' | translate}}: </dt>
+                    <dd ng-repeat="TTSimpleDepartment in accdprt">{{TTSimpleDepartment.DepartmentNames.DefaultMessage}}</dd>
+                </dl>-->
+ 
+    </div>
+
+
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content etak-modal">
+                        <div class="modal-header">
+                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                            <h3 class="modal-title">Edit Overview Detail</h3>
+                            <button type="button" class="close" data-dismiss="modal"><i class="et delete8"></i></button>
+                        </div>
+                        <div class="modal-body without-footer">
+                            <etbossform value="UpdateUserDetailController" name="overviewform" ng-controller="OverviewForm" field="{{datas}}"></etbossform>
+                            <!--<div class="row">
+                                <div class="col-md-12">
+                                    <etbossform value="UpdateUserDetailController" name="overviewform" ng-controller="OverviewForm" field="{{datas}}"></etbossform>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+

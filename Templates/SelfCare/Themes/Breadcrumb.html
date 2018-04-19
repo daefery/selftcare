@@ -1,0 +1,33 @@
+﻿<div class="top-inner etak">
+    <div class="top-inner-content">
+        <div class="container">
+            <h3 ng-bind="title">Current Page</h3>
+        </div>
+    </div>
+</div>
+<div class="selfcare-breadcrumb" ng-show="isActiveDevice.ShowBreadCrumb">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-9 col-md-9 col-sm-8">
+                <ol class="breadcrumb" style="padding:10px 0 10px 0">
+                    <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path"
+                        ng-if="breadcrumb.label"
+                        ng-class="{ active: $last }">
+                        <a ng-if="$first"
+                           ng-href="{{ breadcrumb.path }}"
+                           class="margin-right-xs"><i class="fa fa-home"></i>{{ breadcrumb.label | translate }}</a>
+                        <a ng-if="!$last && !$first"
+                           ng-href="{{ breadcrumb.path }}"
+                           class="margin-right-xs">{{ breadcrumb.label | translate }}</a>
+                        <span ng-if="$last" style="cursor:not-allowed"> {{ breadcrumb.label | translate }} </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4" ng-controller="CustomerWrapperController">
+                <div class="profile-info">
+                    <h4>welcome , <span ng-bind="info.main.username">Username</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿<div class="modal-content">
+    <div ng-controller="ActionCloseTTController">
+        <div class="modal-header">
+            <h3 class="modal-title">{{'ACTION'|translate}}: {{ActionName|translate}}</h3>
+        </div>
+        <div class="modal-body">
+            <div class="col-sm-12" style="border-bottom:1px solid lightgray">
+                <div class="col-sm-4" ng-show="{{isETAKUser}}">
+                    MVNO: <span id="closett-MVNO">{{CustomerDetailforTT.MVNOName}}</span>
+                </div>
+                <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                    {{'Phone_Number'|translate}}: <span id="closett-PhoneNumber">{{CustomerDetailforTT.PhoneNumber}}</span>
+                </div>
+                <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                    {{'Customer_Id'|translate}}: <span id="closett-CustomerId">{{CustomerDetailforTT.CustomerId}}</span>
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="margin-top:20px">
+                <div class="col-sm-12" style="padding-bottom:5px">
+                    <etbossform name="ActionCloseTTDetails" type="split" field="{{ActionCloseTTDetails}}"></etbossform>
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="margin-top:20px">
+                <div class="col-sm-12" style="padding-bottom:5px">
+                    <div>{{CommentTypeText|translate}}</div>
+                    <form name="actionCloseTTResolution">
+                        <div style="border:1px solid black">
+                            <text-angular ng-model="ActionCloseTT.Resolution" name="actionCloseTTTextDescriptionEditor"
+                                          ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="btn btn-group pull-left">
+                <input id="SendMail_checkbox-actionClose" value="" name="SendMail_checkbox-actionClose" checked="" type="checkbox" ng-model="sendemailforclose">
+                <label class="ng-binding" for="SendMail_checkbox-actionClose"><span></span>{{'Send_Email' | translate}}</label>
+            </div>
+
+            <div class="col-sm-12" style="border-top:1px solid lightgray; margin-top:10px;padding:10px">
+                <div class="col-sm-6">
+                    <button id="SubmitActionCloseTT-button" ng-click="SubmitActionCloseTT()" class="btn btn-success pull-right btn-md">{{ActionName|translate}}</button>
+                </div>
+                <div class="col-sm-6">
+                    <button id="CancelSubmitActionCloseTT-button" ng-click="CancelSubmitActionCloseTT()" class="btn btn-danger btn-md ">{{'Cancel'|translate}}</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer" style="border-top:none"></div>
+    </div>
+</div>

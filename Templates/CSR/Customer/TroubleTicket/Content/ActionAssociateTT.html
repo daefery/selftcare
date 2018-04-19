@@ -1,0 +1,75 @@
+﻿<div class="modal-content etak-modal">
+    <div ng-controller="ActionAssociateTTController">
+        <div class="modal-header">
+            <h3 class="modal-title">{{ActionName|translate}} {{'Trouble Ticket'|translate}}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="et delete8"></i></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="top-modal-section">
+                    <div class="row">
+                        <div class="col-sm-4" ng-show="{{isETAKUser}}">
+                            MVNO: <span id="AssociateTT-MVNO">{{CustomerDetailforTT.MVNOName}}</span>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            {{'Phone_Number'|translate}}: <span id="AssociateTT-PhoneNumber">{{CustomerDetailforTT.PhoneNumber}}</span>
+                        </div>
+                        <div class="{{isETAKUser == true ? 'col-sm-4' : 'col-sm-6'}}">
+                            {{'Customer_Id'|translate}}: <span id="AssociateTT-CustomerId">{{CustomerDetailforTT.CustomerId}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mid-modal-section">
+                    <etbossform name="UpdateTT" type="split" field="{{UpdateTT}}"></etbossform>
+                    <div class="sub-modal">
+                        <h5>QA</h5>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Questions</th>
+                                    <th>Answers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="QandA in questionAndAnswer">
+                                    <td ng-attr-id="{{ 'associate-tt-question-' + $index }}">{{QandA.question}}</td>
+                                    <td>
+                                        <textarea ng-attr-id="{{ 'associate-tt-answer-' + $index }}" ng-model="QandA.answer" cols="60" rows="2"></textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form name="associateTextEditorForm">
+                        <div>
+                            <span>{{'Description'|translate}}</span>
+                            <div style="border:1px solid black">
+                                <text-angular ng-model="UpdateTTSection.Description" name="associateTextDescriptionEditor"
+                                              ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                            </div>
+                        </div>
+                        <div>
+                            <span>{{'INFORMATIVE_UPDATES'|translate}}</span>
+                            <div style="border:1px solid black">
+                                <text-angular ng-model="UpdateTTSection.InformativeUpdates" name="associateTextInformativeUpdatesEditor"
+                                              ta-text-editor-class="border-around container" ta-html-editor-class="border-around"></text-angular>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group pad-15">
+                        <div class="btn btn-group pull-left">
+                            <input id="SendMail_checkbox-associate" value="" name="SendMail_checkbox-associate" checked="" type="checkbox" ng-model="sendemailforassociate">
+                            <label class="ng-binding" for="SendMail_checkbox-associate"><span></span>{{'Send_Email' | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-buttons clearfix">
+                    <div class="btn-group pull-right">
+                        <button id="SubmitassociateTT-button" ng-click="SubmitUpdateTT()" class="btn btn-default">{{ActionName|translate}}</button>
+                        <button id="cancel-associateTT-button" ng-click="CancelUpdateTT()" class="btn btn-default ">{{'Cancel'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

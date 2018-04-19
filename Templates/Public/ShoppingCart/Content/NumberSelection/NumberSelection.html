@@ -1,0 +1,60 @@
+﻿<div ng-controller="NumberSelectionController">
+    <!--<div class="step-title">
+        <h3>Number Selection</h3>
+    </div>-->
+    <div class="cart-info">
+        <div class="container">
+            <h3 class="page-title">Number Selection</h3>
+        </div>
+    </div>
+
+    <div class="shopping-area">
+        <div class="number-selection">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-12">
+                <etbossform name="newnumber" ng-init="NumberSelection.NewNumber = 'newnumber_A'" field="{{newnumber}}"></etbossform>
+            </div>
+        </div>
+        
+       <div class="row">
+                <div class="col-sm-6" style="border-right: 1px solid #E9E9E9; " ng-hide="hideNumberSelect" ng-show="showNumberSelect">
+                    <div ng-if="selection(NumberSelection.NewNumber)"></div>
+                    <div ng-include="newnumberpath"></div>
+                </div>
+                <div class="col-sm-6" >
+                    <div id="browseICCID" ng-hide="hideSelectSim" ng-show="showSelectSim">
+                        <p>SIM Information</p>
+
+                            <span>ICCID :</span>
+                            <span><input type="number" /></span>
+                            <span ng-controller="ModalCtrl">
+                                <i class="glyphicon glyphicon-info-sign" style="cursor: pointer; padding-top: 5px" ng-click="open('sm','Templates/CSR/Customer/CustomerRegistration/Content/NumberSelection/Content/ICCIDInfo.html')"></i>
+                                <button class="btn btn-default" ng-click="open('sm','Templates/CSR/Customer/CustomerRegistration/Content/NumberSelection/Content/BrowseICCID.html')">browse</button>
+                            </span>
+
+                    </div>
+                    <!--<div class="col-sm-12" style="border: 1px solid #E9E9E9; margin-top: 10px; ">
+                        <p>Customize Subscription Profile</p>
+                        <etbossform name="customizesubscriptionprofile" field="{{customizesubscriptionprofile}}"></etbossform>
+                    </div>-->
+                </div>
+                <span class="mb-30">&nbsp;</span>
+            </div>
+       </div>
+      
+    </div>
+
+    <div class="checkout-bottom">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12">
+                <div class="btn-group">
+                    <button ng-click="ChangeCRPage('customerinfo')" class="btn btn-default"> prev</button>
+                    <button ng-click="ChangeCRPage('shipping')" class="btn btn-default next">next</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+   
+
+</div>
